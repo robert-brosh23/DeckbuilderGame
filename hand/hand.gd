@@ -15,6 +15,15 @@ func append_card_to_hand(card: Card) -> void:
 	card.flip_card_up()
 	cards.append(card)
 	update_hand()
+	
+func remove_card_from_hand(index: int) -> Card:
+	if index >= cards.size():
+		print("Error: Index out of range (card in hand)")
+		return
+	var card = cards[index]
+	cards.remove_at(index)
+	update_hand()
+	return card
 
 func update_hand():
 	var card_separation: int = determine_card_separation()

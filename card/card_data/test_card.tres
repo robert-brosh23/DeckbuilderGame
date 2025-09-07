@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_of77j")
-card_name = "Card Name"
+card_name = "Card Title"
 card_png = ExtResource("1_c0x5w")
 card_description = "This is a description of what the card does."
 card_type = 1

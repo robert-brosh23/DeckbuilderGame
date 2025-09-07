@@ -1,10 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=13 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bu8nv7leim8od" path="res://card/card.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dd5tbk86qnuwn" path="res://deck/deck.tscn" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://cjsi2vqhyqr6c" path="res://sprites/correctbasicgirly.png" id="3_kek77"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="4_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cprtqlg155quc" path="res://hand/hand.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bslur2hh54tgf" path="res://utility/movement_tween_manager/movement_tween_manager.tscn" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://clg1cai8kyk4j" path="res://sprites/girlywithbuns.png" id="5_efxa6"]
+[ext_resource type="Texture2D" uid="uid://c6hjlkolpbprx" path="res://sprites/new_dimensions.png" id="6_dg77c"]
+
+[sub_resource type="Resource" id="Resource_ycdy4"]
+script = ExtResource("4_4c57u")
+card_name = "Card 1"
+card_png = ExtResource("3_kek77")
+card_description = "This is a description of what the card does. What kind of card is this?"
+card_type = 0
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"
+
+[sub_resource type="Resource" id="Resource_w48qg"]
+script = ExtResource("4_4c57u")
+card_name = "Card 2"
+card_png = ExtResource("5_efxa6")
+card_description = "This is a description of what the card does. What kind of card is this?"
+card_type = 1
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"
+
+[sub_resource type="Resource" id="Resource_vivmo"]
+script = ExtResource("4_4c57u")
+card_name = "Card 4 "
+card_png = ExtResource("6_dg77c")
+card_description = "This is a description of what the card does. What kind of card is this?"
+card_type = 0
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("movement_tween_manager", "deck", "hand")]
 script = ExtResource("1_0xm2m")
@@ -21,19 +49,23 @@ color = Color(1, 0.905882, 0.839216, 1)
 
 [node name="Card" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(209, 76)
+card_data = SubResource("Resource_ycdy4")
 
 [node name="Card2" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(209, 76)
+card_data = SubResource("Resource_w48qg")
 
 [node name="Card3" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(209, 76)
 
 [node name="Card4" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(209, 76)
+card_data = SubResource("Resource_vivmo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Hand" parent="." instance=ExtResource("4_lquwl")]
+visible = false
 position = Vector2(-320, -180)
 
 [node name="MovementTweenManager" parent="." instance=ExtResource("5_7mycd")]

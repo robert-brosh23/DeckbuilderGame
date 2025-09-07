@@ -49,7 +49,8 @@ func move_card_to_deck(deck_pos: Vector2) -> void:
 	movement_tween_manager.tween_visible(self, false, 1.0)
 	
 func apply_card_visual_facedown() -> void:
-	panel.add_theme_stylebox_override("panel", get_standard_stylebox())
+	var stylebox: StyleBoxFlat = preload(FACE_DOWN_CARD_STYLEBOX_PATH)
+	panel.add_theme_stylebox_override("panel", stylebox)
 	margin_container.visible = false
 
 func apply_card_visual_faceup() -> void:
