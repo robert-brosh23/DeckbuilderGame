@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=14 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bu8nv7leim8od" path="res://card/card.tscn" id="1_ig7tw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bslur2hh54tgf" path="res://utility/movement_tween_manager/movement_tween_manager.tscn" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://clg1cai8kyk4j" path="res://sprites/girlywithbuns.png" id="5_efxa6"]
 [ext_resource type="Texture2D" uid="uid://c6hjlkolpbprx" path="res://sprites/new_dimensions.png" id="6_dg77c"]
+[ext_resource type="PackedScene" uid="uid://bvnrpwbicsfub" path="res://discard_pile/discard_pile.tscn" id="10_4c57u"]
 
 [sub_resource type="Resource" id="Resource_ycdy4"]
 script = ExtResource("4_4c57u")
@@ -34,11 +35,12 @@ card_description = "This is a description of what the card does. What kind of ca
 card_type = 0
 metadata/_custom_type_script = "uid://bevi4n8n1jvud"
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("movement_tween_manager", "deck", "hand")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("movement_tween_manager", "deck", "hand", "discard_pile")]
 script = ExtResource("1_0xm2m")
 movement_tween_manager = NodePath("MovementTweenManager")
 deck = NodePath("Deck")
 hand = NodePath("Hand")
+discard_pile = NodePath("DiscardPile")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -500.0
@@ -48,18 +50,18 @@ offset_bottom = 500.0
 color = Color(1, 0.905882, 0.839216, 1)
 
 [node name="Card" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(209, 76)
+position = Vector2(83, -44)
 card_data = SubResource("Resource_ycdy4")
 
 [node name="Card2" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(209, 76)
+position = Vector2(83, -44)
 card_data = SubResource("Resource_w48qg")
 
 [node name="Card3" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(209, 76)
+position = Vector2(83, -44)
 
 [node name="Card4" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(209, 76)
+position = Vector2(83, -44)
 card_data = SubResource("Resource_vivmo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -72,3 +74,6 @@ position = Vector2(-320, -180)
 
 [node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
 position = Vector2(-245, -73)
+
+[node name="DiscardPile" parent="." instance=ExtResource("10_4c57u")]
+position = Vector2(232, 80)
