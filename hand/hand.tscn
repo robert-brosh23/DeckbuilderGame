@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cprtqlg155quc"]
+
+[ext_resource type="Script" uid="uid://pl013pteooqh" path="res://hand/hand.gd" id="1_t1j3k"]
+[ext_resource type="PackedScene" uid="uid://bu8nv7leim8od" path="res://card/card.tscn" id="2_v40hy"]
+[ext_resource type="PackedScene" uid="uid://bslur2hh54tgf" path="res://utility/movement_tween_manager/movement_tween_manager.tscn" id="3_nrt1y"]
+
+[node name="Hand" type="Node2D" node_paths=PackedStringArray("movement_tween_manager")]
+script = ExtResource("1_t1j3k")
+movement_tween_manager = NodePath("MovementTweenManager")
+
+[node name="Card" parent="." instance=ExtResource("2_v40hy")]
+position = Vector2(601, 113)
+
+[node name="Card3" parent="." instance=ExtResource("2_v40hy")]
+position = Vector2(601, 113)
+
+[node name="Card2" parent="." instance=ExtResource("2_v40hy")]
+position = Vector2(601, 113)
+
+[node name="Card4" parent="." instance=ExtResource("2_v40hy")]
+position = Vector2(601, 113)
+
+[node name="MovementTweenManager" parent="." instance=ExtResource("3_nrt1y")]

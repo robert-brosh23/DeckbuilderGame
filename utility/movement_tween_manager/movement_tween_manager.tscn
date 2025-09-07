@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bslur2hh54tgf"]
+
+[ext_resource type="Script" uid="uid://wvks3jek7c0a" path="res://utility/movement_tween_manager/movement_tween_manager.gd" id="1_bd23o"]
+
+[node name="MovementTweenManager" type="Node"]
+script = ExtResource("1_bd23o")

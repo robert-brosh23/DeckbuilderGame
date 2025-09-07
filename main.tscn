@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bichiffgvkfhu"]
+
+[ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bu8nv7leim8od" path="res://card/card.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dd5tbk86qnuwn" path="res://deck/deck.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cprtqlg155quc" path="res://hand/hand.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bslur2hh54tgf" path="res://utility/movement_tween_manager/movement_tween_manager.tscn" id="5_7mycd"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("movement_tween_manager", "deck", "hand")]
+script = ExtResource("1_0xm2m")
+movement_tween_manager = NodePath("MovementTweenManager")
+deck = NodePath("Deck")
+hand = NodePath("Hand")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+color = Color(1, 0.905882, 0.839216, 1)
+
+[node name="Card" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(209, 76)
+
+[node name="Card2" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(209, 76)
+
+[node name="Card3" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(209, 76)
+
+[node name="Card4" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(209, 76)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Hand" parent="." instance=ExtResource("4_lquwl")]
+position = Vector2(-320, -180)
+
+[node name="MovementTweenManager" parent="." instance=ExtResource("5_7mycd")]
+
+[node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(-245, -73)
