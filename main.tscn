@@ -49,21 +49,6 @@ offset_right = 500.0
 offset_bottom = 500.0
 color = Color(1, 0.905882, 0.839216, 1)
 
-[node name="Card" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = SubResource("Resource_ycdy4")
-
-[node name="Card2" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = SubResource("Resource_w48qg")
-
-[node name="Card3" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-
-[node name="Card4" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = SubResource("Resource_vivmo")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Hand" parent="." instance=ExtResource("4_lquwl")]
@@ -77,3 +62,20 @@ position = Vector2(-245, -73)
 
 [node name="DiscardPile" parent="." instance=ExtResource("10_4c57u")]
 position = Vector2(232, 80)
+
+[node name="Cards" type="Node2D" parent="."]
+
+[node name="Card" parent="Cards" instance=ExtResource("1_ig7tw")]
+position = Vector2(83, -44)
+card_data = SubResource("Resource_ycdy4")
+
+[node name="Card2" parent="Cards" instance=ExtResource("1_ig7tw")]
+position = Vector2(83, -44)
+card_data = SubResource("Resource_w48qg")
+
+[node name="Card3" parent="Cards" instance=ExtResource("1_ig7tw")]
+position = Vector2(83, -44)
+
+[node name="Card4" parent="Cards" instance=ExtResource("1_ig7tw")]
+position = Vector2(83, -44)
+card_data = SubResource("Resource_vivmo")

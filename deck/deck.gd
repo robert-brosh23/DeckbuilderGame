@@ -17,8 +17,8 @@ func append_card_to_deck(card: Card) -> void:
 		return
 	card.flip_card_down()
 	cards.append(card)
-	movement_tween_manager.tween_to_pos(card, self.position, 1.0).finished.connect(func(): update_card_number_text())
-	movement_tween_manager.tween_visible(card, false, 1.0)
+	card.movement_tween_manager.tween_to_pos(card, self.position, 1.0).finished.connect(func(): update_card_number_text())
+	card.movement_tween_manager.tween_visible(card, false, 1.0)
 	
 func append_multiple_cards_to_deck(arr: Array[Card]) -> void:
 	for card in arr:

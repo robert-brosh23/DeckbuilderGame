@@ -9,9 +9,10 @@ func append_card_to_discard_pile(card: Card) -> void:
 		print("Error: no card to append to discard pile")
 		return
 	card.flip_card_up()
+	card.hoverable = false
 	cards.push_front(card)
 	update_z_indexes()
-	movement_tween_manager.tween_to_pos(card, self.position, 1.0)
+	card.movement_tween_manager.tween_to_pos(card, self.position, 1.0)
 	card.visible = true
 	
 func remove_card_from_discard_pile(index: int) -> Card:

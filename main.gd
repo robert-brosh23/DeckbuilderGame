@@ -7,10 +7,10 @@ extends Node2D
 @export var discard_pile: DiscardPile
 
 func _ready() -> void:
-	move_card_to_deck($Card)
-	move_card_to_deck($Card2)
-	move_card_to_deck($Card3)
-	move_card_to_hand($Card4)
+	move_card_to_deck($Cards/Card)
+	move_card_to_deck($Cards/Card2)
+	move_card_to_deck($Cards/Card3)
+	move_card_to_hand($Cards/Card4)
 	
 	var tween = create_tween()
 	tween.tween_callback(func():
@@ -33,65 +33,66 @@ func _ready() -> void:
 		draw_card_from_deck()
 	).set_delay(1.0)
 	
-	tween.tween_callback(func():
-		move_card_to_deck(hand.remove_card_from_hand(0))
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		move_card_to_deck(hand.remove_card_from_hand(0))
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		move_card_to_deck(hand.remove_card_from_hand(0))
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		move_card_to_deck(hand.remove_card_from_hand(0))
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		deck.shuffle_deck()
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		draw_card_from_deck()
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		draw_card_from_deck()
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		move_card_to_deck(hand.remove_card_from_hand(0))
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		draw_card_from_deck()
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		discard_card_from_deck()
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		discard_card_from_hand(1)
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		discard_card_from_hand(0)
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		discard_card_from_deck()
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		move_cards_from_discard_pile_to_deck_and_reshuffle()
-	).set_delay(1.0)
-	
-	tween.tween_callback(func():
-		draw_card_from_deck()
-	).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#move_card_to_deck(hand.remove_card_from_hand(0))
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#move_card_to_deck(hand.remove_card_from_hand(0))
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#move_card_to_deck(hand.remove_card_from_hand(0))
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#move_card_to_deck(hand.remove_card_from_hand(0))
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#deck.shuffle_deck()
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#draw_card_from_deck()
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#draw_card_from_deck()
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#move_card_to_deck(hand.remove_card_from_hand(0))
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#draw_card_from_deck()
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#discard_card_from_deck()
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#discard_card_from_hand(1)
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#discard_card_from_hand(0)
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#discard_card_from_deck()
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#move_cards_from_discard_pile_to_deck_and_reshuffle()
+	#).set_delay(1.0)
+	#
+	#tween.tween_callback(func():
+		#draw_card_from_deck()
+	#).set_delay(1.0)
 	
 func draw_card_from_deck() -> void:
 	var card = deck.draw_card()
