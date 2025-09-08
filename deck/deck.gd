@@ -3,7 +3,6 @@ extends Node2D
 
 @export var cards: Array[Card]
 @export var hand: Hand
-@export var movement_tween_manager: MovementTweenManager
 
 @onready var panel = $Panel
 @onready var card_amount_label = $CardAmountLabel

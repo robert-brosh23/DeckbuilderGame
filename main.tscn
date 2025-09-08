@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=13 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bu8nv7leim8od" path="res://card/card.tscn" id="1_ig7tw"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cjsi2vqhyqr6c" path="res://sprites/correctbasicgirly.png" id="3_kek77"]
 [ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="4_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cprtqlg155quc" path="res://hand/hand.tscn" id="4_lquwl"]
-[ext_resource type="PackedScene" uid="uid://bslur2hh54tgf" path="res://utility/movement_tween_manager/movement_tween_manager.tscn" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://clg1cai8kyk4j" path="res://sprites/girlywithbuns.png" id="5_efxa6"]
 [ext_resource type="Texture2D" uid="uid://c6hjlkolpbprx" path="res://sprites/new_dimensions.png" id="6_dg77c"]
 [ext_resource type="PackedScene" uid="uid://bvnrpwbicsfub" path="res://discard_pile/discard_pile.tscn" id="10_4c57u"]
@@ -35,9 +34,8 @@ card_description = "This is a description of what the card does. What kind of ca
 card_type = 0
 metadata/_custom_type_script = "uid://bevi4n8n1jvud"
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("movement_tween_manager", "deck", "hand", "discard_pile")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("deck", "hand", "discard_pile")]
 script = ExtResource("1_0xm2m")
-movement_tween_manager = NodePath("MovementTweenManager")
 deck = NodePath("Deck")
 hand = NodePath("Hand")
 discard_pile = NodePath("DiscardPile")
@@ -54,8 +52,6 @@ color = Color(1, 0.905882, 0.839216, 1)
 [node name="Hand" parent="." instance=ExtResource("4_lquwl")]
 visible = false
 position = Vector2(-320, -180)
-
-[node name="MovementTweenManager" parent="." instance=ExtResource("5_7mycd")]
 
 [node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
 position = Vector2(-245, -73)

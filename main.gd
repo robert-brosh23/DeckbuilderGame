@@ -1,7 +1,6 @@
 class_name Main
 extends Node2D
 
-@export var movement_tween_manager: MovementTweenManager
 @export var deck: Deck
 @export var hand: Hand
 @export var discard_pile: DiscardPile

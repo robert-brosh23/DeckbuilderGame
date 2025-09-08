@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvnrpwbicsfub"]
+[gd_scene load_steps=2 format=3 uid="uid://bvnrpwbicsfub"]
 
 [ext_resource type="Script" uid="uid://t5fbfihg7l2j" path="res://discard_pile/discard_pile.gd" id="1_ju4ac"]
-[ext_resource type="PackedScene" uid="uid://bslur2hh54tgf" path="res://utility/movement_tween_manager/movement_tween_manager.tscn" id="2_mftcq"]
 
-[node name="DiscardPile" type="Node2D" node_paths=PackedStringArray("movement_tween_manager")]
+[node name="DiscardPile" type="Node2D"]
 script = ExtResource("1_ju4ac")
-movement_tween_manager = NodePath("MovementTweenManager")
-
-[node name="MovementTweenManager" parent="." instance=ExtResource("2_mftcq")]

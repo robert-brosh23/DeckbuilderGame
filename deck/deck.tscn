@@ -1,13 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dd5tbk86qnuwn"]
+[gd_scene load_steps=4 format=3 uid="uid://dd5tbk86qnuwn"]
 
 [ext_resource type="Script" uid="uid://do3gyc24caxqm" path="res://deck/deck.gd" id="1_iau1w"]
 [ext_resource type="StyleBox" uid="uid://bhfkevhroumw7" path="res://card/card_data/styles/stylebox/face_down_card_stylebox.tres" id="2_pihgb"]
 [ext_resource type="FontFile" uid="uid://c6lfcmqrq1huc" path="res://fonts/m3x6.ttf" id="2_rqbxk"]
-[ext_resource type="PackedScene" uid="uid://bslur2hh54tgf" path="res://utility/movement_tween_manager/movement_tween_manager.tscn" id="4_8n6od"]
 
-[node name="Deck" type="Node2D" node_paths=PackedStringArray("movement_tween_manager")]
+[node name="Deck" type="Node2D"]
 script = ExtResource("1_iau1w")
-movement_tween_manager = NodePath("MovementTweenManager")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = -44.0
@@ -26,5 +24,3 @@ theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
 theme_override_fonts/font = ExtResource("2_rqbxk")
 text = "Cards"
 horizontal_alignment = 1
-
-[node name="MovementTweenManager" parent="." instance=ExtResource("4_8n6od")]

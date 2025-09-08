@@ -1,7 +1,6 @@
 class_name DiscardPile
 extends Node2D
 
-@export var movement_tween_manager: MovementTweenManager
 @export var cards: Array[Card]
 
 func append_card_to_discard_pile(card: Card) -> void:

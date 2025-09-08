@@ -6,7 +6,7 @@ const DEFAULT_Y = 170.0
 const DEFAULT_CARD_SEPARATION = 70
 
 @export var cards: Array[Card]
-@export var movement_tween_manager: MovementTweenManager
+var hovered_card: Card = null
 
 func _ready() -> void:
 	update_hand()
@@ -30,9 +30,11 @@ func remove_card_from_hand(index: int) -> Card:
 	
 func hover_card(card: Card) -> void:
 	card.get_parent().move_child(card,cards.size()-1)
+	hovered_card = card
 	card.hover_card()
 	
 func stop_hover_card() -> void:
+	hovered_card = null
 	update_hand()
 
 func update_hand():
@@ -42,11 +44,13 @@ func update_hand():
 	var z_index: int = 1
 	
 	for card in cards:
-		card.movement_tween_manager.tween_to_pos(card, Vector2(x_pos, DEFAULT_Y))
-		card.z_index = z_index
-		card.get_parent().move_child(card,z_index-1)
+		var y_pos = card.position.y if card == hovered_card else DEFAULT_Y
+		card.movement_tween_manager.tween_to_pos(card, Vector2(x_pos, y_pos))
+		if card != hovered_card:
+			card.z_index = z_index
+			card.get_parent().move_child(card,z_index-1)
+			z_index += 1
 		x_pos += card_separation
-		z_index += 1
 
 func determine_card_separation() -> int:
 	return DEFAULT_CARD_SEPARATION - cards.size() * 4

@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cprtqlg155quc"]
+[gd_scene load_steps=2 format=3 uid="uid://cprtqlg155quc"]
 
 [ext_resource type="Script" uid="uid://pl013pteooqh" path="res://hand/hand.gd" id="1_t1j3k"]
-[ext_resource type="PackedScene" uid="uid://bslur2hh54tgf" path="res://utility/movement_tween_manager/movement_tween_manager.tscn" id="3_nrt1y"]
 
-[node name="Hand" type="Node2D" node_paths=PackedStringArray("movement_tween_manager")]
+[node name="Hand" type="Node2D"]
 script = ExtResource("1_t1j3k")
-movement_tween_manager = NodePath("MovementTweenManager")
-
-[node name="MovementTweenManager" parent="." instance=ExtResource("3_nrt1y")]
