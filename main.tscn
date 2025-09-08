@@ -41,6 +41,7 @@ hand = NodePath("Hand")
 discard_pile = NodePath("DiscardPile")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
 offset_left = -500.0
 offset_top = -500.0
 offset_right = 500.0
@@ -49,9 +50,9 @@ color = Color(1, 0.905882, 0.839216, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Hand" parent="." instance=ExtResource("4_lquwl")]
-visible = false
+[node name="Hand" parent="." node_paths=PackedStringArray("discard_pile") instance=ExtResource("4_lquwl")]
 position = Vector2(-320, -180)
+discard_pile = NodePath("../DiscardPile")
 
 [node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
 position = Vector2(-245, -73)

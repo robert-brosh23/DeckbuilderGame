@@ -51,7 +51,6 @@ func flip_card_down() -> void:
 	
 func move_card_to_deck(deck_pos: Vector2) -> void:
 	movement_tween_manager.tween_to_pos(self, deck_pos, 1.0)
-	movement_tween_manager.tween_visible(self, false, 1.0)
 	hoverable = false
 	
 func apply_card_visual_facedown() -> void:
@@ -111,12 +110,12 @@ func get_obstacle_image_frame_stylebox() -> StyleBox:
 func apply_obstacle_fonts() -> void:
 	title_label.add_theme_color_override("font_color", "ffe7d6")
 	description_label.add_theme_color_override("font_color", "ffe7d6")
-	
-func _on_panel_mouse_entered() -> void:
-	if hoverable:
-		hover_card()
 		
 func hover_card() -> void:
 	movement_tween_manager.tween_to_pos(self, Vector2(position.x, 170.0 - SELECTED_CARD_Y_OFFSET), .1)
 	z_index = 15
-		
+	
+## Returns true if the card was played, false if it cannot be played
+func play_card() -> bool:
+	print (card_data.card_name, " was played.")
+	return true
