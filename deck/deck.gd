@@ -19,6 +19,7 @@ func append_card_to_deck(card: Card) -> void:
 	card.flip_card_down()
 	cards.append(card)
 	card.movement_tween_manager.tween_to_pos(card, self.position, 1.0).finished.connect(func(): update_card_number_text())
+	update_top_card_z_index()
 	
 func append_multiple_cards_to_deck(arr: Array[Card]) -> void:
 	for card in arr:
@@ -37,6 +38,8 @@ func draw_card() -> Card:
 	var card = cards[0]
 	cards.remove_at(0)
 	update_card_number_text()
+	update_top_card_z_index()
+	
 	return card
 	
 func shuffle_deck() -> void:
@@ -53,6 +56,7 @@ func shuffle_deck() -> void:
 			cards[i] = cards[j]
 			cards[j] = temp
 		shuffling = false
+		update_top_card_z_index()
 	).set_delay(1.2 * Globals.animation_speed_scale)
 	
 func update_card_number_text() -> void:
@@ -61,3 +65,10 @@ func update_card_number_text() -> void:
 		panel.visible = false
 	else:
 		panel.visible = true
+		
+func update_top_card_z_index() -> void:
+	if cards.size() == 0:
+		return
+	cards[0].z_index = 1
+	for i in range(1, cards.size()-1, 1):
+		cards[i].z_index = 0
