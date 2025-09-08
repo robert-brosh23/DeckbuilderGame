@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 func draw_card_from_deck() -> void:
 	var card = deck.draw_card()
 	if card == null:
-		print("no card in deck")
 		return
 	move_card_to_hand(card)
 	

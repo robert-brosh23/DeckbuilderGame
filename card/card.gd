@@ -21,7 +21,7 @@ const FACE_DOWN_CARD_STYLEBOX_PATH = "res://card/card_data/styles/stylebox/face_
 @onready var description_label = $Panel/MarginContainer/VBoxContainer/DescriptionLabel
 @onready var animation_player = $AnimationPlayer
 
-var flipped_up: bool = false
+var flipped_up: bool = true
 var selected_font = FontFile
 var hoverable: bool = false
 
