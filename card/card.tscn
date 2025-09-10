@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bu8nv7leim8od"]
+[gd_scene load_steps=14 format=3 uid="uid://bu8nv7leim8od"]
 
 [ext_resource type="Script" uid="uid://b4h4dbu2ryb06" path="res://card/card.gd" id="1_ply2h"]
 [ext_resource type="Resource" uid="uid://dwxt6htpkc2dj" path="res://card/card_data/cards/meditation.tres" id="2_6xkbt"]
@@ -21,9 +21,6 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1n6wr"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6xkbt"]
-load_path = "res://.godot/imported/heart.png-69bff64251259751f4bcc5909839a008.ctex"
 
 [sub_resource type="Animation" id="Animation_ags6k"]
 length = 0.001
@@ -129,13 +126,16 @@ _data = {
 &"flip_card_up": SubResource("Animation_1n6wr")
 }
 
-[node name="Card" type="Node2D" node_paths=PackedStringArray("movement_tween_manager")]
+[node name="Card" type="Control" node_paths=PackedStringArray("movement_tween_manager")]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_ply2h")
 card_data = ExtResource("2_6xkbt")
 movement_tween_manager = NodePath("MovementTweenManager")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(88, 128)
+layout_mode = 0
 offset_left = -44.0
 offset_top = -64.0
 offset_right = 44.0
@@ -225,7 +225,6 @@ theme_override_styles/panel = ExtResource("6_6xkbt")
 [node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/PanelContainer"]
 custom_minimum_size = Vector2(1, 46)
 layout_mode = 2
-texture = SubResource("CompressedTexture2D_6xkbt")
 
 [node name="DescriptionLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
@@ -247,5 +246,3 @@ libraries = {
 [node name="MovementTweenManager" parent="." instance=ExtResource("7_1n6wr")]
 
 [node name="TestCam" type="Camera2D" parent="."]
-
-[connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]

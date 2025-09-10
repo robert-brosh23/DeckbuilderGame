@@ -15,6 +15,10 @@ func append_card_to_discard_pile(card: Card) -> void:
 	card.movement_tween_manager.tween_to_pos(card, self.position, 1.0)
 	card.visible = true
 	
+	# There is a bug with panel's mouse signals. When two nodes have the same parent, the node that is lower will take priority for these signals regardless of z index.
+	# That's why we need to move nodes around.
+	card.get_parent().move_child(card,1)
+	
 func remove_card_from_discard_pile(index: int) -> Card:
 	if index >= cards.size():
 		print("Error: Index out of range of discard pile.")

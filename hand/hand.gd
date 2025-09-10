@@ -4,6 +4,7 @@ extends Node2D
 const CENTER_X = 0
 const DEFAULT_Y = 170.0
 const DEFAULT_CARD_SEPARATION = 150
+const HAND_BASE_Z_INDEX = 200
 
 @onready var play_color_rect := $ColorRect
 
@@ -20,7 +21,7 @@ func _ready() -> void:
 	play_color_rect.visible = false
 	update_hand()
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	handle_input()
 
 func handle_input() -> void:
@@ -49,13 +50,7 @@ func handle_input() -> void:
 			update_hand()
 			return
 		
-		update_hand()
-		
-		var tween = create_tween()
-		returning_card.hoverable = false
-		tween.tween_callback(func():
-			returning_card.hoverable = true
-		).set_delay(1.0 * Globals.animation_speed_scale)
+		return_card(returning_card)
 
 func append_card_to_hand(card: Card) -> void:
 	card.flip_card_up()
@@ -73,6 +68,9 @@ func remove_card_from_hand(card: Card) -> Card:
 func hover_card(card: Card) -> void:
 	if card.hoverable == false || dragging:
 		return
+		
+	# There is a bug with panel's mouse signals. When two nodes have the same parent, the node that is lower will take priority for these signals regardless of z index.
+	# That's why we need to move nodes around.
 	card.get_parent().move_child(card,cards.size()-1)
 	hovered_card = card
 	card.hover_card()
@@ -85,12 +83,24 @@ func play_card(card: Card) -> void:
 	var result = card.play_card()
 	if result == true:
 		discard_card(card)
+		return
+	return_card(card)
 	
 func discard_card(card: Card) -> void:
 	remove_card_from_hand(card)
 	if discard_pile == null:
 		return
 	discard_pile.append_card_to_discard_pile(card)
+	
+func return_card(returning_card: Card) -> void:
+	update_hand()
+	
+	var tween = create_tween()
+	returning_card.hoverable = false
+	tween.tween_callback(func():
+		returning_card.hoverable = true
+	).set_delay(1.0 * Globals.animation_speed_scale)
+	
 
 func update_hand():
 	var card_separation: int = determine_card_separation()
@@ -104,7 +114,11 @@ func update_hand():
 			card.movement_tween_manager.tween_to_pos(card, Vector2(x_pos, y_pos))
 			if card != hovered_card:
 				card.z_index = z_index
+				
+				# There is a bug with panel's mouse signals. When two nodes have the same parent, the node that is lower will take priority for these signals regardless of z index.
+				# That's why we need to move nodes around.
 				card.get_parent().move_child(card,z_index-1)
+				
 				z_index += 1
 		x_pos += card_separation
 

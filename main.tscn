@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=11 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://bu8nv7leim8od" path="res://card/card.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dd5tbk86qnuwn" path="res://deck/deck.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="4_4c57u"]
+[ext_resource type="Resource" uid="uid://dwxt6htpkc2dj" path="res://card/card_data/cards/meditation.tres" id="4_efxa6"]
 [ext_resource type="PackedScene" uid="uid://cprtqlg155quc" path="res://hand/hand.tscn" id="4_lquwl"]
 [ext_resource type="Resource" uid="uid://c68uppt7623iv" path="res://card/card_data/cards/organize.tres" id="7_272bh"]
 [ext_resource type="Resource" uid="uid://c0wb7tjaoet3m" path="res://card/card_data/cards/new_day.tres" id="8_5vw27"]
@@ -18,6 +19,7 @@ discard_pile = NodePath("DiscardPile")
 
 [node name="GameManager" parent="." instance=ExtResource("10_efxa6")]
 position = Vector2(67, -168)
+card_data_debug = Array[ExtResource("4_4c57u")]([ExtResource("4_efxa6"), ExtResource("7_272bh"), ExtResource("8_5vw27"), ExtResource("9_kek77"), ExtResource("4_efxa6"), ExtResource("8_5vw27"), ExtResource("8_5vw27"), ExtResource("9_kek77"), ExtResource("4_efxa6"), ExtResource("7_272bh"), ExtResource("7_272bh"), ExtResource("8_5vw27")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
@@ -25,13 +27,10 @@ offset_left = -500.0
 offset_top = -500.0
 offset_right = 500.0
 offset_bottom = 500.0
+mouse_filter = 2
 color = Color(1, 0.905882, 0.839216, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Hand" parent="." node_paths=PackedStringArray("discard_pile") instance=ExtResource("4_lquwl")]
-position = Vector2(-320, -180)
-discard_pile = NodePath("../DiscardPile")
 
 [node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
 position = Vector2(-245, -73)
@@ -39,49 +38,6 @@ position = Vector2(-245, -73)
 [node name="DiscardPile" parent="." instance=ExtResource("10_4c57u")]
 position = Vector2(232, 80)
 
-[node name="Cards" type="Node2D" parent="."]
-
-[node name="Card" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-
-[node name="Card2" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-
-[node name="Card3" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-
-[node name="Card4" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = ExtResource("7_272bh")
-
-[node name="Card5" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = ExtResource("7_272bh")
-
-[node name="Card6" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = ExtResource("7_272bh")
-
-[node name="Card7" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = ExtResource("8_5vw27")
-
-[node name="Card8" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = ExtResource("8_5vw27")
-
-[node name="Card9" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = ExtResource("8_5vw27")
-
-[node name="Card10" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = ExtResource("9_kek77")
-
-[node name="Card11" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = ExtResource("9_kek77")
-
-[node name="Card12" parent="Cards" instance=ExtResource("1_ig7tw")]
-position = Vector2(83, -44)
-card_data = ExtResource("9_kek77")
+[node name="Hand" parent="." node_paths=PackedStringArray("discard_pile") instance=ExtResource("4_lquwl")]
+position = Vector2(-320, -180)
+discard_pile = NodePath("../DiscardPile")

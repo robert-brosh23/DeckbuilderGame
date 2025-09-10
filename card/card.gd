@@ -1,5 +1,5 @@
 class_name Card
-extends Node2D
+extends Control
 
 const SELECTED_CARD_Y_OFFSET = 48.0
 const DEFAULT_POS_Y = 170.0
@@ -182,6 +182,12 @@ func play_card() -> bool:
 	game_manager.hours -= hours_cost
 	print (card_data.card_name, " was played.")
 	return true
+	
+## Creates a new card, given the card_data
+static func create_card(card_data: CardData) -> Card:
+	var instance = preload("res://card/card.tscn").instantiate()
+	instance.card_data = card_data
+	return instance
 	
 func apply_spacer_container_margin() -> void:
 	cost_panel_margin_container.add_theme_constant_override("margin_right", -11 + card_data.card_title_offset)
