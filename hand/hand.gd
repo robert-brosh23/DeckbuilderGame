@@ -3,7 +3,7 @@ extends Node2D
 
 const CENTER_X = 0
 const DEFAULT_Y = 170.0
-const DEFAULT_CARD_SEPARATION = 70
+const DEFAULT_CARD_SEPARATION = 150
 
 @onready var play_color_rect := $ColorRect
 
@@ -109,5 +109,5 @@ func update_hand():
 		x_pos += card_separation
 
 func determine_card_separation() -> int:
-	return DEFAULT_CARD_SEPARATION - cards.size() * 4
+	return DEFAULT_CARD_SEPARATION / 4 + DEFAULT_CARD_SEPARATION * 3 / 4 / (cards.size() + 1)
 	

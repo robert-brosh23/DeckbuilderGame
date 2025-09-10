@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de0rpwa22yiud"
-path="res://.godot/imported/card-default-Sheet.png-2d29cde1c16b56701703e75c05948de7.ctex"
+uid="uid://bhfqwukegkpx2"
+path="res://.godot/imported/new_day.png-51359b47e174a932de0b3a683aebac5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/card-default-Sheet.png"
-dest_files=["res://.godot/imported/card-default-Sheet.png-2d29cde1c16b56701703e75c05948de7.ctex"]
+source_file="res://sprites/new_day.png"
+dest_files=["res://.godot/imported/new_day.png-51359b47e174a932de0b3a683aebac5e.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

@@ -10,6 +10,14 @@ func _ready() -> void:
 	move_card_to_deck($Cards/Card2)
 	move_card_to_deck($Cards/Card3)
 	move_card_to_deck($Cards/Card4)
+	move_card_to_deck($Cards/Card5)
+	move_card_to_deck($Cards/Card6)
+	move_card_to_deck($Cards/Card7)
+	move_card_to_deck($Cards/Card8)
+	move_card_to_deck($Cards/Card9)
+	move_card_to_deck($Cards/Card10)
+	move_card_to_deck($Cards/Card11)
+	move_card_to_deck($Cards/Card12)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("draw_card"):

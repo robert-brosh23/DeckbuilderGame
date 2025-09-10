@@ -1,12 +1,29 @@
-[gd_scene load_steps=12 format=3 uid="uid://bu8nv7leim8od"]
+[gd_scene load_steps=15 format=3 uid="uid://bu8nv7leim8od"]
 
 [ext_resource type="Script" uid="uid://b4h4dbu2ryb06" path="res://card/card.gd" id="1_ply2h"]
 [ext_resource type="Resource" uid="uid://blm351hqp2cu6" path="res://card/card_data/test_card.tres" id="2_fdnr0"]
 [ext_resource type="FontFile" uid="uid://c6lfcmqrq1huc" path="res://fonts/m3x6.ttf" id="2_trrkg"]
-[ext_resource type="Texture2D" uid="uid://b6nel4vgxfpke" path="res://sprites/heart.png" id="3_ply2h"]
+[ext_resource type="StyleBox" uid="uid://biuq6ndltblkm" path="res://card/card_data/styles/stylebox/obstacle_stylebox.tres" id="3_6xkbt"]
+[ext_resource type="FontFile" uid="uid://cm4gkenj5odhg" path="res://fonts/m5x7.ttf" id="4_1n6wr"]
 [ext_resource type="StyleBox" uid="uid://bqal5am0vi5ms" path="res://card/card_data/styles/stylebox/image_frame_obstacle_stylebox.tres" id="5_6xkbt"]
 [ext_resource type="PackedScene" uid="uid://bslur2hh54tgf" path="res://utility/movement_tween_manager/movement_tween_manager.tscn" id="7_1n6wr"]
-[ext_resource type="StyleBox" uid="uid://bhfkevhroumw7" path="res://card/card_data/styles/stylebox/face_down_card_stylebox.tres" id="7_6xkbt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xkbt"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1n6wr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6xkbt"]
+load_path = "res://.godot/imported/heart.png-69bff64251259751f4bcc5909839a008.ctex"
 
 [sub_resource type="Animation" id="Animation_ags6k"]
 length = 0.001
@@ -118,38 +135,87 @@ card_data = ExtResource("2_fdnr0")
 movement_tween_manager = NodePath("MovementTweenManager")
 
 [node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(88, 128)
 offset_left = -44.0
 offset_top = -64.0
 offset_right = 44.0
 offset_bottom = 64.0
 pivot_offset = Vector2(44, 64)
-theme_override_styles/panel = ExtResource("7_6xkbt")
+theme_override_styles/panel = ExtResource("3_6xkbt")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_right = 2
+layout_mode = 2
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 86.0
+offset_bottom = 187.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CostPanelMarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = -11
+theme_override_constants/margin_bottom = 1
+
+[node name="CostPanel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer"]
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6xkbt")
+
+[node name="CostLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer/CostPanel"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -6.5
+offset_right = 2.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("4_1n6wr")
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
+size_flags_horizontal = 6
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
 theme_override_fonts/font = ExtResource("2_trrkg")
 theme_override_font_sizes/font_size = 16
-text = "Title"
+text = "TitlefcadfDASFDF"
 horizontal_alignment = 1
-autowrap_mode = 3
+
+[node name="SpacerContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -10
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 1
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/SpacerContainer"]
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1n6wr")
 
 [node name="PanelContainer" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -159,12 +225,11 @@ theme_override_styles/panel = ExtResource("5_6xkbt")
 [node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/PanelContainer"]
 custom_minimum_size = Vector2(1, 46)
 layout_mode = 2
-texture = ExtResource("3_ply2h")
+texture = SubResource("CompressedTexture2D_6xkbt")
 
 [node name="DescriptionLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
 theme_override_constants/line_spacing = -2
 theme_override_fonts/font = ExtResource("2_trrkg")
@@ -180,5 +245,7 @@ libraries = {
 }
 
 [node name="MovementTweenManager" parent="." instance=ExtResource("7_1n6wr")]
+
+[node name="TestCam" type="Camera2D" parent="."]
 
 [connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]

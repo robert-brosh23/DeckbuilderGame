@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://csdmhd25lpc0t"]
+
+[ext_resource type="Script" uid="uid://dnck5k1v8qlla" path="res://game_manager/game_manager.gd" id="1_ong7i"]
+[ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://fonts/m6x11.ttf" id="2_mx6ys"]
+
+[node name="GameManager" type="Node2D" groups=["game_manager"]]
+z_index = 2
+script = ExtResource("1_ong7i")
+
+[node name="HoursLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("2_mx6ys")
+theme_override_font_sizes/font_size = 16
+text = "Hours Remaining:"

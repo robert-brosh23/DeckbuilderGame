@@ -4,7 +4,6 @@ extends Node2D
 @export var cards: Array[Card]
 @export var hand: Hand
 
-@onready var panel := $Panel
 @onready var card_amount_label := $CardAmountLabel
 
 var shuffling = false
@@ -61,14 +60,10 @@ func shuffle_deck() -> void:
 	
 func update_card_number_text() -> void:
 	card_amount_label.text = "Cards: " + str(cards.size())
-	if cards.size() == 0:
-		panel.visible = false
-	else:
-		panel.visible = true
 		
 func update_top_card_z_index() -> void:
 	if cards.size() == 0:
 		return
 	cards[0].z_index = 1
-	for i in range(1, cards.size()-1, 1):
+	for i in range(1, cards.size(), 1):
 		cards[i].z_index = 0

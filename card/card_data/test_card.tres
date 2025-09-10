@@ -1,12 +1,14 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://blm351hqp2cu6"]
 
-[ext_resource type="Texture2D" uid="uid://clg1cai8kyk4j" path="res://sprites/girlywithbuns.png" id="1_c0x5w"]
+[ext_resource type="Texture2D" uid="uid://orops2yjcjm" path="res://sprites/small_step.png" id="1_c0x5w"]
 [ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_of77j"]
 
 [resource]
 script = ExtResource("1_of77j")
-card_name = "Card Title"
+card_name = "Card Titlewretwe"
+card_cost = 2
 card_png = ExtResource("1_c0x5w")
 card_description = "This is a description of what the card does."
-card_type = 1
+card_type = 0
+card_title_offset = 12
 metadata/_custom_type_script = "uid://bevi4n8n1jvud"

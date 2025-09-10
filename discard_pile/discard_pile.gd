@@ -3,6 +3,7 @@ extends Node2D
 
 @export var cards: Array[Card]
 
+## Cards appended to the discard pile are pushed to the front of cards array
 func append_card_to_discard_pile(card: Card) -> void:
 	if card == null:
 		print("Error: no card to append to discard pile")
@@ -15,23 +16,21 @@ func append_card_to_discard_pile(card: Card) -> void:
 	card.visible = true
 	
 func remove_card_from_discard_pile(index: int) -> Card:
-	if cards.size() == 0:
-		print("Discard pile is empty, cannot get card")
+	if index >= cards.size():
+		print("Error: Index out of range of discard pile.")
 		return null
-	var card = cards[0]
-	cards.remove_at(0)
+	var card = cards[index]
+	cards.remove_at(index)
 	update_z_indexes()
 	return card
 	
 func remove_all_cards_from_discard_pile() -> Array[Card]:
 	var arr: Array[Card] = []
-	while true:
+	while cards.size() > 0:
 		var card = remove_card_from_discard_pile(0)
-		if card == null:
-			break
 		arr.append(card)
 	return arr
 
 func update_z_indexes() -> void:
-	for i in range(0, cards.size() - 1, 1):
+	for i in range(0, cards.size(), 1):
 		cards[i].z_index = cards.size() - i

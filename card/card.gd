@@ -12,20 +12,24 @@ const FACE_DOWN_CARD_STYLEBOX_PATH = "res://card/card_data/styles/stylebox/face_
 
 @export var card_data: CardData
 @export var movement_tween_manager: MovementTweenManager
+var game_manager: GameManager
 
 @onready var panel: Panel = $Panel
 @onready var margin_container = $Panel/MarginContainer
 @onready var panel_container = $Panel/MarginContainer/VBoxContainer/PanelContainer
-@onready var title_label = $Panel/MarginContainer/VBoxContainer/TitleLabel
+@onready var title_label = $Panel/MarginContainer/VBoxContainer/HBoxContainer/TitleLabel
 @onready var texture_label = $Panel/MarginContainer/VBoxContainer/PanelContainer/TextureRect
 @onready var description_label = $Panel/MarginContainer/VBoxContainer/DescriptionLabel
 @onready var animation_player = $AnimationPlayer
+@onready var cost_panel_margin_container = $Panel/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer
+@onready var cost_label = $Panel/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer/CostPanel/CostLabel
 
 var flipped_up: bool = true
 var selected_font = FontFile
 var hoverable: bool = false
 
 func _ready() -> void:
+	game_manager = get_tree().get_first_node_in_group("game_manager")
 	animation_player.speed_scale = 1.0 / Globals.animation_speed_scale
 	set_card_data()
 		
@@ -36,6 +40,8 @@ func set_card_data() -> void:
 	title_label.text = card_data.card_name
 	texture_label.texture = card_data.card_png
 	description_label.text = card_data.card_description
+	cost_label.text = str(card_data.card_cost)
+	apply_spacer_container_margin()
 	
 func flip_card_up() -> void:
 	if flipped_up == true:
@@ -117,5 +123,18 @@ func hover_card() -> void:
 	
 ## Returns true if the card was played, false if it cannot be played
 func play_card() -> bool:
+	if game_manager == null:
+		print("Error: game manager not configured!")
+		return false
+	
+	var hours_cost = card_data.card_cost
+	if hours_cost > game_manager.hours:
+		print("This card costs too much.")
+		return false
+	
+	game_manager.hours -= hours_cost
 	print (card_data.card_name, " was played.")
 	return true
+	
+func apply_spacer_container_margin() -> void:
+	cost_panel_margin_container.add_theme_constant_override("margin_right", -11 + card_data.card_title_offset)

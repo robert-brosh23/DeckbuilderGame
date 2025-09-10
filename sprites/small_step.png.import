@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6hjlkolpbprx"
-path="res://.godot/imported/new_dimensions.png-20ad309be0ac906410dd239dae91fb92.ctex"
+uid="uid://orops2yjcjm"
+path="res://.godot/imported/small_step.png-a2d6f4e13aa1926e12ae54808073c1b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/new_dimensions.png"
-dest_files=["res://.godot/imported/new_dimensions.png-20ad309be0ac906410dd239dae91fb92.ctex"]
+source_file="res://sprites/small_step.png"
+dest_files=["res://.godot/imported/small_step.png-a2d6f4e13aa1926e12ae54808073c1b5.ctex"]
 
 [params]
 
