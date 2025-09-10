@@ -1,51 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=10 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bu8nv7leim8od" path="res://card/card.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dd5tbk86qnuwn" path="res://deck/deck.tscn" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="4_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cprtqlg155quc" path="res://hand/hand.tscn" id="4_lquwl"]
+[ext_resource type="Resource" uid="uid://c68uppt7623iv" path="res://card/card_data/cards/organize.tres" id="7_272bh"]
+[ext_resource type="Resource" uid="uid://c0wb7tjaoet3m" path="res://card/card_data/cards/new_day.tres" id="8_5vw27"]
+[ext_resource type="Resource" uid="uid://dmb3ppe5ys6wu" path="res://card/card_data/cards/small_step.tres" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://bvnrpwbicsfub" path="res://discard_pile/discard_pile.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://csdmhd25lpc0t" path="res://game_manager/game_manager.tscn" id="10_efxa6"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_272bh"]
-load_path = "res://.godot/imported/correctbasicgirly.png-bf00c2379a1a2f503774ed0a09ddb791.ctex"
-
-[sub_resource type="Resource" id="Resource_ycdy4"]
-script = ExtResource("4_4c57u")
-card_name = "Card 1"
-card_cost = 0
-card_png = SubResource("CompressedTexture2D_272bh")
-card_description = "This is a description of what the card does. What kind of card is this?"
-card_type = 0
-card_title_offset = 0
-metadata/_custom_type_script = "uid://bevi4n8n1jvud"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5vw27"]
-load_path = "res://.godot/imported/girlywithbuns.png-f151ef29a2638e4f081b1d2ecfd8dc44.ctex"
-
-[sub_resource type="Resource" id="Resource_w48qg"]
-script = ExtResource("4_4c57u")
-card_name = "Card 2"
-card_cost = 0
-card_png = SubResource("CompressedTexture2D_5vw27")
-card_description = "This is a description of what the card does. What kind of card is this?"
-card_type = 1
-card_title_offset = 0
-metadata/_custom_type_script = "uid://bevi4n8n1jvud"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kek77"]
-load_path = "res://.godot/imported/new_dimensions.png-20ad309be0ac906410dd239dae91fb92.ctex"
-
-[sub_resource type="Resource" id="Resource_vivmo"]
-script = ExtResource("4_4c57u")
-card_name = "Card 4 "
-card_cost = 0
-card_png = SubResource("CompressedTexture2D_kek77")
-card_description = "This is a description of what the card does. What kind of card is this?"
-card_type = 0
-card_title_offset = 0
-metadata/_custom_type_script = "uid://bevi4n8n1jvud"
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("deck", "hand", "discard_pile")]
 script = ExtResource("1_0xm2m")
@@ -80,47 +43,45 @@ position = Vector2(232, 80)
 
 [node name="Card" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
-card_data = SubResource("Resource_ycdy4")
 
 [node name="Card2" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
-card_data = SubResource("Resource_w48qg")
 
 [node name="Card3" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
 
 [node name="Card4" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
-card_data = SubResource("Resource_vivmo")
+card_data = ExtResource("7_272bh")
 
 [node name="Card5" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
-card_data = SubResource("Resource_vivmo")
+card_data = ExtResource("7_272bh")
 
 [node name="Card6" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
-card_data = SubResource("Resource_vivmo")
+card_data = ExtResource("7_272bh")
 
 [node name="Card7" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
-card_data = SubResource("Resource_vivmo")
+card_data = ExtResource("8_5vw27")
 
 [node name="Card8" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
-card_data = SubResource("Resource_vivmo")
+card_data = ExtResource("8_5vw27")
 
 [node name="Card9" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
-card_data = SubResource("Resource_vivmo")
+card_data = ExtResource("8_5vw27")
 
 [node name="Card10" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
-card_data = SubResource("Resource_vivmo")
+card_data = ExtResource("9_kek77")
 
 [node name="Card11" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
-card_data = SubResource("Resource_vivmo")
+card_data = ExtResource("9_kek77")
 
 [node name="Card12" parent="Cards" instance=ExtResource("1_ig7tw")]
 position = Vector2(83, -44)
-card_data = SubResource("Resource_vivmo")
+card_data = ExtResource("9_kek77")

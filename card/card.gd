@@ -4,8 +4,12 @@ extends Node2D
 const SELECTED_CARD_Y_OFFSET = 48.0
 const DEFAULT_POS_Y = 170.0
 
-const STANDARD_STYLEBOX_PATH = "res://card/card_data/styles/stylebox/standard_stylebox.tres"
-const STANDARD_STYLEBOX_IMAGE_FRAME_PATH = "res://card/card_data/styles/stylebox/image_frame_standard_stylebox.tres"
+const TECH_STYLEBOX_PATH = "res://card/card_data/styles/stylebox/tech_stylebox.tres"
+const TECH_STYLEBOX_IMAGE_FRAME_PATH = "res://card/card_data/styles/stylebox/image_frame_tech_stylebox.tres"
+const ART_STYLEBOX_PATH = "res://card/card_data/styles/stylebox/art_stylebox.tres"
+const ART_STYLEBOX_IMAGE_FRAME_PATH = "res://card/card_data/styles/stylebox/image_frame_art_stylebox.tres"
+const SPIRIT_STYLEBOX_PATH = "res://card/card_data/styles/stylebox/standard_stylebox.tres"
+const SPIRIT_STYLEBOX_IMAGE_FRAME_PATH = "res://card/card_data/styles/stylebox/image_frame_standard_stylebox.tres"
 const OBSTACLE_STYLEBOX_PATH = "res://card/card_data/styles/stylebox/obstacle_stylebox.tres"
 const OBSTACLE_STYLEBOX_IMAGE_FRAME_PATH = "res://card/card_data/styles/stylebox/image_frame_obstacle_stylebox.tres"
 const FACE_DOWN_CARD_STYLEBOX_PATH = "res://card/card_data/styles/stylebox/face_down_card_stylebox.tres"
@@ -68,36 +72,78 @@ func apply_card_visual_faceup() -> void:
 	if card_data == null:
 		return
 		
-	if card_data.card_type == CardData.CARD_TYPE.STANDARD:
+	if card_data.card_type == CardData.CARD_TYPE.SPIRIT:
 		pass
 	
 	match card_data.card_type:
-		CardData.CARD_TYPE.STANDARD:
-			apply_card_type_visual_standard()
+		CardData.CARD_TYPE.TECH:
+			apply_card_type_visual_tech()
+		CardData.CARD_TYPE.ART:
+			apply_card_type_visual_art()
+		CardData.CARD_TYPE.SPIRIT:
+			apply_card_type_visual_spirit()
 		CardData.CARD_TYPE.OBSTACLE:
 			apply_card_type_visual_obstacle()
 			
 	margin_container.visible = true
-	
-	
-## STANDARD CARD TYPE
-func apply_card_type_visual_standard() -> void:
-	panel.add_theme_stylebox_override("panel", get_standard_stylebox())
-	panel_container.add_theme_stylebox_override("panel", get_standard_image_frame_stylebox())
-	apply_standard_fonts()
 
-func get_standard_stylebox() -> StyleBox:
-	var stylebox: StyleBoxFlat = preload(STANDARD_STYLEBOX_PATH)
+
+## TECH CARD TYPE
+func apply_card_type_visual_tech() -> void:
+	panel.add_theme_stylebox_override("panel", get_tech_stylebox())
+	panel_container.add_theme_stylebox_override("panel", get_tech_image_frame_stylebox())
+	apply_tech_fonts()
+
+func get_tech_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(TECH_STYLEBOX_PATH)
 	return stylebox
 	
-func get_standard_image_frame_stylebox() -> StyleBox:
-	var stylebox: StyleBoxFlat = preload(STANDARD_STYLEBOX_IMAGE_FRAME_PATH)
+func get_tech_image_frame_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(TECH_STYLEBOX_IMAGE_FRAME_PATH)
+	return stylebox
+	
+func apply_tech_fonts() -> void:
+	title_label.add_theme_color_override("font_color", "ffe7d6")
+	description_label.add_theme_color_override("font_color", "ffe7d6")
+
+
+## ART CARD TYPE
+func apply_card_type_visual_art() -> void:
+	panel.add_theme_stylebox_override("panel", get_art_stylebox())
+	panel_container.add_theme_stylebox_override("panel", get_art_image_frame_stylebox())
+	apply_art_fonts()
+
+func get_art_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(ART_STYLEBOX_PATH)
+	return stylebox
+	
+func get_art_image_frame_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(ART_STYLEBOX_IMAGE_FRAME_PATH)
+	return stylebox
+	
+func apply_art_fonts() -> void:
+	title_label.add_theme_color_override("font_color", "ab5675")
+	description_label.add_theme_color_override("font_color", "ab5675")
+
+
+## SPIRIT CARD TYPE
+func apply_card_type_visual_spirit() -> void:
+	panel.add_theme_stylebox_override("panel", get_spirit_stylebox())
+	panel_container.add_theme_stylebox_override("panel", get_spirit_image_frame_stylebox())
+	apply_standard_fonts()
+
+func get_spirit_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(SPIRIT_STYLEBOX_PATH)
+	return stylebox
+	
+func get_spirit_image_frame_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(SPIRIT_STYLEBOX_IMAGE_FRAME_PATH)
 	return stylebox
 	
 func apply_standard_fonts() -> void:
 	title_label.add_theme_color_override("font_color", "ab5675")
 	description_label.add_theme_color_override("font_color", "ab5675")
-	
+
 
 ## OBSTACLE CARD TYPE
 func apply_card_type_visual_obstacle() -> void:
@@ -117,6 +163,7 @@ func apply_obstacle_fonts() -> void:
 	title_label.add_theme_color_override("font_color", "ffe7d6")
 	description_label.add_theme_color_override("font_color", "ffe7d6")
 		
+
 func hover_card() -> void:
 	movement_tween_manager.tween_to_pos(self, Vector2(position.x, 170.0 - SELECTED_CARD_Y_OFFSET), .1)
 	z_index = 15

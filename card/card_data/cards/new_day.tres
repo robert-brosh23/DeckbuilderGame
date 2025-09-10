@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c0wb7tjaoet3m"]
+
+[ext_resource type="Texture2D" uid="uid://bhfqwukegkpx2" path="res://sprites/new_day.png" id="1_0py68"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_3slth"]
+
+[resource]
+script = ExtResource("1_3slth")
+card_name = "New Day"
+card_cost = 3
+card_png = ExtResource("1_0py68")
+card_description = "Reset your mental health value to default."
+card_type = 2
+card_title_offset = 0
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"
