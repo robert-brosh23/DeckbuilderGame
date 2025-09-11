@@ -16,6 +16,7 @@ card_cost = 0
 card_png = ExtResource("2_1n6wr")
 card_description = "Shuffle your discard pile into your deck and draw 1 card."
 card_type = 0
+card_effect = 0
 title_font = 1
 card_title_offset = 8
 metadata/_custom_type_script = "uid://bevi4n8n1jvud"

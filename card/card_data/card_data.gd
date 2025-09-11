@@ -11,10 +11,18 @@ extends Resource
 
 @export var card_type: CARD_TYPE
 
+@export var card_effect: CARD_EFFECT
+
 @export var title_font: CARD_FONT = CARD_FONT.FIVE_BY_SEVEN
 
 ## If the card title is too long, and overlapping the cost panel, increase this offset to move it off center.
 @export_range(0, 12) var card_title_offset := 0
+
+var effect_map: Dictionary[CARD_EFFECT, String] = {
+	CARD_EFFECT.NEW_DAY: "_execute_new_day",
+	CARD_EFFECT.MEDITATION: "_execute_meditation",
+	CARD_EFFECT.ORGANIZE: "_execute_organize"
+}
 
 enum CARD_TYPE {
 	TECH,
@@ -26,6 +34,12 @@ enum CARD_TYPE {
 enum CARD_FONT {
 	THREE_BY_SIX,
 	FIVE_BY_SEVEN
+}
+
+enum CARD_EFFECT {
+	NEW_DAY,
+	MEDITATION,
+	ORGANIZE
 }
 
 func get_font() -> Font:

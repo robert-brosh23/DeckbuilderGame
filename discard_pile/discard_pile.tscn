@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://t5fbfihg7l2j" path="res://discard_pile/discard_pile.gd" id="1_ju4ac"]
 
-[node name="DiscardPile" type="Node2D" groups=["discard_pile"]]
+[node name="DiscardPile" type="Control" groups=["discard_pile"]]
 z_index = 2
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_ju4ac")

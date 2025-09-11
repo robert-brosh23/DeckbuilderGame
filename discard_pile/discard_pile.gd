@@ -1,5 +1,5 @@
 class_name DiscardPile
-extends Node2D
+extends Control
 
 ## Cards appended to the discard pile are pushed to the front of cards array
 func sync_card_addition(card: Card) -> void:

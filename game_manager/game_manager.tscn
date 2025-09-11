@@ -1,16 +1,70 @@
-[gd_scene load_steps=3 format=3 uid="uid://csdmhd25lpc0t"]
+[gd_scene load_steps=5 format=3 uid="uid://csdmhd25lpc0t"]
 
 [ext_resource type="Script" uid="uid://dnck5k1v8qlla" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://fonts/m6x11.ttf" id="2_mx6ys"]
 
-[node name="GameManager" type="Node2D" groups=["game_manager"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mx6ys"]
+bg_color = Color(1, 0.654902, 0.647059, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7vcu"]
+bg_color = Color(0.670588, 0.337255, 0.458824, 1)
+anti_aliasing = false
+
+[node name="GameManager" type="Control" groups=["game_manager"]]
 z_index = 2
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
 script = ExtResource("1_ong7i")
 
-[node name="HoursLabel" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -126.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Day Label" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("2_mx6ys")
+theme_override_font_sizes/font_size = 16
+text = "Day: "
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="HoursLabel" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
 theme_override_fonts/font = ExtResource("2_mx6ys")
 theme_override_font_sizes/font_size = 16
 text = "Hours Remaining:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(120, 14)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_mx6ys")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q7vcu")
+max_value = 20.0
+step = 1.0
+value = 10.0
+show_percentage = false

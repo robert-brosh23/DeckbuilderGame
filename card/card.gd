@@ -55,8 +55,15 @@ func play_card() -> bool:
 		return false
 	
 	game_manager.hours -= hours_cost
+	play_card_effect()
 	print (card_data.card_name, " was played.")
 	return true
+	
+	
+## Execute the card's specific played effect.
+func play_card_effect() -> void:
+	call(card_data.effect_map[card_data.card_effect])
+	
 	
 func hover_card() -> void:
 	movement_tween_manager.tween_to_pos(self, Vector2(position.x, 170.0 - SELECTED_CARD_Y_OFFSET), .1)
@@ -187,3 +194,15 @@ func _apply_obstacle_fonts() -> void:
 	
 func _apply_spacer_container_margin() -> void:
 	cost_panel_margin_container.add_theme_constant_override("margin_right", -11 + card_data.card_title_offset)
+	
+	
+# CARD EFFECT FUNCTIONS
+func _execute_new_day():
+	game_manager.mental_health = 10
+	
+func _execute_meditation():
+	CardsManager.move_cards_from_discard_pile_to_deck_and_shuffle()
+	CardsManager.draw_card_from_deck()
+	
+func _execute_organize():
+	game_manager.hours_next_day += 2

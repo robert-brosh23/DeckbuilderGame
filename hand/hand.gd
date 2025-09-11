@@ -1,5 +1,5 @@
 class_name Hand
-extends Node2D
+extends Control
 
 const CENTER_X = 0
 const DEFAULT_Y = 170.0
@@ -35,15 +35,14 @@ func sync_card_addition(card: Card) -> void:
 func play_card(card: Card) -> void:
 	var result = card.play_card()
 	if result == true:
-		discard_card(card)
+		CardsManager.discard_card(card)
 		return
 	_return_card(card)
 	
-func discard_card(card: Card) -> void:
-	_remove_card_from_hand(card)
-	if discard_pile == null:
-		return
-	CardsManager.add_card_to_discard_pile(card)
+func remove_card_from_hand(card: Card) -> Card:
+	CardsManager.cards_in_hand.erase(card)
+	_update_hand()
+	return card
 
 func _handle_input() -> void:
 	if Input.is_action_just_pressed("click"):
@@ -73,20 +72,15 @@ func _handle_input() -> void:
 		
 		_return_card(returning_card)
 	
-func _remove_card_from_hand(card: Card) -> Card:
-	CardsManager.cards_in_hand.erase(card)
-	_update_hand()
-	return card
-	
 func _hover_card(card: Card) -> void:
 	if card.hoverable == false || dragging:
 		return
 		
 	# There is a bug with panel's mouse signals. When two nodes have the same parent, the node that is lower will take priority for these signals regardless of z index.
 	# That's why we need to move nodes around.
-	CardsManager.move_card_node_in_hand(card,CardsManager.cards_in_hand.size()-1)
+	CardsManager.move_card_node_in_hand(card,CardsManager.cards_in_hand.size() + CardsManager.cards_in_deck.size() + CardsManager.cards_in_discard_pile.size())
 	hovered_card = card
-	card.z_index = CardsManager.cards_in_hand.size()
+	card.z_index = CardsManager.cards_in_hand.size() + CardsManager.cards_in_deck.size() + CardsManager.cards_in_discard_pile.size()
 	card.hover_card()
 	
 func _stop_hover_card() -> void:
@@ -107,7 +101,7 @@ func _update_hand():
 	var card_separation: int = _determine_card_separation()
 	var hand_length: int = card_separation * (CardsManager.cards_in_hand.size() - 1)
 	var x_pos: int = CENTER_X - hand_length / 2 
-	var z_index: int = 1
+	var z_index: int = CardsManager.cards_in_deck.size() + CardsManager.cards_in_discard_pile.size()
 	
 	for card in CardsManager.cards_in_hand:
 		var y_pos = card.position.y if card == hovered_card else DEFAULT_Y
@@ -118,7 +112,7 @@ func _update_hand():
 				
 				# There is a bug with panel's mouse signals. When two nodes have the same parent, the node that is lower will take priority for these signals regardless of z index.
 				# That's why we need to move nodes around.
-				CardsManager.move_card_node_in_hand(card, z_index - 1)
+				CardsManager.move_card_node_in_hand(card, z_index)
 				
 				z_index += 1
 		x_pos += card_separation
