@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dwxt6htpkc2dj"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://mx5qkjxwk2ye"]
 
 [ext_resource type="Texture2D" uid="uid://djnq5q44dua12" path="res://sprites/meditation.png" id="1_57j64"]
 [ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_tjdpe"]
@@ -10,5 +10,6 @@ card_cost = 0
 card_png = ExtResource("1_57j64")
 card_description = "Shuffle your discard pile into your deck and draw 1 card."
 card_type = 0
-card_title_offset = 0
+title_font = 1
+card_title_offset = 8
 metadata/_custom_type_script = "uid://bevi4n8n1jvud"

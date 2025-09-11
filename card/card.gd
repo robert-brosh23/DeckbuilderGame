@@ -32,142 +32,17 @@ var flipped_up: bool = true
 var selected_font = FontFile
 var hoverable: bool = false
 
+## Creates a new card, given the card_data
+static func create_card(card_data: CardData) -> Card:
+	var instance = preload("res://card/card.tscn").instantiate()
+	instance.card_data = card_data
+	return instance
+
 func _ready() -> void:
 	game_manager = get_tree().get_first_node_in_group("game_manager")
 	animation_player.speed_scale = 1.0 / Globals.animation_speed_scale
-	set_card_data()
-		
-func set_card_data() -> void:
-	if card_data == null:
-		return
-	
-	title_label.text = card_data.card_name
-	texture_label.texture = card_data.card_png
-	description_label.text = card_data.card_description
-	cost_label.text = str(card_data.card_cost)
-	apply_spacer_container_margin()
-	
-func flip_card_up() -> void:
-	if flipped_up == true:
-		return
-	flipped_up = true
-	animation_player.play("flip_card_up")
-	
-func flip_card_down() -> void:
-	if flipped_up == false:
-		return
-	flipped_up = false
-	animation_player.play("flip_card_down")
-	
-func move_card_to_deck(deck_pos: Vector2) -> void:
-	movement_tween_manager.tween_to_pos(self, deck_pos, 1.0)
-	hoverable = false
-	
-func apply_card_visual_facedown() -> void:
-	var stylebox: StyleBoxFlat = preload(FACE_DOWN_CARD_STYLEBOX_PATH)
-	panel.add_theme_stylebox_override("panel", stylebox)
-	margin_container.visible = false
+	_set_card_data()
 
-func apply_card_visual_faceup() -> void:
-	if card_data == null:
-		return
-		
-	if card_data.card_type == CardData.CARD_TYPE.SPIRIT:
-		pass
-	
-	match card_data.card_type:
-		CardData.CARD_TYPE.TECH:
-			apply_card_type_visual_tech()
-		CardData.CARD_TYPE.ART:
-			apply_card_type_visual_art()
-		CardData.CARD_TYPE.SPIRIT:
-			apply_card_type_visual_spirit()
-		CardData.CARD_TYPE.OBSTACLE:
-			apply_card_type_visual_obstacle()
-			
-	margin_container.visible = true
-
-
-## TECH CARD TYPE
-func apply_card_type_visual_tech() -> void:
-	panel.add_theme_stylebox_override("panel", get_tech_stylebox())
-	panel_container.add_theme_stylebox_override("panel", get_tech_image_frame_stylebox())
-	apply_tech_fonts()
-
-func get_tech_stylebox() -> StyleBox:
-	var stylebox: StyleBoxFlat = preload(TECH_STYLEBOX_PATH)
-	return stylebox
-	
-func get_tech_image_frame_stylebox() -> StyleBox:
-	var stylebox: StyleBoxFlat = preload(TECH_STYLEBOX_IMAGE_FRAME_PATH)
-	return stylebox
-	
-func apply_tech_fonts() -> void:
-	title_label.add_theme_color_override("font_color", "ffe7d6")
-	description_label.add_theme_color_override("font_color", "ffe7d6")
-
-
-## ART CARD TYPE
-func apply_card_type_visual_art() -> void:
-	panel.add_theme_stylebox_override("panel", get_art_stylebox())
-	panel_container.add_theme_stylebox_override("panel", get_art_image_frame_stylebox())
-	apply_art_fonts()
-
-func get_art_stylebox() -> StyleBox:
-	var stylebox: StyleBoxFlat = preload(ART_STYLEBOX_PATH)
-	return stylebox
-	
-func get_art_image_frame_stylebox() -> StyleBox:
-	var stylebox: StyleBoxFlat = preload(ART_STYLEBOX_IMAGE_FRAME_PATH)
-	return stylebox
-	
-func apply_art_fonts() -> void:
-	title_label.add_theme_color_override("font_color", "ab5675")
-	description_label.add_theme_color_override("font_color", "ab5675")
-
-
-## SPIRIT CARD TYPE
-func apply_card_type_visual_spirit() -> void:
-	panel.add_theme_stylebox_override("panel", get_spirit_stylebox())
-	panel_container.add_theme_stylebox_override("panel", get_spirit_image_frame_stylebox())
-	apply_standard_fonts()
-
-func get_spirit_stylebox() -> StyleBox:
-	var stylebox: StyleBoxFlat = preload(SPIRIT_STYLEBOX_PATH)
-	return stylebox
-	
-func get_spirit_image_frame_stylebox() -> StyleBox:
-	var stylebox: StyleBoxFlat = preload(SPIRIT_STYLEBOX_IMAGE_FRAME_PATH)
-	return stylebox
-	
-func apply_standard_fonts() -> void:
-	title_label.add_theme_color_override("font_color", "ab5675")
-	description_label.add_theme_color_override("font_color", "ab5675")
-
-
-## OBSTACLE CARD TYPE
-func apply_card_type_visual_obstacle() -> void:
-	panel.add_theme_stylebox_override("panel", get_obstacle_stylebox())
-	panel_container.add_theme_stylebox_override("panel", get_obstacle_image_frame_stylebox())
-	apply_obstacle_fonts()
-
-func get_obstacle_stylebox() -> StyleBox:
-	var stylebox: StyleBoxFlat = preload(OBSTACLE_STYLEBOX_PATH)
-	return stylebox
-	
-func get_obstacle_image_frame_stylebox() -> StyleBox:
-	var stylebox: StyleBoxFlat = preload(OBSTACLE_STYLEBOX_IMAGE_FRAME_PATH)
-	return stylebox
-	
-func apply_obstacle_fonts() -> void:
-	title_label.add_theme_color_override("font_color", "ffe7d6")
-	description_label.add_theme_color_override("font_color", "ffe7d6")
-		
-
-func hover_card() -> void:
-	movement_tween_manager.tween_to_pos(self, Vector2(position.x, 170.0 - SELECTED_CARD_Y_OFFSET), .1)
-	z_index = 15
-	
 ## Returns true if the card was played, false if it cannot be played
 func play_card() -> bool:
 	if game_manager == null:
@@ -183,11 +58,132 @@ func play_card() -> bool:
 	print (card_data.card_name, " was played.")
 	return true
 	
-## Creates a new card, given the card_data
-static func create_card(card_data: CardData) -> Card:
-	var instance = preload("res://card/card.tscn").instantiate()
-	instance.card_data = card_data
-	return instance
+func hover_card() -> void:
+	movement_tween_manager.tween_to_pos(self, Vector2(position.x, 170.0 - SELECTED_CARD_Y_OFFSET), .1)
 	
-func apply_spacer_container_margin() -> void:
+func flip_card_up() -> void:
+	if flipped_up == true:
+		return
+	flipped_up = true
+	animation_player.play("flip_card_up")
+	
+func flip_card_down() -> void:
+	if flipped_up == false:
+		return
+	flipped_up = false
+	animation_player.play("flip_card_down")
+	
+func apply_card_visual_facedown() -> void:
+	var stylebox: StyleBoxFlat = preload(FACE_DOWN_CARD_STYLEBOX_PATH)
+	panel.add_theme_stylebox_override("panel", stylebox)
+	margin_container.visible = false
+
+func apply_card_visual_faceup() -> void:
+	if card_data == null:
+		return
+		
+	if card_data.card_type == CardData.CARD_TYPE.SPIRIT:
+		pass
+	
+	match card_data.card_type:
+		CardData.CARD_TYPE.TECH:
+			_apply_card_type_visual_tech()
+		CardData.CARD_TYPE.ART:
+			_apply_card_type_visual_art()
+		CardData.CARD_TYPE.SPIRIT:
+			_apply_card_type_visual_spirit()
+		CardData.CARD_TYPE.OBSTACLE:
+			_apply_card_type_visual_obstacle()
+			
+	var font := card_data.get_font()
+	title_label.add_theme_font_override("font", font)
+	
+	margin_container.visible = true
+
+func _set_card_data() -> void:
+	if card_data == null:
+		return
+	
+	title_label.text = card_data.card_name
+	texture_label.texture = card_data.card_png
+	description_label.text = card_data.card_description
+	cost_label.text = str(card_data.card_cost)
+	_apply_spacer_container_margin()
+
+## TECH CARD TYPE
+func _apply_card_type_visual_tech() -> void:
+	panel.add_theme_stylebox_override("panel", _get_tech_stylebox())
+	panel_container.add_theme_stylebox_override("panel", _get_tech_image_frame_stylebox())
+	_apply_tech_fonts()
+
+func _get_tech_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(TECH_STYLEBOX_PATH)
+	return stylebox
+	
+func _get_tech_image_frame_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(TECH_STYLEBOX_IMAGE_FRAME_PATH)
+	return stylebox
+	
+func _apply_tech_fonts() -> void:
+	title_label.add_theme_color_override("font_color", "ffe7d6")
+	description_label.add_theme_color_override("font_color", "ffe7d6")
+
+
+## ART CARD TYPE
+func _apply_card_type_visual_art() -> void:
+	panel.add_theme_stylebox_override("panel", _get_art_stylebox())
+	panel_container.add_theme_stylebox_override("panel", _get_art_image_frame_stylebox())
+	_apply_art_fonts()
+
+func _get_art_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(ART_STYLEBOX_PATH)
+	return stylebox
+	
+func _get_art_image_frame_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(ART_STYLEBOX_IMAGE_FRAME_PATH)
+	return stylebox
+	
+func _apply_art_fonts() -> void:
+	title_label.add_theme_color_override("font_color", "ab5675")
+	description_label.add_theme_color_override("font_color", "ab5675")
+
+
+## SPIRIT CARD TYPE
+func _apply_card_type_visual_spirit() -> void:
+	panel.add_theme_stylebox_override("panel", _get_spirit_stylebox())
+	panel_container.add_theme_stylebox_override("panel", _get_spirit_image_frame_stylebox())
+	_apply_standard_fonts()
+
+func _get_spirit_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(SPIRIT_STYLEBOX_PATH)
+	return stylebox
+	
+func _get_spirit_image_frame_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(SPIRIT_STYLEBOX_IMAGE_FRAME_PATH)
+	return stylebox
+	
+func _apply_standard_fonts() -> void:
+	title_label.add_theme_color_override("font_color", "ab5675")
+	description_label.add_theme_color_override("font_color", "ab5675")
+
+
+## OBSTACLE CARD TYPE
+func _apply_card_type_visual_obstacle() -> void:
+	panel.add_theme_stylebox_override("panel", _get_obstacle_stylebox())
+	panel_container.add_theme_stylebox_override("panel", _get_obstacle_image_frame_stylebox())
+	_apply_obstacle_fonts()
+
+func _get_obstacle_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(OBSTACLE_STYLEBOX_PATH)
+	return stylebox
+	
+func _get_obstacle_image_frame_stylebox() -> StyleBox:
+	var stylebox: StyleBoxFlat = preload(OBSTACLE_STYLEBOX_IMAGE_FRAME_PATH)
+	return stylebox
+	
+func _apply_obstacle_fonts() -> void:
+	title_label.add_theme_color_override("font_color", "ffe7d6")
+	description_label.add_theme_color_override("font_color", "ffe7d6")
+	
+func _apply_spacer_container_margin() -> void:
 	cost_panel_margin_container.add_theme_constant_override("margin_right", -11 + card_data.card_title_offset)

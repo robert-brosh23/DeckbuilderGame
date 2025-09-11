@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://p3tw0q52146a" path="res://cards_manager/cards_manager.gd" id="1_cj6lf"]
 
-[node name="CardsManager" type="Node"]
+[node name="CardsManager" type="Node" groups=["cards_manager"]]
 script = ExtResource("1_cj6lf")

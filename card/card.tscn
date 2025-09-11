@@ -1,12 +1,24 @@
-[gd_scene load_steps=14 format=3 uid="uid://bu8nv7leim8od"]
+[gd_scene load_steps=16 format=3 uid="uid://bu8nv7leim8od"]
 
 [ext_resource type="Script" uid="uid://b4h4dbu2ryb06" path="res://card/card.gd" id="1_ply2h"]
-[ext_resource type="Resource" uid="uid://dwxt6htpkc2dj" path="res://card/card_data/cards/meditation.tres" id="2_6xkbt"]
+[ext_resource type="Texture2D" uid="uid://djnq5q44dua12" path="res://sprites/meditation.png" id="2_1n6wr"]
 [ext_resource type="FontFile" uid="uid://c6lfcmqrq1huc" path="res://fonts/m3x6.ttf" id="2_trrkg"]
 [ext_resource type="StyleBox" uid="uid://dfbpspemk5na" path="res://card/card_data/styles/stylebox/art_stylebox.tres" id="3_6xkbt"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="3_ags6k"]
 [ext_resource type="FontFile" uid="uid://cm4gkenj5odhg" path="res://fonts/m5x7.ttf" id="4_1n6wr"]
 [ext_resource type="StyleBox" uid="uid://dimhb80rr3nit" path="res://card/card_data/styles/stylebox/image_frame_art_stylebox.tres" id="6_6xkbt"]
 [ext_resource type="PackedScene" uid="uid://bslur2hh54tgf" path="res://utility/movement_tween_manager/movement_tween_manager.tscn" id="7_1n6wr"]
+
+[sub_resource type="Resource" id="Resource_7dy67"]
+script = ExtResource("3_ags6k")
+card_name = "Meditation"
+card_cost = 0
+card_png = ExtResource("2_1n6wr")
+card_description = "Shuffle your discard pile into your deck and draw 1 card."
+card_type = 0
+title_font = 1
+card_title_offset = 8
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xkbt"]
 bg_color = Color(1, 0.905882, 0.839216, 1)
@@ -130,7 +142,7 @@ _data = {
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ply2h")
-card_data = ExtResource("2_6xkbt")
+card_data = SubResource("Resource_7dy67")
 movement_tween_manager = NodePath("MovementTweenManager")
 
 [node name="Panel" type="Panel" parent="."]
@@ -244,5 +256,3 @@ libraries = {
 }
 
 [node name="MovementTweenManager" parent="." instance=ExtResource("7_1n6wr")]
-
-[node name="TestCam" type="Camera2D" parent="."]

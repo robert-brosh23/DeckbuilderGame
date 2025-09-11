@@ -10,5 +10,6 @@ card_cost = 1
 card_png = ExtResource("1_exkfx")
 card_description = "Next day, start with 2 extra hours."
 card_type = 0
-card_title_offset = 1
+title_font = 1
+card_title_offset = 4
 metadata/_custom_type_script = "uid://bevi4n8n1jvud"

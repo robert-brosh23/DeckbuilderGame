@@ -4,36 +4,29 @@ extends Node2D
 @export var deck: Deck
 @export var hand: Hand
 @export var discard_pile: DiscardPile
+@export var game_manager: GameManager
 
 func _ready() -> void:
 	pass
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("draw_card"):
-		draw_card_from_deck()
+		debug_draw_card_from_deck()
 	if Input.is_action_just_pressed("re_shuffle_deck"):
-		move_cards_from_discard_pile_to_deck_and_reshuffle()
+		debug_move_cards_from_discard_pile_to_deck_and_reshuffle()
+	if Input.is_action_just_pressed("discard_card_from_deck"):
+		debug_discard_card_from_deck()
+	if Input.is_action_just_pressed("debug_add_hours"):
+		debug_add_hours()
 	
-func draw_card_from_deck() -> void:
-	var card = deck.draw_card()
-	if card == null:
-		return
-	move_card_to_hand(card)
+func debug_draw_card_from_deck() -> void:
+	CardsManager.draw_card_from_deck()
 	
-func discard_card_from_deck() -> void:
-	var card = deck.draw_card()
-	if card == null:
-		print("no card in deck")
-		return
-	discard_pile.append_card_to_discard_pile(card)
+func debug_discard_card_from_deck() -> void:
+	CardsManager.discard_card_from_deck()
 	
-func move_cards_from_discard_pile_to_deck_and_reshuffle() -> void:
-	var arr: Array[Card] = discard_pile.remove_all_cards_from_discard_pile()
-	deck.append_multiple_cards_to_deck(arr)
-	deck.shuffle_deck()
+func debug_move_cards_from_discard_pile_to_deck_and_reshuffle() -> void:
+	CardsManager.move_cards_from_discard_pile_to_deck_and_shuffle()
 
-func move_card_to_deck(card: Card) -> void:
-	deck.append_card_to_deck(card)
-	
-func move_card_to_hand(card: Card) -> void:
-	hand.append_card_to_hand(card)
+func debug_add_hours() -> void:
+	game_manager.hours += 8

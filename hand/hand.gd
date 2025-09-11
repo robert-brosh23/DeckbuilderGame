@@ -10,7 +10,6 @@ const HAND_BASE_Z_INDEX = 200
 
 @export var discard_pile: DiscardPile
 
-@export var cards: Array[Card]
 var hovered_card: Card = null
 
 var dragging := false
@@ -19,12 +18,34 @@ var dragged_card: Card
 
 func _ready() -> void:
 	play_color_rect.visible = false
-	update_hand()
+	_update_hand()
 	
 func _process(_delta: float) -> void:
-	handle_input()
+	_handle_input()
 
-func handle_input() -> void:
+func sync_card_addition(card: Card) -> void:
+	card.flip_card_up()
+	card.hoverable = true
+	if not card.panel.mouse_exited.is_connected(_stop_hover_card):
+		card.panel.mouse_exited.connect(_stop_hover_card)
+	if not card.panel.mouse_entered.is_connected(Callable(self, "_hover_card").bind(card)):
+		card.panel.mouse_entered.connect(Callable(self, "_hover_card").bind(card))
+	_update_hand()
+	
+func play_card(card: Card) -> void:
+	var result = card.play_card()
+	if result == true:
+		discard_card(card)
+		return
+	_return_card(card)
+	
+func discard_card(card: Card) -> void:
+	_remove_card_from_hand(card)
+	if discard_pile == null:
+		return
+	CardsManager.add_card_to_discard_pile(card)
+
+func _handle_input() -> void:
 	if Input.is_action_just_pressed("click"):
 		if hovered_card != null:
 			dragging = true
@@ -47,53 +68,33 @@ func handle_input() -> void:
 		var mouse_pos = get_viewport().get_mouse_position()
 		if mouse_pos.y < play_color_rect.position.y + play_color_rect.size.y && mouse_pos.x > play_color_rect.position.x && mouse_pos.x < play_color_rect.position.x + play_color_rect.size.x:
 			play_card(returning_card)
-			update_hand()
+			_update_hand()
 			return
 		
-		return_card(returning_card)
-
-func append_card_to_hand(card: Card) -> void:
-	card.flip_card_up()
-	card.hoverable = true
-	cards.append(card)
-	card.panel.mouse_exited.connect(stop_hover_card)
-	card.panel.mouse_entered.connect(Callable(self, "hover_card").bind(card))
-	update_hand()
+		_return_card(returning_card)
 	
-func remove_card_from_hand(card: Card) -> Card:
-	cards.erase(card)
-	update_hand()
+func _remove_card_from_hand(card: Card) -> Card:
+	CardsManager.cards_in_hand.erase(card)
+	_update_hand()
 	return card
 	
-func hover_card(card: Card) -> void:
+func _hover_card(card: Card) -> void:
 	if card.hoverable == false || dragging:
 		return
 		
 	# There is a bug with panel's mouse signals. When two nodes have the same parent, the node that is lower will take priority for these signals regardless of z index.
 	# That's why we need to move nodes around.
-	card.get_parent().move_child(card,cards.size()-1)
+	CardsManager.move_card_node_in_hand(card,CardsManager.cards_in_hand.size()-1)
 	hovered_card = card
+	card.z_index = CardsManager.cards_in_hand.size()
 	card.hover_card()
 	
-func stop_hover_card() -> void:
+func _stop_hover_card() -> void:
 	hovered_card = null
-	update_hand()
+	_update_hand()
 	
-func play_card(card: Card) -> void:
-	var result = card.play_card()
-	if result == true:
-		discard_card(card)
-		return
-	return_card(card)
-	
-func discard_card(card: Card) -> void:
-	remove_card_from_hand(card)
-	if discard_pile == null:
-		return
-	discard_pile.append_card_to_discard_pile(card)
-	
-func return_card(returning_card: Card) -> void:
-	update_hand()
+func _return_card(returning_card: Card) -> void:
+	_update_hand()
 	
 	var tween = create_tween()
 	returning_card.hoverable = false
@@ -102,13 +103,13 @@ func return_card(returning_card: Card) -> void:
 	).set_delay(1.0 * Globals.animation_speed_scale)
 	
 
-func update_hand():
-	var card_separation: int = determine_card_separation()
-	var hand_length: int = card_separation * (cards.size() - 1)
+func _update_hand():
+	var card_separation: int = _determine_card_separation()
+	var hand_length: int = card_separation * (CardsManager.cards_in_hand.size() - 1)
 	var x_pos: int = CENTER_X - hand_length / 2 
 	var z_index: int = 1
 	
-	for card in cards:
+	for card in CardsManager.cards_in_hand:
 		var y_pos = card.position.y if card == hovered_card else DEFAULT_Y
 		if card != dragged_card:
 			card.movement_tween_manager.tween_to_pos(card, Vector2(x_pos, y_pos))
@@ -117,11 +118,11 @@ func update_hand():
 				
 				# There is a bug with panel's mouse signals. When two nodes have the same parent, the node that is lower will take priority for these signals regardless of z index.
 				# That's why we need to move nodes around.
-				card.get_parent().move_child(card,z_index-1)
+				CardsManager.move_card_node_in_hand(card, z_index - 1)
 				
 				z_index += 1
 		x_pos += card_separation
 
-func determine_card_separation() -> int:
-	return DEFAULT_CARD_SEPARATION / 4 + DEFAULT_CARD_SEPARATION * 3 / 4 / (cards.size() + 1)
+func _determine_card_separation() -> int:
+	return DEFAULT_CARD_SEPARATION / 4 + DEFAULT_CARD_SEPARATION * 3 / 4 / (CardsManager.cards_in_hand.size() + 1)
 	

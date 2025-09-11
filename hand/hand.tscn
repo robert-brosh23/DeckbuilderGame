@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pl013pteooqh" path="res://hand/hand.gd" id="1_t1j3k"]
 
-[node name="Hand" type="Node2D"]
+[node name="Hand" type="Node2D" groups=["hand"]]
 script = ExtResource("1_t1j3k")
 
 [node name="ColorRect" type="ColorRect" parent="."]
