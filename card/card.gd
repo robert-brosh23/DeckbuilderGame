@@ -205,4 +205,11 @@ func _execute_meditation():
 	CardsManager.draw_card_from_deck()
 	
 func _execute_organize():
-	game_manager.hours_next_day += 2
+	SignalBus.new_day_started.connect(
+		func(): game_manager.hours += 2,
+		CONNECT_ONE_SHOT
+	)
+	
+func _execute_brain_blast():
+	for i in range(0,3):
+		CardsManager.draw_card_from_deck()

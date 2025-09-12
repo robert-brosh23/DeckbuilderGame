@@ -8,13 +8,19 @@ const CARD_MOVEMENT_DURATION := 1.0
 var shuffling = false:
 	set(value):
 		shuffling = value
-		if !receiving_cards and !shuffling:
+		if !receiving_cards and !shuffling and !drawing:
 			_call_next_function_in_queue()
 			
 var receiving_cards = false:
 	set(value):
 		receiving_cards = value
-		if !receiving_cards and !shuffling:
+		if !receiving_cards and !shuffling and !drawing:
+			_call_next_function_in_queue()
+			
+var drawing = false:
+	set(value):
+		drawing = value
+		if !receiving_cards and !shuffling and !drawing:
 			_call_next_function_in_queue()
 
 var function_queue: Array[Callable] = []
@@ -31,8 +37,8 @@ func sync_card_addition(card: Card) -> void:
 	_update_top_card_z_index()
 	
 func draw_card() -> Card:
-	if shuffling || receiving_cards:
-		print("Deck is being updated. Cannot draw cards")
+	if shuffling || receiving_cards || drawing:
+		print("Deck is being updated. Queueing draw")
 		function_queue.push_back(func(): CardsManager.draw_card_from_deck())
 		return null
 		
@@ -40,15 +46,20 @@ func draw_card() -> Card:
 		print("Deck is empty, cannot draw card")
 		return null
 		
+	drawing = true
 	var card = CardsManager.cards_in_deck[0]
 	CardsManager.cards_in_deck.remove_at(0)
 	_update_card_number_text()
 	_update_top_card_z_index()
 	
+	var tween = create_tween()
+	tween.tween_callback(func(): drawing = false).set_delay(.2 * Globals.animation_speed_scale)
+	
 	return card
 	
 func shuffle_deck() -> void:
-	if shuffling || receiving_cards:
+	if shuffling || receiving_cards || drawing:
+		print("Deck is being updated. Queueing shuffle")
 		function_queue.push_back(func(): shuffle_deck())
 		return
 	

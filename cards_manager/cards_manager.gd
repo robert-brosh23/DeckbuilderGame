@@ -63,7 +63,6 @@ func add_cards_to_deck(new_cards: Array[Card]) -> void:
 	deck.receiving_cards = true
 	for new_card in new_cards:
 		add_card_to_deck(new_card)
-		await get_tree().create_timer(.1 * Globals.animation_speed_scale).timeout
 	await get_tree().create_timer(deck.CARD_MOVEMENT_DURATION * Globals.animation_speed_scale).timeout
 	deck.receiving_cards = false
 	

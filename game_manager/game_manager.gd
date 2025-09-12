@@ -24,8 +24,6 @@ var day: int:
 		day = value
 		day_label.text = "Day : " + str(self.day)
 
-var hours_next_day = 0
-
 func _ready() -> void:
 	hours = STARTING_HOURS
 	day = 1
@@ -34,7 +32,7 @@ func _ready() -> void:
 func go_to_next_day() -> void:
 	CardsManager.discard_all_cards()
 	CardsManager.move_cards_from_discard_pile_to_deck_and_shuffle()
-	hours = STARTING_HOURS + hours_next_day
-	hours_next_day = 0
 	day += 1
+	hours = STARTING_HOURS
+	SignalBus.new_day_started.emit()
 	CardsManager.draw_multiple_cards(5)

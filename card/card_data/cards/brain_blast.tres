@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dubw1i8dw6h3h"]
+
+[ext_resource type="Texture2D" uid="uid://cmg6ud6cy151x" path="res://sprites/brainstorming.png" id="1_x5bln"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="2_kkal7"]
+
+[resource]
+script = ExtResource("2_kkal7")
+card_name = "Brain Blast"
+card_cost = 1
+card_png = ExtResource("1_x5bln")
+card_description = "Draw 3 cards"
+card_type = 0
+card_effect = 3
+title_font = 1
+card_title_offset = 10
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"
