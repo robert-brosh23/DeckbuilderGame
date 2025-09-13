@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=14 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dd5tbk86qnuwn" path="res://deck/deck.tscn" id="2_0xm2m"]
@@ -11,6 +11,9 @@
 [ext_resource type="Resource" uid="uid://dubw1i8dw6h3h" path="res://card/card_data/cards/brain_blast.tres" id="8_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bvnrpwbicsfub" path="res://discard_pile/discard_pile.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://csdmhd25lpc0t" path="res://game_manager/game_manager.tscn" id="10_efxa6"]
+[ext_resource type="Script" uid="uid://bxegv3wgcxhn1" path="res://end_turn.gd" id="12_dg77c"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_efxa6"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("deck", "hand", "discard_pile", "game_manager")]
 script = ExtResource("1_0xm2m")
@@ -53,3 +56,14 @@ discard_pile = NodePath("../DiscardPile")
 
 [node name="GameManager" parent="CanvasLayer" instance=ExtResource("10_efxa6")]
 card_data_debug = Array[ExtResource("4_4c57u")]([ExtResource("8_5vw27"), ExtResource("8_5vw27"), ExtResource("8_efxa6"), ExtResource("8_5vw27"), ExtResource("8_5vw27"), ExtResource("8_efxa6"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_5vw27"), ExtResource("5_4c57u"), ExtResource("7_dg77c"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("7_dg77c"), ExtResource("5_4c57u"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("5_4c57u"), ExtResource("7_dg77c"), ExtResource("8_5vw27"), ExtResource("6_efxa6")])
+
+[node name="EndTurn" type="Button" parent="."]
+offset_left = -304.0
+offset_top = 117.0
+offset_right = -201.0
+offset_bottom = 155.0
+text = "End Day 🌙"
+icon = SubResource("PlaceholderTexture2D_efxa6")
+script = ExtResource("12_dg77c")
+
+[connection signal="pressed" from="EndTurn" to="CanvasLayer/GameManager" method="go_to_next_day"]

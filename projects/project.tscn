@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://btnaw73ei341f"]
+
+[ext_resource type="Script" uid="uid://clx017qp8yyam" path="res://projects/project.gd" id="1_hco3b"]
+
+[node name="Project" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.172
+offset_bottom = 0.079998
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hco3b")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 635.0
+offset_bottom = 63.0
+color = Color(0.925362, 0.43842, 0.741827, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 1
+layout_mode = 0
+offset_right = 636.0
+offset_bottom = 29.0
+text = "Sample Project"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 34.0
+offset_top = 30.0
+offset_right = 610.0
+offset_bottom = 57.0
+value = 50.0
+show_percentage = false
