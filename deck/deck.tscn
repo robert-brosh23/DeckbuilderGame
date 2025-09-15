@@ -10,6 +10,7 @@ script = ExtResource("1_iau1w")
 
 [node name="CardAmountLabel" type="Label" parent="."]
 z_index = 2
+layout_mode = 0
 offset_left = -44.0
 offset_top = -80.0
 offset_right = 44.0

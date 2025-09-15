@@ -1,4 +1,4 @@
-class_name GameManager
+# class_name GameManager
 extends Control
 
 const STARTING_HOURS := 8
@@ -27,12 +27,12 @@ var day: int:
 func _ready() -> void:
 	hours = STARTING_HOURS
 	day = 1
-	var cards = await CardsManager.create_cards(card_data_debug)
+	var cards = await CardsController.create_cards(card_data_debug)
 	
 func go_to_next_day() -> void:
-	CardsManager.discard_all_cards()
-	CardsManager.move_cards_from_discard_pile_to_deck_and_shuffle()
+	CardsController.discard_all_cards()
+	CardsController.move_cards_from_discard_pile_to_deck_and_shuffle()
 	day += 1
 	hours = STARTING_HOURS
 	SignalBus.new_day_started.emit()
-	CardsManager.draw_multiple_cards(5)
+	CardsController.draw_multiple_cards(5)

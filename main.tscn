@@ -12,12 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://bvnrpwbicsfub" path="res://discard_pile/discard_pile.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://csdmhd25lpc0t" path="res://game_manager/game_manager.tscn" id="10_efxa6"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("deck", "hand", "discard_pile", "game_manager")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("deck", "hand", "discard_pile")]
 script = ExtResource("1_0xm2m")
 deck = NodePath("Deck")
 hand = NodePath("Hand")
 discard_pile = NodePath("DiscardPile")
-game_manager = NodePath("CanvasLayer/GameManager")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
@@ -32,9 +31,9 @@ color = Color(1, 0.905882, 0.839216, 1)
 
 [node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
 offset_left = -260.0
-offset_top = -94.0
+offset_top = -90.0
 offset_right = -260.0
-offset_bottom = -94.0
+offset_bottom = -90.0
 
 [node name="DiscardPile" parent="." instance=ExtResource("10_4c57u")]
 offset_left = -260.0

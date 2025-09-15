@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_kkal7")
-card_name = "Brain Blast"
+card_name = "Brainstorm"
 card_cost = 1
 card_png = ExtResource("1_x5bln")
 card_description = "Draw 3 cards"

@@ -4,7 +4,6 @@ extends Node2D
 @export var deck: Deck
 @export var hand: Hand
 @export var discard_pile: DiscardPile
-@export var game_manager: GameManager
 
 func _ready() -> void:
 	pass
@@ -24,19 +23,19 @@ func _process(_delta: float) -> void:
 		debug_next_day()
 	
 func debug_draw_card_from_deck() -> void:
-	CardsManager.draw_card_from_deck()
+	CardsController.draw_card_from_deck()
 	
 func debug_discard_card_from_deck() -> void:
-	CardsManager.discard_card_from_deck()
+	CardsController.discard_card_from_deck()
 	
 func debug_move_cards_from_discard_pile_to_deck_and_reshuffle() -> void:
-	CardsManager.move_cards_from_discard_pile_to_deck_and_shuffle()
+	CardsController.move_cards_from_discard_pile_to_deck_and_shuffle()
 
 func debug_add_hours() -> void:
-	game_manager.hours += 8
+	GameManager.hours += 8
 	
 func debug_decrease_mental_health() -> void:
-	game_manager.mental_health -= 1
+	GameManager.mental_health -= 1
 	
 func debug_next_day() -> void:
-	game_manager.go_to_next_day()
+	GameManager.go_to_next_day()

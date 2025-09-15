@@ -28,27 +28,21 @@ var function_queue: Array[Callable] = []
 func _ready() -> void:
 	_update_card_number_text()
 	
-func sync_card_addition(card: Card) -> void:
-	if card == null:
-		print("Error: no card to append to deck")
-		return
+func add_card(card: Card) -> void:
 	card.flip_card_down()
 	card.movement_tween_manager.tween_to_pos(card, self.position, CARD_MOVEMENT_DURATION).finished.connect(func(): _update_card_number_text())
+	CardsCollection.cards_in_deck.append(card)
 	_update_top_card_z_index()
 	
 func draw_card() -> Card:
 	if shuffling || receiving_cards || drawing:
 		print("Deck is being updated. Queueing draw")
-		function_queue.push_back(func(): CardsManager.draw_card_from_deck())
-		return null
-		
-	if CardsManager.cards_in_deck.size() == 0:
-		print("Deck is empty, cannot draw card")
+		function_queue.push_back(func(): CardsController.draw_card_from_deck())
 		return null
 		
 	drawing = true
-	var card = CardsManager.cards_in_deck[0]
-	CardsManager.cards_in_deck.remove_at(0)
+	var card = CardsCollection.cards_in_deck[0]
+	CardsCollection.cards_in_deck.remove_at(0)
 	_update_card_number_text()
 	_update_top_card_z_index()
 	
@@ -67,11 +61,11 @@ func shuffle_deck() -> void:
 	shuffling = true
 	var tween = create_tween()
 	tween.tween_callback(func():
-		for i in range(CardsManager.cards_in_deck.size() - 1, 0, -1):
+		for i in range(CardsCollection.cards_in_deck.size() - 1, 0, -1):
 			var j = randi() % (i + 1)
-			var temp = CardsManager.cards_in_deck[i]
-			CardsManager.cards_in_deck[i] = CardsManager.cards_in_deck[j]
-			CardsManager.cards_in_deck[j] = temp
+			var temp = CardsCollection.cards_in_deck[i]
+			CardsCollection.cards_in_deck[i] = CardsCollection.cards_in_deck[j]
+			CardsCollection.cards_in_deck[j] = temp
 		shuffling = false
 		_update_top_card_z_index()
 	).set_delay(1.2 * Globals.animation_speed_scale)
@@ -86,11 +80,11 @@ func _call_next_function_in_queue():
 		_call_next_function_in_queue()
 	
 func _update_card_number_text() -> void:
-	card_amount_label.text = "Cards: " + str(CardsManager.cards_in_deck.size())
+	card_amount_label.text = "Cards: " + str(CardsCollection.cards_in_deck.size())
 		
 func _update_top_card_z_index() -> void:
-	if CardsManager.cards_in_deck.size() == 0:
+	if CardsCollection.cards_in_deck.size() == 0:
 		return
-	CardsManager.cards_in_deck[0].z_index = 1
-	for i in range(1, CardsManager.cards_in_deck.size(), 1):
-		CardsManager.cards_in_deck[i].z_index = 0
+	CardsCollection.cards_in_deck[0].z_index = 1
+	for i in range(1, CardsCollection.cards_in_deck.size(), 1):
+		CardsCollection.cards_in_deck[i].z_index = 0

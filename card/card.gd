@@ -201,8 +201,8 @@ func _execute_new_day():
 	game_manager.mental_health = 10
 	
 func _execute_meditation():
-	CardsManager.move_cards_from_discard_pile_to_deck_and_shuffle()
-	CardsManager.draw_card_from_deck()
+	CardsController.move_cards_from_discard_pile_to_deck_and_shuffle()
+	CardsController.draw_card_from_deck()
 	
 func _execute_organize():
 	SignalBus.new_day_started.connect(
@@ -212,4 +212,4 @@ func _execute_organize():
 	
 func _execute_brain_blast():
 	for i in range(0,3):
-		CardsManager.draw_card_from_deck()
+		CardsController.draw_card_from_deck()
