@@ -10,8 +10,8 @@ const HAND_BASE_Z_INDEX = 200
 
 @export var discard_pile: DiscardPile
 
+var promise_queue: PromiseQueue
 var hovered_card: Card = null
-
 var dragging := false
 var drag_offset: Vector2
 var dragged_card: Card
@@ -29,11 +29,16 @@ func add_card(card: Card) -> void:
 	card.hoverable = true
 	if not card.panel.mouse_exited.is_connected(_stop_hover_card):
 		card.panel.mouse_exited.connect(_stop_hover_card)
-	if not card.panel.mouse_entered.is_connected(Callable(self, "_hover_card").bind(card)):
-		card.panel.mouse_entered.connect(Callable(self, "_hover_card").bind(card))
+	if not card.panel.mouse_entered.is_connected(_hover_card):
+		card.panel.mouse_entered.connect(_hover_card.bind(card))
 	_update_hand()
 	
-func play_card(card: Card) -> void:
+func enqueue_play_card(card: Card) -> void:
+	var result_signal = promise_queue.enqueue(_play_card.bind(card))
+	card.hoverable = false
+	promise_queue.enqueue_delay(.2)
+	
+func _play_card(card: Card) -> void:
 	var result = card.play_card()
 	if result == true:
 		CardsController.discard_card(card)
@@ -41,6 +46,12 @@ func play_card(card: Card) -> void:
 	_return_card(card)
 	
 func remove_card_from_hand(card: Card) -> Card:
+	if card == hovered_card:
+		hovered_card = null
+	if card == dragged_card:
+		dragging = false
+		dragged_card = null
+	card.hoverable = false
 	CardsCollection.cards_in_hand.erase(card)
 	_update_hand()
 	return card
@@ -67,13 +78,14 @@ func _handle_input() -> void:
 		
 		var mouse_pos = get_viewport().get_mouse_position()
 		if mouse_pos.y < play_color_rect.position.y + play_color_rect.size.y && mouse_pos.x > play_color_rect.position.x && mouse_pos.x < play_color_rect.position.x + play_color_rect.size.x:
-			play_card(returning_card)
+			enqueue_play_card(returning_card)
 			_update_hand()
 			return
 		
 		_return_card(returning_card)
 	
 func _hover_card(card: Card) -> void:
+	print("hover")
 	if card.hoverable == false || dragging:
 		return
 		

@@ -3,28 +3,28 @@ extends Control
 
 const STARTING_HOURS := 8
 
-@onready var hours_label := $MarginContainer/VBoxContainer2/HBoxContainer2/HoursLabel
-@onready var mental_health_bar = $MarginContainer/VBoxContainer2/HBoxContainer/ProgressBar
-@onready var day_label := $"MarginContainer/VBoxContainer2/HBoxContainer3/Day Label"
+var main_ui: MainUi
 
 @export var card_data_debug: Array[CardData]
 
 var mental_health: int = 10:
 	set(value):
 		mental_health = value
-		mental_health_bar.value = value
+		main_ui.set_mental_health_bar_value(value)
 
 var hours: int:
 	set(value):
 		hours = value
-		hours_label.text = "Hours remaining: " + str(self.hours)
+		main_ui.set_hours_label(value)
 		
 var day: int:
 	set(value):
 		day = value
-		day_label.text = "Day : " + str(self.day)
+		main_ui.set_day_label(day)
 
 func _ready() -> void:
+	await get_tree().process_frame
+	main_ui = get_tree().get_first_node_in_group("main_ui")
 	hours = STARTING_HOURS
 	day = 1
 	var cards = await CardsController.create_cards(card_data_debug)

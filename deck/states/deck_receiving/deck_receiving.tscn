@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://2avihlp76pqq"]
+
+[ext_resource type="PackedScene" uid="uid://fpc4vtdwsnr8" path="res://utility/state_machine/state/state.tscn" id="1_evjsd"]
+[ext_resource type="Script" uid="uid://d3bq7l6gu8n5" path="res://deck/states/deck_receiving/deck_receiving.gd" id="2_m5fo3"]
+
+[node name="DeckReceiving" instance=ExtResource("1_evjsd")]
+script = ExtResource("2_m5fo3")

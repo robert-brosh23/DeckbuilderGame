@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cloh5fkaltypj"]
+
+[ext_resource type="PackedScene" uid="uid://fpc4vtdwsnr8" path="res://utility/state_machine/state/state.tscn" id="1_5k75e"]
+[ext_resource type="Script" uid="uid://c8umwu7ex7rkg" path="res://deck/states/deck_shuffling/deck_shuffling.gd" id="2_5ttd7"]
+
+[node name="Deck_Shuffling" instance=ExtResource("1_5k75e")]
+script = ExtResource("2_5ttd7")
