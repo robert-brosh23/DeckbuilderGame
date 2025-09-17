@@ -21,6 +21,8 @@ func _process(_delta: float) -> void:
 		debug_decrease_mental_health()
 	if Input.is_action_just_pressed("debug_next_day"):
 		debug_next_day()
+	if Input.is_action_just_pressed("debug_select_cards"):
+		debug_select_cards()
 	
 func debug_draw_card_from_deck() -> void:
 	CardsController.enqueue_draw_card_from_deck()
@@ -39,3 +41,6 @@ func debug_decrease_mental_health() -> void:
 	
 func debug_next_day() -> void:
 	GameManager.go_to_next_day()
+	
+func debug_select_cards() -> void:
+	CardsController.enqueue_select_cards(4)

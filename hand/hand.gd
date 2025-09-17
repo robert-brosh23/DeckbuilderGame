@@ -7,17 +7,27 @@ const DEFAULT_CARD_SEPARATION = 150
 const HAND_BASE_Z_INDEX = 200
 
 @onready var play_color_rect := $ColorRect
+@onready var selecting_cards_container := $SelectingCardsContainer
+@onready var selecting_cards_label := $SelectingCardsContainer/SelectingCardsLabel
+@onready var confirm_button := $SelectingCardsContainer/ConfirmButton
 
 @export var discard_pile: DiscardPile
 
 var promise_queue: PromiseQueue
 var hovered_card: Card = null
-var dragging := false
 var drag_offset: Vector2
 var dragged_card: Card
+var state := states.READY
+
+var selected_cards : Array[Card] = []
+var max_selected: int
+var selection_conditions : Array[Callable]
+
+enum states {READY, DRAGGING, SELECTING}
 
 func _ready() -> void:
 	play_color_rect.visible = false
+	selecting_cards_container.visible = false
 	_update_hand()
 	
 func _process(_delta: float) -> void:
@@ -33,6 +43,23 @@ func add_card(card: Card) -> void:
 		card.panel.mouse_entered.connect(_hover_card.bind(card))
 	_update_hand()
 	
+func select_cards(max_cards: int, conditions: Array[Callable] = []) -> Array[Card]:
+	state = states.SELECTING
+	max_selected = max_cards
+	selection_conditions = conditions
+	selecting_cards_label.text = "Select " + str(max_selected) + " Cards"
+	selecting_cards_container.visible = true
+	
+	await confirm_button.pressed
+	var dup := selected_cards.duplicate()
+	selected_cards.clear()
+	selection_conditions.clear()
+	selecting_cards_container.visible = false
+	state = states.READY
+	_update_hand()
+	return dup
+	
+	
 func remove_card_from_hand(card: Card) -> Card:
 	if card == hovered_card:
 		hovered_card = null
@@ -46,20 +73,31 @@ func remove_card_from_hand(card: Card) -> Card:
 func _handle_input() -> void:
 	if Input.is_action_just_pressed("click"):
 		if hovered_card != null:
+			if state == states.SELECTING:
+				if selected_cards.has(hovered_card):
+					selected_cards.erase(hovered_card)
+					return
+				if selected_cards.size() == max_selected:
+					return
+				for condition in selection_conditions:
+					if !condition.call(hovered_card):
+						return
+				selected_cards.append(hovered_card)
+				return
 			hovered_card.state = Card.states.DRAGGING
 			hovered_card.movement_tween_manager.pos_tween.stop()
-			dragging = true
+			state = states.DRAGGING
 			dragged_card = hovered_card
 			drag_offset = hovered_card.global_position - get_viewport().get_mouse_position()
 			play_color_rect.visible = true
 			
-	if dragging:
+	if state == states.DRAGGING:
 		dragged_card.global_position = get_viewport().get_mouse_position() + drag_offset
 		
 	if Input.is_action_just_released("click"):
-		if dragging == false:
+		if state != states.DRAGGING:
 			return
-		dragging = false
+		state = states.READY
 		hovered_card = null
 		var returning_card = dragged_card
 		dragged_card = null
@@ -74,7 +112,7 @@ func _handle_input() -> void:
 		return_card(returning_card)
 	
 func _hover_card(card: Card) -> void:
-	if !card.state == Card.states.READY || dragging:
+	if !card.state == Card.states.READY || state == states.DRAGGING:
 		return
 		
 	# There is a bug with panel's mouse signals. When two nodes have the same parent, the node that is lower will take priority for these signals regardless of z index.
@@ -111,8 +149,9 @@ func _update_hand():
 	for card in CardsCollection.cards_in_hand:
 		if card.state == Card.states.PLAYING || card.state == Card.states.DRAGGING:
 			continue
-		var y_pos = card.position.y if card == hovered_card else DEFAULT_Y
-		card.movement_tween_manager.tween_to_pos(card, Vector2(x_pos, y_pos))
+		if !selected_cards.has(card):
+			var y_pos = card.position.y if card == hovered_card else DEFAULT_Y
+			card.movement_tween_manager.tween_to_pos(card, Vector2(x_pos, y_pos))
 		if card.state != card.states.HOVERING:
 			card.z_index = z_index
 			

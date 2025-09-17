@@ -44,6 +44,7 @@ static func create_card(card_data: CardData) -> Card:
 func _ready() -> void:
 	game_manager = get_tree().get_first_node_in_group("game_manager")
 	animation_player.speed_scale = 1.0 / Globals.animation_speed_scale
+	apply_card_visual_faceup()
 	_set_card_data()
 
 ## Returns true if the card was played, false if it cannot be played
@@ -57,6 +58,11 @@ func play_card() -> bool:
 	play_card_effect()
 	print (card_data.card_name, " was played.")
 	return true
+	
+func delete_card() -> void:
+	state = states.NOT_IN_HAND
+	animation_player.play("delete")
+	CardsCollection.cards_in_hand.erase(self)
 	
 ## Execute the card's specific played effect.
 func play_card_effect() -> void:
@@ -215,3 +221,13 @@ func _execute_brain_blast():
 	for i in range(0,3):
 		await CardsController.draw_card_from_deck()
 		await get_tree().create_timer(.2).timeout
+		
+func _execute_clean():
+	var conditions: Array[Callable] = [func(card: Card): return card.card_data.card_type != CardData.CARD_TYPE.OBSTACLE]
+	var result := await CardsController.select_cards(3, conditions)
+	
+	for card in result:
+		card.delete_card()
+	var hand: Hand = get_tree().get_first_node_in_group("hand")
+	hand._update_hand()
+	

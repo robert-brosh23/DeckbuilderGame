@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cprtqlg155quc"]
+[gd_scene load_steps=4 format=3 uid="uid://cprtqlg155quc"]
 
 [ext_resource type="Script" uid="uid://pl013pteooqh" path="res://hand/hand.gd" id="1_t1j3k"]
+[ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="2_v40hy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrt1y"]
+bg_color = Color(0.203922, 0.67451, 0.729412, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.654902, 0.647059, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
 
 [node name="Hand" type="Control" groups=["hand"]]
 layout_mode = 3
@@ -13,3 +27,28 @@ offset_left = 70.0
 offset_right = 570.0
 offset_bottom = 220.0
 color = Color(1, 0.654902, 0.647059, 1)
+
+[node name="SelectingCardsContainer" type="VBoxContainer" parent="."]
+z_index = 5
+layout_mode = 0
+offset_left = 257.0
+offset_top = 156.0
+offset_right = 375.0
+offset_bottom = 205.0
+
+[node name="SelectingCardsLabel" type="Label" parent="SelectingCardsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_fonts/font = ExtResource("2_v40hy")
+theme_override_font_sizes/font_size = 18
+text = "Select Cards"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="SelectingCardsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_fonts/font = ExtResource("2_v40hy")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_nrt1y")
+text = "Confirm"

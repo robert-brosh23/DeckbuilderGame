@@ -99,6 +99,16 @@ func _discard_card_from_hand(card: Card) -> void:
 	hand.remove_card_from_hand(card)
 	discard_pile.add_card(card)
 	
+func enqueue_select_cards(num_cards: int, conditions: Array[Callable] = []) -> Array[Card]:
+	var result_signal = promise_queue.enqueue(select_cards.bind(num_cards, conditions))
+	promise_queue.enqueue_delay(.2)
+	var result = await result_signal
+	print(result)
+	return result
+	
+func select_cards(num_cards: int, conditions: Array[Callable] = []) -> Array[Card]:
+	var selected = await hand.select_cards(num_cards, conditions)
+	return selected
 	
 func enqueue_discard_all_cards_from_hand() -> void:
 	var result_signal = promise_queue.enqueue(_discard_all_cards_from_hand)
