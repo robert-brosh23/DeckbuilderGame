@@ -4,10 +4,12 @@ extends Control
 const CARD_MOVEMENT_DURATION := 1.0
 
 @onready var card_amount_label := $CardAmountLabel
+@onready var shuffling_text := $ShufflingText
 
 var promise_queue: PromiseQueue
 
 func _ready() -> void:
+	shuffling_text.visible = false
 	_update_card_number_text()
 	
 func _process(delta: float) -> void:
@@ -35,7 +37,6 @@ func draw_card() -> Card:
 	return card
 	
 func shuffle_deck() -> void:
-	print("shuffling deck...")
 	for i in range(CardsCollection.cards_in_deck.size() - 1, 0, -1):
 		var j = randi() % (i + 1)
 		var temp = CardsCollection.cards_in_deck[i]

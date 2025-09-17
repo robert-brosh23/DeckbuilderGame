@@ -68,8 +68,10 @@ func enqueue_shuffle_deck() -> void:
 	
 func _shuffle_deck() -> void:
 	await get_tree().create_timer(0.5).timeout
+	deck.shuffling_text.visible = true
 	deck.shuffle_deck()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1.0).timeout
+	deck.shuffling_text.visible = false
 
 
 # HAND FUNCTIONS
@@ -117,8 +119,9 @@ func _add_card_to_discard_pile(card: Card) -> void:
 		return
 	discard_pile.add_card(card)
 	
-func enqueue_move_cards_from_discard_pile_to_deck_and_shuffle() -> void:
+func enqueue_move_cards_from_discard_pile_to_deck_and_shuffle() -> Signal:
 	var result_signal = promise_queue.enqueue(move_cards_from_discard_pile_to_deck_and_shuffle)
+	return result_signal
 	
 func enqueue_front_move_cards_from_discard_pile_to_deck_and_shuffle() -> void:
 	var result_signal = promise_queue.enqueue_front(move_cards_from_discard_pile_to_deck_and_shuffle)
@@ -126,6 +129,4 @@ func enqueue_front_move_cards_from_discard_pile_to_deck_and_shuffle() -> void:
 func move_cards_from_discard_pile_to_deck_and_shuffle() -> void:
 	var arr: Array[Card] = discard_pile.remove_all_cards_from_discard_pile()
 	deck.add_cards(arr)
-	await get_tree().create_timer(0.5).timeout
-	deck.shuffle_deck()
-	await get_tree().create_timer(0.5).timeout
+	await _shuffle_deck()

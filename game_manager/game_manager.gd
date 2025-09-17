@@ -31,7 +31,7 @@ func _ready() -> void:
 	
 func go_to_next_day() -> void:
 	CardsController.enqueue_discard_all_cards_from_hand()
-	CardsController.enqueue_move_cards_from_discard_pile_to_deck_and_shuffle()
+	await CardsController.enqueue_move_cards_from_discard_pile_to_deck_and_shuffle()
 	day += 1
 	hours = STARTING_HOURS
 	SignalBus.new_day_started.emit()
