@@ -86,6 +86,12 @@ func flip_card_down() -> void:
 	flipped_up = false
 	animation_player.play("flip_card_down")
 	
+func apply_card_visual_selected() -> void:
+	var sb := $Panel.get("theme_override_styles/panel") as StyleBoxFlat
+	var copy = sb.duplicate()
+	copy.border_color = "ffa7a5"
+	$Panel.add_theme_stylebox_override("panel", copy)
+
 func apply_card_visual_facedown() -> void:
 	var stylebox: StyleBoxFlat = preload(FACE_DOWN_CARD_STYLEBOX_PATH)
 	panel.add_theme_stylebox_override("panel", stylebox)

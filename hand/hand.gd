@@ -28,6 +28,7 @@ enum states {READY, DRAGGING, SELECTING}
 func _ready() -> void:
 	play_color_rect.visible = false
 	selecting_cards_container.visible = false
+	confirm_button.focus_mode = FOCUS_NONE
 	_update_hand()
 	
 func _process(_delta: float) -> void:
@@ -47,11 +48,13 @@ func select_cards(max_cards: int, conditions: Array[Callable] = []) -> Array[Car
 	state = states.SELECTING
 	max_selected = max_cards
 	selection_conditions = conditions
-	selecting_cards_label.text = "Select " + str(max_selected) + " Cards"
+	selecting_cards_label.text = "Select up to " + str(max_selected) + " cards"
 	selecting_cards_container.visible = true
 	
 	await confirm_button.pressed
 	var dup := selected_cards.duplicate()
+	for card in selected_cards:
+		card.apply_card_visual_faceup()
 	selected_cards.clear()
 	selection_conditions.clear()
 	selecting_cards_container.visible = false
@@ -76,6 +79,7 @@ func _handle_input() -> void:
 			if state == states.SELECTING:
 				if selected_cards.has(hovered_card):
 					selected_cards.erase(hovered_card)
+					hovered_card.apply_card_visual_faceup()
 					return
 				if selected_cards.size() == max_selected:
 					return
@@ -83,6 +87,7 @@ func _handle_input() -> void:
 					if !condition.call(hovered_card):
 						return
 				selected_cards.append(hovered_card)
+				hovered_card.apply_card_visual_selected()
 				return
 			hovered_card.state = Card.states.DRAGGING
 			hovered_card.movement_tween_manager.pos_tween.stop()
