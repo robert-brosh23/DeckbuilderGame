@@ -47,6 +47,7 @@ func _handle_input() -> void:
 	if Input.is_action_just_pressed("click"):
 		if hovered_card != null:
 			hovered_card.state = Card.states.DRAGGING
+			hovered_card.movement_tween_manager.pos_tween.stop()
 			dragging = true
 			dragged_card = hovered_card
 			drag_offset = hovered_card.global_position - get_viewport().get_mouse_position()

@@ -31,6 +31,7 @@ var game_manager: GameManager
 var flipped_up: bool = true
 var selected_font = FontFile
 var state: states = states.NOT_IN_HAND
+var promise_queue: PromiseQueue
 
 enum states {READY, NOT_IN_HAND, HOVERING, DRAGGING, PLAYING, RETURNING}
 
@@ -59,7 +60,9 @@ func play_card() -> bool:
 	
 ## Execute the card's specific played effect.
 func play_card_effect() -> void:
-	call(card_data.effect_map[card_data.card_effect])
+	promise_queue.paused = true
+	await call(card_data.effect_map[card_data.card_effect])
+	promise_queue.paused = false
 	
 func hover_card() -> void:
 	state = states.HOVERING
@@ -198,8 +201,9 @@ func _execute_new_day():
 	game_manager.mental_health = 10
 	
 func _execute_meditation():
-	CardsController.enqueue_move_cards_from_discard_pile_to_deck_and_shuffle()
-	CardsController.enqueue_draw_card_from_deck()
+	await CardsController.move_cards_from_discard_pile_to_deck_and_shuffle()
+	await CardsController.draw_card_from_deck()
+	await get_tree().create_timer(.2).timeout
 	
 func _execute_organize():
 	SignalBus.new_day_started.connect(
@@ -209,4 +213,5 @@ func _execute_organize():
 	
 func _execute_brain_blast():
 	for i in range(0,3):
-		CardsController.enqueue_draw_card_from_deck()
+		await CardsController.draw_card_from_deck()
+		await get_tree().create_timer(.2).timeout
