@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://brgue6g2tmhlw"]
+
+[ext_resource type="Texture2D" uid="uid://1iikt6ghpciv" path="res://sprites/clean.png" id="1_fcffa"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_hm4fn"]
+
+[resource]
+script = ExtResource("1_hm4fn")
+card_name = "Clean"
+card_cost = 2
+card_png = ExtResource("1_fcffa")
+card_description = "Select up to 3 non-obstacle cards and delete them."
+card_type = 0
+card_effect = 4
+title_font = 1
+card_title_offset = 0
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

@@ -1,38 +1,44 @@
-class_name GameManager
+# class_name GameManager
 extends Control
 
-const STARTING_HOURS := 8
-
-@onready var hours_label := $MarginContainer/VBoxContainer2/HBoxContainer2/HoursLabel
-@onready var mental_health_bar = $MarginContainer/VBoxContainer2/HBoxContainer/ProgressBar
-@onready var day_label := $"MarginContainer/VBoxContainer2/HBoxContainer3/Day Label"
+const STARTING_HOURS := 12
 
 @export var card_data_debug: Array[CardData]
+
+var main_ui: MainUi
+var promise_queue: PromiseQueue
+var receiving_input = true
+var score = 0;
 
 var mental_health: int = 10:
 	set(value):
 		mental_health = value
-		mental_health_bar.value = value
+		main_ui.set_mental_health_bar_value(value)
 
 var hours: int:
 	set(value):
 		hours = value
-		hours_label.text = "Hours remaining: " + str(self.hours)
+		main_ui.set_hours_label(value)
 		
 var day: int:
 	set(value):
 		day = value
-		day_label.text = "Day : " + str(self.day)
+		main_ui.set_day_label(day)
 
 func _ready() -> void:
+	await get_tree().process_frame
+	main_ui = get_tree().get_first_node_in_group("main_ui")
 	hours = STARTING_HOURS
 	day = 1
-	var cards = await CardsManager.create_cards(card_data_debug)
+	promise_queue = CardsController.promise_queue
+	CardsController.enqueue_create_cards(card_data_debug)
 	
 func go_to_next_day() -> void:
-	CardsManager.discard_all_cards()
-	CardsManager.move_cards_from_discard_pile_to_deck_and_shuffle()
+	receiving_input = false
+	await CardsController.enqueue_discard_all_cards_from_hand()
+	await CardsController.enqueue_move_cards_from_discard_pile_to_deck_and_shuffle()
 	day += 1
 	hours = STARTING_HOURS
 	SignalBus.new_day_started.emit()
-	CardsManager.draw_multiple_cards(5)
+	receiving_input = true
+	CardsController.enqueue_draw_multiple_cards(7)

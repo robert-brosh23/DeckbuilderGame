@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bu8nv7leim8od"]
+[gd_scene load_steps=17 format=3 uid="uid://bu8nv7leim8od"]
 
 [ext_resource type="Script" uid="uid://b4h4dbu2ryb06" path="res://card/card.gd" id="1_ply2h"]
 [ext_resource type="Texture2D" uid="uid://djnq5q44dua12" path="res://sprites/meditation.png" id="2_1n6wr"]
@@ -52,26 +52,43 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale:y")
+tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
 "values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7dy67"]
+resource_name = "delete"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_6xkbt"]
@@ -135,6 +152,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7dy67"]
 _data = {
 &"RESET": SubResource("Animation_ags6k"),
+&"delete": SubResource("Animation_7dy67"),
 &"flip_card_down": SubResource("Animation_6xkbt"),
 &"flip_card_up": SubResource("Animation_1n6wr")
 }
@@ -242,7 +260,7 @@ layout_mode = 2
 [node name="DescriptionLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
 theme_override_constants/line_spacing = -2
 theme_override_fonts/font = ExtResource("2_trrkg")
 theme_override_font_sizes/font_size = 16

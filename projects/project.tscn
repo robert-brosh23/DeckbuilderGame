@@ -1,37 +1,106 @@
-[gd_scene load_steps=2 format=3 uid="uid://btnaw73ei341f"]
+[gd_scene load_steps=6 format=3 uid="uid://btnaw73ei341f"]
 
 [ext_resource type="Script" uid="uid://clx017qp8yyam" path="res://projects/project.gd" id="1_hco3b"]
+[ext_resource type="FontFile" uid="uid://cm4gkenj5odhg" path="res://fonts/m5x7.ttf" id="2_460it"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mchcn"]
+bg_color = Color(0.203922, 0.67451, 0.729412, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.670588, 0.337255, 0.458824, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53oba"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.670588, 0.337255, 0.458824, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmp45"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.670588, 0.337255, 0.458824, 1)
+anti_aliasing = false
 
 [node name="Project" type="Control"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.172
-offset_bottom = 0.079998
+anchor_bottom = 1.0
+offset_right = -552.0
+offset_bottom = -327.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_hco3b")
 
-[node name="Background" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 635.0
-offset_bottom = 63.0
-color = Color(0.925362, 0.43842, 0.741827, 1)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -3.0
+offset_right = 0.5
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 z_index = 1
-layout_mode = 0
-offset_right = 636.0
-offset_bottom = 29.0
-text = "Sample Project"
-fit_content = true
+custom_minimum_size = Vector2(88, 33)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mchcn")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleText" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_460it")
+theme_override_font_sizes/font_size = 16
+text = "Sample Project
+(5 left)"
 horizontal_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 34.0
-offset_top = 30.0
-offset_right = 610.0
-offset_bottom = 57.0
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_53oba")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mmp45")
 value = 50.0
 show_percentage = false
+
+[node name="TargetableIndicator" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.511
+anchor_top = 0.515
+anchor_right = 0.511
+anchor_bottom = 0.515
+offset_left = -74.968
+offset_top = -39.995
+offset_right = 75.032
+offset_bottom = 40.005
+color = Color(1, 0.654902, 0.647059, 1)

@@ -1,8 +1,16 @@
-class_name  Project_Resource
+class_name ProjectResource
 extends Resource
 
 @export var displayName: String
-@export var type: String
+
+@export var type: project_type
+
 @export var targetProgress: int
+
+enum project_type {
+	LOGIC,
+	CREATIVITY,
+	WISDOM
+}
 
 ## add a bunch of stuff here for rewards, etc
