@@ -22,7 +22,8 @@ var effect_map: Dictionary[CARD_EFFECT, String] = {
 	CARD_EFFECT.NEW_DAY: "_execute_new_day",
 	CARD_EFFECT.MEDITATION: "_execute_meditation",
 	CARD_EFFECT.ORGANIZE: "_execute_organize",
-	CARD_EFFECT.BRAIN_BLAST: "_execute_brain_blast"
+	CARD_EFFECT.BRAIN_BLAST: "_execute_brain_blast",
+	CARD_EFFECT.CLEAN: "_execute_clean"
 }
 
 enum CARD_TYPE {
@@ -41,7 +42,8 @@ enum CARD_EFFECT {
 	NEW_DAY,
 	MEDITATION,
 	ORGANIZE,
-	BRAIN_BLAST
+	BRAIN_BLAST,
+	CLEAN
 }
 
 func get_font() -> Font:

@@ -1,15 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd5tbk86qnuwn"]
+[gd_scene load_steps=4 format=3 uid="uid://dd5tbk86qnuwn"]
 
-[ext_resource type="Script" uid="uid://do3gyc24caxqm" path="res://deck/deck.gd" id="1_iau1w"]
+[ext_resource type="Script" uid="uid://do3gyc24caxqm" path="res://deck/deck.gd" id="1_rqbxk"]
 [ext_resource type="FontFile" uid="uid://c6lfcmqrq1huc" path="res://fonts/m3x6.ttf" id="2_rqbxk"]
+[ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://fonts/m6x11.ttf" id="3_pihgb"]
 
 [node name="Deck" type="Control" groups=["deck"]]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_iau1w")
+script = ExtResource("1_rqbxk")
 
 [node name="CardAmountLabel" type="Label" parent="."]
 z_index = 2
+layout_mode = 0
 offset_left = -44.0
 offset_top = -80.0
 offset_right = 44.0
@@ -19,3 +21,17 @@ theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
 theme_override_fonts/font = ExtResource("2_rqbxk")
 text = "Cards"
 horizontal_alignment = 1
+
+[node name="ShufflingText" type="RichTextLabel" parent="."]
+z_index = 5
+layout_mode = 0
+offset_left = -35.0
+offset_top = -36.0
+offset_right = 43.0
+offset_bottom = -7.0
+theme_override_colors/default_color = Color(0.447059, 0.862745, 0.733333, 1)
+theme_override_fonts/normal_font = ExtResource("3_pihgb")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[wave amp=20 freq 2] Shuffling... [/wave]"
+vertical_alignment = 1

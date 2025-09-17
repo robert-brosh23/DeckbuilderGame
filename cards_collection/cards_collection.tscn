@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvc0h75v0yorp"]
+
+[ext_resource type="Script" uid="uid://bohybnlpt5qov" path="res://cards_collection/cards_collection.gd" id="1_s562x"]
+
+[node name="CardsCollection" type="Node"]
+script = ExtResource("1_s562x")
