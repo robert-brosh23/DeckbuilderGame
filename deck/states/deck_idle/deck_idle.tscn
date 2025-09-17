@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://snx75jeqtruq"]
-
-[ext_resource type="PackedScene" uid="uid://fpc4vtdwsnr8" path="res://utility/state_machine/state/state.tscn" id="1_fliln"]
-[ext_resource type="Script" uid="uid://h2yxu805oc7r" path="res://deck/states/deck_idle/deck_idle.gd" id="2_deeih"]
-
-[node name="DeckIdle" instance=ExtResource("1_fliln")]
-script = ExtResource("2_deeih")

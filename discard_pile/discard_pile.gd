@@ -6,7 +6,6 @@ func add_card(card: Card) -> void:
 	CardsCollection.cards_in_discard_pile.push_front(card)
 	CardsCollection.move_card_node_to_discard(card)
 	card.flip_card_up()
-	card.hoverable = false
 	_update_z_indexes()
 	card.movement_tween_manager.tween_to_pos(card, self.position, 1.0)
 	card.visible = true

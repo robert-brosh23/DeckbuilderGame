@@ -30,8 +30,6 @@ var game_manager: GameManager
 
 var flipped_up: bool = true
 var selected_font = FontFile
-var hoverable: bool = false
-var playing: bool = false
 var state: states = states.NOT_IN_HAND
 
 enum states {READY, NOT_IN_HAND, HOVERING, DRAGGING, PLAYING, RETURNING}
@@ -59,17 +57,11 @@ func play_card() -> bool:
 	print (card_data.card_name, " was played.")
 	return true
 	
-	
 ## Execute the card's specific played effect.
 func play_card_effect() -> void:
 	call(card_data.effect_map[card_data.card_effect])
 	
-	
 func hover_card() -> void:
-	state = states.HOVERING
-	movement_tween_manager.tween_to_pos(self, Vector2(position.x, 170.0 - SELECTED_CARD_Y_OFFSET), .1)
-	
-func stop_hover_card() -> void:
 	state = states.HOVERING
 	movement_tween_manager.tween_to_pos(self, Vector2(position.x, 170.0 - SELECTED_CARD_Y_OFFSET), .1)
 	

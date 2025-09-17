@@ -70,11 +70,9 @@ func _shuffle_deck() -> void:
 # HAND FUNCTIONS
 ## Try to play the card. Returns true if the card was played, false otherwise.
 func enqueue_play_card(card: Card) -> bool:
-	card.playing = true
 	var result_signal = promise_queue.enqueue(_play_card.bind(card))
 	promise_queue.enqueue_delay(.2)
 	var result = await result_signal
-	card.playing = false
 	return result
 
 func _play_card(card: Card) -> bool:
@@ -82,6 +80,7 @@ func _play_card(card: Card) -> bool:
 	if result == true:
 		_discard_card_from_hand(card)
 		return true
+	hand.return_card(card)
 	return false
 
 func enqueue_discard_card_from_hand(card: Card) -> void:
@@ -89,6 +88,7 @@ func enqueue_discard_card_from_hand(card: Card) -> void:
 	promise_queue.enqueue_delay(.2)
 
 func _discard_card_from_hand(card: Card) -> void:
+	card.state = Card.states.NOT_IN_HAND
 	hand.remove_card_from_hand(card)
 	discard_pile.add_card(card)
 	
@@ -100,6 +100,7 @@ func enqueue_discard_all_cards_from_hand() -> void:
 func _discard_all_cards_from_hand() -> void:
 	while !CardsCollection.cards_in_hand.is_empty():
 		var card = hand.remove_card_from_hand(CardsCollection.cards_in_hand.front())
+		card.state = Card.states.NOT_IN_HAND
 		discard_pile.add_card(card)
 		await get_tree().create_timer(0.2).timeout
 	
