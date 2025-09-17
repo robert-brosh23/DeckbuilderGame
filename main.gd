@@ -29,7 +29,7 @@ func debug_discard_card_from_deck() -> void:
 	CardsController.enqueue_discard_card_from_deck()
 	
 func debug_move_cards_from_discard_pile_to_deck_and_reshuffle() -> void:
-	CardsController.move_cards_from_discard_pile_to_deck_and_shuffle()
+	CardsController.enqueue_move_cards_from_discard_pile_to_deck_and_shuffle()
 
 func debug_add_hours() -> void:
 	GameManager.hours += 8
