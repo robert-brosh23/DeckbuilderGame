@@ -23,10 +23,10 @@ func _process(_delta: float) -> void:
 		debug_next_day()
 	
 func debug_draw_card_from_deck() -> void:
-	CardsController.draw_card_from_deck()
+	CardsController.enqueue_draw_card_from_deck()
 	
 func debug_discard_card_from_deck() -> void:
-	CardsController.discard_card_from_deck()
+	CardsController.enqueue_discard_card_from_deck()
 	
 func debug_move_cards_from_discard_pile_to_deck_and_reshuffle() -> void:
 	CardsController.move_cards_from_discard_pile_to_deck_and_shuffle()

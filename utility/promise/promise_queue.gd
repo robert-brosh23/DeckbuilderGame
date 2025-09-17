@@ -30,7 +30,6 @@ func _process_queue() -> void:
 	while !queue.is_empty():
 		var item: Promise = queue.pop_front()
 		var fn: Callable = item.callable
-		print("process: ", fn.get_method())
 		var result_signal = item.result_signal
 		
 		var result = await fn.call()

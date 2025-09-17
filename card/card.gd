@@ -31,6 +31,10 @@ var game_manager: GameManager
 var flipped_up: bool = true
 var selected_font = FontFile
 var hoverable: bool = false
+var playing: bool = false
+var state: states = states.NOT_IN_HAND
+
+enum states {READY, NOT_IN_HAND, HOVERING, DRAGGING, PLAYING, RETURNING}
 
 ## Creates a new card, given the card_data
 static func create_card(card_data: CardData) -> Card:
@@ -45,10 +49,6 @@ func _ready() -> void:
 
 ## Returns true if the card was played, false if it cannot be played
 func play_card() -> bool:
-	if game_manager == null:
-		print("Error: game manager not configured!")
-		return false
-	
 	var hours_cost = card_data.card_cost
 	if hours_cost > game_manager.hours:
 		print("This card costs too much.")
@@ -66,6 +66,11 @@ func play_card_effect() -> void:
 	
 	
 func hover_card() -> void:
+	state = states.HOVERING
+	movement_tween_manager.tween_to_pos(self, Vector2(position.x, 170.0 - SELECTED_CARD_Y_OFFSET), .1)
+	
+func stop_hover_card() -> void:
+	state = states.HOVERING
 	movement_tween_manager.tween_to_pos(self, Vector2(position.x, 170.0 - SELECTED_CARD_Y_OFFSET), .1)
 	
 func flip_card_up() -> void:
@@ -201,8 +206,8 @@ func _execute_new_day():
 	game_manager.mental_health = 10
 	
 func _execute_meditation():
-	CardsController.move_cards_from_discard_pile_to_deck_and_shuffle()
-	CardsController.draw_card_from_deck()
+	CardsController.enqueue_move_cards_from_discard_pile_to_deck_and_shuffle()
+	CardsController.enqueue_draw_card_from_deck()
 	
 func _execute_organize():
 	SignalBus.new_day_started.connect(
@@ -212,4 +217,4 @@ func _execute_organize():
 	
 func _execute_brain_blast():
 	for i in range(0,3):
-		CardsController.draw_card_from_deck()
+		CardsController.enqueue_draw_card_from_deck()

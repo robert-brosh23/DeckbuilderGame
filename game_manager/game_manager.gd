@@ -27,12 +27,12 @@ func _ready() -> void:
 	main_ui = get_tree().get_first_node_in_group("main_ui")
 	hours = STARTING_HOURS
 	day = 1
-	var cards = await CardsController.create_cards(card_data_debug)
+	CardsController.enqueue_create_cards(card_data_debug)
 	
 func go_to_next_day() -> void:
-	CardsController.discard_all_cards()
-	CardsController.move_cards_from_discard_pile_to_deck_and_shuffle()
+	CardsController.enqueue_discard_all_cards_from_hand()
+	CardsController.enqueue_move_cards_from_discard_pile_to_deck_and_shuffle()
 	day += 1
 	hours = STARTING_HOURS
 	SignalBus.new_day_started.emit()
-	CardsController.draw_multiple_cards(5)
+	CardsController.enqueue_draw_multiple_cards(5)

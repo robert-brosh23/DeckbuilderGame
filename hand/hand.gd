@@ -33,18 +33,6 @@ func add_card(card: Card) -> void:
 		card.panel.mouse_entered.connect(_hover_card.bind(card))
 	_update_hand()
 	
-func enqueue_play_card(card: Card) -> void:
-	var result_signal = promise_queue.enqueue(_play_card.bind(card))
-	card.hoverable = false
-	promise_queue.enqueue_delay(.2)
-	
-func _play_card(card: Card) -> void:
-	var result = card.play_card()
-	if result == true:
-		CardsController.discard_card(card)
-		return
-	_return_card(card)
-	
 func remove_card_from_hand(card: Card) -> Card:
 	if card == hovered_card:
 		hovered_card = null
@@ -78,14 +66,12 @@ func _handle_input() -> void:
 		
 		var mouse_pos = get_viewport().get_mouse_position()
 		if mouse_pos.y < play_color_rect.position.y + play_color_rect.size.y && mouse_pos.x > play_color_rect.position.x && mouse_pos.x < play_color_rect.position.x + play_color_rect.size.x:
-			enqueue_play_card(returning_card)
-			_update_hand()
+			CardsController.enqueue_play_card(returning_card)
 			return
 		
 		_return_card(returning_card)
 	
 func _hover_card(card: Card) -> void:
-	print("hover")
 	if card.hoverable == false || dragging:
 		return
 		
@@ -97,6 +83,7 @@ func _hover_card(card: Card) -> void:
 	card.hover_card()
 	
 func _stop_hover_card() -> void:
+	hovered_card.stop_hover_card()
 	hovered_card = null
 	_update_hand()
 	
@@ -113,10 +100,13 @@ func _return_card(returning_card: Card) -> void:
 func _update_hand():
 	var card_separation: int = _determine_card_separation()
 	var hand_length: int = card_separation * (CardsCollection.cards_in_hand.size() - 1)
-	var x_pos: int = CENTER_X - hand_length / 2 
+	var x_pos: int = CENTER_X - hand_length / 2
 	var z_index: int = CardsCollection.cards_in_deck.size() + CardsCollection.cards_in_discard_pile.size()
 	
 	for card in CardsCollection.cards_in_hand:
+		if card.playing:
+			print("card playing")
+			continue
 		var y_pos = card.position.y if card == hovered_card else DEFAULT_Y
 		if card != dragged_card:
 			card.movement_tween_manager.tween_to_pos(card, Vector2(x_pos, y_pos))
