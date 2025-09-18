@@ -38,10 +38,6 @@ func enqueue_draw_card_from_deck() -> void:
 	var result_signal = promise_queue.enqueue(draw_card_from_deck)
 	promise_queue.enqueue_delay(.2)
 	
-func enqueue_front_draw_card_from_deck() -> void:
-	var result_signal = promise_queue.enqueue_front(draw_card_from_deck)
-	promise_queue.enqueue_delay_front(.2)
-	
 func draw_card_from_deck() -> void:
 	var card = deck.draw_card()
 	if card == null:
@@ -76,14 +72,14 @@ func _shuffle_deck() -> void:
 
 # HAND FUNCTIONS
 ## Try to play the card. Returns true if the card was played, false otherwise.
-func enqueue_play_card(card: Card) -> bool:
-	var result_signal = promise_queue.enqueue(_play_card.bind(card))
+func enqueue_play_card(card: Card, target: Project = null) -> bool:
+	var result_signal = promise_queue.enqueue(_play_card.bind(card, target))
 	promise_queue.enqueue_delay(.2)
 	var result = await result_signal
 	return result
 
-func _play_card(card: Card) -> bool:
-	var result = card.play_card()
+func _play_card(card: Card, target: Project = null) -> bool:
+	var result = card.play_card(target)
 	if result == true:
 		_discard_card_from_hand(card)
 		return true
@@ -133,10 +129,10 @@ func enqueue_move_cards_from_discard_pile_to_deck_and_shuffle() -> Signal:
 	var result_signal = promise_queue.enqueue(move_cards_from_discard_pile_to_deck_and_shuffle)
 	return result_signal
 	
-func enqueue_front_move_cards_from_discard_pile_to_deck_and_shuffle() -> void:
-	var result_signal = promise_queue.enqueue_front(move_cards_from_discard_pile_to_deck_and_shuffle)
-	
 func move_cards_from_discard_pile_to_deck_and_shuffle() -> void:
 	var arr: Array[Card] = discard_pile.remove_all_cards_from_discard_pile()
 	deck.add_cards(arr)
 	await _shuffle_deck()
+	
+func receiving_input() -> bool:
+	return GameManager.receiving_input

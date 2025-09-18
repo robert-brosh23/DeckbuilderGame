@@ -1,8 +1,8 @@
 class_name Hand
 extends Control
 
-const CENTER_X = 0
-const DEFAULT_Y = 170.0
+const CENTER_X = 320
+const DEFAULT_Y = 350
 const DEFAULT_CARD_SEPARATION = 150
 const HAND_BASE_Z_INDEX = 200
 
@@ -11,14 +11,13 @@ const HAND_BASE_Z_INDEX = 200
 @onready var selecting_cards_label := $SelectingCardsContainer/SelectingCardsLabel
 @onready var confirm_button := $SelectingCardsContainer/ConfirmButton
 
-@export var discard_pile: DiscardPile
+var projects_manager: ProjectsManager
 
 var promise_queue: PromiseQueue
 var hovered_card: Card = null
 var drag_offset: Vector2
 var dragged_card: Card
 var state := states.READY
-
 var selected_cards : Array[Card] = []
 var max_selected: int
 var selection_conditions : Array[Callable]
@@ -26,6 +25,7 @@ var selection_conditions : Array[Callable]
 enum states {READY, DRAGGING, SELECTING}
 
 func _ready() -> void:
+	projects_manager = get_tree().get_first_node_in_group("projects_manager")
 	play_color_rect.visible = false
 	selecting_cards_container.visible = false
 	confirm_button.focus_mode = FOCUS_NONE
@@ -74,6 +74,12 @@ func remove_card_from_hand(card: Card) -> Card:
 	return card
 
 func _handle_input() -> void:
+	if !CardsController.receiving_input():
+		state = states.READY
+		_stop_hover_card()
+		dragged_card = null
+		return
+		
 	if Input.is_action_just_pressed("click"):
 		if hovered_card != null:
 			if state == states.SELECTING:
@@ -94,7 +100,7 @@ func _handle_input() -> void:
 			state = states.DRAGGING
 			dragged_card = hovered_card
 			drag_offset = hovered_card.global_position - get_viewport().get_mouse_position()
-			play_color_rect.visible = true
+			_show_target_area(hovered_card)
 			
 	if state == states.DRAGGING:
 		dragged_card.global_position = get_viewport().get_mouse_position() + drag_offset
@@ -106,15 +112,49 @@ func _handle_input() -> void:
 		hovered_card = null
 		var returning_card = dragged_card
 		dragged_card = null
-		play_color_rect.visible = false
 		
 		var mouse_pos = get_viewport().get_mouse_position()
-		if mouse_pos.y < play_color_rect.position.y + play_color_rect.size.y && mouse_pos.x > play_color_rect.position.x && mouse_pos.x < play_color_rect.position.x + play_color_rect.size.x:
-			returning_card.state = Card.states.PLAYING
-			CardsController.enqueue_play_card(returning_card)
-			return
+		if returning_card.card_data.get_target_type() == CardData.target_type.ALL:
+			if mouse_pos.y < play_color_rect.position.y + play_color_rect.size.y && mouse_pos.x > play_color_rect.position.x && mouse_pos.x < play_color_rect.position.x + play_color_rect.size.x:
+				returning_card.state = Card.states.PLAYING
+				CardsController.enqueue_play_card(returning_card)
+				_hide_target_area()
+				return
+		else:
+			for project in projects_manager.projects:
+				var target := project.targetable_indicator
+				if project.targetable && mouse_pos.y > target.global_position.y && mouse_pos.y < target.global_position.y + target.size.y && mouse_pos.x > target.global_position.x && mouse_pos.x < target.global_position.x + target.size.x:
+					returning_card.state = Card.states.PLAYING
+					if returning_card.card_data.get_target_type() == CardData.target_type.SINGLE:
+						CardsController.enqueue_play_card(returning_card, project)
+					else: # MULTI
+						CardsController.enqueue_play_card(returning_card)
+					_hide_target_area()
+					return
 		
+		_hide_target_area()
 		return_card(returning_card)
+	
+	
+func _show_target_area(card: Card) -> void:
+	var target_type := card.card_data.get_target_type()
+	if target_type == card.card_data.target_type.ALL:
+		play_color_rect.visible = true
+		return
+	
+	for project in projects_manager.projects:
+		if !project.active:
+			continue
+		var conditions : Array[Callable] = []
+		for condition in card.card_data.get_target_conditions():
+			if condition is Callable:
+				conditions.append(condition.bind(project))
+		project.check_targetable(conditions)
+	
+func _hide_target_area() -> void:
+	play_color_rect.visible = false
+	for project in projects_manager.projects:
+		project.hide_targetable()
 	
 func _hover_card(card: Card) -> void:
 	if !card.state == Card.states.READY || state == states.DRAGGING:

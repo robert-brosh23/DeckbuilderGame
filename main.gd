@@ -23,6 +23,8 @@ func _process(_delta: float) -> void:
 		debug_next_day()
 	if Input.is_action_just_pressed("debug_select_cards"):
 		debug_select_cards()
+	if Input.is_action_just_pressed("debug_apply_progress"):
+		debug_apply_progress()
 	
 func debug_draw_card_from_deck() -> void:
 	CardsController.enqueue_draw_card_from_deck()
@@ -44,3 +46,6 @@ func debug_next_day() -> void:
 	
 func debug_select_cards() -> void:
 	CardsController.enqueue_select_cards(4)
+	
+func debug_apply_progress() -> void:
+	$ProjectsManager.projects[0].progress(1)

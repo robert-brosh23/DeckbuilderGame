@@ -25,19 +25,11 @@ func enqueue(func_ref: Callable) -> Signal:
 		call_deferred("_process_queue")
 	return promise.result_signal
 	
-func enqueue_front(func_ref: Callable) -> Signal:
-	var promise = Promise.create_promise(func_ref)
-	queue.push_front(promise)
-	if !processing:
-		processing = true
-		call_deferred("_process_queue")
-	return promise.result_signal
-	
 func enqueue_delay(seconds: float):
 	enqueue(func(): await tree.create_timer(seconds * Globals.animation_speed_scale).timeout)
-
-func enqueue_delay_front(seconds: float):
-	enqueue_front(func(): await tree.create_timer(seconds * Globals.animation_speed_scale).timeout)
+	
+func clear_queue():
+	queue.clear()
 	
 func _process_queue() -> void:
 	while !queue.is_empty():
