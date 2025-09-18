@@ -2,7 +2,7 @@ class_name Card
 extends Control
 
 const SELECTED_CARD_Y_OFFSET = 48.0
-const DEFAULT_POS_Y = 170.0
+const DEFAULT_POS_Y = 350.0
 
 const TECH_STYLEBOX_PATH = "res://card/card_data/styles/stylebox/tech_stylebox.tres"
 const TECH_STYLEBOX_IMAGE_FRAME_PATH = "res://card/card_data/styles/stylebox/image_frame_tech_stylebox.tres"
@@ -48,14 +48,14 @@ func _ready() -> void:
 	_set_card_data()
 
 ## Returns true if the card was played, false if it cannot be played
-func play_card() -> bool:
+func play_card(target: Project) -> bool:
 	var hours_cost = card_data.card_cost
 	if hours_cost > game_manager.hours:
 		print("This card costs too much.")
 		return false
 	
 	game_manager.hours -= hours_cost
-	play_card_effect()
+	play_card_effect(target)
 	print (card_data.card_name, " was played.")
 	return true
 	
@@ -65,14 +65,17 @@ func delete_card() -> void:
 	CardsCollection.cards_in_hand.erase(self)
 	
 ## Execute the card's specific played effect.
-func play_card_effect() -> void:
+func play_card_effect(target: Project) -> void:
 	promise_queue.paused = true
-	await call(card_data.effect_map[card_data.card_effect])
+	if target == null:
+		await call(card_data.effect_map[card_data.card_effect])
+	else:
+		await call(card_data.effect_map[card_data.card_effect], target)
 	promise_queue.paused = false
 	
 func hover_card() -> void:
 	state = states.HOVERING
-	movement_tween_manager.tween_to_pos(self, Vector2(position.x, 170.0 - SELECTED_CARD_Y_OFFSET), .1)
+	movement_tween_manager.tween_to_pos(self, Vector2(position.x, DEFAULT_POS_Y - SELECTED_CARD_Y_OFFSET), .1)
 	
 func flip_card_up() -> void:
 	if flipped_up == true:
@@ -236,4 +239,12 @@ func _execute_clean():
 		card.delete_card()
 	var hand: Hand = get_tree().get_first_node_in_group("hand")
 	hand._update_hand()
+	
+func _execute_small_step(target: Project):
+	target.add_step_and_progress()
+	
+	
+	
+	
+	
 	

@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 
 func add_card(card: Card) -> void:
 	card.flip_card_down()
-	card.movement_tween_manager.tween_to_pos(card, self.position, CARD_MOVEMENT_DURATION).finished.connect(func(): _update_card_number_text())
+	card.movement_tween_manager.tween_to_pos(card, self.global_position, CARD_MOVEMENT_DURATION).finished.connect(func(): _update_card_number_text())
 	CardsCollection.cards_in_deck.append(card)
 	_update_top_card_z_index()
 	

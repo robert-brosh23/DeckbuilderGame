@@ -48,4 +48,4 @@ func debug_select_cards() -> void:
 	CardsController.enqueue_select_cards(4)
 	
 func debug_apply_progress() -> void:
-	$Project.progress(1)
+	$ProjectsManager.projects[0].progress(1)

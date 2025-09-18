@@ -72,14 +72,14 @@ func _shuffle_deck() -> void:
 
 # HAND FUNCTIONS
 ## Try to play the card. Returns true if the card was played, false otherwise.
-func enqueue_play_card(card: Card) -> bool:
-	var result_signal = promise_queue.enqueue(_play_card.bind(card))
+func enqueue_play_card(card: Card, target: Project = null) -> bool:
+	var result_signal = promise_queue.enqueue(_play_card.bind(card, target))
 	promise_queue.enqueue_delay(.2)
 	var result = await result_signal
 	return result
 
-func _play_card(card: Card) -> bool:
-	var result = card.play_card()
+func _play_card(card: Card, target: Project = null) -> bool:
+	var result = card.play_card(target)
 	if result == true:
 		_discard_card_from_hand(card)
 		return true

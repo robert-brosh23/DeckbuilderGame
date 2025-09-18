@@ -10,6 +10,7 @@ card_cost = 1
 card_png = ExtResource("1_qttf1")
 card_description = "Apply a step to a project, then progress project by number of steps."
 card_type = 1
+card_effect = 5
 title_font = 1
 card_title_offset = 6
 metadata/_custom_type_script = "uid://bevi4n8n1jvud"

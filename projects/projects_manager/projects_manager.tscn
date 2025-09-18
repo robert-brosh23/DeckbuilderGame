@@ -1,9 +1,41 @@
-[gd_scene format=3 uid="uid://b4wue7nm8cfwk"]
+[gd_scene load_steps=4 format=3 uid="uid://b4wue7nm8cfwk"]
 
-[node name="ProjectsManager" type="Control"]
+[ext_resource type="Script" uid="uid://cdai6dvhv8shq" path="res://projects/projects_manager/projects_manager.gd" id="1_2em2g"]
+[ext_resource type="PackedScene" uid="uid://btnaw73ei341f" path="res://projects/project.tscn" id="1_cn0es"]
+[ext_resource type="Resource" uid="uid://bkir8ed1wqnsi" path="res://projects/project_data/projects/test_resource.tres" id="3_a7sk3"]
+
+[node name="ProjectsManager" type="Control" node_paths=PackedStringArray("projects") groups=["projects_manager"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_2em2g")
+projects = [NodePath("GridContainer/Project"), NodePath("GridContainer/Project2"), NodePath("GridContainer/Project3"), NodePath("GridContainer/Project4")]
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 42.0
+theme_override_constants/h_separation = 160
+theme_override_constants/v_separation = 90
+columns = 2
+
+[node name="Project" parent="GridContainer" instance=ExtResource("1_cn0es")]
+layout_mode = 2
+template = ExtResource("3_a7sk3")
+
+[node name="Project2" parent="GridContainer" instance=ExtResource("1_cn0es")]
+layout_mode = 2
+template = ExtResource("3_a7sk3")
+
+[node name="Project3" parent="GridContainer" instance=ExtResource("1_cn0es")]
+layout_mode = 2
+template = ExtResource("3_a7sk3")
+
+[node name="Project4" parent="GridContainer" instance=ExtResource("1_cn0es")]
+layout_mode = 2
+template = ExtResource("3_a7sk3")
