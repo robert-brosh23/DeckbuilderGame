@@ -6,10 +6,9 @@ const DEFAULT_Y = 350
 const DEFAULT_CARD_SEPARATION = 150
 const HAND_BASE_Z_INDEX = 200
 
-@onready var play_color_rect := $ColorRect
-@onready var selecting_cards_container := $SelectingCardsContainer
-@onready var selecting_cards_label := $SelectingCardsContainer/SelectingCardsLabel
-@onready var confirm_button := $SelectingCardsContainer/ConfirmButton
+@export var selecting_cards_container : PanelContainer
+@export var selecting_cards_label : Label
+@export var confirm_button : Button
 
 var projects_manager: ProjectsManager
 
@@ -26,7 +25,6 @@ enum states {READY, DRAGGING, SELECTING}
 
 func _ready() -> void:
 	projects_manager = get_tree().get_first_node_in_group("projects_manager")
-	play_color_rect.visible = false
 	selecting_cards_container.visible = false
 	confirm_button.focus_mode = FOCUS_NONE
 	_update_hand()
@@ -115,7 +113,7 @@ func _handle_input() -> void:
 		
 		var mouse_pos = get_viewport().get_mouse_position()
 		if returning_card.card_data.get_target_type() == CardData.target_type.ALL:
-			if mouse_pos.y < play_color_rect.position.y + play_color_rect.size.y && mouse_pos.x > play_color_rect.position.x && mouse_pos.x < play_color_rect.position.x + play_color_rect.size.x:
+			if projects_manager.check_mouse_in_area(mouse_pos):
 				returning_card.state = Card.states.PLAYING
 				CardsController.enqueue_play_card(returning_card)
 				_hide_target_area()
@@ -139,7 +137,7 @@ func _handle_input() -> void:
 func _show_target_area(card: Card) -> void:
 	var target_type := card.card_data.get_target_type()
 	if target_type == card.card_data.target_type.ALL:
-		play_color_rect.visible = true
+		projects_manager.enable_full_area_target()
 		return
 	
 	for project in projects_manager.projects:
@@ -152,7 +150,7 @@ func _show_target_area(card: Card) -> void:
 		project.check_targetable(conditions)
 	
 func _hide_target_area() -> void:
-	play_color_rect.visible = false
+	projects_manager.disable_full_area_target()
 	for project in projects_manager.projects:
 		project.hide_targetable()
 	

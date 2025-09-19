@@ -52,21 +52,21 @@ color = Color(1, 0.905882, 0.839216, 1)
 
 [node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
 offset_left = -270.0
-offset_top = -93.0
+offset_top = -80.0
 offset_right = -270.0
-offset_bottom = -93.0
+offset_bottom = -80.0
 
 [node name="DiscardPile" parent="." instance=ExtResource("10_4c57u")]
 offset_left = -270.0
-offset_top = 40.0
+offset_top = 70.0
 offset_right = -270.0
-offset_bottom = 40.0
+offset_bottom = 70.0
 
 [node name="Hand" parent="." instance=ExtResource("4_lquwl")]
-offset_left = -320.0
-offset_top = -180.0
-offset_right = -320.0
-offset_bottom = -180.0
+offset_left = -322.0
+offset_top = -236.0
+offset_right = -322.0
+offset_bottom = -236.0
 
 [node name="GameManager" parent="." instance=ExtResource("10_efxa6")]
 offset_left = 640.0
@@ -74,7 +74,15 @@ offset_right = 640.0
 card_data_debug = Array[ExtResource("4_4c57u")]([ExtResource("8_ycdy4"), SubResource("Resource_vivmo"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("8_efxa6"), ExtResource("7_dg77c"), ExtResource("5_4c57u"), ExtResource("6_efxa6"), ExtResource("8_efxa6"), ExtResource("6_efxa6")])
 
 [node name="ProjectsManager" parent="." instance=ExtResource("15_vivmo")]
-offset_left = -185.0
-offset_top = -164.0
-offset_right = -185.0
-offset_bottom = -164.0
+offset_left = -131.0
+offset_top = -129.0
+offset_right = -131.0
+offset_bottom = -129.0
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+offset_left = 200.0
+offset_top = -43.0
+offset_right = 314.0
+offset_bottom = 174.0
+mouse_filter = 2
+color = Color(0.447059, 0.862745, 0.733333, 1)

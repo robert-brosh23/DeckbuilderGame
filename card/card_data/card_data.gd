@@ -37,7 +37,7 @@ var target_type_map: Dictionary[CARD_EFFECT, target_type] = {
 }
 
 var target_conditions_map: Dictionary[CARD_EFFECT, Array] = {
-	
+	# CARD_EFFECT.SMALL_STEP: [_project_not_creativity]
 }
 
 enum CARD_TYPE {

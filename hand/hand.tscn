@@ -1,7 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://cprtqlg155quc"]
+[gd_scene load_steps=6 format=3 uid="uid://cprtqlg155quc"]
 
 [ext_resource type="Script" uid="uid://pl013pteooqh" path="res://hand/hand.gd" id="1_t1j3k"]
 [ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="2_v40hy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb6ri"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v40hy"]
 bg_color = Color(0.447059, 0.862745, 0.733333, 1)
@@ -29,27 +42,46 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
 
-[node name="Hand" type="Control" groups=["hand"]]
+[node name="Hand" type="Control" node_paths=PackedStringArray("selecting_cards_container", "selecting_cards_label", "confirm_button") groups=["hand"]]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_t1j3k")
+selecting_cards_container = NodePath("CanvasLayer/PanelContainer")
+selecting_cards_label = NodePath("CanvasLayer/PanelContainer/MarginContainer/SelectingCardsContainer/SelectingCardsLabel")
+confirm_button = NodePath("CanvasLayer/PanelContainer/MarginContainer/SelectingCardsContainer/ConfirmButton")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 70.0
-offset_right = 570.0
-offset_bottom = 220.0
-color = Color(1, 0.654902, 0.647059, 1)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="SelectingCardsContainer" type="VBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -28.0
+offset_right = 64.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pb6ri")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="SelectingCardsContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
 z_index = 5
-layout_mode = 0
-offset_left = 249.0
-offset_top = 182.0
-offset_right = 387.0
-offset_bottom = 231.0
+layout_mode = 2
 
-[node name="SelectingCardsLabel" type="Label" parent="SelectingCardsContainer"]
+[node name="SelectingCardsLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/SelectingCardsContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.45098, 0.27451, 0.298039, 1)
 theme_override_fonts/font = ExtResource("2_v40hy")
@@ -58,7 +90,7 @@ text = "Select Up to Cards"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ConfirmButton" type="Button" parent="SelectingCardsContainer"]
+[node name="ConfirmButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/SelectingCardsContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
 theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)

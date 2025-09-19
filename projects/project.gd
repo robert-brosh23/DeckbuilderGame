@@ -2,6 +2,7 @@ extends Control
 class_name Project
 
 signal projectFinished
+signal projectStarted
 
 @export var template: ProjectResource
 
@@ -45,6 +46,7 @@ func init(template: ProjectResource):
 			color = Constants.COLOR_HOT_PINK
 	_apply_stylebox(color)
 	active = true
+	projectStarted.emit()
 	
 func progress(progress_amount: int):
 	current_progress = clamp(current_progress + progress_amount, 0, template.targetProgress)
