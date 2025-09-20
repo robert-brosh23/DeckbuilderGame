@@ -3,13 +3,16 @@ extends Control
 
 const CARD_MOVEMENT_DURATION := 1.0
 
-@onready var card_amount_label := $CardAmountLabel
-@onready var shuffling_text := $ShufflingText
+@export var card_amount_label: Label
+@export var shuffling_text: RichTextLabel
 
 var promise_queue: PromiseQueue
 
 func _ready() -> void:
 	shuffling_text.visible = false
+	card_amount_label.global_position = global_position + Vector2(-44, -80)
+	shuffling_text.global_position = global_position
+	
 	_update_card_number_text()
 	
 func _process(delta: float) -> void:

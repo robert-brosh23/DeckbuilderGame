@@ -33,7 +33,7 @@ var selected_font = FontFile
 var state: states = states.NOT_IN_HAND
 var promise_queue: PromiseQueue
 
-enum states {READY, NOT_IN_HAND, HOVERING, DRAGGING, PLAYING, RETURNING}
+enum states {READY, NOT_IN_HAND, HOVERING, DRAGGING, PLAYING, RETURNING, PREVIEW_PICKING}
 
 ## Creates a new card, given the card_data
 static func create_card(card_data: CardData) -> Card:

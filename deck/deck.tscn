@@ -4,31 +4,29 @@
 [ext_resource type="FontFile" uid="uid://c6lfcmqrq1huc" path="res://fonts/m3x6.ttf" id="2_rqbxk"]
 [ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://fonts/m6x11.ttf" id="3_pihgb"]
 
-[node name="Deck" type="Control" groups=["deck"]]
+[node name="Deck" type="Control" node_paths=PackedStringArray("card_amount_label", "shuffling_text") groups=["deck"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_rqbxk")
+card_amount_label = NodePath("CanvasLayer/CardAmountLabel")
+shuffling_text = NodePath("CanvasLayer/ShufflingText")
 
-[node name="CardAmountLabel" type="Label" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CardAmountLabel" type="Label" parent="CanvasLayer"]
 z_index = 2
-layout_mode = 0
-offset_left = -44.0
-offset_top = -80.0
-offset_right = 44.0
-offset_bottom = -65.0
+offset_right = 88.0
+offset_bottom = 15.0
 pivot_offset = Vector2(43, 0)
 theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
 theme_override_fonts/font = ExtResource("2_rqbxk")
 text = "Cards"
 horizontal_alignment = 1
 
-[node name="ShufflingText" type="RichTextLabel" parent="."]
+[node name="ShufflingText" type="RichTextLabel" parent="CanvasLayer"]
 z_index = 5
-layout_mode = 0
-offset_left = -35.0
-offset_top = -36.0
-offset_right = 43.0
-offset_bottom = -7.0
+offset_right = 78.0
+offset_bottom = 29.0
 theme_override_colors/default_color = Color(0.447059, 0.862745, 0.733333, 1)
 theme_override_fonts/normal_font = ExtResource("3_pihgb")
 theme_override_font_sizes/normal_font_size = 16

@@ -20,8 +20,9 @@ func enqueue_create_card(card_data: CardData) -> Card:
 	var result = await result_signal
 	return result
 	
-func _create_card(card_data: CardData) -> Card:
+func _create_card(card_data: CardData, spawn_pos: Vector2 = Vector2(300,100)) -> Card:
 	var card = Card.create_card(card_data)
+	card.global_position = spawn_pos
 	card.promise_queue = promise_queue
 	CardsCollection.add_child(card)
 	deck.add_card(card)
@@ -136,3 +137,9 @@ func move_cards_from_discard_pile_to_deck_and_shuffle() -> void:
 	
 func receiving_input() -> bool:
 	return GameManager.receiving_input
+	
+func pause_queue() -> void:
+	promise_queue.paused = true
+	
+func unpause_queue() -> void:
+	promise_queue.paused = false

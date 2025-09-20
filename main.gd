@@ -25,6 +25,8 @@ func _process(_delta: float) -> void:
 		debug_select_cards()
 	if Input.is_action_just_pressed("debug_apply_progress"):
 		debug_apply_progress()
+	if Input.is_action_just_pressed("debug_add_new_card"):
+		debug_add_new_card()
 	
 func debug_draw_card_from_deck() -> void:
 	CardsController.enqueue_draw_card_from_deck()
@@ -49,3 +51,6 @@ func debug_select_cards() -> void:
 	
 func debug_apply_progress() -> void:
 	$ProjectsManager.projects[0].progress(1)
+	
+func debug_add_new_card() -> void:
+	$CanvasLayer/CardRewardsMenu.preview_cards(CardData.CARD_TYPE.TECH)

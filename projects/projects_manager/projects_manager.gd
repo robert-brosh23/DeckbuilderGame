@@ -3,6 +3,7 @@ class_name ProjectsManager extends Control
 @export var debug_project_templates: Array[ProjectResource]
 @export var project_grid_container: GridContainer
 
+var card_rewards_menu: CardRewardsMenu
 var project_scene = preload("res://projects/project.tscn")
 var projects : Array[Project] = []
 
@@ -22,6 +23,7 @@ var full_area_targeted: bool = false:
 
 
 func _ready() -> void:
+	card_rewards_menu = get_tree().get_first_node_in_group("card_rewards_menu")
 	for project_template in debug_project_templates:
 		_create_project(project_template)
 	
@@ -49,16 +51,20 @@ func _create_project(template: ProjectResource) -> Project:
 func _project_finished(project: Project):
 	projects.erase(project)
 	project.queue_free()
+	
+	card_rewards_menu.preview_cards(project.template.type)
+	
 	await get_tree().create_timer(1.0).timeout
 	
-	var pick
-	while pick is not ProjectResource:
+	
+	var new_project_resource
+	while new_project_resource is not ProjectResource:
 		if project_resources_pool.is_empty():
 			print("out of projects")
 			return
-		pick = project_resources_pool[randi() % project_resources_pool.size()]
-		project_resources_pool.erase(pick)
+		new_project_resource = project_resources_pool[randi() % project_resources_pool.size()]
+		project_resources_pool.erase(new_project_resource)
 	
 	
-	_create_project(pick)
+	_create_project(new_project_resource)
 		

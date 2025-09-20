@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://buiy7n2187wtc"]
+
+[ext_resource type="Script" uid="uid://buxjmutojq6ho" path="res://ui/card_rewards_menu/card_rewards_menu.gd" id="1_kqkvr"]
+[ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="2_3kutq"]
+
+[node name="CardRewardsMenu" type="Control" node_paths=PackedStringArray("cards_hbox_container") groups=["card_rewards_menu"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kqkvr")
+cards_hbox_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.905882, 0.839216, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 100
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("2_3kutq")
+theme_override_font_sizes/font_size = 36
+text = "Project Completed!
+Pick a card to add to your deck."
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 120
+alignment = 1
