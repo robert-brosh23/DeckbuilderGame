@@ -1,5 +1,5 @@
 class_name Main
-extends Node2D
+extends Control
 
 @export var deck: Deck
 @export var hand: Hand

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://dyilclg5vnbx7"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_ft2cl"]
+
+[resource]
+script = ExtResource("1_ft2cl")
+displayName = "Train for a 5k"
+type = 0
+targetProgress = 30
+metadata/_custom_type_script = "uid://b510bgcr8u41m"

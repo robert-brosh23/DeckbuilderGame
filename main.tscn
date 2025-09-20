@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=22 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dd5tbk86qnuwn" path="res://deck/deck.tscn" id="2_0xm2m"]
@@ -15,6 +15,11 @@
 [ext_resource type="PackedScene" uid="uid://bvnrpwbicsfub" path="res://discard_pile/discard_pile.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://csdmhd25lpc0t" path="res://game_manager/game_manager.tscn" id="10_efxa6"]
 [ext_resource type="PackedScene" uid="uid://b4wue7nm8cfwk" path="res://projects/projects_manager/projects_manager.tscn" id="15_vivmo"]
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="16_82xsv"]
+[ext_resource type="Resource" uid="uid://sxdnxclkv1u6" path="res://projects/project_data/projects/reconnect.tres" id="17_82xsv"]
+[ext_resource type="Resource" uid="uid://dvbax7yejq572" path="res://projects/project_data/projects/sketchbook.tres" id="18_getpj"]
+[ext_resource type="Resource" uid="uid://clvm7tu0lnpu0" path="res://projects/project_data/projects/website.tres" id="19_ryguw"]
+[ext_resource type="Resource" uid="uid://k50od3v6deh" path="res://projects/project_data/projects/game_jam.tres" id="20_d13ii"]
 
 [sub_resource type="Resource" id="Resource_vivmo"]
 script = ExtResource("4_4c57u")
@@ -28,8 +33,13 @@ title_font = 1
 card_title_offset = 0
 metadata/_custom_type_script = "uid://bevi4n8n1jvud"
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("deck", "hand", "discard_pile")]
-position = Vector2(320, 180)
+[node name="Main" type="Control" node_paths=PackedStringArray("deck", "hand", "discard_pile")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 180.0
+offset_right = 320.0
+offset_bottom = 180.0
 script = ExtResource("1_0xm2m")
 deck = NodePath("Deck")
 hand = NodePath("Hand")
@@ -41,10 +51,16 @@ discard_pile = NodePath("DiscardPile")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
 offset_left = -500.0
 offset_top = -500.0
 offset_right = 500.0
 offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0.905882, 0.839216, 1)
 
@@ -63,26 +79,31 @@ offset_right = -270.0
 offset_bottom = 70.0
 
 [node name="Hand" parent="." instance=ExtResource("4_lquwl")]
+layout_mode = 1
 offset_left = -322.0
 offset_top = -236.0
 offset_right = -322.0
 offset_bottom = -236.0
 
 [node name="GameManager" parent="." instance=ExtResource("10_efxa6")]
+layout_mode = 1
 offset_left = 640.0
 offset_right = 640.0
 card_data_debug = Array[ExtResource("4_4c57u")]([ExtResource("8_ycdy4"), SubResource("Resource_vivmo"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("8_efxa6"), ExtResource("7_dg77c"), ExtResource("5_4c57u"), ExtResource("6_efxa6"), ExtResource("8_efxa6"), ExtResource("6_efxa6")])
 
-[node name="ProjectsManager" parent="." instance=ExtResource("15_vivmo")]
-offset_left = -131.0
-offset_top = -129.0
-offset_right = -131.0
-offset_bottom = -129.0
-
 [node name="ColorRect6" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = 200.0
 offset_top = -43.0
 offset_right = 314.0
 offset_bottom = 174.0
 mouse_filter = 2
 color = Color(0.447059, 0.862745, 0.733333, 1)
+
+[node name="ProjectsManager" parent="." instance=ExtResource("15_vivmo")]
+layout_mode = 0
+offset_left = -204.0
+offset_top = -145.0
+offset_right = -204.0
+offset_bottom = -145.0
+debug_project_templates = Array[ExtResource("16_82xsv")]([ExtResource("17_82xsv"), ExtResource("18_getpj"), ExtResource("19_ryguw"), ExtResource("20_d13ii")])

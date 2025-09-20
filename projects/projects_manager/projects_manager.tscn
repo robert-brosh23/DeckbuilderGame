@@ -1,47 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4wue7nm8cfwk"]
+[gd_scene load_steps=3 format=3 uid="uid://b4wue7nm8cfwk"]
 
 [ext_resource type="Script" uid="uid://cdai6dvhv8shq" path="res://projects/projects_manager/projects_manager.gd" id="1_2em2g"]
-[ext_resource type="PackedScene" uid="uid://btnaw73ei341f" path="res://projects/project.tscn" id="1_cn0es"]
-[ext_resource type="Resource" uid="uid://bkir8ed1wqnsi" path="res://projects/project_data/projects/test_resource.tres" id="3_a7sk3"]
 
-[node name="ProjectsManager" type="Control" node_paths=PackedStringArray("projects", "full_area_target_indicator") groups=["projects_manager"]]
-layout_mode = 3
-anchors_preset = 0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cn0es"]
+bg_color = Color(1, 0.655, 0.647, 0)
+
+[node name="ProjectsManager" type="PanelContainer" node_paths=PackedStringArray("project_grid_container") groups=["projects_manager"]]
 size_flags_horizontal = 6
 size_flags_vertical = 6
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cn0es")
 script = ExtResource("1_2em2g")
-projects = [NodePath("GridContainer/Project"), NodePath("GridContainer/Project2"), NodePath("GridContainer/Project3"), NodePath("GridContainer/Project4")]
-full_area_target_indicator = NodePath("FullAreaTargetIndicator")
+project_grid_container = NodePath("MarginContainer/GridContainer")
 
-[node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 42.0
-theme_override_constants/h_separation = 160
-theme_override_constants/v_separation = 90
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
 columns = 2
-
-[node name="Project" parent="GridContainer" instance=ExtResource("1_cn0es")]
-layout_mode = 2
-template = ExtResource("3_a7sk3")
-
-[node name="Project2" parent="GridContainer" instance=ExtResource("1_cn0es")]
-layout_mode = 2
-template = ExtResource("3_a7sk3")
-
-[node name="Project3" parent="GridContainer" instance=ExtResource("1_cn0es")]
-layout_mode = 2
-template = ExtResource("3_a7sk3")
-
-[node name="Project4" parent="GridContainer" instance=ExtResource("1_cn0es")]
-layout_mode = 2
-template = ExtResource("3_a7sk3")
-
-[node name="FullAreaTargetIndicator" type="ColorRect" parent="."]
-visible = false
-layout_mode = 0
-offset_left = -36.0
-offset_top = -17.0
-offset_right = 284.0
-offset_bottom = 163.0
-color = Color(1, 0.654902, 0.647059, 1)

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://dhwrby2hxhmts"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_sanhm"]
+
+[resource]
+script = ExtResource("1_sanhm")
+displayName = "Volunteer at the local soup kitchen"
+type = 2
+targetProgress = 28
+metadata/_custom_type_script = "uid://b510bgcr8u41m"
