@@ -65,10 +65,10 @@ func enqueue_shuffle_deck() -> void:
 	
 func _shuffle_deck() -> void:
 	await get_tree().create_timer(0.5).timeout
-	deck.shuffling_text.visible = true
+	deck.shuffling_label.visible = true
 	deck.shuffle_deck()
 	await get_tree().create_timer(1.0).timeout
-	deck.shuffling_text.visible = false
+	deck.shuffling_label.visible = false
 
 
 # HAND FUNCTIONS

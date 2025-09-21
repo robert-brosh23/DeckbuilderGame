@@ -4,14 +4,15 @@ extends Control
 const CARD_MOVEMENT_DURATION := 1.0
 
 @export var card_amount_label: Label
-@export var shuffling_text: RichTextLabel
+@export var shuffling_label: RichTextLabel
+@export var too_many_label: RichTextLabel
 
 var promise_queue: PromiseQueue
+var too_many_label_timer: SceneTreeTimer
 
 func _ready() -> void:
-	shuffling_text.visible = false
-	card_amount_label.global_position = global_position + Vector2(-44, -80)
-	shuffling_text.global_position = global_position
+	shuffling_label.visible = false
+	too_many_label.visible = false
 	
 	_update_card_number_text()
 	
@@ -37,6 +38,7 @@ func draw_card() -> Card:
 	_update_card_number_text()
 	_update_top_card_z_index()
 	
+	card.draw_card_effect()
 	return card
 	
 func shuffle_deck() -> void:
@@ -46,6 +48,13 @@ func shuffle_deck() -> void:
 		CardsCollection.cards_in_deck[i] = CardsCollection.cards_in_deck[j]
 		CardsCollection.cards_in_deck[j] = temp
 	_update_top_card_z_index()
+	
+func show_too_many_label() -> void:
+	if !too_many_label_timer || too_many_label_timer.time_left == 0:
+		too_many_label_timer = get_tree().create_timer(1.0)
+		too_many_label.visible = true
+		too_many_label_timer.timeout.connect(func(): too_many_label.visible = false)
+	too_many_label_timer.time_left = 1.0
 	
 func _update_card_number_text() -> void:
 	card_amount_label.text = "Cards: " + str(CardsCollection.cards_in_deck.size())

@@ -32,6 +32,7 @@ var flipped_up: bool = true
 var selected_font = FontFile
 var state: states = states.NOT_IN_HAND
 var promise_queue: PromiseQueue
+var projects_manager: ProjectsManager
 
 enum states {READY, NOT_IN_HAND, HOVERING, DRAGGING, PLAYING, RETURNING, PREVIEW_PICKING}
 
@@ -43,6 +44,7 @@ static func create_card(card_data: CardData) -> Card:
 
 func _ready() -> void:
 	game_manager = get_tree().get_first_node_in_group("game_manager")
+	projects_manager = get_tree().get_first_node_in_group("projects_manager")
 	animation_player.speed_scale = 1.0 / Globals.animation_speed_scale
 	apply_card_visual_faceup()
 	_set_card_data()
@@ -66,11 +68,24 @@ func delete_card() -> void:
 	
 ## Execute the card's specific played effect.
 func play_card_effect(target: Project) -> void:
+	var effect := card_data.effect_map[card_data.card_effect]
+	if effect == CardData.NO_EFFECT:
+		return
+	
 	promise_queue.paused = true
 	if target == null:
 		await call(card_data.effect_map[card_data.card_effect])
 	else:
 		await call(card_data.effect_map[card_data.card_effect], target)
+	promise_queue.paused = false
+	
+func draw_card_effect() -> void:
+	var effect := card_data.draw_effect_map[card_data.card_effect]
+	if effect == CardData.NO_EFFECT:
+		return
+	
+	promise_queue.paused = true
+	await call(card_data.draw_effect_map[card_data.card_effect])
 	promise_queue.paused = false
 	
 func hover_card() -> void:
@@ -103,9 +118,6 @@ func apply_card_visual_facedown() -> void:
 func apply_card_visual_faceup() -> void:
 	if card_data == null:
 		return
-		
-	if card_data.card_type == CardData.CARD_TYPE.SPIRIT:
-		pass
 	
 	match card_data.card_type:
 		CardData.CARD_TYPE.TECH:
@@ -130,6 +142,14 @@ func _set_card_data() -> void:
 	texture_label.texture = card_data.card_png
 	description_label.text = card_data.card_description
 	cost_label.text = str(card_data.card_cost)
+	
+	if card_data.get_target_type() == CardData.target_type.UNPLAYABLE:
+		cost_panel_margin_container.visible = false
+	else:
+		cost_panel_margin_container.visible = true	
+	
+	description_label.add_theme_constant_override("line_spacing", card_data.desc_line_spacing)
+	
 	_apply_spacer_container_margin()
 
 ## TECH CARD TYPE
@@ -243,7 +263,11 @@ func _execute_clean():
 func _execute_small_step(target: Project):
 	target.add_step_and_progress()
 	
-	
+
+# DRAW EFFECTS
+func _draw_effect_comparison():
+	game_manager.mental_health -= 2
+	projects_manager.projects[randi() % projects_manager.projects.size()].progress(3)
 	
 	
 	

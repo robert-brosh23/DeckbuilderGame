@@ -1,7 +1,7 @@
 # class_name GameManager
 extends Control
 
-const STARTING_HOURS := 12
+const STARTING_HOURS := 8
 
 @export var card_data_debug: Array[CardData]
 
@@ -41,4 +41,4 @@ func go_to_next_day() -> void:
 	hours = STARTING_HOURS
 	SignalBus.new_day_started.emit()
 	receiving_input = true
-	CardsController.enqueue_draw_multiple_cards(7)
+	CardsController.enqueue_draw_multiple_cards(5)

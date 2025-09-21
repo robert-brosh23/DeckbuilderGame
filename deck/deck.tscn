@@ -4,32 +4,67 @@
 [ext_resource type="FontFile" uid="uid://c6lfcmqrq1huc" path="res://fonts/m3x6.ttf" id="2_rqbxk"]
 [ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://fonts/m6x11.ttf" id="3_pihgb"]
 
-[node name="Deck" type="Control" node_paths=PackedStringArray("card_amount_label", "shuffling_text") groups=["deck"]]
+[node name="Deck" type="Control" node_paths=PackedStringArray("card_amount_label", "shuffling_label", "too_many_label") groups=["deck"]]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_rqbxk")
-card_amount_label = NodePath("CanvasLayer/CardAmountLabel")
-shuffling_text = NodePath("CanvasLayer/ShufflingText")
+card_amount_label = NodePath("CardAmountLabel")
+shuffling_label = NodePath("ShufflingText")
+too_many_label = NodePath("TooManyText")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="CardAmountLabel" type="Label" parent="CanvasLayer"]
+[node name="CardAmountLabel" type="Label" parent="."]
 z_index = 2
-offset_right = 88.0
-offset_bottom = 15.0
+layout_mode = 1
+offset_left = -45.0
+offset_top = -82.0
+offset_right = 43.0
+offset_bottom = -67.0
 pivot_offset = Vector2(43, 0)
 theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
 theme_override_fonts/font = ExtResource("2_rqbxk")
 text = "Cards"
 horizontal_alignment = 1
 
-[node name="ShufflingText" type="RichTextLabel" parent="CanvasLayer"]
+[node name="ShufflingText" type="RichTextLabel" parent="."]
 z_index = 5
-offset_right = 78.0
-offset_bottom = 29.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -26.0
+offset_right = 44.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/default_color = Color(0.447059, 0.862745, 0.733333, 1)
 theme_override_fonts/normal_font = ExtResource("3_pihgb")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[wave amp=20 freq 2] Shuffling... [/wave]"
+vertical_alignment = 1
+
+[node name="TooManyText" type="RichTextLabel" parent="."]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -33.0
+offset_right = 39.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_fonts/normal_font = ExtResource("3_pihgb")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[wave amp=20 freq 2] Too Many Cards![/wave]"
+horizontal_alignment = 1
 vertical_alignment = 1

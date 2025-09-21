@@ -5,6 +5,7 @@ const CENTER_X = 320
 const DEFAULT_Y = 350
 const DEFAULT_CARD_SEPARATION = 150
 const HAND_BASE_Z_INDEX = 200
+const MAX_HAND_SIZE = 10
 
 @export var selecting_cards_container : PanelContainer
 @export var selecting_cards_label : Label
@@ -20,6 +21,7 @@ var state := states.READY
 var selected_cards : Array[Card] = []
 var max_selected: int
 var selection_conditions : Array[Callable]
+var deck: Deck
 
 enum states {READY, DRAGGING, SELECTING}
 
@@ -28,12 +30,19 @@ func _ready() -> void:
 	selecting_cards_container.visible = false
 	confirm_button.focus_mode = FOCUS_NONE
 	_update_hand()
+	deck = get_tree().get_first_node_in_group("deck")
 	
 func _process(_delta: float) -> void:
 	_handle_input()
 
 func add_card(card: Card) -> void:
 	CardsCollection.cards_in_hand.append(card)
+	if CardsCollection.cards_in_hand.size() >= MAX_HAND_SIZE + 1:
+		print("Too many cards")
+		CardsController._discard_card_from_hand(card)
+		deck.show_too_many_label()
+		return
+	
 	card.flip_card_up()
 	card.state = Card.states.READY
 	if not card.panel.mouse_exited.is_connected(_stop_hover_card):
@@ -135,6 +144,8 @@ func _handle_input() -> void:
 	
 	
 func _show_target_area(card: Card) -> void:
+	if card.card_data.get_target_type() == card.card_data.target_type.UNPLAYABLE: 
+		return
 	var target_type := card.card_data.get_target_type()
 	if target_type == card.card_data.target_type.ALL:
 		projects_manager.enable_full_area_target()

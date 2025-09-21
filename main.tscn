@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=22 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dd5tbk86qnuwn" path="res://deck/deck.tscn" id="2_0xm2m"]
@@ -11,9 +11,9 @@
 [ext_resource type="Resource" uid="uid://c0wb7tjaoet3m" path="res://card/card_data/cards/wisdom/new_day.tres" id="8_5vw27"]
 [ext_resource type="Resource" uid="uid://dubw1i8dw6h3h" path="res://card/card_data/cards/logic/brain_blast.tres" id="8_efxa6"]
 [ext_resource type="Resource" uid="uid://brgue6g2tmhlw" path="res://card/card_data/cards/logic/clean.tres" id="8_ycdy4"]
-[ext_resource type="Texture2D" uid="uid://757rgbcodfs" path="res://sprites/comparison.png" id="9_w48qg"]
 [ext_resource type="PackedScene" uid="uid://bvnrpwbicsfub" path="res://discard_pile/discard_pile.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://csdmhd25lpc0t" path="res://game_manager/game_manager.tscn" id="10_efxa6"]
+[ext_resource type="Resource" uid="uid://ba5stqt0xy1qd" path="res://card/card_data/cards/obstacle/comparison.tres" id="10_getpj"]
 [ext_resource type="PackedScene" uid="uid://b4wue7nm8cfwk" path="res://projects/projects_manager/projects_manager.tscn" id="15_vivmo"]
 [ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="16_82xsv"]
 [ext_resource type="Resource" uid="uid://sxdnxclkv1u6" path="res://projects/project_data/projects/reconnect.tres" id="17_82xsv"]
@@ -21,18 +21,6 @@
 [ext_resource type="Resource" uid="uid://clvm7tu0lnpu0" path="res://projects/project_data/projects/website.tres" id="19_ryguw"]
 [ext_resource type="Resource" uid="uid://k50od3v6deh" path="res://projects/project_data/projects/game_jam.tres" id="20_d13ii"]
 [ext_resource type="PackedScene" uid="uid://buiy7n2187wtc" path="res://ui/card_rewards_menu/card_rewards_menu.tscn" id="21_getpj"]
-
-[sub_resource type="Resource" id="Resource_vivmo"]
-script = ExtResource("4_4c57u")
-card_name = "obstacle"
-card_cost = 0
-card_png = ExtResource("9_w48qg")
-card_description = ""
-card_type = 3
-card_effect = 0
-title_font = 1
-card_title_offset = 0
-metadata/_custom_type_script = "uid://bevi4n8n1jvud"
 
 [node name="Main" type="Control" node_paths=PackedStringArray("deck", "hand", "discard_pile")]
 layout_mode = 3
@@ -72,7 +60,6 @@ color = Color(1, 0.905882, 0.839216, 1)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
-z_index = -6
 offset_left = -257.0
 offset_top = -80.0
 offset_right = -257.0
@@ -96,7 +83,7 @@ offset_bottom = -236.0
 layout_mode = 1
 offset_left = 640.0
 offset_right = 640.0
-card_data_debug = Array[ExtResource("4_4c57u")]([ExtResource("8_ycdy4"), SubResource("Resource_vivmo"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("8_efxa6"), ExtResource("7_dg77c"), ExtResource("5_4c57u"), ExtResource("6_efxa6"), ExtResource("8_efxa6"), ExtResource("6_efxa6")])
+card_data_debug = Array[ExtResource("4_4c57u")]([ExtResource("8_ycdy4"), ExtResource("10_getpj"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_efxa6"), ExtResource("5_4c57u"), ExtResource("8_5vw27"), ExtResource("6_efxa6"), ExtResource("8_efxa6"), ExtResource("7_dg77c"), ExtResource("5_4c57u"), ExtResource("6_efxa6"), ExtResource("8_efxa6"), ExtResource("6_efxa6")])
 
 [node name="Mural" type="ColorRect" parent="."]
 z_index = -9

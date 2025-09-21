@@ -42,6 +42,10 @@ func init(template: ProjectResource):
 	projectStarted.emit()
 	
 func progress(progress_amount: int):
+	# If it's already completed and currently clearing
+	if current_progress == template.targetProgress:
+		return
+		
 	current_progress = clamp(current_progress + progress_amount, 0, template.targetProgress)
 	progress_bar.set_value(current_progress)
 	title_text.text = template.displayName + "\n(" + str(template.targetProgress - current_progress) + " left)"
