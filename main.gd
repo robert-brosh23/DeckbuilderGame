@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug_add_hours"):
 		debug_add_hours()
 	if Input.is_action_just_pressed("debug_decrease_mental_health"):
-		debug_decrease_mental_health()
+		debug_increase_stress()
 	if Input.is_action_just_pressed("debug_next_day"):
 		debug_next_day()
 	if Input.is_action_just_pressed("debug_select_cards"):
@@ -40,8 +40,8 @@ func debug_move_cards_from_discard_pile_to_deck_and_reshuffle() -> void:
 func debug_add_hours() -> void:
 	GameManager.hours += 8
 	
-func debug_decrease_mental_health() -> void:
-	GameManager.mental_health -= 1
+func debug_increase_stress() -> void:
+	GameManager.stress += 1
 	
 func debug_next_day() -> void:
 	GameManager.go_to_next_day()

@@ -233,7 +233,7 @@ func _apply_spacer_container_margin() -> void:
 	
 # CARD EFFECT FUNCTIONS
 func _execute_new_day():
-	game_manager.mental_health = 10
+	game_manager.stress = 3
 	
 func _execute_meditation():
 	await CardsController.move_cards_from_discard_pile_to_deck_and_shuffle()
@@ -266,7 +266,7 @@ func _execute_small_step(target: Project):
 
 # DRAW EFFECTS
 func _draw_effect_comparison():
-	game_manager.mental_health -= 2
+	game_manager.stress += 2
 	projects_manager.projects[randi() % projects_manager.projects.size()].progress(3)
 	
 	

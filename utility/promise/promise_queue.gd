@@ -25,8 +25,8 @@ func enqueue(func_ref: Callable) -> Signal:
 		call_deferred("_process_queue")
 	return promise.result_signal
 	
-func enqueue_delay(seconds: float):
-	enqueue(func(): await tree.create_timer(seconds * Globals.animation_speed_scale).timeout)
+func enqueue_delay(seconds: float) -> Signal:
+	return enqueue(func(): await tree.create_timer(seconds * Globals.animation_speed_scale).timeout)
 	
 func clear_queue():
 	queue.clear()

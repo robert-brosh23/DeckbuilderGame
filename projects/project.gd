@@ -64,7 +64,7 @@ func check_targetable(conditions: Array[Callable]):
 func _project_completed():
 	_toggle_fill_bar_border_right(true)
 	
-	GameManager.score += template.targetProgress * GameManager.mental_health
+	GameManager.score += template.targetProgress
 	main_ui.set_score_label(GameManager.score)
 	print("project ", template.displayName, " completed.")
 	# animation_player.play("destroy_project")

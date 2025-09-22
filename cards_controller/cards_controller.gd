@@ -20,11 +20,12 @@ func enqueue_create_card(card_data: CardData) -> Card:
 	var result = await result_signal
 	return result
 	
-func _create_card(card_data: CardData, spawn_pos: Vector2 = Vector2(300,100)) -> Card:
+func _create_card(card_data: CardData, spawn_pos: Vector2 = Vector2(300,100), pause_time := 0) -> Card:
 	var card = Card.create_card(card_data)
 	card.global_position = spawn_pos
 	card.promise_queue = promise_queue
 	CardsCollection.add_child(card)
+	await get_tree().create_timer(pause_time).timeout
 	deck.add_card(card)
 	return card
 
@@ -107,9 +108,10 @@ func select_cards(num_cards: int, conditions: Array[Callable] = []) -> Array[Car
 	var selected = await hand.select_cards(num_cards, conditions)
 	return selected
 	
-func enqueue_discard_all_cards_from_hand() -> void:
-	var result_signal = promise_queue.enqueue(_discard_all_cards_from_hand)
-	promise_queue.enqueue_delay(.5)
+func enqueue_discard_all_cards_from_hand() -> Signal:
+	promise_queue.enqueue(_discard_all_cards_from_hand)
+	var result_signal = promise_queue.enqueue_delay(.5)
+	return result_signal
 	
 func _discard_all_cards_from_hand() -> void:
 	while !CardsCollection.cards_in_hand.is_empty():
