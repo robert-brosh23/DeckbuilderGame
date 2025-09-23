@@ -4,6 +4,7 @@ extends Control
 const NUM_CARD_CHOICES = 3
 
 @export var cards_hbox_container: HBoxContainer
+@export var skip_button: Button
 
 var logic_card_resources_pool = FolderOperations.load_resources_from_folder("res://card/card_data/cards/logic/")
 var creativity_card_resources_pool := FolderOperations.load_resources_from_folder("res://card/card_data/cards/creativity/")
@@ -46,17 +47,25 @@ func preview_cards(project_type: ProjectResource.project_type):
 		ProjectResource.project_type.WISDOM:
 			pool = wisdom_card_resources_pool
 			
+	var picks : Array[int] = []
 	for i in range (0, NUM_CARD_CHOICES):
-		var pick = pool[randi() % pool.size()]
-		var card_preview = create_card_preview(pick)
+		var pick : int
+		while picks.has(pick):
+			pick = randi() % pool.size()
+		picks.append(pick)
+		var card_preview = create_card_preview(pool[pick])
 		card_preview.state = Card.states.PREVIEW_PICKING
 		cards_hbox_container.add_child(card_preview)
 		curr_choices.append(card_preview)
 	visible = true
 
+## Ends the card selection with a choice.
+## card: the chosen card being added to the deck. If null, skip was chosen.
 func card_picked(card: Card):
 	visible = false
-	CardsController._create_card(card.card_data, card.global_position)
+	if card != null:
+		await CardsController._create_card(card.card_data, card.global_position)
+		await CardsController._shuffle_deck()
 	CardsController.unpause_queue()
 	
 	curr_choices.clear()
@@ -65,3 +74,7 @@ func card_picked(card: Card):
 
 func _ready() -> void:
 	visible = false
+	skip_button.focus_mode = FOCUS_NONE
+
+func _on_skip_button_pressed() -> void:
+	card_picked(null)

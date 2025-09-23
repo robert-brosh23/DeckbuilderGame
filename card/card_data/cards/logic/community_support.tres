@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bhotvevbx3ur4"]
+
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_1ax7l"]
+[ext_resource type="Texture2D" uid="uid://cyxxjsi8jhq3n" path="res://sprites/community_support.png" id="1_453xj"]
+
+[resource]
+script = ExtResource("1_1ax7l")
+card_name = "Community Supprt"
+card_cost = 3
+card_png = ExtResource("1_453xj")
+card_description = "The next card you play today is played twice."
+card_type = 0
+card_effect = 13
+title_font = 0
+desc_line_spacing = -2
+card_title_offset = 10
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

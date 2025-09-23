@@ -33,14 +33,14 @@ func set_stress_accumulation_bar(target_value: int):
 	var curr_value := stress_accumulation_bar.value
 	while curr_value != target_value:
 		curr_value += 1
-		await _tween_progress_bar(stress_accumulation_bar, curr_value, .5)
+		await _tween_progress_bar(stress_accumulation_bar, curr_value, .25)
 	shake_stress_label = false
 	set_stress_label(GameManager.stress)
 		
 func reset_stress_accumulation_bar():
 	shake_stress_label = true
 	set_stress_label(GameManager.stress)
-	await _tween_progress_bar(stress_accumulation_bar, 0, 1.0)
+	await _tween_progress_bar(stress_accumulation_bar, 0, .5)
 	shake_stress_label = false
 	set_stress_label(GameManager.stress)
 

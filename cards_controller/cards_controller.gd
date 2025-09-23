@@ -14,11 +14,10 @@ func _ready() -> void:
 	hand.promise_queue = promise_queue
 
 ## Creates a new card and adds it to the deck. Returns reference to the card created.
-func enqueue_create_card(card_data: CardData) -> Card:
-	var result_signal = promise_queue.enqueue(_create_card.bind(card_data))
-	promise_queue.enqueue_delay(.2)
-	var result = await result_signal
-	return result
+func enqueue_create_card(card_data: CardData) -> Signal:
+	promise_queue.enqueue(_create_card.bind(card_data))
+	var result_signal = promise_queue.enqueue_delay(.2)
+	return result_signal
 	
 func _create_card(card_data: CardData, spawn_pos: Vector2 = Vector2(300,100), pause_time := 0) -> Card:
 	var card = Card.create_card(card_data)
@@ -30,9 +29,13 @@ func _create_card(card_data: CardData, spawn_pos: Vector2 = Vector2(300,100), pa
 	return card
 
 ## Creates new cards and adds them to the deck.
-func enqueue_create_cards(card_datas: Array[CardData]) -> void:
-	for card_data in card_datas:
-		enqueue_create_card(card_data)
+func enqueue_create_cards(card_datas: Array[CardData]) -> Signal:
+	var result_signal: Signal
+	#for card_data in card_datas:
+		#result_signal = enqueue_create_card(card_data) # save the last one
+	for i in range(0, card_datas.size() - 1):
+		enqueue_create_card(card_datas[i])
+	return enqueue_create_card(card_datas[card_datas.size()-1])
 
 
 # DECK FUNCTIONS
@@ -41,7 +44,7 @@ func enqueue_draw_card_from_deck() -> void:
 	promise_queue.enqueue_delay(.2)
 	
 func draw_card_from_deck() -> void:
-	var card = deck.draw_card()
+	var card = await deck.draw_card()
 	if card == null:
 		return
 	hand.add_card(card)
@@ -55,14 +58,15 @@ func enqueue_discard_card_from_deck() -> void:
 	promise_queue.enqueue_delay(.2)
 	
 func _discard_card_from_deck() -> void:
-	var card = deck.draw_card()
+	var card = await deck.draw_card()
 	if card == null:
 		print("no card in deck")
 		return
 	discard_pile.add_card(card)
 	
-func enqueue_shuffle_deck() -> void:
+func enqueue_shuffle_deck() -> Signal:
 	var result_signal = promise_queue.enqueue(_shuffle_deck)
+	return result_signal
 	
 func _shuffle_deck() -> void:
 	await get_tree().create_timer(0.5).timeout
@@ -83,6 +87,8 @@ func enqueue_play_card(card: Card, target: Project = null) -> bool:
 func _play_card(card: Card, target: Project = null) -> bool:
 	var result = card.play_card(target)
 	if result == true:
+		if card == null || card.state == Card.states.DELETING:
+			return true
 		_discard_card_from_hand(card)
 		return true
 	hand.return_card(card)

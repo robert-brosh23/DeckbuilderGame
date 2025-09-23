@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://vmidkrnj7lqm"]
+
+[ext_resource type="Texture2D" uid="uid://uy2xom8ax0yi" path="res://sprites/mental_health_day.png" id="1_giui8"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_gtaqq"]
+
+[resource]
+script = ExtResource("1_gtaqq")
+card_name = "Mental Hlth Day"
+card_cost = 8
+card_png = ExtResource("1_giui8")
+card_description = "Set stress to its minimum value, and delete all curse cards in your hand."
+card_type = 2
+card_effect = 8
+title_font = 0
+desc_line_spacing = -3
+card_title_offset = 8
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

@@ -1,6 +1,5 @@
 class_name ProjectsManager extends Control
 
-@export var debug_project_templates: Array[ProjectResource]
 @export var project_grid_container: GridContainer
 
 var card_rewards_menu: CardRewardsMenu
@@ -24,11 +23,9 @@ var full_area_targeted: bool = false:
 
 func _ready() -> void:
 	card_rewards_menu = get_tree().get_first_node_in_group("card_rewards_menu")
-	for project_template in debug_project_templates:
-		_create_project(project_template)
 	
 func check_mouse_in_area(mouse_pos: Vector2) -> bool:
-	if mouse_pos.y > global_position.y && \
+	if full_area_targeted && mouse_pos.y > global_position.y && \
 			mouse_pos.y < global_position.y + size.y && \
 			mouse_pos.x > global_position.x && \
 			mouse_pos.x < global_position.x + size.x:
@@ -47,16 +44,8 @@ func _create_project(template: ProjectResource) -> Project:
 	project_grid_container.add_child(project)
 	projects.append(project)
 	return project
-
-func _project_finished(project: Project):
-	projects.erase(project)
-	project.queue_free()
 	
-	card_rewards_menu.preview_cards(project.template.type)
-	
-	await get_tree().create_timer(1.0).timeout
-	
-	
+func create_project() -> Project:
 	var new_project_resource
 	while new_project_resource is not ProjectResource:
 		if project_resources_pool.is_empty():
@@ -64,7 +53,13 @@ func _project_finished(project: Project):
 			return
 		new_project_resource = project_resources_pool[randi() % project_resources_pool.size()]
 		project_resources_pool.erase(new_project_resource)
+	return _create_project(new_project_resource)
+
+func _project_finished(project: Project):
+	projects.erase(project)
+	project.queue_free()
+	card_rewards_menu.preview_cards(project.template.type)
 	
-	
-	_create_project(new_project_resource)
+	await get_tree().create_timer(1.0).timeout
+	create_project()
 		

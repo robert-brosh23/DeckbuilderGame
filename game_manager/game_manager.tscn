@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://csdmhd25lpc0t"]
+[gd_scene load_steps=8 format=3 uid="uid://csdmhd25lpc0t"]
 
 [ext_resource type="Script" uid="uid://dnck5k1v8qlla" path="res://game_manager/game_manager.gd" id="1_ong7i"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="2_q7vcu"]
+[ext_resource type="Resource" uid="uid://c45df6k4xt1vf" path="res://card/card_data/cards/creativity/grind_creativity.tres" id="3_pnley"]
+[ext_resource type="Resource" uid="uid://csq8d11iiamif" path="res://card/card_data/cards/creativity/grind_logic.tres" id="4_r63pj"]
+[ext_resource type="Resource" uid="uid://dgnmvt42bjhsg" path="res://card/card_data/cards/creativity/grind_wisdom.tres" id="5_fjsdi"]
+[ext_resource type="Resource" uid="uid://cuyftbvj6fopp" path="res://card/card_data/cards/obstacle/sleep_deprived.tres" id="6_kkxic"]
+[ext_resource type="Resource" uid="uid://bc6kekq6f0g7t" path="res://card/card_data/cards/wisdom/touch_grass.tres" id="7_d3erd"]
 
 [node name="GameManager" type="Control" groups=["game_manager"]]
 z_index = 2
@@ -10,3 +16,4 @@ anchor_left = 1.0
 anchor_right = 1.0
 grow_horizontal = 0
 script = ExtResource("1_ong7i")
+card_data_debug = Array[ExtResource("2_q7vcu")]([ExtResource("4_r63pj"), ExtResource("4_r63pj"), ExtResource("3_pnley"), ExtResource("3_pnley"), ExtResource("5_fjsdi"), ExtResource("5_fjsdi"), ExtResource("6_kkxic"), ExtResource("6_kkxic"), ExtResource("6_kkxic"), ExtResource("7_d3erd"), ExtResource("4_r63pj"), ExtResource("3_pnley"), ExtResource("5_fjsdi"), ExtResource("6_kkxic"), ExtResource("6_kkxic")])

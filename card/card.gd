@@ -34,12 +34,15 @@ var state: states = states.NOT_IN_HAND
 var promise_queue: PromiseQueue
 var projects_manager: ProjectsManager
 
-enum states {READY, NOT_IN_HAND, HOVERING, DRAGGING, PLAYING, RETURNING, PREVIEW_PICKING}
+var cost := 0
+
+enum states {READY, NOT_IN_HAND, HOVERING, DRAGGING, PLAYING, RETURNING, PREVIEW_PICKING, DELETING}
 
 ## Creates a new card, given the card_data
 static func create_card(card_data: CardData) -> Card:
 	var instance = preload("res://card/card.tscn").instantiate()
 	instance.card_data = card_data
+	instance.cost = card_data.card_cost
 	return instance
 
 func _ready() -> void:
@@ -49,22 +52,24 @@ func _ready() -> void:
 	apply_card_visual_faceup()
 	_set_card_data()
 
+## Check to see if the card can be played, and play it.
+## target: the project targeted with this card. Will be null if the card doesn't need a target
 ## Returns true if the card was played, false if it cannot be played
 func play_card(target: Project) -> bool:
-	var hours_cost = card_data.card_cost
-	if hours_cost > game_manager.hours:
+	if cost > game_manager.hours:
 		print("This card costs too much.")
 		return false
 	
-	game_manager.hours -= hours_cost
+	game_manager.hours -= cost
 	play_card_effect(target)
 	print (card_data.card_name, " was played.")
 	return true
 	
 func delete_card() -> void:
-	state = states.NOT_IN_HAND
+	state = states.DELETING
 	animation_player.play("delete")
 	CardsCollection.cards_in_hand.erase(self)
+	CardsCollection.deleted_cards.append(self)
 	
 ## Execute the card's specific played effect.
 func play_card_effect(target: Project) -> void:
@@ -77,6 +82,8 @@ func play_card_effect(target: Project) -> void:
 		await call(card_data.effect_map[card_data.card_effect])
 	else:
 		await call(card_data.effect_map[card_data.card_effect], target)
+		
+	SignalBus.card_played.emit(self, target)
 	promise_queue.paused = false
 	
 func draw_card_effect() -> void:
@@ -141,7 +148,7 @@ func _set_card_data() -> void:
 	title_label.text = card_data.card_name
 	texture_label.texture = card_data.card_png
 	description_label.text = card_data.card_description
-	cost_label.text = str(card_data.card_cost)
+	cost_label.text = str(cost)
 	
 	if card_data.get_target_type() == CardData.target_type.UNPLAYABLE:
 		cost_panel_margin_container.visible = false
@@ -205,8 +212,8 @@ func _get_spirit_image_frame_stylebox() -> StyleBox:
 	return stylebox
 	
 func _apply_standard_fonts() -> void:
-	title_label.add_theme_color_override("font_color", "ab5675")
-	description_label.add_theme_color_override("font_color", "ab5675")
+	title_label.add_theme_color_override("font_color", Constants.COLOR_PURPLE)
+	description_label.add_theme_color_override("font_color", Constants.COLOR_PURPLE)
 
 
 ## OBSTACLE CARD TYPE
@@ -253,6 +260,7 @@ func _execute_brain_blast():
 		
 func _execute_clean():
 	var conditions: Array[Callable] = [func(card: Card): return card.card_data.card_type != CardData.CARD_TYPE.OBSTACLE]
+	delete_card()
 	var result := await CardsController.select_cards(3, conditions)
 	
 	for card in result:
@@ -263,12 +271,49 @@ func _execute_clean():
 func _execute_small_step(target: Project):
 	target.add_step_and_progress()
 	
-
+func _execute_touch_grass():
+	GameManager.stress -= 1
+	
+func _execute_friendship():
+	GameManager.stress -= 1
+	if cost != 0:
+		cost -= 1
+		_set_card_data()
+		
+func _execute_grind(target: Project):
+	target.progress(1)
+	
+func _execute_community_support():
+	SignalBus.card_played.connect(_trigger_community_support, CONNECT_ONE_SHOT)
+	
+	SignalBus.new_day_started.connect(
+		func(): 
+			if SignalBus.card_played.is_connected(_trigger_community_support):
+				SignalBus.card_played.disconnect(_trigger_community_support)
+			, CONNECT_ONE_SHOT
+	)
+	
+func _trigger_community_support(card: Card, target: Project):
+	if card.card_data.card_effect == CardData.CARD_EFFECT.COMMUNITY_SUPPORT:
+		SignalBus.card_played.connect(_trigger_community_support, CONNECT_ONE_SHOT)
+		return
+		
+	await card.play_card_effect(target)
+	
+func _delete_self():
+	delete_card()
+	
+func _execute_mental_health_day():
+	game_manager.stress = 0
+	for card in CardsCollection.cards_in_hand:
+		if card.card_data.card_type == CardData.CARD_TYPE.OBSTACLE:
+			card.delete_card()
+	
 # DRAW EFFECTS
 func _draw_effect_comparison():
 	game_manager.stress += 2
 	projects_manager.projects[randi() % projects_manager.projects.size()].progress(3)
 	
-	
-	
+func _draw_effect_addiction():
+	game_manager.hours -= 3
 	

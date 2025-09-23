@@ -31,8 +31,10 @@ func add_cards(cards: Array[Card]):
 	
 func draw_card() -> Card:
 	if CardsCollection.cards_in_deck.is_empty():
-		print("Deck is empty. Cannot draw card")
-		return null
+		await CardsController.move_cards_from_discard_pile_to_deck_and_shuffle()
+		if CardsCollection.cards_in_deck.is_empty():
+			print("Deck is empty. Cannot draw card")
+			return null
 	var card = CardsCollection.cards_in_deck[0]
 	CardsCollection.cards_in_deck.remove_at(0)
 	_update_card_number_text()

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://7lum1rtwco8m"]
+
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_f5i0t"]
+[ext_resource type="Texture2D" uid="uid://blcmukqxu1qvr" path="res://sprites/friendship.png" id="1_j15w1"]
+
+[resource]
+script = ExtResource("1_f5i0t")
+card_name = "Friendship"
+card_cost = 5
+card_png = ExtResource("1_j15w1")
+card_description = "Reduce stress by 1, then reduce the cost of this card by 1."
+card_type = 2
+card_effect = 9
+title_font = 1
+desc_line_spacing = -2
+card_title_offset = 6
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

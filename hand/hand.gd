@@ -148,6 +148,10 @@ func _show_target_area(card: Card) -> void:
 		return
 	var target_type := card.card_data.get_target_type()
 	if target_type == card.card_data.target_type.ALL:
+		for condition in card.card_data.get_target_conditions():
+			if condition is Callable:
+				if condition.call() == false:
+					return
 		projects_manager.enable_full_area_target()
 		return
 	

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dk603xhti03hm"]
+
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_nx851"]
+[ext_resource type="Texture2D" uid="uid://cd34egmfo5hhk" path="res://sprites/correctbasicgirly.png" id="1_xxdg1"]
+
+[resource]
+script = ExtResource("1_nx851")
+card_name = "Addiction"
+card_cost = -1
+card_png = ExtResource("1_xxdg1")
+card_description = "On draw: reduce hours by 3. Unplayable"
+card_type = 3
+card_effect = 15
+title_font = 1
+desc_line_spacing = -2
+card_title_offset = 10
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

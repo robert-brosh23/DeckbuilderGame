@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cuyftbvj6fopp"]
+
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_anscm"]
+[ext_resource type="Texture2D" uid="uid://cov2q76py7u4" path="res://sprites/girlywithbuns.png" id="1_du1bu"]
+
+[resource]
+script = ExtResource("1_anscm")
+card_name = "Sleep Deprived"
+card_cost = 2
+card_png = ExtResource("1_du1bu")
+card_description = "Delete this card from your deck."
+card_type = 3
+card_effect = 14
+title_font = 0
+desc_line_spacing = -2
+card_title_offset = 8
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

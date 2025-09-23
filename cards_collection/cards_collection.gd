@@ -5,6 +5,7 @@ extends Node
 var cards_in_deck: Array[Card]
 var cards_in_hand: Array[Card]
 var cards_in_discard_pile: Array[Card]
+var deleted_cards: Array[Card]
 
 # NODE MOVEMENT WORKAROUND FUNCTIONS
 func move_card_node_in_hand(card: Card, index: int) -> void:

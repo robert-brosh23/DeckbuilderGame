@@ -1,9 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://buiy7n2187wtc"]
+[gd_scene load_steps=6 format=3 uid="uid://buiy7n2187wtc"]
 
 [ext_resource type="Script" uid="uid://buxjmutojq6ho" path="res://ui/card_rewards_menu/card_rewards_menu.gd" id="1_kqkvr"]
 [ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="2_3kutq"]
 
-[node name="CardRewardsMenu" type="Control" node_paths=PackedStringArray("cards_hbox_container") groups=["card_rewards_menu"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kutq"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqkvr"]
+bg_color = Color(0.670588, 0.337255, 0.458824, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klblc"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[node name="CardRewardsMenu" type="Control" node_paths=PackedStringArray("cards_hbox_container", "skip_button") groups=["card_rewards_menu"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kqkvr")
 cards_hbox_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer")
+skip_button = NodePath("MarginContainer/VBoxContainer/SkipButton")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -50,3 +75,21 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 120
 alignment = 1
+
+[node name="SkipButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_fonts/font = ExtResource("2_3kutq")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_3kutq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kqkvr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_klblc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kqkvr")
+text = "Skip"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]
