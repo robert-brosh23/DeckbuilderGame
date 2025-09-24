@@ -6,11 +6,27 @@ const NUM_CARD_CHOICES = 3
 @export var cards_hbox_container: HBoxContainer
 @export var skip_button: Button
 
-var logic_card_resources_pool = FolderOperations.load_resources_from_folder("res://card/card_data/cards/logic/")
-var creativity_card_resources_pool := FolderOperations.load_resources_from_folder("res://card/card_data/cards/creativity/")
-var wisdom_card_resources_pool := FolderOperations.load_resources_from_folder("res://card/card_data/cards/wisdom/")
-var obstacle_card_resources_pool := FolderOperations.load_resources_from_folder("res://card/card_data/cards/obstacle/")
+@export var logic_cards_resource_preloader: ResourcePreloader
+@export var creativity_cards_resource_preloader: ResourcePreloader
+@export var wisdom_cards_resource_preloader: ResourcePreloader
+@export var obstacle_cards_resource_preloader: ResourcePreloader
+
+var logic_card_resources_pool: Array[Resource]
+var creativity_card_resources_pool : Array[Resource]
+var wisdom_card_resources_pool : Array[Resource]
+var obstacle_card_resources_pool : Array[Resource]
 var curr_choices: Array[Card]
+	
+func create_random_card(global_pos := Vector2(0,0), pause_time := 0.0, include_obstacle := false, discard := false) -> Card:
+	var card_type = randi() % 4 if include_obstacle else randi() % 3
+	var pool : Array[Resource]
+	match card_type:
+		0: pool = logic_card_resources_pool
+		1: pool = creativity_card_resources_pool
+		2: pool = wisdom_card_resources_pool
+		3: pool = obstacle_card_resources_pool
+	var pick = randi() % pool.size()
+	return await CardsController._create_card(pool[pick], global_pos, pause_time, discard)
 	
 func _process(delta: float) -> void:
 	if !visible:
@@ -75,6 +91,17 @@ func card_picked(card: Card):
 func _ready() -> void:
 	visible = false
 	skip_button.focus_mode = FOCUS_NONE
+	
+	logic_card_resources_pool = _load_cards(logic_cards_resource_preloader)
+	creativity_card_resources_pool = _load_cards(creativity_cards_resource_preloader)
+	wisdom_card_resources_pool = _load_cards(wisdom_cards_resource_preloader)
+	obstacle_card_resources_pool = _load_cards(obstacle_cards_resource_preloader)
+
+func _load_cards(preloader: ResourcePreloader) -> Array[Resource]:
+	var arr : Array[Resource] = []
+	for resource in preloader.get_resource_list():
+		arr.append(preloader.get_resource(resource))
+	return arr
 
 func _on_skip_button_pressed() -> void:
 	card_picked(null)

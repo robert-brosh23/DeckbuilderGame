@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://ca8v5fg3t2ge"]
+
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_o4whq"]
+[ext_resource type="Texture2D" uid="uid://cd34egmfo5hhk" path="res://sprites/correctbasicgirly.png" id="1_p5lof"]
+
+[resource]
+script = ExtResource("1_o4whq")
+card_name = "Therapy"
+card_cost = 2
+card_png = ExtResource("1_p5lof")
+card_description = "Choose an obstacle in your hand and delete it."
+card_type = 2
+card_effect = 16
+title_font = 1
+desc_line_spacing = -2
+card_title_offset = 7
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

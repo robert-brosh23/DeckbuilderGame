@@ -19,13 +19,16 @@ func enqueue_create_card(card_data: CardData) -> Signal:
 	var result_signal = promise_queue.enqueue_delay(.2)
 	return result_signal
 	
-func _create_card(card_data: CardData, spawn_pos: Vector2 = Vector2(300,100), pause_time := 0) -> Card:
+func _create_card(card_data: CardData, spawn_pos: Vector2 = Vector2(300,100), pause_time := 0, discard := false) -> Card:
 	var card = Card.create_card(card_data)
 	card.global_position = spawn_pos
 	card.promise_queue = promise_queue
 	CardsCollection.add_child(card)
 	await get_tree().create_timer(pause_time).timeout
-	deck.add_card(card)
+	if discard:
+		discard_pile.add_card(card)
+	else:
+		deck.add_card(card)
 	return card
 
 ## Creates new cards and adds them to the deck.
@@ -110,8 +113,8 @@ func enqueue_select_cards(num_cards: int, conditions: Array[Callable] = []) -> A
 	print(result)
 	return result
 	
-func select_cards(num_cards: int, conditions: Array[Callable] = []) -> Array[Card]:
-	var selected = await hand.select_cards(num_cards, conditions)
+func select_cards(num_cards: int, conditions: Array[Callable] = [], card: Card = null) -> Array[Card]:
+	var selected = await hand.select_cards(num_cards, conditions, card)
 	return selected
 	
 func enqueue_discard_all_cards_from_hand() -> Signal:

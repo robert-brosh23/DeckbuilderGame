@@ -52,6 +52,9 @@ func progress(progress_amount: int):
 	if current_progress == template.targetProgress:
 		_project_completed()
 		
+func set_progress(progress_amount: int):
+	progress(progress_amount - current_progress)
+		
 func check_targetable(conditions: Array[Callable]):
 	if current_progress == template.targetProgress || !active:
 		return
@@ -121,3 +124,4 @@ func _clear_steps() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	main_ui = get_tree().get_first_node_in_group("main_ui")
+	print("project created")

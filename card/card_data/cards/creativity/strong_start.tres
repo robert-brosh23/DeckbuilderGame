@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cii7fvi8q8tux"]
+
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_2nlkl"]
+[ext_resource type="Texture2D" uid="uid://m8qcdatswesr" path="res://sprites/strong_start.png" id="1_vkelm"]
+
+[resource]
+script = ExtResource("1_2nlkl")
+card_name = "Strong Start"
+card_cost = 2
+card_png = ExtResource("1_vkelm")
+card_description = "Progress a project by 2. If the project hasn't been started yet, instead progress it by 6."
+card_type = 1
+card_effect = 19
+title_font = 1
+desc_line_spacing = -3
+card_title_offset = 11
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

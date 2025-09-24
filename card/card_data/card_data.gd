@@ -39,6 +39,11 @@ var effect_map: Dictionary[CARD_EFFECT, String] = {
 	CARD_EFFECT.COMMUNITY_SUPPORT: "_execute_community_support",
 	CARD_EFFECT.SLEEP_DEPRIVED: "_delete_self",
 	CARD_EFFECT.ADDICTION: NO_EFFECT,
+	CARD_EFFECT.THERAPY: "_execute_therapy",
+	CARD_EFFECT.NEW_HOBBY: "_execute_new_hobby",
+	CARD_EFFECT.FORGOT_MY_LUNCH: NO_EFFECT,
+	CARD_EFFECT.STRONG_START: "_execute_strong_start",
+	CARD_EFFECT.REVISION: "_execute_revision"
 }
 
 var draw_effect_map: Dictionary[CARD_EFFECT, String] = {
@@ -57,7 +62,12 @@ var draw_effect_map: Dictionary[CARD_EFFECT, String] = {
 	CARD_EFFECT.GRIND_WISDOM: NO_EFFECT,
 	CARD_EFFECT.COMMUNITY_SUPPORT: NO_EFFECT,
 	CARD_EFFECT.SLEEP_DEPRIVED: NO_EFFECT,
-	CARD_EFFECT.ADDICTION: "_draw_effect_addiction"
+	CARD_EFFECT.ADDICTION: "_draw_effect_addiction",
+	CARD_EFFECT.THERAPY: NO_EFFECT,
+	CARD_EFFECT.NEW_HOBBY: NO_EFFECT,
+	CARD_EFFECT.FORGOT_MY_LUNCH: "_draw_effect_forgot_my_lunch",
+	CARD_EFFECT.STRONG_START: NO_EFFECT,
+	CARD_EFFECT.REVISION: NO_EFFECT
 }
 
 var target_type_map: Dictionary[CARD_EFFECT, target_type] = {
@@ -76,7 +86,12 @@ var target_type_map: Dictionary[CARD_EFFECT, target_type] = {
 	CARD_EFFECT.GRIND_WISDOM: target_type.SINGLE,
 	CARD_EFFECT.COMMUNITY_SUPPORT: target_type.ALL,
 	CARD_EFFECT.SLEEP_DEPRIVED: target_type.ALL,
-	CARD_EFFECT.ADDICTION: target_type.UNPLAYABLE
+	CARD_EFFECT.ADDICTION: target_type.UNPLAYABLE,
+	CARD_EFFECT.THERAPY: target_type.ALL,
+	CARD_EFFECT.NEW_HOBBY: target_type.ALL,
+	CARD_EFFECT.FORGOT_MY_LUNCH: target_type.UNPLAYABLE,
+	CARD_EFFECT.STRONG_START: target_type.SINGLE,
+	CARD_EFFECT.REVISION: target_type.SINGLE
 }
 
 ## Project targeted cards must have project bound.
@@ -115,7 +130,12 @@ enum CARD_EFFECT {
 	GRIND_WISDOM,
 	COMMUNITY_SUPPORT,
 	SLEEP_DEPRIVED,
-	ADDICTION
+	ADDICTION,
+	THERAPY,
+	NEW_HOBBY,
+	FORGOT_MY_LUNCH,
+	STRONG_START,
+	REVISION
 }
 
 enum target_type {
@@ -126,7 +146,6 @@ enum target_type {
 }
 
 func _no_community_support_in_play() -> bool:
-	print("connections: ", SignalBus.card_played.get_connections())
 	for connection in SignalBus.card_played.get_connections():
 		var callable : Callable = connection["callable"]
 		if callable.get_method() == "_trigger_community_support":

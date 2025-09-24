@@ -51,11 +51,13 @@ func add_card(card: Card) -> void:
 		card.panel.mouse_entered.connect(_hover_card.bind(card))
 	_update_hand()
 	
-func select_cards(max_cards: int, conditions: Array[Callable] = []) -> Array[Card]:
+func select_cards(max_cards: int, conditions: Array[Callable] = [], played_card : Card = null) -> Array[Card]:
 	state = states.SELECTING
 	max_selected = max_cards
 	selection_conditions = conditions
-	selecting_cards_label.text = "Select up to " + str(max_selected) + " cards"
+	selecting_cards_label.text = "Select up to " + str(max_selected) + " card(s)"
+	if played_card != null:
+		selecting_cards_label.text += " for " + played_card.card_data.card_name
 	selecting_cards_container.visible = true
 	
 	await confirm_button.pressed

@@ -6,9 +6,9 @@
 [resource]
 script = ExtResource("2_np0t5")
 card_name = "Grind (Logic)"
-card_cost = 1
+card_cost = 3
 card_png = ExtResource("1_icjko")
-card_description = "Progress a Logic project by 1."
+card_description = "Progress a Logic project by 5."
 card_type = 1
 card_effect = 10
 title_font = 1

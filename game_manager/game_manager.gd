@@ -38,7 +38,7 @@ func _ready() -> void:
 	projects_manager = get_tree().get_first_node_in_group("projects_manager")
 	
 	hours = STARTING_HOURS
-	stress = 3
+	stress = 5
 	day = 1
 	promise_queue = CardsController.promise_queue
 	

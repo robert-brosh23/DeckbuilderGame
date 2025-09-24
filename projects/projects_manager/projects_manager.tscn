@@ -1,17 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4wue7nm8cfwk"]
+[gd_scene load_steps=17 format=3 uid="uid://b4wue7nm8cfwk"]
 
 [ext_resource type="Script" uid="uid://cdai6dvhv8shq" path="res://projects/projects_manager/projects_manager.gd" id="1_2em2g"]
+[ext_resource type="Resource" uid="uid://d0n6vjrbj4tc" path="res://projects/project_data/projects/community.tres" id="2_4dd4q"]
+[ext_resource type="Resource" uid="uid://bflpxhp0rk0wk" path="res://projects/project_data/projects/finish_painting.tres" id="3_sw7b3"]
+[ext_resource type="Resource" uid="uid://k50od3v6deh" path="res://projects/project_data/projects/game_jam.tres" id="4_pyh7o"]
+[ext_resource type="Resource" uid="uid://dd8w616pwe517" path="res://projects/project_data/projects/guitar.tres" id="5_o0dh3"]
+[ext_resource type="Resource" uid="uid://cwaskbj75nbwd" path="res://projects/project_data/projects/host_dnd.tres" id="6_2tbfb"]
+[ext_resource type="Resource" uid="uid://bbetmw5200kvk" path="res://projects/project_data/projects/journal.tres" id="7_qproj"]
+[ext_resource type="Resource" uid="uid://b0tt8isxfloo7" path="res://projects/project_data/projects/philosophy.tres" id="8_dvxd2"]
+[ext_resource type="Resource" uid="uid://sxdnxclkv1u6" path="res://projects/project_data/projects/reconnect.tres" id="9_pl7mh"]
+[ext_resource type="Resource" uid="uid://dvbax7yejq572" path="res://projects/project_data/projects/sketchbook.tres" id="10_tdabf"]
+[ext_resource type="Resource" uid="uid://bkir8ed1wqnsi" path="res://projects/project_data/projects/test_resource.tres" id="11_vwoe1"]
+[ext_resource type="Resource" uid="uid://dyilclg5vnbx7" path="res://projects/project_data/projects/train_for_5k.tres" id="12_x0pgd"]
+[ext_resource type="Resource" uid="uid://dhwrby2hxhmts" path="res://projects/project_data/projects/volunteer_soup.tres" id="13_t668b"]
+[ext_resource type="Resource" uid="uid://clvm7tu0lnpu0" path="res://projects/project_data/projects/website.tres" id="14_5tyqi"]
+[ext_resource type="Resource" uid="uid://krw46kmqtaj1" path="res://projects/project_data/projects/write_story.tres" id="15_5cuq1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cn0es"]
 bg_color = Color(1, 0.655, 0.647, 0)
 
-[node name="ProjectsManager" type="PanelContainer" node_paths=PackedStringArray("project_grid_container") groups=["projects_manager"]]
+[node name="ProjectsManager" type="PanelContainer" node_paths=PackedStringArray("project_grid_container", "resource_preloader") groups=["projects_manager"]]
 size_flags_horizontal = 6
 size_flags_vertical = 6
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_cn0es")
 script = ExtResource("1_2em2g")
 project_grid_container = NodePath("MarginContainer/GridContainer")
+resource_preloader = NodePath("ResourcePreloader")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -19,3 +34,6 @@ layout_mode = 2
 [node name="GridContainer" type="GridContainer" parent="MarginContainer"]
 layout_mode = 2
 columns = 2
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("community", "finish_painting", "game_jam", "guitar", "host_dnd", "journal", "philosophy", "reconnect", "sketchbook", "test_resource", "train_for_5k", "volunteer_soup", "website", "write_story"), [ExtResource("2_4dd4q"), ExtResource("3_sw7b3"), ExtResource("4_pyh7o"), ExtResource("5_o0dh3"), ExtResource("6_2tbfb"), ExtResource("7_qproj"), ExtResource("8_dvxd2"), ExtResource("9_pl7mh"), ExtResource("10_tdabf"), ExtResource("11_vwoe1"), ExtResource("12_x0pgd"), ExtResource("13_t668b"), ExtResource("14_5tyqi"), ExtResource("15_5cuq1")]]

@@ -1,12 +1,13 @@
 class_name ProjectsManager extends Control
 
 @export var project_grid_container: GridContainer
+@export var resource_preloader: ResourcePreloader
 
 var card_rewards_menu: CardRewardsMenu
 var project_scene = preload("res://projects/project.tscn")
 var projects : Array[Project] = []
 
-var project_resources_pool := FolderOperations.load_resources_from_folder("res://projects/project_data/projects/")
+var project_resources_pool : Array[Resource]
 
 var full_area_targeted: bool = false:
 	set(value):
@@ -23,6 +24,14 @@ var full_area_targeted: bool = false:
 
 func _ready() -> void:
 	card_rewards_menu = get_tree().get_first_node_in_group("card_rewards_menu")
+	project_resources_pool = _load_project_resources(resource_preloader)
+	
+func _load_project_resources(preloader: ResourcePreloader) -> Array[Resource]:
+	var arr : Array[Resource] = []
+	for resource in preloader.get_resource_list():
+		arr.append(preloader.get_resource(resource))
+	return arr
+	
 	
 func check_mouse_in_area(mouse_pos: Vector2) -> bool:
 	if full_area_targeted && mouse_pos.y > global_position.y && \

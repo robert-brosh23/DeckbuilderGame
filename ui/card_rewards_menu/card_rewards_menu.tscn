@@ -1,7 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://buiy7n2187wtc"]
+[gd_scene load_steps=27 format=3 uid="uid://buiy7n2187wtc"]
 
 [ext_resource type="Script" uid="uid://buxjmutojq6ho" path="res://ui/card_rewards_menu/card_rewards_menu.gd" id="1_kqkvr"]
 [ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="2_3kutq"]
+[ext_resource type="Resource" uid="uid://dubw1i8dw6h3h" path="res://card/card_data/cards/logic/brain_blast.tres" id="3_73hql"]
+[ext_resource type="Resource" uid="uid://brgue6g2tmhlw" path="res://card/card_data/cards/logic/clean.tres" id="4_46qc8"]
+[ext_resource type="Resource" uid="uid://bhotvevbx3ur4" path="res://card/card_data/cards/logic/community_support.tres" id="5_y1dfi"]
+[ext_resource type="Resource" uid="uid://mx5qkjxwk2ye" path="res://card/card_data/cards/logic/meditation.tres" id="6_tt0un"]
+[ext_resource type="Resource" uid="uid://btokanpgsnu41" path="res://card/card_data/cards/logic/new_hobby.tres" id="7_k26dm"]
+[ext_resource type="Resource" uid="uid://c68uppt7623iv" path="res://card/card_data/cards/logic/organize.tres" id="8_r5rr3"]
+[ext_resource type="Resource" uid="uid://c45df6k4xt1vf" path="res://card/card_data/cards/creativity/grind_creativity.tres" id="9_x7p8v"]
+[ext_resource type="Resource" uid="uid://csq8d11iiamif" path="res://card/card_data/cards/creativity/grind_logic.tres" id="10_xyrri"]
+[ext_resource type="Resource" uid="uid://dgnmvt42bjhsg" path="res://card/card_data/cards/creativity/grind_wisdom.tres" id="11_xl0qi"]
+[ext_resource type="Resource" uid="uid://dmb3ppe5ys6wu" path="res://card/card_data/cards/creativity/small_step.tres" id="12_kw56a"]
+[ext_resource type="Resource" uid="uid://bufn7mv3g38t" path="res://card/card_data/cards/creativity/revision.tres" id="12_qu674"]
+[ext_resource type="Resource" uid="uid://7lum1rtwco8m" path="res://card/card_data/cards/wisdom/friendship.tres" id="13_qu674"]
+[ext_resource type="Resource" uid="uid://cii7fvi8q8tux" path="res://card/card_data/cards/creativity/strong_start.tres" id="13_xl0qi"]
+[ext_resource type="Resource" uid="uid://vmidkrnj7lqm" path="res://card/card_data/cards/wisdom/mental_health_day.tres" id="14_aw7qf"]
+[ext_resource type="Resource" uid="uid://c0wb7tjaoet3m" path="res://card/card_data/cards/wisdom/new_day.tres" id="15_ppjjt"]
+[ext_resource type="Resource" uid="uid://ca8v5fg3t2ge" path="res://card/card_data/cards/wisdom/therapy.tres" id="16_bg1gq"]
+[ext_resource type="Resource" uid="uid://bc6kekq6f0g7t" path="res://card/card_data/cards/wisdom/touch_grass.tres" id="17_hf245"]
+[ext_resource type="Resource" uid="uid://dk603xhti03hm" path="res://card/card_data/cards/obstacle/addiction.tres" id="18_jnmr4"]
+[ext_resource type="Resource" uid="uid://ba5stqt0xy1qd" path="res://card/card_data/cards/obstacle/comparison.tres" id="19_btv7j"]
+[ext_resource type="Resource" uid="uid://cuyftbvj6fopp" path="res://card/card_data/cards/obstacle/sleep_deprived.tres" id="20_1dew5"]
+[ext_resource type="Resource" uid="uid://hbsxvkq72uke" path="res://card/card_data/cards/obstacle/forgot_my_lunch.tres" id="20_xyrri"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kutq"]
 bg_color = Color(0.447059, 0.862745, 0.733333, 1)
@@ -27,7 +48,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
 
-[node name="CardRewardsMenu" type="Control" node_paths=PackedStringArray("cards_hbox_container", "skip_button") groups=["card_rewards_menu"]]
+[node name="CardRewardsMenu" type="Control" node_paths=PackedStringArray("cards_hbox_container", "skip_button", "logic_cards_resource_preloader", "creativity_cards_resource_preloader", "wisdom_cards_resource_preloader", "obstacle_cards_resource_preloader") groups=["card_rewards_menu"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,6 +58,10 @@ grow_vertical = 2
 script = ExtResource("1_kqkvr")
 cards_hbox_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer")
 skip_button = NodePath("MarginContainer/VBoxContainer/SkipButton")
+logic_cards_resource_preloader = NodePath("LogicCardsResourcePreloader")
+creativity_cards_resource_preloader = NodePath("CreativityCardsResourcePreloader")
+wisdom_cards_resource_preloader = NodePath("WisdomCardsResourcePreloader")
+obstacle_cards_resource_preloader = NodePath("ObstacleCardsResroucePreloader")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -91,5 +116,29 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_kqkvr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_klblc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kqkvr")
 text = "Skip"
+
+[node name="LogicCardsResourcePreloader" type="ResourcePreloader" parent="."]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+resources = [PackedStringArray("brain_blast", "clean", "community_support", "meditation", "new_hobby", "organize"), [ExtResource("3_73hql"), ExtResource("4_46qc8"), ExtResource("5_y1dfi"), ExtResource("6_tt0un"), ExtResource("7_k26dm"), ExtResource("8_r5rr3")]]
+
+[node name="CreativityCardsResourcePreloader" type="ResourcePreloader" parent="."]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+resources = [PackedStringArray("grind_creativity", "grind_logic", "grind_wisdom", "revision", "small_step", "strong_start"), [ExtResource("9_x7p8v"), ExtResource("10_xyrri"), ExtResource("11_xl0qi"), ExtResource("12_qu674"), ExtResource("12_kw56a"), ExtResource("13_xl0qi")]]
+
+[node name="WisdomCardsResourcePreloader" type="ResourcePreloader" parent="."]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+resources = [PackedStringArray("friendship", "mental_health_day", "new_day", "therapy", "touch_grass"), [ExtResource("13_qu674"), ExtResource("14_aw7qf"), ExtResource("15_ppjjt"), ExtResource("16_bg1gq"), ExtResource("17_hf245")]]
+
+[node name="ObstacleCardsResroucePreloader" type="ResourcePreloader" parent="."]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+resources = [PackedStringArray("addiction", "comparison", "forgot_my_lunch", "sleep_deprived"), [ExtResource("18_jnmr4"), ExtResource("19_btv7j"), ExtResource("20_xyrri"), ExtResource("20_1dew5")]]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]

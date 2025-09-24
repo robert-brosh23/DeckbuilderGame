@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bufn7mv3g38t"]
+
+[ext_resource type="Texture2D" uid="uid://csrich6b276l0" path="res://sprites/revisions.png" id="1_l6at8"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_swfmx"]
+
+[resource]
+script = ExtResource("1_swfmx")
+card_name = "Revision"
+card_cost = 2
+card_png = ExtResource("1_l6at8")
+card_description = "Take the progress of a project and divide it among all projects."
+card_type = 1
+card_effect = 20
+title_font = 1
+desc_line_spacing = -2
+card_title_offset = 12
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

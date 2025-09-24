@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://btokanpgsnu41"]
+
+[ext_resource type="Texture2D" uid="uid://cckdf41j5nrg2" path="res://sprites/new_hobby.png" id="1_2imwq"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_xf54c"]
+
+[resource]
+script = ExtResource("1_xf54c")
+card_name = "New Hobby"
+card_cost = 5
+card_png = ExtResource("1_2imwq")
+card_description = "Transform a non-obstacle card and immediately activate its effect"
+card_type = 0
+card_effect = 17
+title_font = 1
+desc_line_spacing = -2
+card_title_offset = 6
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

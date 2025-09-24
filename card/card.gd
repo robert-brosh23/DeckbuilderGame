@@ -33,8 +33,10 @@ var selected_font = FontFile
 var state: states = states.NOT_IN_HAND
 var promise_queue: PromiseQueue
 var projects_manager: ProjectsManager
+var card_rewards_menu: CardRewardsMenu
 
 var cost := 0
+var perm_cost: int
 
 enum states {READY, NOT_IN_HAND, HOVERING, DRAGGING, PLAYING, RETURNING, PREVIEW_PICKING, DELETING}
 
@@ -42,14 +44,26 @@ enum states {READY, NOT_IN_HAND, HOVERING, DRAGGING, PLAYING, RETURNING, PREVIEW
 static func create_card(card_data: CardData) -> Card:
 	var instance = preload("res://card/card.tscn").instantiate()
 	instance.card_data = card_data
-	instance.cost = card_data.card_cost
+	instance.perm_cost = card_data.card_cost
+	instance.z_index = 16
 	return instance
 
 func _ready() -> void:
 	game_manager = get_tree().get_first_node_in_group("game_manager")
 	projects_manager = get_tree().get_first_node_in_group("projects_manager")
+	card_rewards_menu = get_tree().get_first_node_in_group("card_rewards_menu")
 	animation_player.speed_scale = 1.0 / Globals.animation_speed_scale
+	calibrate_cost()
 	apply_card_visual_faceup()
+	_set_card_data()
+	
+	SignalBus.alter_cost.connect(
+		func():
+			calibrate_cost()
+	)
+
+func calibrate_cost() -> void:
+	cost = perm_cost * SignalBus.cost_multiplier
 	_set_card_data()
 
 ## Check to see if the card can be played, and play it.
@@ -73,6 +87,7 @@ func delete_card() -> void:
 	
 ## Execute the card's specific played effect.
 func play_card_effect(target: Project) -> void:
+	SignalBus.start_card_played.emit(self, target)
 	var effect := card_data.effect_map[card_data.card_effect]
 	if effect == CardData.NO_EFFECT:
 		return
@@ -149,6 +164,10 @@ func _set_card_data() -> void:
 	texture_label.texture = card_data.card_png
 	description_label.text = card_data.card_description
 	cost_label.text = str(cost)
+	if SignalBus.cost_multiplier > 1.0:
+		cost_label.add_theme_color_override("font_color", Constants.COLOR_HOT_PINK)
+	else:
+		cost_label.add_theme_color_override("font_color", Constants.COLOR_PURPLE)
 	
 	if card_data.get_target_type() == CardData.target_type.UNPLAYABLE:
 		cost_panel_margin_container.visible = false
@@ -259,9 +278,9 @@ func _execute_brain_blast():
 		await get_tree().create_timer(.2).timeout
 		
 func _execute_clean():
-	var conditions: Array[Callable] = [func(card: Card): return card.card_data.card_type != CardData.CARD_TYPE.OBSTACLE]
 	delete_card()
-	var result := await CardsController.select_cards(3, conditions)
+	var conditions: Array[Callable] = [func(card: Card): return card.card_data.card_type != CardData.CARD_TYPE.OBSTACLE]
+	var result := await CardsController.select_cards(3, conditions, self)
 	
 	for card in result:
 		card.delete_card()
@@ -276,28 +295,30 @@ func _execute_touch_grass():
 	
 func _execute_friendship():
 	GameManager.stress -= 1
-	if cost != 0:
-		cost -= 1
+	if perm_cost != 0:
+		perm_cost -= 1
+		calibrate_cost()
 		_set_card_data()
 		
 func _execute_grind(target: Project):
-	target.progress(1)
+	target.progress(5)
 	
 func _execute_community_support():
-	SignalBus.card_played.connect(_trigger_community_support, CONNECT_ONE_SHOT)
+	SignalBus.start_card_played.connect(_trigger_community_support, CONNECT_ONE_SHOT)
 	
 	SignalBus.new_day_started.connect(
 		func(): 
-			if SignalBus.card_played.is_connected(_trigger_community_support):
-				SignalBus.card_played.disconnect(_trigger_community_support)
+			if SignalBus.start_card_played.is_connected(_trigger_community_support):
+				SignalBus.start_card_played.disconnect(_trigger_community_support)
 			, CONNECT_ONE_SHOT
 	)
 	
 func _trigger_community_support(card: Card, target: Project):
-	if card.card_data.card_effect == CardData.CARD_EFFECT.COMMUNITY_SUPPORT:
-		SignalBus.card_played.connect(_trigger_community_support, CONNECT_ONE_SHOT)
-		return
-		
+	while true:
+		var args = await SignalBus.card_played
+		var card_candidate: Card = args[0]
+		if card_candidate == card:
+			break
 	await card.play_card_effect(target)
 	
 func _delete_self():
@@ -305,9 +326,47 @@ func _delete_self():
 	
 func _execute_mental_health_day():
 	game_manager.stress = 0
-	for card in CardsCollection.cards_in_hand:
-		if card.card_data.card_type == CardData.CARD_TYPE.OBSTACLE:
-			card.delete_card()
+	for i in range(CardsCollection.cards_in_hand.size() - 1, -1, -1):
+		if CardsCollection.cards_in_hand[i].card_data.card_type == CardData.CARD_TYPE.OBSTACLE:
+			CardsCollection.cards_in_hand[i].delete_card()
+			
+func _execute_therapy():
+	var conditions: Array[Callable] = [func(card: Card): return card.card_data.card_type == CardData.CARD_TYPE.OBSTACLE]
+	var result := await CardsController.select_cards(1, conditions, self)
+	for card in result:
+		card.delete_card()
+	var hand: Hand = get_tree().get_first_node_in_group("hand")
+	hand._update_hand()
+	
+func _execute_new_hobby():
+	var select_conditions: Array[Callable] = [func(card: Card): return card.card_data.card_type != CardData.CARD_TYPE.OBSTACLE]
+	var result := await CardsController.select_cards(1, select_conditions, self)
+	if result.is_empty():
+		return
+	result[0].delete_card()
+	var card := await card_rewards_menu.create_random_card(result[0].global_position, 1.0, false, true)
+	if card.card_data.get_target_type() == CardData.target_type.SINGLE:
+		var project_target = null
+		for project in projects_manager.projects:
+			if !project.active:
+				continue
+			var conditions : Array[Callable] = []
+			for condition in card.card_data.get_target_conditions():
+				if condition is Callable:
+					if condition.call(project) == false:
+						continue
+				project_target = project
+				break
+			if project_target != null:
+				break
+		if card.card_data.get_target_conditions().is_empty():
+			project_target = projects_manager.projects[0]
+		if project_target != null:
+			await card.play_card_effect(project_target)
+	else:
+		await card.play_card_effect(null)
+	var hand: Hand = get_tree().get_first_node_in_group("hand")
+	hand._update_hand()
 	
 # DRAW EFFECTS
 func _draw_effect_comparison():
@@ -316,4 +375,39 @@ func _draw_effect_comparison():
 	
 func _draw_effect_addiction():
 	game_manager.hours -= 3
+	
+func _draw_effect_forgot_my_lunch():
+	SignalBus.cost_multiplier *= 2.0
+	SignalBus.alter_cost.emit()
+	SignalBus.card_played.connect(_forgot_my_lunch_reset_card_played)
+	SignalBus.new_day_started.connect(_forgot_my_lunch_reset_new_day)
+	
+func _forgot_my_lunch_reset_card_played(card: Card, target: Project):
+	SignalBus.cost_multiplier *= 0.5
+	SignalBus.alter_cost.emit()
+	for connection in SignalBus.card_played.get_connections():
+		var callable : Callable = connection["callable"]
+		if callable.get_method() == "_forgot_my_lunch_reset_card_played":
+			SignalBus.card_played.disconnect(_forgot_my_lunch_reset_card_played)
+	for connection in SignalBus.new_day_started.get_connections():
+		var callable : Callable = connection["callable"]
+		if callable.get_method() == "_forgot_my_lunch_reset_new_day":
+			SignalBus.new_day_started.disconnect(_forgot_my_lunch_reset_new_day)
+	print("card_played: ", SignalBus.card_played.get_connections())
+	print("new day: ", SignalBus.new_day_started.get_connections())
+	
+func _forgot_my_lunch_reset_new_day():
+	_forgot_my_lunch_reset_card_played(null, null)
+	
+func _execute_strong_start(target: Project):
+	if target.current_progress == 0:
+		target.progress(6)
+	else:
+		target.progress(2)
+		
+func _execute_revision(target: Project):
+	var split_progress = target.current_progress / projects_manager.projects.size()
+	target.set_progress(0)
+	for proj in projects_manager.projects:
+		proj.progress(split_progress)
 	
