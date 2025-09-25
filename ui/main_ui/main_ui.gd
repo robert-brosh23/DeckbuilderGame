@@ -7,6 +7,8 @@ extends Control
 @onready var day_label := $"MarginContainer/VBoxContainer2/HBoxContainer3/Day Label"
 @onready var score_label := $MarginContainer/VBoxContainer2/ScoreLabel
 @export var end_day_button : Button
+@export var animation_player : AnimationPlayer
+@export var big_arrow : TextureRect
 
 var shake_stress_label = false
 
@@ -14,6 +16,9 @@ func _ready() -> void:
 	end_day_button.focus_mode = FOCUS_NONE
 	stress_accumulation_bar.max_value = GameManager.MAX_STRESS
 	stress_accumulation_bar.value = 0
+	big_arrow.visible = false
+	animation_player.play("wave_arrow")
+	SignalBus.card_played.connect(_check_cards_playable)
 
 func set_hours_label(hours: int):
 	hours_label.text = "Hours: " + str(hours)
@@ -53,8 +58,15 @@ func set_score_label(score: int):
 func _on_end_day_button_pressed() -> void:
 	if !CardsController.receiving_input():
 		return
+	big_arrow.visible = false
 	GameManager.go_to_next_day()
 	
 func _tween_progress_bar(bar: ProgressBar, new_value: float, duration: float = 0.5) -> void:
 	var tween := get_tree().create_tween()
 	await tween.tween_property(bar, "value", new_value, duration).set_trans(Tween.TRANS_LINEAR).finished
+	
+func _check_cards_playable(c: Card, project: Project):
+	for card in CardsCollection.cards_in_hand:
+		if card. card.cost <= GameManager.hours:
+			return
+	big_arrow.visible = true

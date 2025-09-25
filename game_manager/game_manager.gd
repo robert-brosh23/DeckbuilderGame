@@ -70,3 +70,4 @@ func _set_stress_accumulation(value: int):
 		main_ui.reset_stress_accumulation_bar()
 		await card_rewards_menu.add_random_obstacle_card_to_deck()
 		stress_accumulation = stress_accumulation - MAX_STRESS_ACCUMULATION
+		
