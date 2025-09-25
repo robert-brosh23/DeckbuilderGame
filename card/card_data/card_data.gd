@@ -43,7 +43,15 @@ var effect_map: Dictionary[CARD_EFFECT, String] = {
 	CARD_EFFECT.NEW_HOBBY: "_execute_new_hobby",
 	CARD_EFFECT.FORGOT_MY_LUNCH: NO_EFFECT,
 	CARD_EFFECT.STRONG_START: "_execute_strong_start",
-	CARD_EFFECT.REVISION: "_execute_revision"
+	CARD_EFFECT.REVISION: "_execute_revision",
+	CARD_EFFECT.INSPIRED_LOGIC: "_execute_inspired",
+	CARD_EFFECT.INSPIRED_CREATIVITY: "_execute_inspired",
+	CARD_EFFECT.INSPIRED_WISDOM: "_execute_inspired",
+	CARD_EFFECT.SYNCING_UP: "_execute_syncing_up",
+	CARD_EFFECT.GLASS_HALF_FULL: "_execute_glass_half_full",
+	CARD_EFFECT.EXTRA_CREDIT: "_execute_extra_credit",
+	CARD_EFFECT.OVERCOME_ADVERSITY: "_execute_overcome_adversity",
+	CARD_EFFECT.ROUTINE: "_execute_routine"
 }
 
 var draw_effect_map: Dictionary[CARD_EFFECT, String] = {
@@ -67,7 +75,15 @@ var draw_effect_map: Dictionary[CARD_EFFECT, String] = {
 	CARD_EFFECT.NEW_HOBBY: NO_EFFECT,
 	CARD_EFFECT.FORGOT_MY_LUNCH: "_draw_effect_forgot_my_lunch",
 	CARD_EFFECT.STRONG_START: NO_EFFECT,
-	CARD_EFFECT.REVISION: NO_EFFECT
+	CARD_EFFECT.REVISION: NO_EFFECT,
+	CARD_EFFECT.INSPIRED_LOGIC: NO_EFFECT,
+	CARD_EFFECT.INSPIRED_CREATIVITY: NO_EFFECT,
+	CARD_EFFECT.INSPIRED_WISDOM: NO_EFFECT,
+	CARD_EFFECT.SYNCING_UP: NO_EFFECT,
+	CARD_EFFECT.GLASS_HALF_FULL: NO_EFFECT,
+	CARD_EFFECT.EXTRA_CREDIT: NO_EFFECT,
+	CARD_EFFECT.OVERCOME_ADVERSITY: NO_EFFECT,
+	CARD_EFFECT.ROUTINE: NO_EFFECT
 }
 
 var target_type_map: Dictionary[CARD_EFFECT, target_type] = {
@@ -91,7 +107,15 @@ var target_type_map: Dictionary[CARD_EFFECT, target_type] = {
 	CARD_EFFECT.NEW_HOBBY: target_type.ALL,
 	CARD_EFFECT.FORGOT_MY_LUNCH: target_type.UNPLAYABLE,
 	CARD_EFFECT.STRONG_START: target_type.SINGLE,
-	CARD_EFFECT.REVISION: target_type.SINGLE
+	CARD_EFFECT.REVISION: target_type.SINGLE,
+	CARD_EFFECT.INSPIRED_LOGIC: target_type.SINGLE,
+	CARD_EFFECT.INSPIRED_CREATIVITY: target_type.SINGLE,
+	CARD_EFFECT.INSPIRED_WISDOM: target_type.SINGLE,
+	CARD_EFFECT.SYNCING_UP: target_type.SINGLE,
+	CARD_EFFECT.GLASS_HALF_FULL: target_type.SINGLE,
+	CARD_EFFECT.EXTRA_CREDIT: target_type.SINGLE,
+	CARD_EFFECT.OVERCOME_ADVERSITY: target_type.ALL,
+	CARD_EFFECT.ROUTINE: target_type.ALL
 }
 
 ## Project targeted cards must have project bound.
@@ -99,7 +123,10 @@ var target_conditions_map: Dictionary[CARD_EFFECT, Array] = {
 	CARD_EFFECT.GRIND_LOGIC: [_project_is_logic],
 	CARD_EFFECT.GRIND_CREATIVITY: [_project_is_creativity],
 	CARD_EFFECT.GRIND_WISDOM: [_project_is_wisdom],
-	CARD_EFFECT.COMMUNITY_SUPPORT: [_no_community_support_in_play]
+	CARD_EFFECT.COMMUNITY_SUPPORT: [_no_community_support_in_play],
+	CARD_EFFECT.INSPIRED_LOGIC: [_project_is_logic],
+	CARD_EFFECT.INSPIRED_CREATIVITY: [_project_is_creativity],
+	CARD_EFFECT.INSPIRED_WISDOM: [_project_is_wisdom]
 }
 
 enum CARD_TYPE {
@@ -135,7 +162,15 @@ enum CARD_EFFECT {
 	NEW_HOBBY,
 	FORGOT_MY_LUNCH,
 	STRONG_START,
-	REVISION
+	REVISION,
+	INSPIRED_LOGIC,
+	INSPIRED_CREATIVITY,
+	INSPIRED_WISDOM,
+	SYNCING_UP,
+	GLASS_HALF_FULL,
+	EXTRA_CREDIT,
+	OVERCOME_ADVERSITY,
+	ROUTINE
 }
 
 enum target_type {

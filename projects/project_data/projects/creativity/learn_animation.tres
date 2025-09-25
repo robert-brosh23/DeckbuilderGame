@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://4d512fn1xorq"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_2a4m8"]
+
+[resource]
+script = ExtResource("1_2a4m8")
+displayName = "Learn about animation"
+type = 1
+targetProgress = 11
+metadata/_custom_type_script = "uid://b510bgcr8u41m"

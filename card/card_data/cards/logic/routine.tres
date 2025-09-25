@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://pfd0d6eoesty"]
+
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_2n0ab"]
+[ext_resource type="Texture2D" uid="uid://cd34egmfo5hhk" path="res://sprites/correctbasicgirly.png" id="1_8gn68"]
+
+[resource]
+script = ExtResource("1_2n0ab")
+card_name = "Set Routine"
+card_cost = 4
+card_png = ExtResource("1_8gn68")
+card_description = "Permanently reduce a card's cost by 1."
+card_type = 0
+card_effect = 28
+title_font = 1
+desc_line_spacing = -2
+card_title_offset = 6
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

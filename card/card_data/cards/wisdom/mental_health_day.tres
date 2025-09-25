@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_gtaqq")
-card_name = "Mental Hlth Day"
+card_name = "Self Care Day"
 card_cost = 8
 card_png = ExtResource("1_giui8")
 card_description = "Set stress to its minimum value, and delete all curse cards in your hand."

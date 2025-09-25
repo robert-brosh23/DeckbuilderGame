@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c3mewqp8x81hx"]
+
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_lqiib"]
+[ext_resource type="Texture2D" uid="uid://cd34egmfo5hhk" path="res://sprites/correctbasicgirly.png" id="1_qfdc4"]
+
+[resource]
+script = ExtResource("1_lqiib")
+card_name = "Extra Credit"
+card_cost = 3
+card_png = ExtResource("1_qfdc4")
+card_description = "Double the progress required for a project and double it's point value."
+card_type = 0
+card_effect = 26
+title_font = 1
+desc_line_spacing = -2
+card_title_offset = 10
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

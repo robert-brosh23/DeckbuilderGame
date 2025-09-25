@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ya1u2")
-card_name = "Grind (Creativity)"
+card_name = "Grind (Creative)"
 card_cost = 3
 card_png = ExtResource("1_gsusc")
 card_description = "Progress a Creativity project by 5."

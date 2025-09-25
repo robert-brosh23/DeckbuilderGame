@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://g20vu1qqcxnt"]
+
+[ext_resource type="Texture2D" uid="uid://cd34egmfo5hhk" path="res://sprites/correctbasicgirly.png" id="1_kipny"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_voprx"]
+
+[resource]
+script = ExtResource("1_voprx")
+card_name = "Glass Half Full"
+card_cost = 4
+card_png = ExtResource("1_kipny")
+card_description = "Progress a project by half its remaining progress."
+card_type = 1
+card_effect = 25
+title_font = 0
+desc_line_spacing = -2
+card_title_offset = 8
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

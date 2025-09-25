@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://cg6l17r0yxtr1"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_qdo7r"]
+
+[resource]
+script = ExtResource("1_qdo7r")
+displayName = "Learn how to swim"
+type = 0
+targetProgress = 30
+metadata/_custom_type_script = "uid://b510bgcr8u41m"

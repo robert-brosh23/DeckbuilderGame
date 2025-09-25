@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://mkwygcciqnja"]
+
+[ext_resource type="Texture2D" uid="uid://cd34egmfo5hhk" path="res://sprites/correctbasicgirly.png" id="1_68ylt"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_ufydt"]
+
+[resource]
+script = ExtResource("1_ufydt")
+card_name = "Inspire (Wisdom)"
+card_cost = 4
+card_png = ExtResource("1_68ylt")
+card_description = "Progress a Wisdom project by 10."
+card_type = 1
+card_effect = 23
+title_font = 0
+desc_line_spacing = -2
+card_title_offset = 10
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

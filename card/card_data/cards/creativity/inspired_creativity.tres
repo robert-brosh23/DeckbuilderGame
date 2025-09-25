@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://jst3o7qyg677"]
+
+[ext_resource type="Texture2D" uid="uid://2qdnvjvd7f5e" path="res://sprites/try_art.png" id="1_lv28k"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_u0y5t"]
+
+[resource]
+script = ExtResource("1_u0y5t")
+card_name = "Inspire (Creative)"
+card_cost = 4
+card_png = ExtResource("1_lv28k")
+card_description = "Progress a Creativity project by 10."
+card_type = 1
+card_effect = 22
+title_font = 0
+desc_line_spacing = -2
+card_title_offset = 9
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

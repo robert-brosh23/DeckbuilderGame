@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://clx017qp8yyam" path="res://projects/project.gd" id="1_hco3b"]
 [ext_resource type="FontFile" uid="uid://cm4gkenj5odhg" path="res://fonts/m5x7.ttf" id="2_460it"]
-[ext_resource type="Resource" uid="uid://dd8w616pwe517" path="res://projects/project_data/projects/guitar.tres" id="2_mchcn"]
+[ext_resource type="Resource" uid="uid://dd8w616pwe517" path="res://projects/project_data/projects/creativity/guitar.tres" id="2_mchcn"]
 [ext_resource type="Texture2D" uid="uid://brqsmrooay4v" path="res://sprites/invis_step.png" id="4_53oba"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mchcn"]

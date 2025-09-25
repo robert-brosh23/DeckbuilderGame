@@ -17,6 +17,7 @@ var step_png := preload("res://sprites/step.png")
 var steps := 0
 
 var current_progress = 0
+var target_progress : int
 var targetable := false
 var active := false
 var main_ui : MainUi
@@ -30,8 +31,9 @@ static func create_project(template: ProjectResource) -> Project:
 func init(template: ProjectResource):
 	animation_player.play("spawn_project")
 	self.template = template
-	title_text.text = template.displayName + "\n(" + str(template.targetProgress) + " left)"
-	progress_bar.max_value = template.targetProgress
+	target_progress = template.targetProgress
+	title_text.text = template.displayName + "\n(" + str(current_progress) + "/" + str(target_progress) + " done)"
+	progress_bar.max_value = target_progress
 	progress_bar.value = 0
 	current_progress = 0
 	_clear_steps()
@@ -43,20 +45,21 @@ func init(template: ProjectResource):
 	
 func progress(progress_amount: int):
 	# If it's already completed and currently clearing
-	if current_progress == template.targetProgress:
+	if current_progress == target_progress:
 		return
 		
-	current_progress = clamp(current_progress + progress_amount, 0, template.targetProgress)
+	progress_bar.max_value = target_progress
+	current_progress = clamp(current_progress + progress_amount, 0, target_progress)
 	progress_bar.set_value(current_progress)
-	title_text.text = template.displayName + "\n(" + str(template.targetProgress - current_progress) + " left)"
-	if current_progress == template.targetProgress:
+	title_text.text = template.displayName + "\n(" + str(current_progress) + "/" + str(target_progress) + " done)"
+	if current_progress == target_progress:
 		_project_completed()
 		
 func set_progress(progress_amount: int):
 	progress(progress_amount - current_progress)
 		
 func check_targetable(conditions: Array[Callable]):
-	if current_progress == template.targetProgress || !active:
+	if current_progress == target_progress || !active:
 		return
 	for condition in conditions:
 		if condition.call() == false:
@@ -67,7 +70,7 @@ func check_targetable(conditions: Array[Callable]):
 func _project_completed():
 	_toggle_fill_bar_border_right(true)
 	
-	GameManager.score += template.targetProgress
+	GameManager.score += target_progress
 	main_ui.set_score_label(GameManager.score)
 	print("project ", template.displayName, " completed.")
 	# animation_player.play("destroy_project")

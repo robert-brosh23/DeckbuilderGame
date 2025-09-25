@@ -36,7 +36,9 @@ var projects_manager: ProjectsManager
 var card_rewards_menu: CardRewardsMenu
 
 var cost := 0
+
 var perm_cost: int
+		
 
 enum states {READY, NOT_IN_HAND, HOVERING, DRAGGING, PLAYING, RETURNING, PREVIEW_PICKING, DELETING}
 
@@ -303,6 +305,9 @@ func _execute_friendship():
 func _execute_grind(target: Project):
 	target.progress(5)
 	
+func _execute_inspired(target: Project):
+	target.progress(10)
+	
 func _execute_community_support():
 	SignalBus.start_card_played.connect(_trigger_community_support, CONNECT_ONE_SHOT)
 	
@@ -406,8 +411,45 @@ func _execute_strong_start(target: Project):
 		target.progress(2)
 		
 func _execute_revision(target: Project):
-	var split_progress = target.current_progress / projects_manager.projects.size()
+	var split_progress = target.current_progress / (projects_manager.projects.size() - 1)
 	target.set_progress(0)
-	for proj in projects_manager.projects:
-		proj.progress(split_progress)
+	for i in range (projects_manager.projects.size() - 1, -1, -1):
+		if projects_manager.projects[i] == target:
+			continue
+		projects_manager.projects[i].progress(split_progress)
+		
+func _execute_syncing_up(target: Project):
+	target.progress(3)
+	if target == null || !target.active:
+		return
+		
+	var synced := false
+	for i in range (projects_manager.projects.size() - 1, -1, -1):
+		if projects_manager.projects[i] == target:
+			continue
+		if projects_manager.projects[i].current_progress == target.current_progress:
+			synced = true
+	if synced && target != null && target.active:
+		for i in range(0,3):
+			await CardsController.draw_card_from_deck()
+			await get_tree().create_timer(.2).timeout
+
+func _execute_glass_half_full(target: Project):
+	target.progress((target.target_progress - target.current_progress) / 2)
+	
+func _execute_extra_credit(target: Project):
+	target.target_progress *= 2
+	target.progress(0) # update the label
+
+func _execute_overcome_adversity():
+	var obstacle_count = 0
+	for card in CardsCollection.cards_in_hand:
+		if card.card_data.card_type == CardData.CARD_TYPE.OBSTACLE:
+			obstacle_count += 1
+	GameManager.hours += obstacle_count
+	
+func _execute_routine():
+	var result := await CardsController.select_cards(1, [func(card: Card): return card.perm_cost > 0], self)
+	result[0].perm_cost -= 1
+	result[0].calibrate_cost()
 	

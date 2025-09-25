@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://b5eq7ntasjcgb"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_a0hqm"]
+
+[resource]
+script = ExtResource("1_a0hqm")
+displayName = "Learn how to cook risotto"
+type = 0
+targetProgress = 8
+metadata/_custom_type_script = "uid://b510bgcr8u41m"

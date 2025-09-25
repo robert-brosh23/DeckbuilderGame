@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://5miga45y3g3s"]
+
+[ext_resource type="Texture2D" uid="uid://v68wqwijcn6b" path="res://sprites/grind_tech.png" id="1_lyy3h"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_tfogp"]
+
+[resource]
+script = ExtResource("1_tfogp")
+card_name = "Inspire (Logic)"
+card_cost = 4
+card_png = ExtResource("1_lyy3h")
+card_description = "Progress a Logic project by 10."
+card_type = 1
+card_effect = 21
+title_font = 0
+desc_line_spacing = -2
+card_title_offset = 8
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

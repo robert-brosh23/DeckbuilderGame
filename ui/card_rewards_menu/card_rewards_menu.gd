@@ -16,6 +16,9 @@ var creativity_card_resources_pool : Array[Resource]
 var wisdom_card_resources_pool : Array[Resource]
 var obstacle_card_resources_pool : Array[Resource]
 var curr_choices: Array[Card]
+
+## Bug fix for when multiple projects are completed at the same time
+var queue_selection: Array[ProjectResource.project_type] = []
 	
 func create_random_card(global_pos := Vector2(0,0), pause_time := 0.0, include_obstacle := false, discard := false) -> Card:
 	var card_type = randi() % 4 if include_obstacle else randi() % 3
@@ -53,6 +56,10 @@ func create_card_preview(card_data: CardData) -> Card:
 
 func preview_cards(project_type: ProjectResource.project_type):
 	CardsController.pause_queue()
+	await get_tree().process_frame
+	if !cards_hbox_container.get_children().is_empty():
+		queue_selection.push_back(project_type)
+		return
 	
 	var pool: Array[Resource]
 	match project_type:
@@ -73,7 +80,7 @@ func preview_cards(project_type: ProjectResource.project_type):
 		card_preview.state = Card.states.PREVIEW_PICKING
 		cards_hbox_container.add_child(card_preview)
 		curr_choices.append(card_preview)
-	visible = true
+		visible = true
 
 ## Ends the card selection with a choice.
 ## card: the chosen card being added to the deck. If null, skip was chosen.
@@ -82,11 +89,15 @@ func card_picked(card: Card):
 	if card != null:
 		await CardsController._create_card(card.card_data, card.global_position)
 		await CardsController._shuffle_deck()
-	CardsController.unpause_queue()
 	
 	curr_choices.clear()
 	for child in cards_hbox_container.get_children():
 		child.queue_free()
+		
+	if !queue_selection.is_empty():
+		preview_cards(queue_selection.pop_front())
+	else:
+		CardsController.unpause_queue()
 
 func _ready() -> void:
 	visible = false

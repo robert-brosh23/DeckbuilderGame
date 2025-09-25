@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://yng31fkpksrc"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_hh6y0"]
+
+[resource]
+script = ExtResource("1_hh6y0")
+displayName = "Learn how to make pixel art"
+type = 1
+targetProgress = 18
+metadata/_custom_type_script = "uid://b510bgcr8u41m"

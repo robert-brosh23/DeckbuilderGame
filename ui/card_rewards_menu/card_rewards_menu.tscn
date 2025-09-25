@@ -1,28 +1,36 @@
-[gd_scene load_steps=27 format=3 uid="uid://buiy7n2187wtc"]
+[gd_scene load_steps=35 format=3 uid="uid://buiy7n2187wtc"]
 
 [ext_resource type="Script" uid="uid://buxjmutojq6ho" path="res://ui/card_rewards_menu/card_rewards_menu.gd" id="1_kqkvr"]
 [ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="2_3kutq"]
 [ext_resource type="Resource" uid="uid://dubw1i8dw6h3h" path="res://card/card_data/cards/logic/brain_blast.tres" id="3_73hql"]
 [ext_resource type="Resource" uid="uid://brgue6g2tmhlw" path="res://card/card_data/cards/logic/clean.tres" id="4_46qc8"]
 [ext_resource type="Resource" uid="uid://bhotvevbx3ur4" path="res://card/card_data/cards/logic/community_support.tres" id="5_y1dfi"]
+[ext_resource type="Resource" uid="uid://c3mewqp8x81hx" path="res://card/card_data/cards/logic/extra_credit.tres" id="6_jnmr4"]
 [ext_resource type="Resource" uid="uid://mx5qkjxwk2ye" path="res://card/card_data/cards/logic/meditation.tres" id="6_tt0un"]
 [ext_resource type="Resource" uid="uid://btokanpgsnu41" path="res://card/card_data/cards/logic/new_hobby.tres" id="7_k26dm"]
 [ext_resource type="Resource" uid="uid://c68uppt7623iv" path="res://card/card_data/cards/logic/organize.tres" id="8_r5rr3"]
+[ext_resource type="Resource" uid="uid://g20vu1qqcxnt" path="res://card/card_data/cards/creativity/glass_half_full.tres" id="9_hf245"]
 [ext_resource type="Resource" uid="uid://c45df6k4xt1vf" path="res://card/card_data/cards/creativity/grind_creativity.tres" id="9_x7p8v"]
+[ext_resource type="Resource" uid="uid://pfd0d6eoesty" path="res://card/card_data/cards/logic/routine.tres" id="10_1dew5"]
 [ext_resource type="Resource" uid="uid://csq8d11iiamif" path="res://card/card_data/cards/creativity/grind_logic.tres" id="10_xyrri"]
 [ext_resource type="Resource" uid="uid://dgnmvt42bjhsg" path="res://card/card_data/cards/creativity/grind_wisdom.tres" id="11_xl0qi"]
 [ext_resource type="Resource" uid="uid://dmb3ppe5ys6wu" path="res://card/card_data/cards/creativity/small_step.tres" id="12_kw56a"]
+[ext_resource type="Resource" uid="uid://jst3o7qyg677" path="res://card/card_data/cards/creativity/inspired_creativity.tres" id="12_ppjjt"]
 [ext_resource type="Resource" uid="uid://bufn7mv3g38t" path="res://card/card_data/cards/creativity/revision.tres" id="12_qu674"]
+[ext_resource type="Resource" uid="uid://5miga45y3g3s" path="res://card/card_data/cards/creativity/inspired_logic.tres" id="13_bg1gq"]
 [ext_resource type="Resource" uid="uid://7lum1rtwco8m" path="res://card/card_data/cards/wisdom/friendship.tres" id="13_qu674"]
 [ext_resource type="Resource" uid="uid://cii7fvi8q8tux" path="res://card/card_data/cards/creativity/strong_start.tres" id="13_xl0qi"]
 [ext_resource type="Resource" uid="uid://vmidkrnj7lqm" path="res://card/card_data/cards/wisdom/mental_health_day.tres" id="14_aw7qf"]
+[ext_resource type="Resource" uid="uid://mkwygcciqnja" path="res://card/card_data/cards/creativity/inspired_wisdom.tres" id="14_hf245"]
 [ext_resource type="Resource" uid="uid://c0wb7tjaoet3m" path="res://card/card_data/cards/wisdom/new_day.tres" id="15_ppjjt"]
 [ext_resource type="Resource" uid="uid://ca8v5fg3t2ge" path="res://card/card_data/cards/wisdom/therapy.tres" id="16_bg1gq"]
 [ext_resource type="Resource" uid="uid://bc6kekq6f0g7t" path="res://card/card_data/cards/wisdom/touch_grass.tres" id="17_hf245"]
+[ext_resource type="Resource" uid="uid://cqltrrpvk156x" path="res://card/card_data/cards/creativity/syncing_up.tres" id="18_bg1gq"]
 [ext_resource type="Resource" uid="uid://dk603xhti03hm" path="res://card/card_data/cards/obstacle/addiction.tres" id="18_jnmr4"]
 [ext_resource type="Resource" uid="uid://ba5stqt0xy1qd" path="res://card/card_data/cards/obstacle/comparison.tres" id="19_btv7j"]
 [ext_resource type="Resource" uid="uid://cuyftbvj6fopp" path="res://card/card_data/cards/obstacle/sleep_deprived.tres" id="20_1dew5"]
 [ext_resource type="Resource" uid="uid://hbsxvkq72uke" path="res://card/card_data/cards/obstacle/forgot_my_lunch.tres" id="20_xyrri"]
+[ext_resource type="Resource" uid="uid://coh1whm120l72" path="res://card/card_data/cards/wisdom/overcome_adversity.tres" id="24_btv7j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kutq"]
 bg_color = Color(0.447059, 0.862745, 0.733333, 1)
@@ -121,19 +129,19 @@ text = "Skip"
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
-resources = [PackedStringArray("brain_blast", "clean", "community_support", "meditation", "new_hobby", "organize"), [ExtResource("3_73hql"), ExtResource("4_46qc8"), ExtResource("5_y1dfi"), ExtResource("6_tt0un"), ExtResource("7_k26dm"), ExtResource("8_r5rr3")]]
+resources = [PackedStringArray("brain_blast", "clean", "community_support", "extra_credit", "meditation", "new_hobby", "organize", "routine"), [ExtResource("3_73hql"), ExtResource("4_46qc8"), ExtResource("5_y1dfi"), ExtResource("6_jnmr4"), ExtResource("6_tt0un"), ExtResource("7_k26dm"), ExtResource("8_r5rr3"), ExtResource("10_1dew5")]]
 
 [node name="CreativityCardsResourcePreloader" type="ResourcePreloader" parent="."]
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
-resources = [PackedStringArray("grind_creativity", "grind_logic", "grind_wisdom", "revision", "small_step", "strong_start"), [ExtResource("9_x7p8v"), ExtResource("10_xyrri"), ExtResource("11_xl0qi"), ExtResource("12_qu674"), ExtResource("12_kw56a"), ExtResource("13_xl0qi")]]
+resources = [PackedStringArray("glass_half_full", "grind_creativity", "grind_logic", "grind_wisdom", "inspired_creativity", "inspired_logic", "inspired_wisdom", "revision", "small_step", "strong_start", "syncing_up"), [ExtResource("9_hf245"), ExtResource("9_x7p8v"), ExtResource("10_xyrri"), ExtResource("11_xl0qi"), ExtResource("12_ppjjt"), ExtResource("13_bg1gq"), ExtResource("14_hf245"), ExtResource("12_qu674"), ExtResource("12_kw56a"), ExtResource("13_xl0qi"), ExtResource("18_bg1gq")]]
 
 [node name="WisdomCardsResourcePreloader" type="ResourcePreloader" parent="."]
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
-resources = [PackedStringArray("friendship", "mental_health_day", "new_day", "therapy", "touch_grass"), [ExtResource("13_qu674"), ExtResource("14_aw7qf"), ExtResource("15_ppjjt"), ExtResource("16_bg1gq"), ExtResource("17_hf245")]]
+resources = [PackedStringArray("friendship", "mental_health_day", "new_day", "overcome_adversity", "therapy", "touch_grass"), [ExtResource("13_qu674"), ExtResource("14_aw7qf"), ExtResource("15_ppjjt"), ExtResource("24_btv7j"), ExtResource("16_bg1gq"), ExtResource("17_hf245")]]
 
 [node name="ObstacleCardsResroucePreloader" type="ResourcePreloader" parent="."]
 process_thread_group = 2
