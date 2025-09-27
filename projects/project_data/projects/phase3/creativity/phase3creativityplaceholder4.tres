@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://bcb1bpjhwjgjt"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_pfp27"]
+
+[resource]
+script = ExtResource("1_pfp27")
+displayName = "placeholder"
+type = 1
+targetProgress = 40
+metadata/_custom_type_script = "uid://b510bgcr8u41m"

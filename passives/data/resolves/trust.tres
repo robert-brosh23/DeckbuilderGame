@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ResolveData" load_steps=3 format=3 uid="uid://jiiuoegvj3ed"]
+
+[ext_resource type="Script" uid="uid://c8eqsslkb6yo1" path="res://passives/data/resolve_data.gd" id="1_12m4h"]
+[ext_resource type="Texture2D" uid="uid://ce4aqmvuuug2d" path="res://sprites/trust.png" id="2_s1hav"]
+
+[resource]
+script = ExtResource("1_12m4h")
+resolve_name = "Trust"
+effect = 3
+texture_png = ExtResource("2_s1hav")
+tooltip = ""
+metadata/_custom_type_script = "uid://c8eqsslkb6yo1"

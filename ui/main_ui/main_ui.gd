@@ -10,6 +10,13 @@ extends Control
 @export var animation_player : AnimationPlayer
 @export var big_arrow : TextureRect
 
+var big_arrow_enabled := false:
+	set(value):
+		if value:
+			_check_cards_playable(null, null)
+		else:
+			big_arrow.visible = false
+
 var shake_stress_label = false
 
 func _ready() -> void:
@@ -19,6 +26,10 @@ func _ready() -> void:
 	big_arrow.visible = false
 	animation_player.play("wave_arrow")
 	SignalBus.card_played.connect(_check_cards_playable)
+	SignalBus.new_day_started.connect(func(day: int): 
+		#await get_tree().create_timer(1.0).timeout
+		_check_cards_playable(null, null)
+	)
 
 func set_hours_label(hours: int):
 	hours_label.text = "Hours: " + str(hours)
@@ -67,6 +78,7 @@ func _tween_progress_bar(bar: ProgressBar, new_value: float, duration: float = 0
 	
 func _check_cards_playable(c: Card, project: Project):
 	for card in CardsCollection.cards_in_hand:
-		if card. card.cost <= GameManager.hours:
+		if card != c && card.card_data.get_target_type() != CardData.target_type.UNPLAYABLE && card.cost <= GameManager.hours:
+			big_arrow.visible = false
 			return
 	big_arrow.visible = true

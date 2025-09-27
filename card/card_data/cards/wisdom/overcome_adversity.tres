@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://coh1whm120l72"]
 
 [ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_1avrr"]
-[ext_resource type="Texture2D" uid="uid://cd34egmfo5hhk" path="res://sprites/correctbasicgirly.png" id="1_xev0y"]
+[ext_resource type="Texture2D" uid="uid://ctjjxu8xiefwf" path="res://sprites/overcome_adversity2.png" id="1_xev0y"]
 
 [resource]
 script = ExtResource("1_1avrr")
-card_name = "Adversity"
+card_name = "Overcome"
 card_cost = 1
 card_png = ExtResource("1_xev0y")
-card_description = "For each curse card in your hand, gain 2 hours"
+card_description = "For each obstacle card in your hand, gain 2 hours"
 card_type = 2
 card_effect = 27
 title_font = 1

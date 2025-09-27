@@ -51,7 +51,9 @@ var effect_map: Dictionary[CARD_EFFECT, String] = {
 	CARD_EFFECT.GLASS_HALF_FULL: "_execute_glass_half_full",
 	CARD_EFFECT.EXTRA_CREDIT: "_execute_extra_credit",
 	CARD_EFFECT.OVERCOME_ADVERSITY: "_execute_overcome_adversity",
-	CARD_EFFECT.ROUTINE: "_execute_routine"
+	CARD_EFFECT.ROUTINE: "_execute_routine",
+	CARD_EFFECT.ANXIETY: NO_EFFECT,
+	CARD_EFFECT.GRIND: "_execute_grind"
 }
 
 var draw_effect_map: Dictionary[CARD_EFFECT, String] = {
@@ -83,7 +85,9 @@ var draw_effect_map: Dictionary[CARD_EFFECT, String] = {
 	CARD_EFFECT.GLASS_HALF_FULL: NO_EFFECT,
 	CARD_EFFECT.EXTRA_CREDIT: NO_EFFECT,
 	CARD_EFFECT.OVERCOME_ADVERSITY: NO_EFFECT,
-	CARD_EFFECT.ROUTINE: NO_EFFECT
+	CARD_EFFECT.ROUTINE: NO_EFFECT,
+	CARD_EFFECT.ANXIETY: "_draw_effect_anxiety",
+	CARD_EFFECT.GRIND: NO_EFFECT
 }
 
 var target_type_map: Dictionary[CARD_EFFECT, target_type] = {
@@ -115,7 +119,9 @@ var target_type_map: Dictionary[CARD_EFFECT, target_type] = {
 	CARD_EFFECT.GLASS_HALF_FULL: target_type.SINGLE,
 	CARD_EFFECT.EXTRA_CREDIT: target_type.SINGLE,
 	CARD_EFFECT.OVERCOME_ADVERSITY: target_type.ALL,
-	CARD_EFFECT.ROUTINE: target_type.ALL
+	CARD_EFFECT.ROUTINE: target_type.ALL,
+	CARD_EFFECT.ANXIETY: target_type.UNPLAYABLE,
+	CARD_EFFECT.GRIND: target_type.SINGLE
 }
 
 ## Project targeted cards must have project bound.
@@ -170,7 +176,9 @@ enum CARD_EFFECT {
 	GLASS_HALF_FULL,
 	EXTRA_CREDIT,
 	OVERCOME_ADVERSITY,
-	ROUTINE
+	ROUTINE,
+	ANXIETY,
+	GRIND
 }
 
 enum target_type {

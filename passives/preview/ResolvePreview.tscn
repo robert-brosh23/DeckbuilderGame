@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3vi8tdfbkr14"]
+
+[ext_resource type="Script" uid="uid://byxjk0swbe5kg" path="res://passives/preview/resolve_preview.gd" id="1_cmnlc"]
+[ext_resource type="Texture2D" uid="uid://dnomgcuwe1xmw" path="res://sprites/pencil.png" id="2_m1q4j"]
+[ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://fonts/m6x11.ttf" id="3_cmnlc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ndh7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46g18"]
+bg_color = Color(0.670588, 0.337255, 0.458824, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[node name="ResolvePreview" type="Control" node_paths=PackedStringArray("texture", "description_label")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cmnlc")
+texture = NodePath("PanelContainer/VBoxContainer/HBoxContainer2/TextureRect")
+description_label = NodePath("PanelContainer/VBoxContainer/HBoxContainer/Tooltip/MarginContainer/TooltipText")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = -65.0
+offset_top = -101.0
+offset_right = 65.0
+offset_bottom = 100.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0ndh7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_m1q4j")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Tooltip" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_46g18")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/Tooltip"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TooltipText" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/Tooltip/MarginContainer"]
+custom_minimum_size = Vector2(60, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_fonts/font = ExtResource("3_cmnlc")
+theme_override_font_sizes/font_size = 16
+text = "tooltip_text adsf sadf sadfasdf adsfdsafadsfasdfadsfdsaf"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="mouse_entered" from="PanelContainer" to="." method="_on_panel_container_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer" to="." method="_on_panel_container_mouse_exited"]

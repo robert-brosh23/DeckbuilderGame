@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=9 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dd5tbk86qnuwn" path="res://deck/deck.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cprtqlg155quc" path="res://hand/hand.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bwina4q0qfyxh" path="res://ui/main_ui/main_ui.tscn" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://d3pwu8oodhuxs" path="res://passives/manager/resolve_manager.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bvnrpwbicsfub" path="res://discard_pile/discard_pile.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://b4wue7nm8cfwk" path="res://projects/projects_manager/projects_manager.tscn" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://buiy7n2187wtc" path="res://ui/card_rewards_menu/card_rewards_menu.tscn" id="21_getpj"]
@@ -27,6 +28,8 @@ discard_pile = NodePath("DiscardPile")
 [node name="CardRewardsMenu" parent="CanvasLayer" instance=ExtResource("21_getpj")]
 visible = false
 z_index = 6
+
+[node name="ResolveManager" parent="CanvasLayer" instance=ExtResource("8_5vw27")]
 
 [node name="Background" type="ColorRect" parent="."]
 z_index = -10

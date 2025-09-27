@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3pwu8oodhuxs"]
+
+[ext_resource type="Script" uid="uid://dbywm4k6vrms2" path="res://passives/manager/resolve_manager.gd" id="1_ha7r0"]
+[ext_resource type="Script" uid="uid://c8eqsslkb6yo1" path="res://passives/data/resolve_data.gd" id="2_vbkc7"]
+[ext_resource type="Texture2D" uid="uid://pmtg37akcjyv" path="res://sprites/spawn-point.png" id="3_hnuj4"]
+[ext_resource type="Resource" uid="uid://cs5gcro0kiegh" path="res://passives/data/resolves/discipline.tres" id="4_c46e0"]
+[ext_resource type="Resource" uid="uid://dhkxaiidi5xjo" path="res://passives/data/resolves/spawn_point.tres" id="4_hnuj4"]
+[ext_resource type="Resource" uid="uid://dyfsqm4fx5j8b" path="res://passives/data/resolves/early_bird.tres" id="5_qwult"]
+
+[sub_resource type="Resource" id="Resource_c46e0"]
+script = ExtResource("2_vbkc7")
+resolve_name = "Spawn Point"
+effect = 0
+texture_png = ExtResource("3_hnuj4")
+tooltip = ""
+metadata/_custom_type_script = "uid://c8eqsslkb6yo1"
+
+[node name="ResolveManager" type="Control" node_paths=PackedStringArray("hbox_container", "preloader") groups=["resolve_manager"]]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_ha7r0")
+hbox_container = NodePath("MarginContainer/HBoxContainer")
+debug_resolve = SubResource("Resource_c46e0")
+preloader = NodePath("ResourcePreloader")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("discipline", "early_bird", "spawn_point"), [ExtResource("4_c46e0"), ExtResource("5_qwult"), ExtResource("4_hnuj4")]]

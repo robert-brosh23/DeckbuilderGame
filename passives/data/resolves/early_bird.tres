@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ResolveData" load_steps=3 format=3 uid="uid://dyfsqm4fx5j8b"]
+
+[ext_resource type="Script" uid="uid://c8eqsslkb6yo1" path="res://passives/data/resolve_data.gd" id="1_w6jrj"]
+[ext_resource type="Texture2D" uid="uid://du160t8pihaax" path="res://sprites/early_bird.png" id="2_hd0xs"]
+
+[resource]
+script = ExtResource("1_w6jrj")
+resolve_name = "Early Bird"
+effect = 2
+texture_png = ExtResource("2_hd0xs")
+tooltip = "Start each day with an extra hour"
+metadata/_custom_type_script = "uid://c8eqsslkb6yo1"

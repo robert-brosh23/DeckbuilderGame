@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://buiy7n2187wtc"]
+[gd_scene load_steps=32 format=3 uid="uid://buiy7n2187wtc"]
 
 [ext_resource type="Script" uid="uid://buxjmutojq6ho" path="res://ui/card_rewards_menu/card_rewards_menu.gd" id="1_kqkvr"]
 [ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="2_3kutq"]
@@ -10,10 +10,7 @@
 [ext_resource type="Resource" uid="uid://btokanpgsnu41" path="res://card/card_data/cards/logic/new_hobby.tres" id="7_k26dm"]
 [ext_resource type="Resource" uid="uid://c68uppt7623iv" path="res://card/card_data/cards/logic/organize.tres" id="8_r5rr3"]
 [ext_resource type="Resource" uid="uid://g20vu1qqcxnt" path="res://card/card_data/cards/creativity/glass_half_full.tres" id="9_hf245"]
-[ext_resource type="Resource" uid="uid://c45df6k4xt1vf" path="res://card/card_data/cards/creativity/grind_creativity.tres" id="9_x7p8v"]
 [ext_resource type="Resource" uid="uid://pfd0d6eoesty" path="res://card/card_data/cards/logic/routine.tres" id="10_1dew5"]
-[ext_resource type="Resource" uid="uid://csq8d11iiamif" path="res://card/card_data/cards/creativity/grind_logic.tres" id="10_xyrri"]
-[ext_resource type="Resource" uid="uid://dgnmvt42bjhsg" path="res://card/card_data/cards/creativity/grind_wisdom.tres" id="11_xl0qi"]
 [ext_resource type="Resource" uid="uid://dmb3ppe5ys6wu" path="res://card/card_data/cards/creativity/small_step.tres" id="12_kw56a"]
 [ext_resource type="Resource" uid="uid://jst3o7qyg677" path="res://card/card_data/cards/creativity/inspired_creativity.tres" id="12_ppjjt"]
 [ext_resource type="Resource" uid="uid://bufn7mv3g38t" path="res://card/card_data/cards/creativity/revision.tres" id="12_qu674"]
@@ -56,7 +53,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
 
-[node name="CardRewardsMenu" type="Control" node_paths=PackedStringArray("cards_hbox_container", "skip_button", "logic_cards_resource_preloader", "creativity_cards_resource_preloader", "wisdom_cards_resource_preloader", "obstacle_cards_resource_preloader") groups=["card_rewards_menu"]]
+[node name="CardRewardsMenu" type="Control" node_paths=PackedStringArray("cards_hbox_container", "skip_button", "pick_label", "logic_cards_resource_preloader", "creativity_cards_resource_preloader", "wisdom_cards_resource_preloader", "obstacle_cards_resource_preloader") groups=["card_rewards_menu"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,6 +63,7 @@ grow_vertical = 2
 script = ExtResource("1_kqkvr")
 cards_hbox_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer")
 skip_button = NodePath("MarginContainer/VBoxContainer/SkipButton")
+pick_label = NodePath("MarginContainer/VBoxContainer/Label")
 logic_cards_resource_preloader = NodePath("LogicCardsResourcePreloader")
 creativity_cards_resource_preloader = NodePath("CreativityCardsResourcePreloader")
 wisdom_cards_resource_preloader = NodePath("WisdomCardsResourcePreloader")
@@ -106,7 +104,7 @@ horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 120
+theme_override_constants/separation = 150
 alignment = 1
 
 [node name="SkipButton" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -135,7 +133,7 @@ resources = [PackedStringArray("brain_blast", "clean", "community_support", "ext
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
-resources = [PackedStringArray("glass_half_full", "grind_creativity", "grind_logic", "grind_wisdom", "inspired_creativity", "inspired_logic", "inspired_wisdom", "revision", "small_step", "strong_start", "syncing_up"), [ExtResource("9_hf245"), ExtResource("9_x7p8v"), ExtResource("10_xyrri"), ExtResource("11_xl0qi"), ExtResource("12_ppjjt"), ExtResource("13_bg1gq"), ExtResource("14_hf245"), ExtResource("12_qu674"), ExtResource("12_kw56a"), ExtResource("13_xl0qi"), ExtResource("18_bg1gq")]]
+resources = [PackedStringArray("glass_half_full", "inspired_creativity", "inspired_logic", "inspired_wisdom", "revision", "small_step", "strong_start", "syncing_up"), [ExtResource("9_hf245"), ExtResource("12_ppjjt"), ExtResource("13_bg1gq"), ExtResource("14_hf245"), ExtResource("12_qu674"), ExtResource("12_kw56a"), ExtResource("13_xl0qi"), ExtResource("18_bg1gq")]]
 
 [node name="WisdomCardsResourcePreloader" type="ResourcePreloader" parent="."]
 process_thread_group = 2

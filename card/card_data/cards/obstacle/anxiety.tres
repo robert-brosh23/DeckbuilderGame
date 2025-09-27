@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dt73u1mt8nnfn"]
+
+[ext_resource type="Texture2D" uid="uid://b65u1b5mitb0h" path="res://sprites/anxiety.png" id="1_81otg"]
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_nysgy"]
+
+[resource]
+script = ExtResource("1_nysgy")
+card_name = "Anxiety"
+card_cost = -1
+card_png = ExtResource("1_81otg")
+card_description = "On draw: increase stress by 1."
+card_type = 3
+card_effect = 29
+title_font = 1
+desc_line_spacing = -2
+card_title_offset = 10
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

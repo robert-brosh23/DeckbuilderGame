@@ -34,6 +34,7 @@ var state: states = states.NOT_IN_HAND
 var promise_queue: PromiseQueue
 var projects_manager: ProjectsManager
 var card_rewards_menu: CardRewardsMenu
+var main_ui: MainUi
 
 var cost := 0
 
@@ -54,6 +55,7 @@ func _ready() -> void:
 	game_manager = get_tree().get_first_node_in_group("game_manager")
 	projects_manager = get_tree().get_first_node_in_group("projects_manager")
 	card_rewards_menu = get_tree().get_first_node_in_group("card_rewards_menu")
+	main_ui = get_tree().get_first_node_in_group("main_ui")
 	animation_player.speed_scale = 1.0 / Globals.animation_speed_scale
 	calibrate_cost()
 	apply_card_visual_faceup()
@@ -270,7 +272,7 @@ func _execute_meditation():
 	
 func _execute_organize():
 	SignalBus.new_day_started.connect(
-		func(): game_manager.hours += 2,
+		func(day: int): game_manager.hours += 2,
 		CONNECT_ONE_SHOT
 	)
 	
@@ -303,7 +305,7 @@ func _execute_friendship():
 		_set_card_data()
 		
 func _execute_grind(target: Project):
-	target.progress(5)
+	target.progress(2)
 	
 func _execute_inspired(target: Project):
 	target.progress(10)
@@ -330,7 +332,7 @@ func _delete_self():
 	delete_card()
 	
 func _execute_mental_health_day():
-	game_manager.stress = 0
+	game_manager.stress -= 3
 	for i in range(CardsCollection.cards_in_hand.size() - 1, -1, -1):
 		if CardsCollection.cards_in_hand[i].card_data.card_type == CardData.CARD_TYPE.OBSTACLE:
 			CardsCollection.cards_in_hand[i].delete_card()
@@ -398,10 +400,9 @@ func _forgot_my_lunch_reset_card_played(card: Card, target: Project):
 		var callable : Callable = connection["callable"]
 		if callable.get_method() == "_forgot_my_lunch_reset_new_day":
 			SignalBus.new_day_started.disconnect(_forgot_my_lunch_reset_new_day)
-	print("card_played: ", SignalBus.card_played.get_connections())
-	print("new day: ", SignalBus.new_day_started.get_connections())
+	main_ui._check_cards_playable(null, null)
 	
-func _forgot_my_lunch_reset_new_day():
+func _forgot_my_lunch_reset_new_day(day: int):
 	_forgot_my_lunch_reset_card_played(null, null)
 	
 func _execute_strong_start(target: Project):
@@ -430,6 +431,7 @@ func _execute_syncing_up(target: Project):
 		if projects_manager.projects[i].current_progress == target.current_progress:
 			synced = true
 	if synced && target != null && target.active:
+		GameManager.hours += 3
 		for i in range(0,3):
 			await CardsController.draw_card_from_deck()
 			await get_tree().create_timer(.2).timeout
@@ -446,10 +448,13 @@ func _execute_overcome_adversity():
 	for card in CardsCollection.cards_in_hand:
 		if card.card_data.card_type == CardData.CARD_TYPE.OBSTACLE:
 			obstacle_count += 1
-	GameManager.hours += obstacle_count
+	game_manager.hours += (2 * obstacle_count)
 	
 func _execute_routine():
 	var result := await CardsController.select_cards(1, [func(card: Card): return card.perm_cost > 0], self)
 	result[0].perm_cost -= 1
 	result[0].calibrate_cost()
+	
+func _draw_effect_anxiety():
+	game_manager.stress += 1
 	

@@ -1,9 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://btnaw73ei341f"]
+[gd_scene load_steps=13 format=3 uid="uid://btnaw73ei341f"]
 
 [ext_resource type="Script" uid="uid://clx017qp8yyam" path="res://projects/project.gd" id="1_hco3b"]
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="2_53oba"]
 [ext_resource type="FontFile" uid="uid://cm4gkenj5odhg" path="res://fonts/m5x7.ttf" id="2_460it"]
-[ext_resource type="Resource" uid="uid://dd8w616pwe517" path="res://projects/project_data/projects/creativity/guitar.tres" id="2_mchcn"]
 [ext_resource type="Texture2D" uid="uid://brqsmrooay4v" path="res://sprites/invis_step.png" id="4_53oba"]
+
+[sub_resource type="Resource" id="Resource_mmp45"]
+script = ExtResource("2_53oba")
+displayName = "Write a song for your partner"
+type = 1
+targetProgress = 6
+metadata/_custom_type_script = "uid://b510bgcr8u41m"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mchcn"]
 bg_color = Color(0.203922, 0.67451, 0.729412, 1)
@@ -107,7 +114,7 @@ _data = {
 offset_right = 140.0
 offset_bottom = 124.0
 script = ExtResource("1_hco3b")
-template = ExtResource("2_mchcn")
+template = SubResource("Resource_mmp45")
 panel_container = NodePath("MarginContainer/VBoxContainer/MarginContainer/PanelContainer")
 title_text = NodePath("MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TitleText")
 progress_bar = NodePath("MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ProgressBar")

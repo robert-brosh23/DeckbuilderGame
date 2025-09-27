@@ -1,14 +1,54 @@
 class_name ProjectsManager extends Control
 
 @export var project_grid_container: GridContainer
-@export var resource_preloader: ResourcePreloader
+
+@export var phase1_creativity_preloader: ResourcePreloader
+@export var phase1_logic_preloader: ResourcePreloader
+@export var phase1_wisdom_preloader: ResourcePreloader
+@export var phase1_obstacle_preloader: ResourcePreloader
+
+@export var phase2_creativity_preloader: ResourcePreloader
+@export var phase2_logic_preloader: ResourcePreloader
+@export var phase2_wisdom_preloader: ResourcePreloader
+
+@export var phase3_creativity_preloader: ResourcePreloader
+@export var phase3_logic_preloader: ResourcePreloader
+@export var phase3_wisdom_preloader: ResourcePreloader
+
+var phase1_creativity_resources_pool : Array[Resource]
+var phase1_logic_resources_pool : Array[Resource]
+var phase1_wisdom_resources_pool : Array[Resource]
+var phase1_obstacle_resources_pool : Array[Resource]
+
+var phase2_creativity_resources_pool : Array[Resource]
+var phase2_logic_resources_pool : Array[Resource]
+var phase2_wisdom_resources_pool : Array[Resource]
+
+var phase3_creativity_resources_pool : Array[Resource]
+var phase3_logic_resources_pool : Array[Resource]
+var phase3_wisdom_resources_pool : Array[Resource]
+
+var secret_project: ProjectResource = preload("res://projects/project_data/projects/secret_project.tres")
 
 var card_rewards_menu: CardRewardsMenu
 var project_scene = preload("res://projects/project.tscn")
 var projects : Array[Project] = []
 
-var project_resources_pool : Array[Resource]
-
+var preloader_dict : Dictionary[String, Array] = {
+	"Phase1-Creativity" : phase1_creativity_resources_pool,
+	"Phase1-Logic" : phase1_logic_resources_pool,
+	"Phase1-Wisdom"  : phase1_wisdom_resources_pool,
+	"Phase1-Obstacle" : phase1_obstacle_resources_pool,
+	
+	"Phase2-Creativity" : phase2_creativity_resources_pool,
+	"Phase2-Logic" : phase2_logic_resources_pool,
+	"Phase2-Wisdom" : phase2_wisdom_resources_pool,
+	
+	"Phase3-Creativity" : phase3_creativity_resources_pool,
+	"Phase3-Logic" : phase3_logic_resources_pool,
+	"Phase3-Wisdom" : phase3_wisdom_resources_pool
+}
+	
 var full_area_targeted: bool = false:
 	set(value):
 		full_area_targeted = value
@@ -21,17 +61,27 @@ var full_area_targeted: bool = false:
 			stylebox.bg_color = "ffa7a500"
 			add_theme_stylebox_override("panel", stylebox)
 
-
 func _ready() -> void:
-	card_rewards_menu = get_tree().get_first_node_in_group("card_rewards_menu")
-	project_resources_pool = _load_project_resources(resource_preloader)
 	
+	card_rewards_menu = get_tree().get_first_node_in_group("card_rewards_menu")
+	phase1_creativity_resources_pool = _load_project_resources(phase1_creativity_preloader)
+	phase1_logic_resources_pool = _load_project_resources(phase1_logic_preloader)
+	phase1_wisdom_resources_pool = _load_project_resources(phase1_wisdom_preloader)
+	phase1_obstacle_resources_pool = _load_project_resources(phase1_obstacle_preloader)
+	
+	phase2_creativity_resources_pool = _load_project_resources(phase2_creativity_preloader)
+	phase2_logic_resources_pool = _load_project_resources(phase2_logic_preloader)
+	phase2_wisdom_resources_pool = _load_project_resources(phase2_wisdom_preloader)
+	
+	phase3_creativity_resources_pool = _load_project_resources(phase3_creativity_preloader)
+	phase3_logic_resources_pool = _load_project_resources(phase3_logic_preloader)
+	phase3_wisdom_resources_pool = _load_project_resources(phase3_wisdom_preloader)
+
 func _load_project_resources(preloader: ResourcePreloader) -> Array[Resource]:
 	var arr : Array[Resource] = []
 	for resource in preloader.get_resource_list():
 		arr.append(preloader.get_resource(resource))
 	return arr
-	
 	
 func check_mouse_in_area(mouse_pos: Vector2) -> bool:
 	if full_area_targeted && mouse_pos.y > global_position.y && \
@@ -47,28 +97,81 @@ func enable_full_area_target() -> void:
 func disable_full_area_target() -> void:
 	full_area_targeted = false
 	
-func _create_project(template: ProjectResource) -> Project:
+func _create_project(template: ProjectResource, grid_index: int) -> Project:
+	if template == null:
+		template = secret_project
+	
 	var project = Project.create_project(template)
 	project.projectFinished.connect(_project_finished.bind(project))
 	project_grid_container.add_child(project)
-	projects.append(project)
+	project_grid_container.move_child(project, grid_index)
+	projects.insert(grid_index, project)
 	return project
 	
-func create_project() -> Project:
+func get_project_resource(grid_index : int) -> ProjectResource:
+	var proj_type = _get_project_type(grid_index)
+	var project_resources_pool
 	var new_project_resource
-	while new_project_resource is not ProjectResource:
-		if project_resources_pool.is_empty():
-			print("out of projects")
-			return
-		new_project_resource = project_resources_pool[randi() % project_resources_pool.size()]
-		project_resources_pool.erase(new_project_resource)
-	return _create_project(new_project_resource)
+	
+	if proj_type == ProjectResource.project_type.OBSTACLE:
+		new_project_resource = phase1_obstacle_preloader.get_resource("obstacle_test1").duplicate()
+		if new_project_resource is ProjectResource:
+			new_project_resource.targetProgress = 15 + (GameManager.day / 5) * 5
+	else:
+		if GameManager.day <= 10:
+			match proj_type:
+				ProjectResource.project_type.CREATIVITY:
+					project_resources_pool = phase1_creativity_resources_pool
+				ProjectResource.project_type.LOGIC:
+					project_resources_pool = phase1_logic_resources_pool
+				ProjectResource.project_type.WISDOM:
+					project_resources_pool = phase1_wisdom_resources_pool
+		elif GameManager.day <= 30:
+			match proj_type:
+				ProjectResource.project_type.CREATIVITY:
+					project_resources_pool = phase2_creativity_resources_pool
+				ProjectResource.project_type.LOGIC:
+					project_resources_pool = phase2_logic_resources_pool
+				ProjectResource.project_type.WISDOM:
+					project_resources_pool = phase2_wisdom_resources_pool
+		else:
+			match proj_type:
+				ProjectResource.project_type.CREATIVITY:
+					project_resources_pool = phase3_creativity_resources_pool
+				ProjectResource.project_type.LOGIC:
+					project_resources_pool = phase3_logic_resources_pool
+				ProjectResource.project_type.WISDOM:
+					project_resources_pool = phase3_wisdom_resources_pool
+		
+		while new_project_resource is not ProjectResource:
+			if project_resources_pool.is_empty():
+				print("out of projects")
+				return
+			new_project_resource = project_resources_pool[randi() % project_resources_pool.size()]
+			project_resources_pool.erase(new_project_resource)
+			
+	return new_project_resource
+
+func _get_project_type(grid_index: int) -> ProjectResource.project_type:
+	match grid_index:
+		0:
+			return ProjectResource.project_type.CREATIVITY
+		1:
+			return ProjectResource.project_type.LOGIC
+		2:
+			return ProjectResource.project_type.WISDOM
+		3:
+			return ProjectResource.project_type.OBSTACLE
+		
+	return ProjectResource.project_type.CREATIVITY
 
 func _project_finished(project: Project):
+	var grid_index = projects.find(project)
 	projects.erase(project)
 	project.queue_free()
-	card_rewards_menu.preview_cards(project.template.type)
+	card_rewards_menu.preview_rewards(project.template.type)
 	
 	await get_tree().create_timer(1.0).timeout
-	create_project()
+	var resource = get_project_resource(grid_index)
+	_create_project(resource, grid_index)
 		

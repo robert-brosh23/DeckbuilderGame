@@ -4,11 +4,13 @@ var deck: Deck
 var hand: Hand
 var discard_pile: DiscardPile
 var promise_queue: PromiseQueue = PromiseQueue.new()
+var main_ui: MainUi
 
 func _ready() -> void:
 	deck = get_tree().get_first_node_in_group("deck")
 	discard_pile = get_tree().get_first_node_in_group("discard_pile")
 	hand = get_tree().get_first_node_in_group("hand")
+	main_ui = get_tree().get_first_node_in_group("main_ui")
 	
 	deck.promise_queue = promise_queue
 	hand.promise_queue = promise_queue
@@ -51,6 +53,7 @@ func draw_card_from_deck() -> void:
 	if card == null:
 		return
 	hand.add_card(card)
+	main_ui._check_cards_playable(null, null)
 
 func enqueue_draw_multiple_cards(num_cards: int) -> void:
 	for i in range(0, num_cards):

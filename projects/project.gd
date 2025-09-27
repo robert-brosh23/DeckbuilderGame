@@ -100,6 +100,9 @@ func _apply_stylebox():
 		ProjectResource.project_type.WISDOM:
 			copy.bg_color = Constants.COLOR_HOT_PINK
 			title_text.add_theme_color_override("font_color", Constants.COLOR_CREAM)
+		ProjectResource.project_type.OBSTACLE:
+			copy.bg_color = Constants.COLOR_PURPLE
+			title_text.add_theme_color_override("font_color", Constants.COLOR_CREAM)
 
 	panel_container.add_theme_stylebox_override("panel", copy)
 	

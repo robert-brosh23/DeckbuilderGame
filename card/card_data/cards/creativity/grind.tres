@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bstx5n1bv73t2"]
+
+[ext_resource type="Script" uid="uid://bevi4n8n1jvud" path="res://card/card_data/card_data.gd" id="1_ihs42"]
+[ext_resource type="Texture2D" uid="uid://v68wqwijcn6b" path="res://sprites/grind_tech.png" id="1_jhi7o"]
+
+[resource]
+script = ExtResource("1_ihs42")
+card_name = "Grind"
+card_cost = 3
+card_png = ExtResource("1_jhi7o")
+card_description = "Apply 2 progress to a project"
+card_type = 1
+card_effect = 30
+title_font = 1
+desc_line_spacing = -2
+card_title_offset = 5
+metadata/_custom_type_script = "uid://bevi4n8n1jvud"

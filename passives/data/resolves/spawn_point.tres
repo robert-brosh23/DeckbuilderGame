@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ResolveData" load_steps=3 format=3 uid="uid://dhkxaiidi5xjo"]
+
+[ext_resource type="Script" uid="uid://c8eqsslkb6yo1" path="res://passives/data/resolve_data.gd" id="1_3mwbg"]
+[ext_resource type="Texture2D" uid="uid://pmtg37akcjyv" path="res://sprites/spawn-point.png" id="2_i33xr"]
+
+[resource]
+script = ExtResource("1_3mwbg")
+resolve_name = "Spawn Point"
+effect = 0
+texture_png = ExtResource("2_i33xr")
+tooltip = "At the start of a new day, draw one extra card."
+metadata/_custom_type_script = "uid://c8eqsslkb6yo1"

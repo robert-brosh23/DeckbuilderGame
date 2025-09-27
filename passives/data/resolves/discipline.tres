@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ResolveData" load_steps=3 format=3 uid="uid://cs5gcro0kiegh"]
+
+[ext_resource type="Script" uid="uid://c8eqsslkb6yo1" path="res://passives/data/resolve_data.gd" id="1_dyvi8"]
+[ext_resource type="Texture2D" uid="uid://dnomgcuwe1xmw" path="res://sprites/pencil.png" id="2_ulc3l"]
+
+[resource]
+script = ExtResource("1_dyvi8")
+resolve_name = "Discipline"
+effect = 1
+texture_png = ExtResource("2_ulc3l")
+tooltip = "Every 5 cards played, draw an extra card."
+metadata/_custom_type_script = "uid://c8eqsslkb6yo1"

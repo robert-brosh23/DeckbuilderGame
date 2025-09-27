@@ -38,12 +38,15 @@ func _ready() -> void:
 	projects_manager = get_tree().get_first_node_in_group("projects_manager")
 	
 	hours = STARTING_HOURS
-	stress = 5
+	stress = 3
 	day = 1
 	promise_queue = CardsController.promise_queue
 	
+	await get_tree().create_timer(.2).timeout
 	for i in range(0,4):
-		projects_manager.create_project()
+		var resource := await projects_manager.get_project_resource(i)
+		projects_manager._create_project(resource, i)
+		
 	await CardsController.enqueue_create_cards(card_data_debug)
 	await CardsController.enqueue_shuffle_deck()
 	CardsController.enqueue_draw_multiple_cards(5)
@@ -51,13 +54,15 @@ func _ready() -> void:
 	
 func go_to_next_day() -> void:
 	receiving_input = false
+	main_ui.big_arrow_enabled = false
 	await CardsController.enqueue_discard_all_cards_from_hand()
 	await _set_stress_accumulation(stress_accumulation + stress)
 	day += 1
 	hours = STARTING_HOURS
-	SignalBus.new_day_started.emit()
+	SignalBus.new_day_started.emit(day)
 	receiving_input = true
 	CardsController.enqueue_draw_multiple_cards(5)
+	main_ui.big_arrow_enabled = true
 	
 func _set_stress_accumulation(value: int):
 	stress_accumulation = value

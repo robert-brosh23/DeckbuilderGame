@@ -10,7 +10,8 @@ extends Resource
 enum project_type {
 	LOGIC,
 	CREATIVITY,
-	WISDOM
+	WISDOM,
+	OBSTACLE
 }
 
 ## add a bunch of stuff here for rewards, etc

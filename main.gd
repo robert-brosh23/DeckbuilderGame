@@ -53,4 +53,4 @@ func debug_apply_progress() -> void:
 	$ProjectsManager.projects[0].progress(1)
 	
 func debug_add_new_card() -> void:
-	$CanvasLayer/CardRewardsMenu.preview_cards(CardData.CARD_TYPE.TECH)
+	$CanvasLayer/CardRewardsMenu.preview_rewards(ProjectResource.project_type.OBSTACLE)
