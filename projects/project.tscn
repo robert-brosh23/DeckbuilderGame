@@ -111,7 +111,7 @@ _data = {
 }
 
 [node name="Project" type="MarginContainer" node_paths=PackedStringArray("panel_container", "title_text", "progress_bar", "targetable_indicator", "animation_player", "step_container")]
-offset_right = 140.0
+offset_right = 182.0
 offset_bottom = 124.0
 script = ExtResource("1_hco3b")
 template = SubResource("Resource_mmp45")
@@ -167,6 +167,7 @@ autowrap_mode = 3
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_53oba")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mmp45")
 value = 50.0
@@ -193,3 +194,7 @@ libraries = {
 visible = false
 layout_mode = 2
 color = Color(1, 0.654902, 0.647059, 1)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="TargetableIndicator" to="." method="_on_targetable_indicator_mouse_entered"]
+[connection signal="mouse_exited" from="TargetableIndicator" to="." method="_on_targetable_indicator_mouse_exited"]

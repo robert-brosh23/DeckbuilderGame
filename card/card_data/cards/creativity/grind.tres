@@ -13,5 +13,5 @@ card_type = 1
 card_effect = 30
 title_font = 1
 desc_line_spacing = -2
-card_title_offset = 5
+card_title_offset = 2
 metadata/_custom_type_script = "uid://bevi4n8n1jvud"

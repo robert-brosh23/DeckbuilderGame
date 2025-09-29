@@ -12,6 +12,7 @@ const MAX_HAND_SIZE = 10
 @export var confirm_button : Button
 
 var projects_manager: ProjectsManager
+var hours_tracker: HoursTracker
 
 var promise_queue: PromiseQueue
 var hovered_card: Card = null
@@ -22,19 +23,27 @@ var selected_cards : Array[Card] = []
 var max_selected: int
 var selection_conditions : Array[Callable]
 var deck: Deck
+var cursor: Cursor
 
 enum states {READY, DRAGGING, SELECTING}
 
 func _ready() -> void:
 	projects_manager = get_tree().get_first_node_in_group("projects_manager")
+	hours_tracker = get_tree().get_first_node_in_group("hours_tracker")
 	selecting_cards_container.visible = false
 	confirm_button.focus_mode = FOCUS_NONE
 	_update_hand()
 	deck = get_tree().get_first_node_in_group("deck")
+	cursor = get_tree().get_first_node_in_group("cursor")
 	
 func _process(_delta: float) -> void:
 	_handle_input()
-
+		
+	if hovered_card != null:
+		hours_tracker.end_day_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	else:
+		hours_tracker.end_day_button.mouse_filter = Control.MOUSE_FILTER_STOP
+		
 func add_card(card: Card) -> void:
 	CardsCollection.cards_in_hand.append(card)
 	if CardsCollection.cards_in_hand.size() >= MAX_HAND_SIZE + 1:
@@ -113,6 +122,23 @@ func _handle_input() -> void:
 			
 	if state == states.DRAGGING:
 		dragged_card.global_position = get_viewport().get_mouse_position() + drag_offset
+		var mouse_pos = get_viewport().get_mouse_position()
+		if dragged_card.card_data.get_target_type() == CardData.target_type.SINGLE:
+			for project in projects_manager.projects:
+				var target := project.targetable_indicator
+				if project.targetable: 
+					if mouse_pos.y > target.global_position.y && mouse_pos.y < target.global_position.y + target.size.y && mouse_pos.x > target.global_position.x && mouse_pos.x < target.global_position.x + target.size.x:
+						target.color = Constants.COLOR_HOT_PINK
+					else:
+						target.color = Constants.COLOR_LIGHT_PINK
+		if dragged_card.card_data.get_target_type() == CardData.target_type.ALL:
+			var stylebox: StyleBox = projects_manager.get_theme_stylebox("panel")
+			if projects_manager.check_mouse_in_area(mouse_pos):
+				stylebox.bg_color = Constants.COLOR_HOT_PINK
+				projects_manager.add_theme_stylebox_override("panel", stylebox)
+			else:
+				stylebox.bg_color = Constants.COLOR_LIGHT_PINK
+				projects_manager.add_theme_stylebox_override("panel", stylebox)
 		
 	if Input.is_action_just_released("click"):
 		if state != states.DRAGGING:
@@ -225,3 +251,11 @@ func _update_hand():
 func _determine_card_separation() -> int:
 	return DEFAULT_CARD_SEPARATION / 4 + DEFAULT_CARD_SEPARATION * 3 / 4 / (CardsCollection.cards_in_hand.size() + 1)
 	
+
+
+func _on_confirm_button_mouse_entered() -> void:
+	SignalBus.node_hovered.emit(self)
+
+
+func _on_confirm_button_mouse_exited() -> void:
+	SignalBus.node_stop_hovered.emit(self)

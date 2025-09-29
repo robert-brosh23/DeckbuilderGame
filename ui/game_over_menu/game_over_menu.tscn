@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://0m0tbmbxyl4u"]
+
+[ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://fonts/m6x11.ttf" id="1_7lqk7"]
+[ext_resource type="Script" uid="uid://cd1ioou4ce4y2" path="res://ui/game_over_menu/game_over_menu.gd" id="1_lsfme"]
+[ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="2_i0pkd"]
+[ext_resource type="PackedScene" uid="uid://bf63g5uh508r6" path="res://ui/cursor/cursor.tscn" id="4_sswuq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lsfme"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_we54r"]
+bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwnkj"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[node name="GameOverMenu" type="Control" node_paths=PackedStringArray("day_label", "score_label", "retry_button", "cursor")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lsfme")
+day_label = NodePath("CanvasLayer/DayLabel")
+score_label = NodePath("CanvasLayer/ScoreLabel")
+retry_button = NodePath("CanvasLayer/RetryButton")
+cursor = NodePath("CanvasLayer/Cursor")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 646.0
+offset_bottom = 372.0
+color = Color(1, 0.905882, 0.839216, 1)
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -177.0
+offset_top = 53.0
+offset_right = 179.0
+offset_bottom = 112.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("1_7lqk7")
+theme_override_font_sizes/font_size = 32
+text = "I didn't get as much done as
+I wanted this week..."
+horizontal_alignment = 1
+
+[node name="DayLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -179.0
+offset_top = 142.0
+offset_right = 177.0
+offset_bottom = 201.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("1_7lqk7")
+theme_override_font_sizes/font_size = 32
+text = "Made it to: Day "
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -179.0
+offset_top = 181.0
+offset_right = 177.0
+offset_bottom = 240.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("1_7lqk7")
+theme_override_font_sizes/font_size = 32
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(0, 20)
+offset_left = 244.0
+offset_top = 228.0
+offset_right = 392.0
+offset_bottom = 276.0
+theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_fonts/font = ExtResource("2_i0pkd")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_lsfme")
+theme_override_styles/hover = SubResource("StyleBoxFlat_we54r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qwnkj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_we54r")
+text = "Try Again?"
+
+[node name="Cursor" parent="CanvasLayer" instance=ExtResource("4_sswuq")]
+
+[connection signal="mouse_entered" from="CanvasLayer/RetryButton" to="." method="_on_retry_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/RetryButton" to="." method="_on_retry_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/RetryButton" to="." method="_on_retry_button_pressed"]

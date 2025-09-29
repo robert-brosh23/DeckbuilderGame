@@ -2,6 +2,7 @@ class_name ResolvePreview extends Control
 
 @export var texture : TextureRect
 @export var description_label : Label
+@export var panel : Panel
 
 var resolve_data : ResolveData
 var hovering := false
@@ -18,6 +19,8 @@ func init(data: ResolveData):
 
 func _on_panel_container_mouse_entered() -> void:
 	hovering = true
+	SignalBus.node_hovered.emit(panel)
 
 func _on_panel_container_mouse_exited() -> void:
 	hovering = false
+	SignalBus.node_stop_hovered.emit(panel)

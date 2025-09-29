@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ResolveData" load_steps=3 format=3 uid="uid://e6gxr4nathe2"]
+
+[ext_resource type="Script" uid="uid://c8eqsslkb6yo1" path="res://passives/data/resolve_data.gd" id="1_q8i6f"]
+[ext_resource type="Texture2D" uid="uid://bth3ufh0q3ojf" path="res://sprites/morning-jogger.png" id="2_y5qet"]
+
+[resource]
+script = ExtResource("1_q8i6f")
+resolve_name = "Runner"
+effect = 4
+texture_png = ExtResource("2_y5qet")
+tooltip = "Every 4 creativity cards played, apply a step to targeted project and progress by number of steps."
+metadata/_custom_type_script = "uid://c8eqsslkb6yo1"

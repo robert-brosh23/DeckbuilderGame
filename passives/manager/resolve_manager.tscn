@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3pwu8oodhuxs"]
+[gd_scene load_steps=11 format=3 uid="uid://d3pwu8oodhuxs"]
 
 [ext_resource type="Script" uid="uid://dbywm4k6vrms2" path="res://passives/manager/resolve_manager.gd" id="1_ha7r0"]
 [ext_resource type="Script" uid="uid://c8eqsslkb6yo1" path="res://passives/data/resolve_data.gd" id="2_vbkc7"]
@@ -6,6 +6,9 @@
 [ext_resource type="Resource" uid="uid://cs5gcro0kiegh" path="res://passives/data/resolves/discipline.tres" id="4_c46e0"]
 [ext_resource type="Resource" uid="uid://dhkxaiidi5xjo" path="res://passives/data/resolves/spawn_point.tres" id="4_hnuj4"]
 [ext_resource type="Resource" uid="uid://dyfsqm4fx5j8b" path="res://passives/data/resolves/early_bird.tres" id="5_qwult"]
+[ext_resource type="Resource" uid="uid://clm8bhm7h1lev" path="res://passives/data/resolves/reframed_thinking.tres" id="6_a68pj"]
+[ext_resource type="Resource" uid="uid://e6gxr4nathe2" path="res://passives/data/resolves/runner.tres" id="6_keojf"]
+[ext_resource type="Resource" uid="uid://jiiuoegvj3ed" path="res://passives/data/resolves/trust.tres" id="7_rh0kf"]
 
 [sub_resource type="Resource" id="Resource_c46e0"]
 script = ExtResource("2_vbkc7")
@@ -36,4 +39,4 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("discipline", "early_bird", "spawn_point"), [ExtResource("4_c46e0"), ExtResource("5_qwult"), ExtResource("4_hnuj4")]]
+resources = [PackedStringArray("discipline", "early_bird", "reframed_thinking", "runner", "spawn_point", "trust"), [ExtResource("4_c46e0"), ExtResource("5_qwult"), ExtResource("6_a68pj"), ExtResource("6_keojf"), ExtResource("4_hnuj4"), ExtResource("7_rh0kf")]]

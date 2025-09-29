@@ -23,7 +23,7 @@ offset_bottom = -65.0
 pivot_offset = Vector2(43, 0)
 theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
 theme_override_fonts/font = ExtResource("2_rqbxk")
-text = "Cards"
+text = "Deck: 0"
 horizontal_alignment = 1
 
 [node name="ShufflingText" type="RichTextLabel" parent="."]

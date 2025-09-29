@@ -8,5 +8,5 @@ script = ExtResource("1_12m4h")
 resolve_name = "Trust"
 effect = 3
 texture_png = ExtResource("2_s1hav")
-tooltip = ""
+tooltip = "Every 3rd Wisdom card played grants 5 hours."
 metadata/_custom_type_script = "uid://c8eqsslkb6yo1"

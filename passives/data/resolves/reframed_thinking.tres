@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ResolveData" load_steps=3 format=3 uid="uid://clm8bhm7h1lev"]
+
+[ext_resource type="Script" uid="uid://c8eqsslkb6yo1" path="res://passives/data/resolve_data.gd" id="1_c7ooe"]
+[ext_resource type="Texture2D" uid="uid://d3rmgw873bfy2" path="res://sprites/puzzle_piece.png" id="2_mvkb7"]
+
+[resource]
+script = ExtResource("1_c7ooe")
+resolve_name = "Reframed Thinking"
+effect = 5
+texture_png = ExtResource("2_mvkb7")
+tooltip = "Every time a Logic card is played, draw a card"
+metadata/_custom_type_script = "uid://c8eqsslkb6yo1"

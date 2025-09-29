@@ -1,35 +1,45 @@
-[gd_scene load_steps=9 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=11 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dd5tbk86qnuwn" path="res://deck/deck.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cprtqlg155quc" path="res://hand/hand.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bwina4q0qfyxh" path="res://ui/main_ui/main_ui.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://d3pwu8oodhuxs" path="res://passives/manager/resolve_manager.tscn" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://deccv2m0rwkro" path="res://ui/hours_tracker/hours_tracker.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://bvnrpwbicsfub" path="res://discard_pile/discard_pile.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://bf63g5uh508r6" path="res://ui/cursor/cursor.tscn" id="10_efxa6"]
 [ext_resource type="PackedScene" uid="uid://b4wue7nm8cfwk" path="res://projects/projects_manager/projects_manager.tscn" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://buiy7n2187wtc" path="res://ui/card_rewards_menu/card_rewards_menu.tscn" id="21_getpj"]
 
 [node name="Main" type="Control" node_paths=PackedStringArray("deck", "hand", "discard_pile")]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 320.0
 offset_top = 180.0
-offset_right = 320.0
-offset_bottom = 180.0
+offset_right = -320.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_0xm2m")
 deck = NodePath("Deck")
 hand = NodePath("Hand")
 discard_pile = NodePath("DiscardPile")
+debug_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="MainUi" parent="CanvasLayer" instance=ExtResource("5_7mycd")]
+layer = 0
 
 [node name="CardRewardsMenu" parent="CanvasLayer" instance=ExtResource("21_getpj")]
 visible = false
 z_index = 6
+size_flags_horizontal = 4
 
 [node name="ResolveManager" parent="CanvasLayer" instance=ExtResource("8_5vw27")]
+
+[node name="Cursor" parent="CanvasLayer" instance=ExtResource("10_efxa6")]
+position = Vector2(320, 180)
 
 [node name="Background" type="ColorRect" parent="."]
 z_index = -10
@@ -49,39 +59,44 @@ color = Color(1, 0.905882, 0.839216, 1)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
-offset_left = -257.0
+offset_left = -263.0
 offset_top = -80.0
-offset_right = -257.0
+offset_right = -263.0
 offset_bottom = -80.0
 
 [node name="DiscardPile" parent="." instance=ExtResource("10_4c57u")]
 z_index = -7
-offset_left = -257.0
-offset_top = 70.0
-offset_right = -257.0
-offset_bottom = 70.0
-
-[node name="Hand" parent="." instance=ExtResource("4_lquwl")]
-layout_mode = 1
-offset_left = -322.0
-offset_top = -236.0
-offset_right = -322.0
-offset_bottom = -236.0
-
-[node name="Mural" type="ColorRect" parent="."]
-z_index = -9
-layout_mode = 0
-offset_left = 200.0
-offset_top = -43.0
-offset_right = 314.0
-offset_bottom = 174.0
-mouse_filter = 2
-color = Color(0.447059, 0.862745, 0.733333, 1)
+offset_left = -263.0
+offset_top = 83.0
+offset_right = -263.0
+offset_bottom = 83.0
 
 [node name="ProjectsManager" parent="." instance=ExtResource("15_vivmo")]
 z_index = -8
 layout_mode = 0
 offset_left = -190.0
-offset_top = -146.0
+offset_top = -126.0
 offset_right = -190.0
-offset_bottom = -146.0
+offset_bottom = -126.0
+
+[node name="MainUi" parent="." instance=ExtResource("5_7mycd")]
+layout_mode = 1
+offset_left = -204.0
+offset_top = -169.0
+offset_right = 319.52
+offset_bottom = -163.24
+
+[node name="HoursTracker" parent="." instance=ExtResource("9_kek77")]
+z_index = 1
+layout_mode = 1
+offset_left = 199.0
+offset_top = -68.0
+offset_right = 309.0
+offset_bottom = 102.0
+
+[node name="Hand" parent="." instance=ExtResource("4_lquwl")]
+layout_mode = 1
+offset_left = -184.0
+offset_top = -291.0
+offset_right = -184.0
+offset_bottom = -291.0

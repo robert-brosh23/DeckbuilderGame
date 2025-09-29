@@ -22,7 +22,7 @@ var curr_choices: Array[Card]
 var curr_resolve_choices: Array[ResolvePreview]
 
 ## Bug fix for when multiple projects are completed at the same time
-var queue_selection: Array[ProjectResource.project_type] = []
+var queue_selection: Array[ProjectResource] = []
 
 enum reward_type {
 	CARD,
@@ -64,26 +64,27 @@ func _process(delta: float) -> void:
 func add_random_obstacle_card_to_deck() -> void:
 	var pick = obstacle_card_resources_pool[randi() % obstacle_card_resources_pool.size()]
 	var card = Card.create_card(pick)
-	await CardsController._create_card(card.card_data, Vector2(580,200), 2.0)
+	await CardsController._create_card(card.card_data, Vector2(580,220), 2.0)
 
 func create_card_preview(card_data: CardData) -> Card:
 	return Card.create_card(card_data)
 
-func preview_rewards(project_type : ProjectResource.project_type = ProjectResource.project_type.OBSTACLE):
+func preview_rewards(data : ProjectResource):
 	CardsController.pause_queue()
 	await get_tree().process_frame
 	if !cards_hbox_container.get_children().is_empty():
-		queue_selection.push_back(project_type)
+		queue_selection.push_back(data)
 		return
 		
 	visible = true
-	if project_type == ProjectResource.project_type.OBSTACLE:
+	if data.type == ProjectResource.project_type.OBSTACLE:
 		preview_resolves()
 	else:
-		preview_cards(project_type)
+		preview_cards(data)
 
 func preview_resolves():
 	pick_label.text = "Resolve Strengthened!\nPick a resolution to add to your deck."
+	cards_hbox_container.add_theme_constant_override("separation", 250)
 	
 	for i in range(0,2):
 		var data := resolve_manager.get_random_resolve_data()
@@ -108,10 +109,11 @@ func resolve_picked(resolve_preview: ResolvePreview):
 	else:	
 		CardsController.unpause_queue()
 		
-func preview_cards(project_type: ProjectResource.project_type):
-	pick_label.text = "Project Completed!\nPick a card to add to your deck."
+func preview_cards(data: ProjectResource):
+	pick_label.text = data.displayName + " completed!\nPick a card to add to your deck."
+	cards_hbox_container.add_theme_constant_override("separation", 150)
 	var pool: Array[Resource]
-	match project_type:
+	match data.type:
 		ProjectResource.project_type.LOGIC:
 			pool = logic_card_resources_pool
 		ProjectResource.project_type.CREATIVITY:
@@ -167,3 +169,9 @@ func _load_cards(preloader: ResourcePreloader) -> Array[Resource]:
 func _on_skip_button_pressed() -> void:
 	resolve_picked(null)
 	card_picked(null)
+
+func _on_skip_button_mouse_entered() -> void:
+	SignalBus.node_hovered.emit(skip_button)
+
+func _on_skip_button_mouse_exited() -> void:
+	SignalBus.node_stop_hovered.emit(skip_button)

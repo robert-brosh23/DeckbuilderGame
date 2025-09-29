@@ -11,7 +11,12 @@ var card_rewards_menu: CardRewardsMenu
 var promise_queue: PromiseQueue
 var projects_manager: ProjectsManager
 var receiving_input = true
-var score = 0;
+var hours_tracker: HoursTracker
+
+var score: int = 0:
+	set(value):
+		score = value
+		main_ui.set_score_label(score)
 
 var stress: int:
 	set(value):
@@ -23,22 +28,28 @@ var stress_accumulation: int = 0
 var hours: int:
 	set(value):
 		hours = clamp(value, 0, 999)
-		main_ui.set_hours_label(hours)
+		hours_tracker.set_hours_label(hours)
 		
 var day: int:
 	set(value):
 		day = value
 		main_ui.set_day_label(day)
 
-func _ready() -> void:
+func reset():
+	ready()
+
+func ready() -> void:
 	receiving_input = false
 	await get_tree().process_frame
 	main_ui = get_tree().get_first_node_in_group("main_ui")
 	card_rewards_menu = get_tree().get_first_node_in_group("card_rewards_menu")
 	projects_manager = get_tree().get_first_node_in_group("projects_manager")
+	hours_tracker = get_tree().get_first_node_in_group("hours_tracker")
 	
+	score = 0
+	stress_accumulation = 0
 	hours = STARTING_HOURS
-	stress = 3
+	stress = 4
 	day = 1
 	promise_queue = CardsController.promise_queue
 	
@@ -54,15 +65,19 @@ func _ready() -> void:
 	
 func go_to_next_day() -> void:
 	receiving_input = false
-	main_ui.big_arrow_enabled = false
+	hours_tracker.big_arrow_enabled = false
 	await CardsController.enqueue_discard_all_cards_from_hand()
 	await _set_stress_accumulation(stress_accumulation + stress)
 	day += 1
+	main_ui.set_score_label(score)
+	
+	if main_ui.check_game_over():
+		return
 	hours = STARTING_HOURS
 	SignalBus.new_day_started.emit(day)
 	receiving_input = true
 	CardsController.enqueue_draw_multiple_cards(5)
-	main_ui.big_arrow_enabled = true
+	get_tree().create_timer(2.2).timeout.connect(func(): hours_tracker.big_arrow_enabled = true)
 	
 func _set_stress_accumulation(value: int):
 	stress_accumulation = value

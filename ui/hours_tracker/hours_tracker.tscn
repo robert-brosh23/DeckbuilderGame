@@ -1,0 +1,221 @@
+[gd_scene load_steps=10 format=3 uid="uid://deccv2m0rwkro"]
+
+[ext_resource type="Script" uid="uid://cc4574501bf3w" path="res://ui/hours_tracker/hours_tracker.gd" id="1_mr576"]
+[ext_resource type="Texture2D" uid="uid://d38jt2m2wg36" path="res://sprites/big_upwards_arrow.png" id="1_t1a0g"]
+[ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="3_wuk87"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jxcf"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsycw"]
+bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp13i"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_mr576"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrows/Arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(29, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arrows/Arrow2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(43, 158)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arrows/Arrow3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(73, 158)]
+}
+
+[sub_resource type="Animation" id="Animation_t1a0g"]
+resource_name = "wave_arrow"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrows/Arrow:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(12, 158), Vector2(12, 179)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arrows/Arrow2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(43, 158), Vector2(43, 179)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Arrows/Arrow3:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(73, 158), Vector2(73, 179)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wuk87"]
+_data = {
+&"RESET": SubResource("Animation_mr576"),
+&"wave_arrow": SubResource("Animation_t1a0g")
+}
+
+[node name="HoursTracker" type="Control" node_paths=PackedStringArray("hours_label", "end_day_button", "big_arrow", "animation_player") groups=["hours_tracker"]]
+layout_mode = 3
+anchor_top = 0.528
+anchor_right = 0.172
+anchor_bottom = 0.528
+offset_top = -190.08
+offset_right = -0.0800018
+offset_bottom = -20.08
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_mr576")
+hours_label = NodePath("MarginContainer3/VBoxContainer/HoursLabel")
+end_day_button = NodePath("MarginContainer3/VBoxContainer/End Day Button")
+big_arrow = NodePath("Arrows")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Arrows" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 6.70958
+offset_right = 40.0
+offset_bottom = 46.7096
+
+[node name="Arrow" type="TextureRect" parent="Arrows"]
+layout_mode = 2
+offset_left = 12.0
+offset_top = 158.29
+offset_right = 68.0
+offset_bottom = 323.29
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("1_t1a0g")
+stretch_mode = 2
+
+[node name="Arrow2" type="TextureRect" parent="Arrows"]
+layout_mode = 2
+offset_left = 43.0
+offset_top = 158.0
+offset_right = 99.0
+offset_bottom = 323.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("1_t1a0g")
+stretch_mode = 2
+
+[node name="Arrow3" type="TextureRect" parent="Arrows"]
+layout_mode = 2
+offset_left = 73.0
+offset_top = 158.0
+offset_right = 129.0
+offset_bottom = 323.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("1_t1a0g")
+stretch_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 109.0
+offset_right = 110.0
+offset_bottom = 165.0
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HoursLabel" type="Label" parent="MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_wuk87")
+theme_override_font_sizes/font_size = 18
+text = "Hours:"
+
+[node name="End Day Button" type="Button" parent="MarginContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_fonts/font = ExtResource("3_wuk87")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_3jxcf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bsycw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bp13i")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bsycw")
+text = "End Day"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wuk87")
+}
+
+[connection signal="mouse_entered" from="MarginContainer3/VBoxContainer/End Day Button" to="." method="_on_end_day_button_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer3/VBoxContainer/End Day Button" to="." method="_on_end_day_button_mouse_exited"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer/End Day Button" to="." method="_on_end_day_button_pressed"]

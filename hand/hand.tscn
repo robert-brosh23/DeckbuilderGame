@@ -103,3 +103,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_v40hy")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_v40hy")
 theme_override_styles/normal = SubResource("StyleBoxFlat_nrt1y")
 text = "Confirm"
+
+[connection signal="mouse_entered" from="CanvasLayer/PanelContainer/MarginContainer/SelectingCardsContainer/ConfirmButton" to="." method="_on_confirm_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/PanelContainer/MarginContainer/SelectingCardsContainer/ConfirmButton" to="." method="_on_confirm_button_mouse_exited"]

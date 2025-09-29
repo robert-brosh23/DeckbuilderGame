@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce6sdtw6lm0qd"]
+
+[ext_resource type="Script" uid="uid://bo5oaflsx83gh" path="res://ui/progress_tracker/progress_tracker.gd" id="1_5tv78"]
+[ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="1_j2po0"]
+[ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://fonts/m6x11.ttf" id="2_jd3lx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrkyi"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.933333, 0.415686, 0.486275, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k817l"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.933333, 0.415686, 0.486275, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5tv78"]
+bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+anti_aliasing = false
+
+[node name="ProgressTracker" type="PanelContainer" node_paths=PackedStringArray("score_label", "target_label", "deadline_label", "progress_bar") groups=["progress_tracker"]]
+custom_minimum_size = Vector2(118, 178)
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_rrkyi")
+script = ExtResource("1_5tv78")
+score_label = NodePath("MarginContainer/VBoxContainer/ScoreLabel")
+target_label = NodePath("MarginContainer/VBoxContainer/TargetLabel")
+deadline_label = NodePath("MarginContainer/VBoxContainer/DeadlineLabel")
+progress_bar = NodePath("MarginContainer/VBoxContainer/ProgressBar")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("1_j2po0")
+theme_override_font_sizes/font_size = 18
+text = "Score: 0"
+
+[node name="TargetLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("1_j2po0")
+theme_override_font_sizes/font_size = 18
+text = "Target: 0"
+
+[node name="DeadlineLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/normal_font = ExtResource("1_j2po0")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Deadline: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 98)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.654902, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_jd3lx")
+theme_override_styles/background = SubResource("StyleBoxFlat_k817l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5tv78")
+step = 1.0
+value = 1.0
+rounded = true
+fill_mode = 3

@@ -16,3 +16,20 @@ func move_card_node_to_deck(card: Card) -> void:
 	
 func move_card_node_to_discard(card: Card) -> void:
 	move_child(card, 0)
+
+func reset():
+	for card in cards_in_deck:
+		card.queue_free()
+	cards_in_deck.clear()
+	
+	for card in cards_in_hand:
+		card.queue_free()
+	cards_in_hand.clear()
+	
+	for card in cards_in_discard_pile:
+		card.queue_free()
+	cards_in_discard_pile.clear()
+	
+	for card in deleted_cards:
+		card.queue_free()
+	deleted_cards.clear()

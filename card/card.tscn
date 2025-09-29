@@ -166,7 +166,7 @@ layout_mode = 2
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 86.0
-offset_bottom = 187.0
+offset_bottom = 126.0
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 8
@@ -262,3 +262,6 @@ libraries = {
 }
 
 [node name="MovementTweenManager" parent="." instance=ExtResource("7_1n6wr")]
+
+[connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_panel_mouse_exited"]

@@ -5,12 +5,14 @@ var hand: Hand
 var discard_pile: DiscardPile
 var promise_queue: PromiseQueue = PromiseQueue.new()
 var main_ui: MainUi
+var hours_tracker: HoursTracker
 
-func _ready() -> void:
+func ready() -> void:
 	deck = get_tree().get_first_node_in_group("deck")
 	discard_pile = get_tree().get_first_node_in_group("discard_pile")
 	hand = get_tree().get_first_node_in_group("hand")
 	main_ui = get_tree().get_first_node_in_group("main_ui")
+	hours_tracker = get_tree().get_first_node_in_group("hours_tracker")
 	
 	deck.promise_queue = promise_queue
 	hand.promise_queue = promise_queue
@@ -53,7 +55,7 @@ func draw_card_from_deck() -> void:
 	if card == null:
 		return
 	hand.add_card(card)
-	main_ui._check_cards_playable(null, null)
+	hours_tracker._check_cards_playable(null, null)
 
 func enqueue_draw_multiple_cards(num_cards: int) -> void:
 	for i in range(0, num_cards):
@@ -75,11 +77,13 @@ func enqueue_shuffle_deck() -> Signal:
 	return result_signal
 	
 func _shuffle_deck() -> void:
+	hours_tracker.big_arrow_enabled = false
 	await get_tree().create_timer(0.5).timeout
 	deck.shuffling_label.visible = true
 	deck.shuffle_deck()
 	await get_tree().create_timer(1.0).timeout
 	deck.shuffling_label.visible = false
+	hours_tracker.big_arrow_enabled = true
 
 
 # HAND FUNCTIONS
@@ -157,3 +161,7 @@ func pause_queue() -> void:
 	
 func unpause_queue() -> void:
 	promise_queue.paused = false
+	
+func reset():
+	promise_queue.clear_queue()
+	ready()

@@ -33,6 +33,7 @@ var secret_project: ProjectResource = preload("res://projects/project_data/proje
 var card_rewards_menu: CardRewardsMenu
 var project_scene = preload("res://projects/project.tscn")
 var projects : Array[Project] = []
+var hand: Hand
 
 var preloader_dict : Dictionary[String, Array] = {
 	"Phase1-Creativity" : phase1_creativity_resources_pool,
@@ -62,7 +63,7 @@ var full_area_targeted: bool = false:
 			add_theme_stylebox_override("panel", stylebox)
 
 func _ready() -> void:
-	
+	hand = get_tree().get_first_node_in_group("hand")
 	card_rewards_menu = get_tree().get_first_node_in_group("card_rewards_menu")
 	phase1_creativity_resources_pool = _load_project_resources(phase1_creativity_preloader)
 	phase1_logic_resources_pool = _load_project_resources(phase1_logic_preloader)
@@ -116,8 +117,9 @@ func get_project_resource(grid_index : int) -> ProjectResource:
 	if proj_type == ProjectResource.project_type.OBSTACLE:
 		new_project_resource = phase1_obstacle_preloader.get_resource("obstacle_test1").duplicate()
 		if new_project_resource is ProjectResource:
-			new_project_resource.targetProgress = 15 + (GameManager.day / 5) * 5
+			new_project_resource.targetProgress = 10 + (GameManager.day / 5) * 5
 	else:
+		var target_hours : int = 4 + (GameManager.day / 5) * 2
 		if GameManager.day <= 10:
 			match proj_type:
 				ProjectResource.project_type.CREATIVITY:
@@ -148,6 +150,8 @@ func get_project_resource(grid_index : int) -> ProjectResource:
 				print("out of projects")
 				return
 			new_project_resource = project_resources_pool[randi() % project_resources_pool.size()]
+			if new_project_resource is ProjectResource:
+				new_project_resource.targetProgress = target_hours
 			project_resources_pool.erase(new_project_resource)
 			
 	return new_project_resource
@@ -167,11 +171,18 @@ func _get_project_type(grid_index: int) -> ProjectResource.project_type:
 
 func _project_finished(project: Project):
 	var grid_index = projects.find(project)
+	var data := project.template
 	projects.erase(project)
 	project.queue_free()
-	card_rewards_menu.preview_rewards(project.template.type)
+	card_rewards_menu.preview_rewards(data)
 	
-	await get_tree().create_timer(1.0).timeout
+	#await get_tree().create_timer(1.0).timeout
 	var resource = get_project_resource(grid_index)
 	_create_project(resource, grid_index)
 		
+func _on_mouse_entered() -> void:
+	if full_area_targeted || hand.dragged_card != null:
+		SignalBus.node_hovered.emit(self)
+
+func _on_mouse_exited() -> void:
+	SignalBus.node_stop_hovered.emit(self)

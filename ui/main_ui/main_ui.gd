@@ -1,38 +1,37 @@
 class_name MainUi
 extends Control
 
-@onready var hours_label := $MarginContainer/VBoxContainer2/HBoxContainer2/HoursLabel
-@onready var stress_label := $MarginContainer/VBoxContainer2/HBoxContainer/StressLabel
-@onready var stress_accumulation_bar : ProgressBar = $MarginContainer/VBoxContainer2/StressAccumulationBar
-@onready var day_label := $"MarginContainer/VBoxContainer2/HBoxContainer3/Day Label"
-@onready var score_label := $MarginContainer/VBoxContainer2/ScoreLabel
-@export var end_day_button : Button
-@export var animation_player : AnimationPlayer
-@export var big_arrow : TextureRect
+@export var day_label : Label
+@export var deadline_label : RichTextLabel
+@export var score_label : Label
+@export var target_label : Label
+@export var progress_bar : ProgressBar
 
-var big_arrow_enabled := false:
-	set(value):
-		if value:
-			_check_cards_playable(null, null)
-		else:
-			big_arrow.visible = false
+@export var stress_label : RichTextLabel
+@export var stress_accumulation_bar : ProgressBar
+@export var stress_accumulation_label : Label
 
 var shake_stress_label = false
 
+var curr_deadline_index = 0
+
+var deadlines : Array[Deadline]
+
+class Deadline:
+	var day: int
+	var target_score: int
+
+	static func create_deadline(_day: int, _target_score: int) -> Deadline:
+		var deadline = Deadline.new()
+		deadline.day = _day
+		deadline.target_score = _target_score
+		return deadline
+
+
 func _ready() -> void:
-	end_day_button.focus_mode = FOCUS_NONE
 	stress_accumulation_bar.max_value = GameManager.MAX_STRESS
 	stress_accumulation_bar.value = 0
-	big_arrow.visible = false
-	animation_player.play("wave_arrow")
-	SignalBus.card_played.connect(_check_cards_playable)
-	SignalBus.new_day_started.connect(func(day: int): 
-		#await get_tree().create_timer(1.0).timeout
-		_check_cards_playable(null, null)
-	)
-
-func set_hours_label(hours: int):
-	hours_label.text = "Hours: " + str(hours)
+	initialize_deadlines()
 	
 func set_stress_label(stress: int):
 	var text = "Stress: "
@@ -40,7 +39,6 @@ func set_stress_label(stress: int):
 		text += "[color=#ab5675][shake rate=25.0 level=15 connected=1]" + str(stress) + "[/shake][/color]"
 	else:
 		text += str(stress)
-	text += "/" + str(GameManager.MAX_STRESS)
 	stress_label.text = text
 	
 func set_stress_accumulation_bar(target_value: int):
@@ -50,6 +48,7 @@ func set_stress_accumulation_bar(target_value: int):
 	while curr_value != target_value:
 		curr_value += 1
 		await _tween_progress_bar(stress_accumulation_bar, curr_value, .25)
+		stress_accumulation_label.text = str(int(curr_value)) + "/10"
 	shake_stress_label = false
 	set_stress_label(GameManager.stress)
 		
@@ -57,28 +56,62 @@ func reset_stress_accumulation_bar():
 	shake_stress_label = true
 	set_stress_label(GameManager.stress)
 	await _tween_progress_bar(stress_accumulation_bar, 0, .5)
+	stress_accumulation_label.text = str(int(0)) + "/10"
 	shake_stress_label = false
 	set_stress_label(GameManager.stress)
 
 func set_day_label(day: int):
 	day_label.text = "Day : " + str(day)
 	
-func set_score_label(score: int):
-	score_label.text = "Score : " + str(score)
-
-func _on_end_day_button_pressed() -> void:
-	if !CardsController.receiving_input():
-		return
-	big_arrow.visible = false
-	GameManager.go_to_next_day()
-	
 func _tween_progress_bar(bar: ProgressBar, new_value: float, duration: float = 0.5) -> void:
 	var tween := get_tree().create_tween()
 	await tween.tween_property(bar, "value", new_value, duration).set_trans(Tween.TRANS_LINEAR).finished
 	
-func _check_cards_playable(c: Card, project: Project):
-	for card in CardsCollection.cards_in_hand:
-		if card != c && card.card_data.get_target_type() != CardData.target_type.UNPLAYABLE && card.cost <= GameManager.hours:
-			big_arrow.visible = false
-			return
-	big_arrow.visible = true
+func set_score_label(score: int):
+	score_label.text = "Score : " + str(score)
+	
+	if curr_deadline_index == deadlines.size():
+		progress_bar.value = deadlines.back().target_score
+		print("You win")
+		return
+		
+	if score >= deadlines[curr_deadline_index].target_score:
+		deadline_met(score)
+		return
+	
+	target_label.text = "Target: " + str(deadlines[curr_deadline_index].target_score)
+	
+	if GameManager.day != deadlines[curr_deadline_index].day:
+		deadline_label.text = "Deadline: Day " + str(deadlines[curr_deadline_index].day)
+	else:
+		deadline_label.text = "Deadline: [color=#ab5675][shake rate=25.0 level=15 connected=1]Day " + str(deadlines[curr_deadline_index].day) + "[/shake][/color]"
+		
+	var previous_target = 0
+	if curr_deadline_index != 0:
+		previous_target = deadlines[curr_deadline_index - 1].target_score
+	progress_bar.min_value = previous_target
+	progress_bar.max_value = deadlines[curr_deadline_index].target_score
+	progress_bar.value = score
+
+func deadline_met(score: int):
+	curr_deadline_index += 1
+	set_score_label(score)
+	
+func check_game_over() -> bool:
+	if deadlines[curr_deadline_index].day < GameManager.day:
+		get_tree().change_scene_to_file("res://ui/game_over_menu/game_over_menu.tscn")
+		return true
+	return false
+		
+func initialize_deadlines():
+	deadlines.append_array(
+		[
+			Deadline.create_deadline(10,25),
+			Deadline.create_deadline(20,60),
+			Deadline.create_deadline(30,150),
+			Deadline.create_deadline(40,300),
+			Deadline.create_deadline(50,600)
+		]
+	)
+	curr_deadline_index = 0
+	set_score_label(0)

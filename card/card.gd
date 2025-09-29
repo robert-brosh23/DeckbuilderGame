@@ -35,6 +35,7 @@ var promise_queue: PromiseQueue
 var projects_manager: ProjectsManager
 var card_rewards_menu: CardRewardsMenu
 var main_ui: MainUi
+var hours_tracker: HoursTracker
 
 var cost := 0
 
@@ -56,6 +57,7 @@ func _ready() -> void:
 	projects_manager = get_tree().get_first_node_in_group("projects_manager")
 	card_rewards_menu = get_tree().get_first_node_in_group("card_rewards_menu")
 	main_ui = get_tree().get_first_node_in_group("main_ui")
+	hours_tracker = get_tree().get_first_node_in_group("hours_tracker")
 	animation_player.speed_scale = 1.0 / Globals.animation_speed_scale
 	calibrate_cost()
 	apply_card_visual_faceup()
@@ -400,7 +402,7 @@ func _forgot_my_lunch_reset_card_played(card: Card, target: Project):
 		var callable : Callable = connection["callable"]
 		if callable.get_method() == "_forgot_my_lunch_reset_new_day":
 			SignalBus.new_day_started.disconnect(_forgot_my_lunch_reset_new_day)
-	main_ui._check_cards_playable(null, null)
+	hours_tracker._check_cards_playable(null, null)
 	
 func _forgot_my_lunch_reset_new_day(day: int):
 	_forgot_my_lunch_reset_card_played(null, null)
@@ -417,7 +419,7 @@ func _execute_revision(target: Project):
 	for i in range (projects_manager.projects.size() - 1, -1, -1):
 		if projects_manager.projects[i] == target:
 			continue
-		projects_manager.projects[i].progress(split_progress)
+		await projects_manager.projects[i].progress(split_progress)
 		
 func _execute_syncing_up(target: Project):
 	target.progress(3)
@@ -458,3 +460,9 @@ func _execute_routine():
 func _draw_effect_anxiety():
 	game_manager.stress += 1
 	
+func _on_panel_mouse_entered() -> void:
+	if state == states.READY || state == states.DRAGGING || state == states.PREVIEW_PICKING:
+		SignalBus.node_hovered.emit(panel)
+
+func _on_panel_mouse_exited() -> void:
+	SignalBus.node_stop_hovered.emit(panel)

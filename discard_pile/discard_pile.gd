@@ -1,6 +1,8 @@
 class_name DiscardPile
 extends Control
 
+@export var card_amount_label: Label
+
 ## Cards appended to the discard pile are pushed to the front of cards array
 func add_card(card: Card) -> void:
 	CardsCollection.cards_in_discard_pile.push_front(card)
@@ -9,6 +11,7 @@ func add_card(card: Card) -> void:
 	_update_z_indexes()
 	card.movement_tween_manager.tween_to_pos(card, self.global_position, 1.0)
 	card.visible = true
+	_update_card_number_text()
 	
 func remove_card_from_discard_pile(index: int) -> Card:
 	if index >= CardsCollection.cards_in_discard_pile.size():
@@ -17,6 +20,7 @@ func remove_card_from_discard_pile(index: int) -> Card:
 	var card = CardsCollection.cards_in_discard_pile[index]
 	CardsCollection.cards_in_discard_pile.remove_at(index)
 	_update_z_indexes()
+	_update_card_number_text()
 	return card
 	
 func remove_all_cards_from_discard_pile() -> Array[Card]:
@@ -24,8 +28,13 @@ func remove_all_cards_from_discard_pile() -> Array[Card]:
 	while CardsCollection.cards_in_discard_pile.size() > 0:
 		var card = remove_card_from_discard_pile(0)
 		arr.append(card)
+	_update_card_number_text()
 	return arr
 
 func _update_z_indexes() -> void:
 	for i in range(0, CardsCollection.cards_in_discard_pile.size(), 1):
 		CardsCollection.cards_in_discard_pile[i].z_index = CardsCollection.cards_in_discard_pile.size() - i
+
+func _update_card_number_text() -> void:
+	card_amount_label.text = "Discard Pile: " + str(CardsCollection.cards_in_discard_pile.size())
+	

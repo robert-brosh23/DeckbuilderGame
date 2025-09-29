@@ -1,92 +1,86 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwina4q0qfyxh"]
+[gd_scene load_steps=10 format=3 uid="uid://bwina4q0qfyxh"]
 
 [ext_resource type="Script" uid="uid://cyk53h2et7dc" path="res://ui/main_ui/main_ui.gd" id="1_7miss"]
 [ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://fonts/m6x11.ttf" id="2_3jxcf"]
 [ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="3_3jxcf"]
-[ext_resource type="Texture2D" uid="uid://d38jt2m2wg36" path="res://sprites/big_upwards_arrow.png" id="4_bsycw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrkyi"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.933333, 0.415686, 0.486275, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k817l"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.933333, 0.415686, 0.486275, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wci7t"]
+bg_color = Color(1, 0.654902, 0.647059, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.933333, 0.415686, 0.486275, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybayk"]
+bg_color = Color(1, 0.655, 0.647, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_color = Color(0.933333, 0.415686, 0.486275, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_df82o"]
-bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+bg_color = Color(1, 0.655, 0.647, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.933333, 0.415686, 0.486275, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_622d5"]
 bg_color = Color(0.670588, 0.337255, 0.458824, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.933333, 0.415686, 0.486275, 1)
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jxcf"]
-bg_color = Color(0.447059, 0.862745, 0.733333, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsycw"]
-bg_color = Color(0.933333, 0.415686, 0.486275, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp13i"]
-bg_color = Color(0.447059, 0.862745, 0.733333, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
-
-[sub_resource type="Animation" id="Animation_c7c5c"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/VBoxContainer2/Spacer:custom_minimum_size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 5)]
-}
-
-[sub_resource type="Animation" id="Animation_bp13i"]
-resource_name = "wave_arrow"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/VBoxContainer2/Spacer:custom_minimum_size")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rrkyi"]
-_data = {
-&"RESET": SubResource("Animation_c7c5c"),
-&"wave_arrow": SubResource("Animation_bp13i")
-}
-
-[node name="MainUi" type="Control" node_paths=PackedStringArray("end_day_button", "animation_player", "big_arrow") groups=["main_ui"]]
+[node name="MainUi" type="Control" node_paths=PackedStringArray("day_label", "deadline_label", "score_label", "target_label", "progress_bar", "stress_label", "stress_accumulation_bar", "stress_accumulation_label") groups=["main_ui"]]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchor_left = 0.81
+anchor_top = 0.016
+anchor_right = 0.992
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -518.4
+offset_top = -5.76
+offset_right = 5.12
+grow_horizontal = 0
 mouse_filter = 2
 script = ExtResource("1_7miss")
-end_day_button = NodePath("MarginContainer/VBoxContainer2/End Day Button")
-animation_player = NodePath("AnimationPlayer")
-big_arrow = NodePath("MarginContainer/VBoxContainer2/HBoxContainer4/Arrow")
+day_label = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DayLabel")
+deadline_label = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/DeadlineLabel")
+score_label = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/ScoreLabel")
+target_label = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/TargetLabel")
+progress_bar = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/ProgressBar")
+stress_label = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/StressLabel")
+stress_accumulation_bar = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/StressAccumulationBar")
+stress_accumulation_label = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/StressAccumulationLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -94,49 +88,136 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -126.0
-offset_bottom = 136.0
+offset_bottom = 232.0
 grow_horizontal = 0
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rrkyi")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = -4
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer2"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
 theme_override_fonts/font = ExtResource("3_3jxcf")
 theme_override_font_sizes/font_size = 18
 text = "Score: 0"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="TargetLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Day Label" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
-theme_override_fonts/font = ExtResource("2_3jxcf")
-theme_override_font_sizes/font_size = 16
-text = "Day: "
+theme_override_fonts/font = ExtResource("3_3jxcf")
+theme_override_font_sizes/font_size = 18
+text = "Target: 50"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="DayLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_3jxcf")
+theme_override_font_sizes/font_size = 18
+text = "Day: 1"
 
-[node name="StressLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 70)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.654902, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_3jxcf")
+theme_override_styles/background = SubResource("StyleBoxFlat_k817l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wci7t")
+step = 1.0
+value = 1.0
+rounded = true
+fill_mode = 3
+show_percentage = false
+
+[node name="DeadlineLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0.933333, 0.415686, 0.486275, 1)
 theme_override_fonts/normal_font = ExtResource("3_3jxcf")
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
-text = "Stress: [color=#ab5675][shake rate=25.0 level=15 connected=1]5[/shake][/color]/10"
+text = "Deadline: Day 10"
 fit_content = true
 autowrap_mode = 0
 
-[node name="StressAccumulationBar" type="ProgressBar" parent="MarginContainer/VBoxContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ybayk")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="StressLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/normal_font = ExtResource("3_3jxcf")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Stress: [color=#ab5675][shake rate=25.0 level=15 connected=1]5[/shake][/color]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AccumulationLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/normal_font = ExtResource("3_3jxcf")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Next Obstacle:"
+fit_content = true
+autowrap_mode = 0
+
+[node name="StressAccumulationBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 14)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_df82o")
@@ -145,48 +226,9 @@ max_value = 20.0
 value = 10.0
 show_percentage = false
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
-layout_mode = 2
-
-[node name="HoursLabel" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer2"]
+[node name="StressAccumulationLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
 theme_override_fonts/font = ExtResource("2_3jxcf")
-theme_override_font_sizes/font_size = 16
-text = "Hours:"
-
-[node name="End Day Button" type="Button" parent="MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
-theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
-theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
-theme_override_fonts/font = ExtResource("3_3jxcf")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_3jxcf")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bsycw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_bp13i")
-theme_override_styles/normal = SubResource("StyleBoxFlat_bsycw")
-text = "End Day"
-
-[node name="Spacer" type="ColorRect" parent="MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
-layout_mode = 2
-alignment = 1
-
-[node name="Arrow" type="TextureRect" parent="MarginContainer/VBoxContainer2/HBoxContainer4"]
-layout_mode = 2
-texture = ExtResource("4_bsycw")
-stretch_mode = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_rrkyi")
-}
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer2/End Day Button" to="." method="_on_end_day_button_pressed"]
+text = "0/10"
+horizontal_alignment = 1

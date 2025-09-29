@@ -59,7 +59,7 @@ func show_too_many_label() -> void:
 	too_many_label_timer.time_left = 1.0
 	
 func _update_card_number_text() -> void:
-	card_amount_label.text = "Cards: " + str(CardsCollection.cards_in_deck.size())
+	card_amount_label.text = "Deck: " + str(CardsCollection.cards_in_deck.size())
 		
 func _update_top_card_z_index() -> void:
 	if CardsCollection.cards_in_deck.size() == 0:

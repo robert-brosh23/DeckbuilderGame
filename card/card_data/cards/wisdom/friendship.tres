@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_f5i0t")
 card_name = "Friendship"
-card_cost = 5
+card_cost = 4
 card_png = ExtResource("1_j15w1")
 card_description = "Reduce stress by 1, then reduce the cost of this card by 1."
 card_type = 2

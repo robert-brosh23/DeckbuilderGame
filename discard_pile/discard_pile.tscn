@@ -1,9 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvnrpwbicsfub"]
+[gd_scene load_steps=3 format=3 uid="uid://bvnrpwbicsfub"]
 
 [ext_resource type="Script" uid="uid://t5fbfihg7l2j" path="res://discard_pile/discard_pile.gd" id="1_ju4ac"]
+[ext_resource type="FontFile" uid="uid://c6lfcmqrq1huc" path="res://fonts/m3x6.ttf" id="2_mftcq"]
 
-[node name="DiscardPile" type="Control" groups=["discard_pile"]]
+[node name="DiscardPile" type="Control" node_paths=PackedStringArray("card_amount_label") groups=["discard_pile"]]
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ju4ac")
+card_amount_label = NodePath("CardAmountLabel")
+
+[node name="CardAmountLabel" type="Label" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = -43.0
+offset_top = -82.0
+offset_right = 45.0
+offset_bottom = -67.0
+pivot_offset = Vector2(43, 0)
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("2_mftcq")
+text = "Discard Pile: 0"
+horizontal_alignment = 1

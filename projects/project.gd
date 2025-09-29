@@ -21,6 +21,8 @@ var target_progress : int
 var targetable := false
 var active := false
 var main_ui : MainUi
+var progress_tracker : ProgressTracker
+var hand: Hand
 
 
 static func create_project(template: ProjectResource) -> Project:
@@ -71,7 +73,6 @@ func _project_completed():
 	_toggle_fill_bar_border_right(true)
 	
 	GameManager.score += target_progress
-	main_ui.set_score_label(GameManager.score)
 	print("project ", template.displayName, " completed.")
 	# animation_player.play("destroy_project")
 	active = false
@@ -130,4 +131,12 @@ func _clear_steps() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	main_ui = get_tree().get_first_node_in_group("main_ui")
-	print("project created")
+	progress_tracker = get_tree().get_first_node_in_group("progress_tracker")
+	hand = get_tree().get_first_node_in_group("hand")
+
+func _on_targetable_indicator_mouse_entered() -> void:
+	if targetable || hand.dragged_card != null:
+		SignalBus.node_hovered.emit(targetable_indicator)
+
+func _on_targetable_indicator_mouse_exited() -> void:
+	SignalBus.node_stop_hovered.emit(targetable_indicator)

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_dyvi8")
-resolve_name = "Discipline"
+resolve_name = "Rational Discipline"
 effect = 1
 texture_png = ExtResource("2_ulc3l")
 tooltip = "Every 5 cards played, draw an extra card."
