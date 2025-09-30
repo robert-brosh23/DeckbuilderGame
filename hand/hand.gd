@@ -121,6 +121,16 @@ func _handle_input() -> void:
 			dragged_card = hovered_card
 			drag_offset = hovered_card.global_position - get_viewport().get_mouse_position()
 			_show_target_area(hovered_card)
+		else:
+			for node in cursor.hovering_nodes:
+				if node.get_parent() is Card:
+					var c : Card = node.get_parent()
+					c.state = Card.states.DRAGGING
+					c.movement_tween_manager.pos_tween.stop()
+					state = states.DRAGGING
+					dragged_card = c
+					drag_offset = c.global_position - get_viewport().get_mouse_position()
+					_show_target_area(c)
 			
 	if state == states.DRAGGING:
 		dragged_card.global_position = get_viewport().get_mouse_position() + drag_offset

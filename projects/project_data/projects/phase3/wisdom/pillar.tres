@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://cug08sdct6k24"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_mlof3"]
+
+[resource]
+script = ExtResource("1_mlof3")
+displayName = "Become a pillar of the community"
+type = 2
+targetProgress = 40
+metadata/_custom_type_script = "uid://b510bgcr8u41m"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://c4qgoegex28ij"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_q2da0"]
+
+[resource]
+script = ExtResource("1_q2da0")
+displayName = "Knit a scarf"
+type = 1
+targetProgress = 7
+metadata/_custom_type_script = "uid://b510bgcr8u41m"

@@ -49,6 +49,11 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2r0d"]
 bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -57,24 +62,24 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u184e"]
 bg_color = Color(1, 0.905882, 0.839216, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(1, 0.905882, 0.839216, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mijq"]
 bg_color = Color(1, 0.905882, 0.839216, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(1, 0.905882, 0.839216, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i5wg5"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("cursor", "start_button", "options_button", "credits_button", "credits_return_to_main_button", "options_return_to_main_button", "main_menu_screen", "credits_menu_screen", "options_menu_screen")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("cursor", "start_button", "options_button", "credits_button", "credits_return_to_main_button", "options_return_to_main_button", "master_volume_slider", "music_volume_slider", "sfx_volume_slider", "main_menu_screen", "credits_menu_screen", "options_menu_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,6 +93,9 @@ options_button = NodePath("CanvasLayer/MainMenuScreen/Options")
 credits_button = NodePath("CanvasLayer/MainMenuScreen/Credits")
 credits_return_to_main_button = NodePath("CanvasLayer/CreditsMenuScreen/VBoxContainer/CreditsReturnToMain")
 options_return_to_main_button = NodePath("CanvasLayer/OptionsMenuScreen/VBoxContainer/OptionsReturnToMain")
+master_volume_slider = NodePath("CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer/MarginContainer/MasterVolumeSlider")
+music_volume_slider = NodePath("CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer2/MarginContainer/MusicVolumeSlider")
+sfx_volume_slider = NodePath("CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer3/MarginContainer/SfxVolumeSlider")
 main_menu_screen = NodePath("CanvasLayer/MainMenuScreen")
 credits_menu_screen = NodePath("CanvasLayer/CreditsMenuScreen")
 options_menu_screen = NodePath("CanvasLayer/OptionsMenuScreen")
@@ -279,28 +287,31 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 11
+columns = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
 theme_override_fonts/font = ExtResource("3_i5wg5")
 theme_override_font_sizes/font_size = 32
-text = "Master Volume"
+text = "Master Volume:"
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w2r0d")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = -2
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = -2
 
-[node name="HSlider" type="HSlider" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+[node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -315,6 +326,77 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_i5wg5"
 min_value = -40.0
 max_value = 0.0
 step = 0.1
+value = -15.0
+
+[node name="Label2" type="Label" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_i5wg5")
+theme_override_font_sizes/font_size = 32
+text = "Music Volume:"
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w2r0d")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = -2
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer2/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("4_3c04x")
+theme_override_icons/grabber_highlight = ExtResource("4_3c04x")
+theme_override_icons/grabber_disabled = ExtResource("4_3c04x")
+theme_override_icons/tick = ExtResource("4_3c04x")
+theme_override_styles/slider = SubResource("StyleBoxFlat_u184e")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_6mijq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_i5wg5")
+min_value = -40.0
+max_value = 0.0
+step = 0.1
+value = -15.0
+
+[node name="Label3" type="Label" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_i5wg5")
+theme_override_font_sizes/font_size = 32
+text = "Effects Volume:"
+
+[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w2r0d")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = -2
+
+[node name="SfxVolumeSlider" type="HSlider" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer3/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("4_3c04x")
+theme_override_icons/grabber_highlight = ExtResource("4_3c04x")
+theme_override_icons/grabber_disabled = ExtResource("4_3c04x")
+theme_override_icons/tick = ExtResource("4_3c04x")
+theme_override_styles/slider = SubResource("StyleBoxFlat_u184e")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_6mijq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_i5wg5")
+min_value = -40.0
+max_value = 0.0
+step = 0.1
+value = -15.0
 
 [node name="OptionsReturnToMain" type="Button" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer"]
 custom_minimum_size = Vector2(300, 60)
@@ -348,6 +430,9 @@ metadata/_edit_use_anchors_ = true
 [connection signal="mouse_entered" from="CanvasLayer/CreditsMenuScreen/VBoxContainer/CreditsReturnToMain" to="." method="_on_credits_return_to_main_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CreditsMenuScreen/VBoxContainer/CreditsReturnToMain" to="." method="_on_credits_return_to_main_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/CreditsMenuScreen/VBoxContainer/CreditsReturnToMain" to="." method="_on_credits_return_to_main_pressed"]
+[connection signal="value_changed" from="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer/MarginContainer/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer2/MarginContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/OptionsMenuScreen/VBoxContainer/GridContainer/PanelContainer3/MarginContainer/SfxVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
 [connection signal="mouse_entered" from="CanvasLayer/OptionsMenuScreen/VBoxContainer/OptionsReturnToMain" to="." method="_on_options_return_to_main_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/OptionsMenuScreen/VBoxContainer/OptionsReturnToMain" to="." method="_on_options_return_to_main_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/OptionsMenuScreen/VBoxContainer/OptionsReturnToMain" to="." method="_on_options_return_to_main_pressed"]

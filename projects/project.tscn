@@ -18,7 +18,7 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.670588, 0.337255, 0.458824, 1)
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -31,7 +31,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.670588, 0.337255, 0.458824, 1)
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmp45"]
@@ -39,7 +39,7 @@ bg_color = Color(0.447059, 0.862745, 0.733333, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_bottom = 1
-border_color = Color(0.670588, 0.337255, 0.458824, 1)
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 anti_aliasing = false
 
 [sub_resource type="Animation" id="Animation_mchcn"]

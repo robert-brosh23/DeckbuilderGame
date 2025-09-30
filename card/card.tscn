@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bu8nv7leim8od"]
+[gd_scene load_steps=16 format=3 uid="uid://bu8nv7leim8od"]
 
 [ext_resource type="Script" uid="uid://b4h4dbu2ryb06" path="res://card/card.gd" id="1_ply2h"]
 [ext_resource type="Texture2D" uid="uid://djnq5q44dua12" path="res://sprites/meditation.png" id="2_1n6wr"]
@@ -32,9 +32,6 @@ expand_margin_left = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 2.0
 anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1n6wr"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="Animation" id="Animation_ags6k"]
 length = 0.001
@@ -188,6 +185,7 @@ theme_override_constants/margin_bottom = 1
 [node name="CostPanel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer"]
 custom_minimum_size = Vector2(9, 9)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_6xkbt")
 
 [node name="CostLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer/CostPanel"]
@@ -230,10 +228,11 @@ theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 1
 
-[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/SpacerContainer"]
+[node name="Panel" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/SpacerContainer"]
 custom_minimum_size = Vector2(9, 9)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1n6wr")
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [node name="PanelContainer" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2

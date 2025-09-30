@@ -1,88 +1,57 @@
-[gd_scene load_steps=52 format=3 uid="uid://b4wue7nm8cfwk"]
+[gd_scene load_steps=51 format=3 uid="uid://b4wue7nm8cfwk"]
 
 [ext_resource type="Script" uid="uid://cdai6dvhv8shq" path="res://projects/projects_manager/projects_manager.gd" id="1_2em2g"]
 [ext_resource type="Resource" uid="uid://d0n6vjrbj4tc" path="res://projects/project_data/projects/phase1/wisdom/community.tres" id="2_4dd4q"]
 [ext_resource type="Resource" uid="uid://bflpxhp0rk0wk" path="res://projects/project_data/projects/phase1/creativity/finish_painting.tres" id="3_sw7b3"]
 [ext_resource type="Resource" uid="uid://b5eq7ntasjcgb" path="res://projects/project_data/projects/phase1/logic/cooking.tres" id="4_qproj"]
 [ext_resource type="Resource" uid="uid://dmoq6rqtgvyh2" path="res://projects/project_data/projects/phase1/creativity/guitar.tres" id="5_o0dh3"]
-[ext_resource type="Resource" uid="uid://c4qgoegex28ij" path="res://projects/project_data/projects/phase1/creativity/project1.tres" id="5_vwoe1"]
-[ext_resource type="Resource" uid="uid://domop0uv3p2c0" path="res://projects/project_data/projects/phase1/creativity/project2.tres" id="6_x0pgd"]
-[ext_resource type="Resource" uid="uid://bh71rbgksaxtx" path="res://projects/project_data/projects/phase1/creativity/project3.tres" id="7_t668b"]
-[ext_resource type="Resource" uid="uid://ckqh8vr8gg0ur" path="res://projects/project_data/projects/phase1/creativity/project4.tres" id="8_5tyqi"]
+[ext_resource type="Resource" uid="uid://c4qgoegex28ij" path="res://projects/project_data/projects/phase1/creativity/scarf.tres" id="5_vwoe1"]
+[ext_resource type="Resource" uid="uid://domop0uv3p2c0" path="res://projects/project_data/projects/phase1/creativity/sew.tres" id="6_x0pgd"]
+[ext_resource type="Resource" uid="uid://bh71rbgksaxtx" path="res://projects/project_data/projects/phase1/creativity/mug.tres" id="7_t668b"]
+[ext_resource type="Resource" uid="uid://ckqh8vr8gg0ur" path="res://projects/project_data/projects/phase1/creativity/self_portrait.tres" id="8_5tyqi"]
 [ext_resource type="Resource" uid="uid://b0tt8isxfloo7" path="res://projects/project_data/projects/phase1/wisdom/philosophy.tres" id="8_dvxd2"]
-[ext_resource type="Resource" uid="uid://7f0uqgt76r0r" path="res://projects/project_data/projects/phase1/creativity/project5.tres" id="9_5cuq1"]
-[ext_resource type="Resource" uid="uid://4d512fn1xorq" path="res://projects/project_data/projects/phase1/creativity/learn_animation.tres" id="10_dvxd2"]
+[ext_resource type="Resource" uid="uid://7f0uqgt76r0r" path="res://projects/project_data/projects/phase1/creativity/design_wardrobe.tres" id="9_5cuq1"]
+[ext_resource type="Resource" uid="uid://c3k4ly56as4y5" path="res://projects/project_data/projects/phase1/logic/board_game.tres" id="10_4edsc"]
+[ext_resource type="Resource" uid="uid://4d512fn1xorq" path="res://projects/project_data/projects/phase2/creativity/learn_animation.tres" id="10_dvxd2"]
 [ext_resource type="Resource" uid="uid://bkir8ed1wqnsi" path="res://projects/project_data/projects/phase1/logic/chores.tres" id="11_vwoe1"]
-[ext_resource type="Resource" uid="uid://bofydfts5cafj" path="res://projects/project_data/projects/phase1/logic/project10.tres" id="13_dvxd2"]
-[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="13_qproj"]
-[ext_resource type="Resource" uid="uid://kesteaj8pm4s" path="res://projects/project_data/projects/phase1/logic/project6.tres" id="14_pl7mh"]
+[ext_resource type="Resource" uid="uid://bofydfts5cafj" path="res://projects/project_data/projects/phase3/logic/weight.tres" id="13_dvxd2"]
+[ext_resource type="Resource" uid="uid://kesteaj8pm4s" path="res://projects/project_data/projects/phase1/logic/goldfish.tres" id="14_pl7mh"]
 [ext_resource type="Resource" uid="uid://krw46kmqtaj1" path="res://projects/project_data/projects/phase1/creativity/write_story.tres" id="15_5cuq1"]
-[ext_resource type="Resource" uid="uid://b13c7u7k12o12" path="res://projects/project_data/projects/phase1/logic/project7.tres" id="15_tdabf"]
-[ext_resource type="Resource" uid="uid://bh1y5lpw2su6t" path="res://projects/project_data/projects/phase1/logic/project8.tres" id="16_vwoe1"]
-[ext_resource type="Resource" uid="uid://dl8cwi0syjrfk" path="res://projects/project_data/projects/phase1/logic/project9.tres" id="17_x0pgd"]
+[ext_resource type="Resource" uid="uid://b13c7u7k12o12" path="res://projects/project_data/projects/phase1/logic/videogame.tres" id="15_tdabf"]
+[ext_resource type="Resource" uid="uid://bh1y5lpw2su6t" path="res://projects/project_data/projects/phase1/wisdom/talk_to_cat.tres" id="16_vwoe1"]
+[ext_resource type="Resource" uid="uid://dl8cwi0syjrfk" path="res://projects/project_data/projects/phase1/logic/gym.tres" id="17_x0pgd"]
+[ext_resource type="Resource" uid="uid://b31nus6q14bn4" path="res://projects/project_data/projects/phase1/wisdom/dream_journal.tres" id="18_6veqc"]
 [ext_resource type="Resource" uid="uid://cd1uto7tgdvv8" path="res://projects/project_data/projects/phase1/obstacle/obstacle_test1.tres" id="21_pl7mh"]
-[ext_resource type="Resource" uid="uid://cpnxntyo6h2vx" path="res://projects/project_data/projects/phase2/creativity/phase2create1.tres" id="22_f36js"]
-[ext_resource type="Resource" uid="uid://bk4yw0h4nlvbr" path="res://projects/project_data/projects/phase2/creativity/phase2create2.tres" id="23_rgd73"]
+[ext_resource type="Resource" uid="uid://dswe37gehdw3t" path="res://projects/project_data/projects/phase1/wisdom/photo_book.tres" id="21_w3ay0"]
+[ext_resource type="Resource" uid="uid://cpnxntyo6h2vx" path="res://projects/project_data/projects/phase2/logic/game_prototype.tres" id="22_f36js"]
+[ext_resource type="Resource" uid="uid://dh5nk2fjstdb4" path="res://projects/project_data/projects/phase1/wisdom/plan_vacation.tres" id="22_vq4i1"]
+[ext_resource type="Resource" uid="uid://bk4yw0h4nlvbr" path="res://projects/project_data/projects/phase2/creativity/poster.tres" id="23_rgd73"]
 [ext_resource type="Resource" uid="uid://yng31fkpksrc" path="res://projects/project_data/projects/phase2/creativity/pixel_art.tres" id="24_74otn"]
+[ext_resource type="Resource" uid="uid://chb6ijtg20a4q" path="res://projects/project_data/projects/phase1/wisdom/workshop.tres" id="24_uswjr"]
 [ext_resource type="Resource" uid="uid://dvbax7yejq572" path="res://projects/project_data/projects/phase2/creativity/sketchbook.tres" id="25_f8gv0"]
 [ext_resource type="Resource" uid="uid://kprefjpqucap" path="res://projects/project_data/projects/phase2/logic/learn_programming.tres" id="26_4edsc"]
 [ext_resource type="Resource" uid="uid://cg6l17r0yxtr1" path="res://projects/project_data/projects/phase2/logic/swim.tres" id="27_6veqc"]
 [ext_resource type="Resource" uid="uid://dyilclg5vnbx7" path="res://projects/project_data/projects/phase2/logic/train_for_5k.tres" id="28_w3ay0"]
-[ext_resource type="Resource" uid="uid://clvm7tu0lnpu0" path="res://projects/project_data/projects/phase2/logic/website.tres" id="29_vq4i1"]
+[ext_resource type="Resource" uid="uid://clvm7tu0lnpu0" path="res://projects/project_data/projects/phase3/logic/website.tres" id="29_vq4i1"]
 [ext_resource type="Resource" uid="uid://cwaskbj75nbwd" path="res://projects/project_data/projects/phase2/wisdom/host_dnd.tres" id="30_uswjr"]
 [ext_resource type="Resource" uid="uid://bbetmw5200kvk" path="res://projects/project_data/projects/phase2/wisdom/journal.tres" id="31_vm55c"]
 [ext_resource type="Resource" uid="uid://sxdnxclkv1u6" path="res://projects/project_data/projects/phase2/wisdom/reconnect.tres" id="32_ox3cq"]
 [ext_resource type="Resource" uid="uid://dhwrby2hxhmts" path="res://projects/project_data/projects/phase2/wisdom/volunteer_soup.tres" id="33_o5jdt"]
-[ext_resource type="Resource" uid="uid://dwahvpkmkx417" path="res://projects/project_data/projects/phase3/creativity/phase3creativity1placeholder.tres" id="34_182f7"]
-[ext_resource type="Resource" uid="uid://bkf0c8oqebbxa" path="res://projects/project_data/projects/phase3/creativity/phase3creativity1placeholder2.tres" id="35_ahes3"]
-[ext_resource type="Resource" uid="uid://c1cwv6geaasx3" path="res://projects/project_data/projects/phase3/creativity/phase3creativityplaceholder3.tres" id="36_ruwvn"]
-[ext_resource type="Resource" uid="uid://bcb1bpjhwjgjt" path="res://projects/project_data/projects/phase3/creativity/phase3creativityplaceholder4.tres" id="37_bshh2"]
+[ext_resource type="Resource" uid="uid://dwahvpkmkx417" path="res://projects/project_data/projects/phase3/creativity/record_ep.tres" id="34_182f7"]
+[ext_resource type="Resource" uid="uid://bkf0c8oqebbxa" path="res://projects/project_data/projects/phase3/creativity/video_channel.tres" id="35_ahes3"]
+[ext_resource type="Resource" uid="uid://c1cwv6geaasx3" path="res://projects/project_data/projects/phase3/creativity/exhibit.tres" id="36_ruwvn"]
+[ext_resource type="Resource" uid="uid://bcb1bpjhwjgjt" path="res://projects/project_data/projects/phase3/creativity/short_film.tres" id="37_bshh2"]
 [ext_resource type="Resource" uid="uid://k50od3v6deh" path="res://projects/project_data/projects/phase3/logic/game_jam.tres" id="38_b4q01"]
-[ext_resource type="Resource" uid="uid://dk77xms0mb30p" path="res://projects/project_data/projects/phase3/logic/phase3logicplaceholder1.tres" id="39_k4urf"]
-[ext_resource type="Resource" uid="uid://xjueahmld774" path="res://projects/project_data/projects/phase3/logic/phase3logicplaceholder2.tres" id="40_dblwu"]
-[ext_resource type="Resource" uid="uid://degfi25m6uynh" path="res://projects/project_data/projects/phase3/logic/phase3logicplaceholder3.tres" id="41_gp45l"]
-[ext_resource type="Resource" uid="uid://bb0kfvxjwgc7p" path="res://projects/project_data/projects/phase3/wisdom/phase3wisdomplaceholder1.tres" id="42_xfgcu"]
-[ext_resource type="Resource" uid="uid://b8abgll37o7x" path="res://projects/project_data/projects/phase3/wisdom/phase3wisdomplaceholder2.tres" id="43_ad16u"]
-[ext_resource type="Resource" uid="uid://bo0yqx03utphm" path="res://projects/project_data/projects/phase3/wisdom/phase3wisdomplaceholder3.tres" id="44_dqqx8"]
-[ext_resource type="Resource" uid="uid://cug08sdct6k24" path="res://projects/project_data/projects/phase3/wisdom/phase3wisdomplaceholder4.tres" id="45_v3bvt"]
+[ext_resource type="Resource" uid="uid://dk77xms0mb30p" path="res://projects/project_data/projects/phase3/logic/learn_language.tres" id="39_k4urf"]
+[ext_resource type="Resource" uid="uid://xjueahmld774" path="res://projects/project_data/projects/phase1/wisdom/grow_herbs.tres" id="40_dblwu"]
+[ext_resource type="Resource" uid="uid://degfi25m6uynh" path="res://projects/project_data/projects/phase1/logic/save_money.tres" id="41_gp45l"]
+[ext_resource type="Resource" uid="uid://bb0kfvxjwgc7p" path="res://projects/project_data/projects/phase3/wisdom/help_friend.tres" id="42_xfgcu"]
+[ext_resource type="Resource" uid="uid://b8abgll37o7x" path="res://projects/project_data/projects/phase3/wisdom/family_history.tres" id="43_ad16u"]
+[ext_resource type="Resource" uid="uid://bo0yqx03utphm" path="res://projects/project_data/projects/phase3/wisdom/philosophy_guidebook.tres" id="44_dqqx8"]
+[ext_resource type="Resource" uid="uid://cug08sdct6k24" path="res://projects/project_data/projects/phase3/wisdom/pillar.tres" id="45_v3bvt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cn0es"]
 bg_color = Color(1, 0.655, 0.647, 0)
-
-[sub_resource type="Resource" id="Resource_t668b"]
-script = ExtResource("13_qproj")
-displayName = "placeholder"
-type = 2
-targetProgress = 7
-metadata/_custom_type_script = "uid://b510bgcr8u41m"
-
-[sub_resource type="Resource" id="Resource_5tyqi"]
-script = ExtResource("13_qproj")
-displayName = "placeholder"
-type = 2
-targetProgress = 7
-metadata/_custom_type_script = "uid://b510bgcr8u41m"
-
-[sub_resource type="Resource" id="Resource_5cuq1"]
-script = ExtResource("13_qproj")
-displayName = "placeholder"
-type = 2
-targetProgress = 7
-metadata/_custom_type_script = "uid://b510bgcr8u41m"
-
-[sub_resource type="Resource" id="Resource_nvd0g"]
-script = ExtResource("13_qproj")
-displayName = "placeholder"
-type = 2
-targetProgress = 7
-metadata/_custom_type_script = "uid://b510bgcr8u41m"
-
-[sub_resource type="Resource" id="Resource_au7n0"]
-script = ExtResource("13_qproj")
-displayName = "placeholder"
-type = 2
-targetProgress = 7
-metadata/_custom_type_script = "uid://b510bgcr8u41m"
 
 [node name="ProjectsManager" type="PanelContainer" node_paths=PackedStringArray("project_grid_container", "phase1_creativity_preloader", "phase1_logic_preloader", "phase1_wisdom_preloader", "phase1_obstacle_preloader", "phase2_creativity_preloader", "phase2_logic_preloader", "phase2_wisdom_preloader", "phase3_creativity_preloader", "phase3_logic_preloader", "phase3_wisdom_preloader") groups=["projects_manager"]]
 size_flags_horizontal = 6
@@ -110,34 +79,34 @@ layout_mode = 2
 columns = 2
 
 [node name="Phase1-Creativity" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("finish_painting", "guitar", "learn_animation", "project1", "project2", "project3", "project4", "project5", "write_story"), [ExtResource("3_sw7b3"), ExtResource("5_o0dh3"), ExtResource("10_dvxd2"), ExtResource("5_vwoe1"), ExtResource("6_x0pgd"), ExtResource("7_t668b"), ExtResource("8_5tyqi"), ExtResource("9_5cuq1"), ExtResource("15_5cuq1")]]
+resources = [PackedStringArray("design_wardrobe", "finish_painting", "guitar", "mug", "scarf", "self_portrait", "sew", "write_story"), [ExtResource("9_5cuq1"), ExtResource("3_sw7b3"), ExtResource("5_o0dh3"), ExtResource("7_t668b"), ExtResource("5_vwoe1"), ExtResource("8_5tyqi"), ExtResource("6_x0pgd"), ExtResource("15_5cuq1")]]
 
 [node name="Phase1-Logic" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("chores", "cooking", "project10", "project6", "project7", "project8", "project9"), [ExtResource("11_vwoe1"), ExtResource("4_qproj"), ExtResource("13_dvxd2"), ExtResource("14_pl7mh"), ExtResource("15_tdabf"), ExtResource("16_vwoe1"), ExtResource("17_x0pgd")]]
+resources = [PackedStringArray("board_game", "chores", "cooking", "goldfish", "gym", "save_money", "videogame"), [ExtResource("10_4edsc"), ExtResource("11_vwoe1"), ExtResource("4_qproj"), ExtResource("14_pl7mh"), ExtResource("17_x0pgd"), ExtResource("41_gp45l"), ExtResource("15_tdabf")]]
 
 [node name="Phase1-Wisdom" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("community", "philosophy", "project1", "project2", "project3", "project4", "project5"), [ExtResource("2_4dd4q"), ExtResource("8_dvxd2"), SubResource("Resource_t668b"), SubResource("Resource_5tyqi"), SubResource("Resource_5cuq1"), SubResource("Resource_nvd0g"), SubResource("Resource_au7n0")]]
+resources = [PackedStringArray("community", "dream_journal", "grow_herbs", "philosophy", "photo_book", "plan_vacation", "talk_to_cat", "workshop"), [ExtResource("2_4dd4q"), ExtResource("18_6veqc"), ExtResource("40_dblwu"), ExtResource("8_dvxd2"), ExtResource("21_w3ay0"), ExtResource("22_vq4i1"), ExtResource("16_vwoe1"), ExtResource("24_uswjr")]]
 
 [node name="Phase1-Obstacle" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("obstacle_test1"), [ExtResource("21_pl7mh")]]
 
 [node name="Phase2-Creativity" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("phase2create1", "phase2create2", "pixel_art", "sketchbook"), [ExtResource("22_f36js"), ExtResource("23_rgd73"), ExtResource("24_74otn"), ExtResource("25_f8gv0")]]
+resources = [PackedStringArray("learn_animation", "pixel_art", "poster", "sketchbook"), [ExtResource("10_dvxd2"), ExtResource("24_74otn"), ExtResource("23_rgd73"), ExtResource("25_f8gv0")]]
 
 [node name="Phase2-Logic" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("learn_programming", "swim", "train_for_5k", "website"), [ExtResource("26_4edsc"), ExtResource("27_6veqc"), ExtResource("28_w3ay0"), ExtResource("29_vq4i1")]]
+resources = [PackedStringArray("game_prototype", "learn_programming", "swim", "train_for_5k"), [ExtResource("22_f36js"), ExtResource("26_4edsc"), ExtResource("27_6veqc"), ExtResource("28_w3ay0")]]
 
 [node name="Phase2-Wisdom" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("host_dnd", "journal", "reconnect", "volunteer_soup"), [ExtResource("30_uswjr"), ExtResource("31_vm55c"), ExtResource("32_ox3cq"), ExtResource("33_o5jdt")]]
 
 [node name="Phase3-Creativity" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("phase3creativity1placeholder", "phase3creativity1placeholder2", "phase3creativityplaceholder3", "phase3creativityplaceholder4"), [ExtResource("34_182f7"), ExtResource("35_ahes3"), ExtResource("36_ruwvn"), ExtResource("37_bshh2")]]
+resources = [PackedStringArray("exhibit", "record_ep", "short_film", "video_channel"), [ExtResource("36_ruwvn"), ExtResource("34_182f7"), ExtResource("37_bshh2"), ExtResource("35_ahes3")]]
 
 [node name="Phase3-Logic" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("game_jam", "phase3logicplaceholder1", "phase3logicplaceholder2", "phase3logicplaceholder3"), [ExtResource("38_b4q01"), ExtResource("39_k4urf"), ExtResource("40_dblwu"), ExtResource("41_gp45l")]]
+resources = [PackedStringArray("game_jam", "learn_language", "website", "weight"), [ExtResource("38_b4q01"), ExtResource("39_k4urf"), ExtResource("29_vq4i1"), ExtResource("13_dvxd2")]]
 
 [node name="Phase3-Wisdom" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("phase3wisdomplaceholder1", "phase3wisdomplaceholder2", "phase3wisdomplaceholder3", "phase3wisdomplaceholder4"), [ExtResource("42_xfgcu"), ExtResource("43_ad16u"), ExtResource("44_dqqx8"), ExtResource("45_v3bvt")]]
+resources = [PackedStringArray("family_history", "help_friend", "philosophy_guidebook", "pillar"), [ExtResource("43_ad16u"), ExtResource("42_xfgcu"), ExtResource("44_dqqx8"), ExtResource("45_v3bvt")]]
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

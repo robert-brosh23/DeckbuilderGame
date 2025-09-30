@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://xjueahmld774"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_rcs2y"]
+
+[resource]
+script = ExtResource("1_rcs2y")
+displayName = "Grow an herb garden"
+type = 2
+targetProgress = 40
+metadata/_custom_type_script = "uid://b510bgcr8u41m"

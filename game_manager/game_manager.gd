@@ -12,6 +12,9 @@ var promise_queue: PromiseQueue
 var projects_manager: ProjectsManager
 var receiving_input = true
 var hours_tracker: HoursTracker
+var cursor: Cursor
+
+var gain_obstacle_sound : Resource = preload("res://audio/sfx/253174__suntemple__retro-you-lose-sfx.wav")
 
 var score: int = 0:
 	set(value):
@@ -45,6 +48,7 @@ func ready() -> void:
 	card_rewards_menu = get_tree().get_first_node_in_group("card_rewards_menu")
 	projects_manager = get_tree().get_first_node_in_group("projects_manager")
 	hours_tracker = get_tree().get_first_node_in_group("hours_tracker")
+	cursor = get_tree().get_first_node_in_group("cursor")
 	
 	score = 0
 	stress_accumulation = 0
@@ -87,6 +91,7 @@ func _set_stress_accumulation(value: int):
 			return
 		
 		await main_ui.set_stress_accumulation_bar(MAX_STRESS_ACCUMULATION)
+		AudioPlayer.play_sound(gain_obstacle_sound)
 		main_ui.reset_stress_accumulation_bar()
 		await card_rewards_menu.add_random_obstacle_card_to_deck()
 		stress_accumulation = stress_accumulation - MAX_STRESS_ACCUMULATION

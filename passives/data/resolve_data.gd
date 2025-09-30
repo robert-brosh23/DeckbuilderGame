@@ -36,12 +36,14 @@ func _create_spawn_point():
 	SignalBus.new_day_started.connect(
 		func(day: int):
 			CardsController.enqueue_draw_card_from_deck()
+			GameManager.cursor.play_message("+1 Draw (Spawn Point)")
 	)
 	
 func _create_early_bird():
 	SignalBus.new_day_started.connect(
 		func(day: int):
 			GameManager.hours += 1
+			GameManager.cursor.play_message("+1 Hours (Early Bird)")
 	)
 	
 func _create_discipline():
@@ -51,15 +53,18 @@ func _create_discipline():
 			counter += 1
 			if counter == 5:
 				CardsController.enqueue_draw_card_from_deck()
+				GameManager.cursor.play_message("+1 Draw (Discipline)")
 				counter = 0
 	)
 	
 func _create_trust():
+	counter = 0
 	SignalBus.card_played.connect(
 		func(card: Card, project: Project):
 			if card.card_data.card_type == CardData.CARD_TYPE.SPIRIT:
 				counter += 1
 				if counter == 3:
+					GameManager.cursor.play_message("+5 Hours (Trust)")
 					GameManager.hours += 5
 					counter = 0
 	)
@@ -74,6 +79,7 @@ func _create_morning_jogger():
 					if project == null:
 						counter -= 1
 					else:
+						GameManager.cursor.play_message("Step added (Runner)")
 						project.add_step_and_progress()
 						counter = 0
 	)
@@ -82,6 +88,7 @@ func _create_reframed_thinking():
 	SignalBus.card_played.connect(
 		func(card: Card, project: Project):
 			if card.card_data.card_type == CardData.CARD_TYPE.TECH:
+				GameManager.cursor.play_message("+1 Draw (Reframed Thinking)")
 				CardsController.enqueue_draw_card_from_deck()
 	)
 	

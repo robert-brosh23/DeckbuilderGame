@@ -9,6 +9,7 @@ var hours_tracker: HoursTracker
 
 var sound_discard_card := preload("res://audio/sfx/place_card.wav")
 var sound_draw_card := preload("res://audio/sfx/draw_card.wav")
+var shuffle_sfx := preload("res://audio/sfx/shuffle_sfx.wav")
 
 func ready() -> void:
 	deck = get_tree().get_first_node_in_group("deck")
@@ -27,6 +28,7 @@ func enqueue_create_card(card_data: CardData) -> Signal:
 	return result_signal
 	
 func _create_card(card_data: CardData, spawn_pos: Vector2 = Vector2(300,100), pause_time := 0, discard := false) -> Card:
+	AudioPlayer.play_sound(sound_discard_card)
 	var card = Card.create_card(card_data)
 	card.global_position = spawn_pos
 	card.promise_queue = promise_queue
@@ -84,6 +86,7 @@ func enqueue_shuffle_deck() -> Signal:
 func _shuffle_deck() -> void:
 	hours_tracker.big_arrow_enabled = false
 	await get_tree().create_timer(0.5).timeout
+	AudioPlayer.play_sound(shuffle_sfx)
 	deck.shuffling_label.visible = true
 	deck.shuffle_deck()
 	await get_tree().create_timer(1.0).timeout

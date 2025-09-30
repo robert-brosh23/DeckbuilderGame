@@ -281,10 +281,12 @@ func _execute_meditation():
 	await get_tree().create_timer(.2).timeout
 	
 func _execute_organize():
-	cursor.play_message("Next day: + 2 hours")
+	cursor.play_message("Put this here, and that there...")
 	SignalBus.new_day_started.connect(
-		func(day: int): game_manager.hours += 2,
-		CONNECT_ONE_SHOT
+		func(day: int): 
+			game_manager.hours += 2
+			cursor.play_message("+2 hours (Organized)")
+			, CONNECT_ONE_SHOT
 	)
 	
 func _execute_brain_blast():
@@ -308,14 +310,14 @@ func _execute_small_step(target: Project):
 	target.add_step_and_progress()
 	
 func _execute_touch_grass():
-	cursor.play_message("Stress - 1")
+	cursor.play_message("-1 Stress")
 	GameManager.stress -= 1
 	
 func _execute_friendship():
 	GameManager.stress -= 1
 	if perm_cost != 0:
 		cursor.play_message("Friendship improved :)")
-		cursor.play_message("Stress - 1")
+		cursor.play_message("-1 Stress")
 		perm_cost -= 1
 		calibrate_cost()
 		_set_card_data()
@@ -338,6 +340,10 @@ func _execute_community_support():
 	)
 	
 func _trigger_community_support(card: Card, target: Project):
+	if card.card_data.card_effect == CardData.CARD_EFFECT.COMMUNITY_SUPPORT:
+		SignalBus.start_card_played.connect(_trigger_community_support, CONNECT_ONE_SHOT)
+		return
+	
 	while true:
 		var args = await SignalBus.card_played
 		var card_candidate: Card = args[0]
@@ -351,6 +357,7 @@ func _delete_self():
 	
 func _execute_mental_health_day():
 	cursor.play_message("Phew")
+	cursor.play_message("-3 Stress")
 	game_manager.stress -= 3
 	for i in range(CardsCollection.cards_in_hand.size() - 1, -1, -1):
 		if CardsCollection.cards_in_hand[i].card_data.card_type == CardData.CARD_TYPE.OBSTACLE:
@@ -398,12 +405,12 @@ func _execute_new_hobby():
 	
 # DRAW EFFECTS
 func _draw_effect_comparison():
-	cursor.play_message("Stress + 2    (Comparison)")
+	cursor.play_message("+2 Stress (Comparison)")
 	game_manager.stress += 2
 	projects_manager.projects[randi() % projects_manager.projects.size()].progress(3)
 	
 func _draw_effect_addiction():
-	cursor.play_message("Hours - 3    (Addiction)")
+	cursor.play_message("-3 Hours (Addiction)")
 	game_manager.hours -= 3
 	
 func _draw_effect_forgot_my_lunch():
@@ -483,11 +490,13 @@ func _execute_overcome_adversity():
 		if card.card_data.card_type == CardData.CARD_TYPE.OBSTACLE:
 			obstacle_count += 1
 	game_manager.hours += (2 * obstacle_count)
-	cursor.play_message("Hours + " + str(2 * obstacle_count))
+	cursor.play_message("+ " + str(2 * obstacle_count) + " Hours")
 	
 func _execute_routine():
-	cursor.play_message("Permanent cost decreased!")
 	var result := await CardsController.select_cards(1, [func(card: Card): return card.perm_cost > 0], self)
+	if result.is_empty():
+		return
+	cursor.play_message("Permanent cost decreased!")
 	result[0].perm_cost -= 1
 	result[0].calibrate_cost()
 	
@@ -496,11 +505,11 @@ func _execute_sleep_deprived():
 	_delete_self()
 	
 func _draw_effect_anxiety():
-	cursor.play_message("Stress + 1    (Anxiety)")
+	cursor.play_message("+1 Stress (Anxiety)")
 	game_manager.stress += 1
 	
 func _on_panel_mouse_entered() -> void:
-	if state == states.READY || state == states.DRAGGING || state == states.PREVIEW_PICKING:
+	if state == states.READY || state == states.DRAGGING || state == states.PREVIEW_PICKING || state == states.RETURNING:
 		SignalBus.node_hovered.emit(panel)
 
 func _on_panel_mouse_exited() -> void:

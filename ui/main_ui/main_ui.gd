@@ -11,10 +11,11 @@ extends Control
 @export var stress_accumulation_bar : ProgressBar
 @export var stress_accumulation_label : Label
 
+var cursor: Cursor
+
 var shake_stress_label = false
 
 var curr_deadline_index = 0
-
 var deadlines : Array[Deadline]
 
 class Deadline:
@@ -31,6 +32,7 @@ class Deadline:
 func _ready() -> void:
 	stress_accumulation_bar.max_value = GameManager.MAX_STRESS
 	stress_accumulation_bar.value = 0
+	cursor = get_tree().get_first_node_in_group("cursor")
 	initialize_deadlines()
 	
 func set_stress_label(stress: int):
@@ -95,6 +97,7 @@ func set_score_label(score: int):
 
 func deadline_met(score: int):
 	curr_deadline_index += 1
+	cursor.play_message("Yes! I met my deadline.")
 	set_score_label(score)
 	
 func check_game_over() -> bool:

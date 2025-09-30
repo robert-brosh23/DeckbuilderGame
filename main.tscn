@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=12 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dd5tbk86qnuwn" path="res://deck/deck.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cprtqlg155quc" path="res://hand/hand.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bwina4q0qfyxh" path="res://ui/main_ui/main_ui.tscn" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://cp1r35m32njre" path="res://sprites/title_screen_frame_layer.png" id="5_efxa6"]
 [ext_resource type="PackedScene" uid="uid://d3pwu8oodhuxs" path="res://passives/manager/resolve_manager.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://deccv2m0rwkro" path="res://ui/hours_tracker/hours_tracker.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://bvnrpwbicsfub" path="res://discard_pile/discard_pile.tscn" id="10_4c57u"]
@@ -26,7 +27,6 @@ script = ExtResource("1_0xm2m")
 deck = NodePath("Deck")
 hand = NodePath("Hand")
 discard_pile = NodePath("DiscardPile")
-debug_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -41,16 +41,26 @@ size_flags_horizontal = 4
 [node name="Cursor" parent="CanvasLayer" instance=ExtResource("10_efxa6")]
 position = Vector2(320, 180)
 
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -10
+layout_mode = 0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+texture = ExtResource("5_efxa6")
+
 [node name="Background" type="ColorRect" parent="."]
 z_index = -10
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -500.0
-offset_top = -500.0
-offset_right = 500.0
-offset_bottom = 500.0
+offset_left = -339.0
+offset_top = -208.0
+offset_right = 360.0
+offset_bottom = 204.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -81,18 +91,18 @@ offset_bottom = -126.0
 
 [node name="MainUi" parent="." instance=ExtResource("5_7mycd")]
 layout_mode = 1
-offset_left = -204.0
+offset_left = -214.0
 offset_top = -169.0
-offset_right = 319.52
+offset_right = 309.52
 offset_bottom = -163.24
 
 [node name="HoursTracker" parent="." instance=ExtResource("9_kek77")]
 z_index = 1
 layout_mode = 1
-offset_left = 199.0
-offset_top = -55.0
-offset_right = 309.0
-offset_bottom = 115.0
+offset_left = 190.0
+offset_top = -58.0
+offset_right = 300.0
+offset_bottom = 112.0
 
 [node name="Hand" parent="." instance=ExtResource("4_lquwl")]
 layout_mode = 1

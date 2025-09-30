@@ -163,7 +163,7 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 17
 
 [node name="RetryButton" type="Button" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 20)
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
 theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
@@ -181,7 +181,7 @@ text = "Try Again"
 metadata/_edit_use_anchors_ = true
 
 [node name="MainMenuButton" type="Button" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 20)
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
 theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)

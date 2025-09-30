@@ -24,6 +24,8 @@ var curr_resolve_choices: Array[ResolvePreview]
 ## Bug fix for when multiple projects are completed at the same time
 var queue_selection: Array[ProjectResource] = []
 
+var applause_sfx := preload("res://audio/sfx/applause.wav")
+
 enum reward_type {
 	CARD,
 	RESOLVE
@@ -76,6 +78,7 @@ func preview_rewards(data : ProjectResource):
 		queue_selection.push_back(data)
 		return
 		
+	AudioPlayer.play_sound(applause_sfx)
 	visible = true
 	if data.type == ProjectResource.project_type.OBSTACLE:
 		preview_resolves()

@@ -120,33 +120,31 @@ func get_project_resource(grid_index : int) -> ProjectResource:
 			new_project_resource.targetProgress = 10 + (GameManager.day / 5) * 5
 	else:
 		var target_hours : int = 4 + (GameManager.day / 5) * 2
-		if GameManager.day <= 10:
-			match proj_type:
-				ProjectResource.project_type.CREATIVITY:
+		match proj_type:
+			ProjectResource.project_type.CREATIVITY:
+				if !phase1_creativity_resources_pool.is_empty():
 					project_resources_pool = phase1_creativity_resources_pool
-				ProjectResource.project_type.LOGIC:
-					project_resources_pool = phase1_logic_resources_pool
-				ProjectResource.project_type.WISDOM:
-					project_resources_pool = phase1_wisdom_resources_pool
-		elif GameManager.day <= 30:
-			match proj_type:
-				ProjectResource.project_type.CREATIVITY:
+				elif !phase2_creativity_resources_pool.is_empty():
 					project_resources_pool = phase2_creativity_resources_pool
-				ProjectResource.project_type.LOGIC:
-					project_resources_pool = phase2_logic_resources_pool
-				ProjectResource.project_type.WISDOM:
-					project_resources_pool = phase2_wisdom_resources_pool
-		else:
-			match proj_type:
-				ProjectResource.project_type.CREATIVITY:
+				elif !phase3_creativity_resources_pool.is_empty():
 					project_resources_pool = phase3_creativity_resources_pool
-				ProjectResource.project_type.LOGIC:
+			ProjectResource.project_type.LOGIC:
+				if !phase1_logic_resources_pool.is_empty():
+					project_resources_pool = phase1_logic_resources_pool
+				elif !phase2_logic_resources_pool.is_empty():
+					project_resources_pool = phase2_logic_resources_pool
+				elif !phase3_logic_resources_pool.is_empty():
 					project_resources_pool = phase3_logic_resources_pool
-				ProjectResource.project_type.WISDOM:
+			ProjectResource.project_type.WISDOM:
+				if !phase1_wisdom_resources_pool.is_empty():
+					project_resources_pool = phase1_wisdom_resources_pool
+				elif !phase2_wisdom_resources_pool.is_empty():
+					project_resources_pool = phase2_wisdom_resources_pool
+				elif !phase3_wisdom_resources_pool.is_empty():
 					project_resources_pool = phase3_wisdom_resources_pool
 		
 		while new_project_resource is not ProjectResource:
-			if project_resources_pool.is_empty():
+			if project_resources_pool == null:
 				print("out of projects")
 				return
 			new_project_resource = project_resources_pool[randi() % project_resources_pool.size()]
@@ -181,7 +179,7 @@ func _project_finished(project: Project):
 	_create_project(resource, grid_index)
 		
 func _on_mouse_entered() -> void:
-	if full_area_targeted || hand.dragged_card != null:
+	if full_area_targeted: # || hand.dragged_card != null:
 		SignalBus.node_hovered.emit(self)
 
 func _on_mouse_exited() -> void:

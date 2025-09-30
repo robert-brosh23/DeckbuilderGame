@@ -100,7 +100,7 @@ func _apply_stylebox():
 			title_text.add_theme_color_override("font_color", Constants.COLOR_CREAM)
 		ProjectResource.project_type.CREATIVITY:
 			copy.bg_color = Constants.COLOR_YELLOW
-			title_text.add_theme_color_override("font_color", Constants.COLOR_PURPLE)
+			title_text.add_theme_color_override("font_color", Constants.COLOR_BROWN)
 		ProjectResource.project_type.WISDOM:
 			copy.bg_color = Constants.COLOR_HOT_PINK
 			title_text.add_theme_color_override("font_color", Constants.COLOR_CREAM)
@@ -124,7 +124,10 @@ func add_step_and_progress() -> void:
 	step_container.add_child(text_rect)
 	
 	steps += 1
-	cursor.play_message(str(steps) + "steps...")
+	if steps == 1:
+		cursor.play_message(str(steps) + " step...")
+	else:
+		cursor.play_message(str(steps) + " steps...")
 	progress(steps)
 	
 func _clear_steps() -> void:

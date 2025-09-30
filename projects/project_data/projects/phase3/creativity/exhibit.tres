@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://c1cwv6geaasx3"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_jerhm"]
+
+[resource]
+script = ExtResource("1_jerhm")
+displayName = "Bring painting to exhibit"
+type = 1
+targetProgress = 40
+metadata/_custom_type_script = "uid://b510bgcr8u41m"

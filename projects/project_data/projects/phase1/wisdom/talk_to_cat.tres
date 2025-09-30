@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectResource" load_steps=2 format=3 uid="uid://bh1y5lpw2su6t"]
+
+[ext_resource type="Script" uid="uid://b510bgcr8u41m" path="res://projects/project_data/project_resource.gd" id="1_pbfkr"]
+
+[resource]
+script = ExtResource("1_pbfkr")
+displayName = "Learn to speak cat"
+type = 2
+targetProgress = 7
+metadata/_custom_type_script = "uid://b510bgcr8u41m"

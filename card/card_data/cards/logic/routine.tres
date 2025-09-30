@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_2n0ab")
 card_name = "Set Routine"
-card_cost = 2
+card_cost = 3
 card_png = ExtResource("1_8gn68")
 card_description = "Permanently reduce a card's cost by 1."
 card_type = 0

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_fblha")
-displayName = "Learn C# from Youtube"
+displayName = "Learn C# from videos"
 type = 0
 targetProgress = 23
 metadata/_custom_type_script = "uid://b510bgcr8u41m"
