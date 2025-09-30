@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwlb60rcr44ja"]
+
+[ext_resource type="Script" uid="uid://dsgngwsys0xu5" path="res://ui/cursor/message_label/message_label.gd" id="1_l1s5v"]
+[ext_resource type="FontFile" uid="uid://cm4gkenj5odhg" path="res://fonts/m5x7.ttf" id="2_k1cll"]
+
+[node name="MessageLabel" type="Control" node_paths=PackedStringArray("message_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l1s5v")
+message_label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -20.0
+offset_right = 35.0
+offset_bottom = 3.0
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_k1cll")
+theme_override_font_sizes/font_size = 16

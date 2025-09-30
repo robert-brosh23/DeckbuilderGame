@@ -91,3 +91,8 @@ func _set_stress_accumulation(value: int):
 		await card_rewards_menu.add_random_obstacle_card_to_deck()
 		stress_accumulation = stress_accumulation - MAX_STRESS_ACCUMULATION
 		
+func check_win() -> bool:
+	if score >= main_ui.deadlines[main_ui.deadlines.size()-1].target_score:
+		get_tree().change_scene_to_file("res://ui/win_screen_menu/win_screen.tscn")
+		return true
+	return false

@@ -4,11 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://b5hyosxfpby21" path="res://sprites/basic-cursor.png" id="2_iygdk"]
 [ext_resource type="Texture2D" uid="uid://ccaythjx2286y" path="res://sprites/pointer-cursor.png" id="3_sdxe7"]
 
-[node name="Cursor" type="Node2D" node_paths=PackedStringArray("regular", "pointer") groups=["cursor"]]
+[node name="Cursor" type="Node2D" node_paths=PackedStringArray("regular", "pointer", "message_label") groups=["cursor"]]
 z_index = 30
 script = ExtResource("1_sdxe7")
 regular = NodePath("RegularCursor")
 pointer = NodePath("PointerCursor")
+message_label = NodePath("")
 
 [node name="RegularCursor" type="Sprite2D" parent="."]
 position = Vector2(8, 8)

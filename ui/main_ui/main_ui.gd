@@ -98,7 +98,7 @@ func deadline_met(score: int):
 	set_score_label(score)
 	
 func check_game_over() -> bool:
-	if deadlines[curr_deadline_index].day < GameManager.day:
+	if deadlines[clamp(curr_deadline_index, 0, deadlines.size() - 1)].day < GameManager.day:
 		get_tree().change_scene_to_file("res://ui/game_over_menu/game_over_menu.tscn")
 		return true
 	return false

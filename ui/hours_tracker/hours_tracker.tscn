@@ -1,11 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://deccv2m0rwkro"]
+[gd_scene load_steps=11 format=3 uid="uid://deccv2m0rwkro"]
 
 [ext_resource type="Script" uid="uid://cc4574501bf3w" path="res://ui/hours_tracker/hours_tracker.gd" id="1_mr576"]
 [ext_resource type="Texture2D" uid="uid://d38jt2m2wg36" path="res://sprites/big_upwards_arrow.png" id="1_t1a0g"]
 [ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="3_wuk87"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1a0g"]
+bg_color = Color(0.203922, 0.67451, 0.729412, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jxcf"]
-bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+bg_color = Color(0.203922, 0.67451, 0.729412, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -14,6 +32,11 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsycw"]
 bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -21,7 +44,12 @@ corner_radius_bottom_left = 4
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp13i"]
-bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+bg_color = Color(0.203922, 0.67451, 0.729412, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -126,8 +154,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_mr576")
-hours_label = NodePath("MarginContainer3/VBoxContainer/HoursLabel")
-end_day_button = NodePath("MarginContainer3/VBoxContainer/End Day Button")
+hours_label = NodePath("PanelContainer/MarginContainer3/VBoxContainer/HoursLabel")
+end_day_button = NodePath("PanelContainer/MarginContainer3/VBoxContainer/End Day Button")
 big_arrow = NodePath("Arrows")
 animation_player = NodePath("AnimationPlayer")
 
@@ -139,10 +167,9 @@ offset_bottom = 46.7096
 
 [node name="Arrow" type="TextureRect" parent="Arrows"]
 layout_mode = 2
-offset_left = 12.0
-offset_top = 158.29
-offset_right = 68.0
-offset_bottom = 323.29
+offset_left = 29.0
+offset_right = 87.0
+offset_bottom = 165.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 mouse_filter = 2
@@ -153,7 +180,7 @@ stretch_mode = 2
 layout_mode = 2
 offset_left = 43.0
 offset_top = 158.0
-offset_right = 99.0
+offset_right = 101.0
 offset_bottom = 323.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
@@ -165,7 +192,7 @@ stretch_mode = 2
 layout_mode = 2
 offset_left = 73.0
 offset_top = 158.0
-offset_right = 129.0
+offset_right = 131.0
 offset_bottom = 323.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
@@ -173,36 +200,45 @@ mouse_filter = 2
 texture = ExtResource("1_t1a0g")
 stretch_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
-offset_left = 5.0
-offset_top = 109.0
-offset_right = 110.0
-offset_bottom = 165.0
+offset_left = 10.0
+offset_top = 105.0
+offset_right = 105.0
+offset_bottom = 163.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t1a0g")
+
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer3"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HoursLabel" type="Label" parent="MarginContainer3/VBoxContainer"]
+[node name="HoursLabel" type="Label" parent="PanelContainer/MarginContainer3/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_wuk87")
 theme_override_font_sizes/font_size = 18
 text = "Hours:"
+horizontal_alignment = 1
 
-[node name="End Day Button" type="Button" parent="MarginContainer3/VBoxContainer"]
+[node name="End Day Button" type="Button" parent="PanelContainer/MarginContainer3/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
 theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
 theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_wuk87")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_3jxcf")
@@ -216,6 +252,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_wuk87")
 }
 
-[connection signal="mouse_entered" from="MarginContainer3/VBoxContainer/End Day Button" to="." method="_on_end_day_button_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer3/VBoxContainer/End Day Button" to="." method="_on_end_day_button_mouse_exited"]
-[connection signal="pressed" from="MarginContainer3/VBoxContainer/End Day Button" to="." method="_on_end_day_button_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer3/VBoxContainer/End Day Button" to="." method="_on_end_day_button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer3/VBoxContainer/End Day Button" to="." method="_on_end_day_button_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/MarginContainer3/VBoxContainer/End Day Button" to="." method="_on_end_day_button_pressed"]

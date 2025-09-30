@@ -48,6 +48,7 @@ func add_card(card: Card) -> void:
 	CardsCollection.cards_in_hand.append(card)
 	if CardsCollection.cards_in_hand.size() >= MAX_HAND_SIZE + 1:
 		print("Too many cards")
+		cursor.play_message("My hand is full!")
 		CardsController._discard_card_from_hand(card)
 		deck.show_too_many_label()
 		return
@@ -78,6 +79,7 @@ func select_cards(max_cards: int, conditions: Array[Callable] = [], played_card 
 	selecting_cards_container.visible = false
 	state = states.READY
 	_update_hand()
+	hours_tracker._check_cards_playable(null, null)
 	return dup
 	
 	

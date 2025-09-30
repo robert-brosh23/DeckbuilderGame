@@ -37,7 +37,7 @@ var effect_map: Dictionary[CARD_EFFECT, String] = {
 	CARD_EFFECT.GRIND_CREATIVITY: "_execute_grind",
 	CARD_EFFECT.GRIND_WISDOM: "_execute_grind",
 	CARD_EFFECT.COMMUNITY_SUPPORT: "_execute_community_support",
-	CARD_EFFECT.SLEEP_DEPRIVED: "_delete_self",
+	CARD_EFFECT.SLEEP_DEPRIVED: "_execute_sleep_deprived",
 	CARD_EFFECT.ADDICTION: NO_EFFECT,
 	CARD_EFFECT.THERAPY: "_execute_therapy",
 	CARD_EFFECT.NEW_HOBBY: "_execute_new_hobby",

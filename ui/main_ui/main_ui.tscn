@@ -5,12 +5,12 @@
 [ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="3_3jxcf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrkyi"]
-bg_color = Color(1, 0.905882, 0.839216, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.933333, 0.415686, 0.486275, 1)
+bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -18,12 +18,12 @@ corner_radius_bottom_left = 4
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k817l"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+bg_color = Color(1, 0.905882, 0.839216, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wci7t"]
@@ -31,26 +31,27 @@ bg_color = Color(1, 0.654902, 0.647059, 1)
 border_width_left = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybayk"]
-bg_color = Color(1, 0.655, 0.647, 0)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_color = Color(0.933333, 0.415686, 0.486275, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_df82o"]
 bg_color = Color(1, 0.655, 0.647, 0)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_df82o"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_622d5"]
@@ -58,7 +59,7 @@ bg_color = Color(0.670588, 0.337255, 0.458824, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_bottom = 2
-border_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
 anti_aliasing = false
 
 [node name="MainUi" type="Control" node_paths=PackedStringArray("day_label", "deadline_label", "score_label", "target_label", "progress_bar", "stress_label", "stress_accumulation_bar", "stress_accumulation_label") groups=["main_ui"]]
@@ -105,10 +106,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_rrkyi")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = -4
+theme_override_constants/margin_left = -2
 theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = -4
-theme_override_constants/margin_bottom = 0
+theme_override_constants/margin_right = -2
+theme_override_constants/margin_bottom = -2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -134,24 +135,32 @@ alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_3jxcf")
 theme_override_font_sizes/font_size = 18
 text = "Score: 0"
+horizontal_alignment = 1
 
 [node name="TargetLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_3jxcf")
 theme_override_font_sizes/font_size = 18
 text = "Target: 50"
 
 [node name="DayLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_3jxcf")
 theme_override_font_sizes/font_size = 18
 text = "Day: 1"
+horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 70)
@@ -159,7 +168,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(1, 0.654902, 0.647059, 1)
-theme_override_colors/font_outline_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2_3jxcf")
 theme_override_styles/background = SubResource("StyleBoxFlat_k817l")
@@ -171,14 +180,18 @@ fill_mode = 3
 show_percentage = false
 
 [node name="DeadlineLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-theme_override_colors/default_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_colors/default_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/normal_font = ExtResource("3_3jxcf")
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "Deadline: Day 10"
 fit_content = true
 autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
@@ -186,7 +199,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ybayk")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
+theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 4
@@ -196,26 +209,29 @@ layout_mode = 2
 
 [node name="StressLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/default_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_colors/default_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/normal_font = ExtResource("3_3jxcf")
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "Stress: [color=#ab5675][shake rate=25.0 level=15 connected=1]5[/shake][/color]"
 fit_content = true
 autowrap_mode = 0
+horizontal_alignment = 1
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="AccumulationLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="AccumulationLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_colors/default_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/normal_font = ExtResource("3_3jxcf")
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "Next Obstacle:"
 fit_content = true
 autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="StressAccumulationBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 14)
@@ -228,7 +244,9 @@ show_percentage = false
 
 [node name="StressAccumulationLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_3jxcf")
 text = "0/10"
 horizontal_alignment = 1

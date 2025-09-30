@@ -1,0 +1,353 @@
+[gd_scene load_steps=15 format=3 uid="uid://8slu416lpecj"]
+
+[ext_resource type="PackedScene" uid="uid://bf63g5uh508r6" path="res://ui/cursor/cursor.tscn" id="1_mu8pm"]
+[ext_resource type="Script" uid="uid://dwj51dttigcb5" path="res://ui/main_menu/main_menu.gd" id="1_omy8q"]
+[ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="2_omy8q"]
+[ext_resource type="Texture2D" uid="uid://5fslfd7txovp" path="res://sprites/title_screen3layers.png" id="2_u184e"]
+[ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://fonts/m6x11.ttf" id="3_i5wg5"]
+[ext_resource type="Texture2D" uid="uid://dagov7j5innlu" path="res://sprites/volume_knob.png" id="4_3c04x"]
+[ext_resource type="Texture2D" uid="uid://cqn35pmfldhb1" path="res://sprites/title_screen_goo_layer.png" id="4_6mijq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5wg5"]
+bg_color = Color(0.203922, 0.67451, 0.729412, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3c04x"]
+bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_joh67"]
+bg_color = Color(0.203922, 0.67451, 0.729412, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2r0d"]
+bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u184e"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.905882, 0.839216, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mijq"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.905882, 0.839216, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i5wg5"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("cursor", "start_button", "options_button", "credits_button", "credits_return_to_main_button", "options_return_to_main_button", "main_menu_screen", "credits_menu_screen", "options_menu_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_omy8q")
+cursor = NodePath("CanvasLayer/Cursor")
+start_button = NodePath("CanvasLayer/MainMenuScreen/StartButton")
+options_button = NodePath("CanvasLayer/MainMenuScreen/Options")
+credits_button = NodePath("CanvasLayer/MainMenuScreen/Credits")
+credits_return_to_main_button = NodePath("CanvasLayer/CreditsMenuScreen/VBoxContainer/CreditsReturnToMain")
+options_return_to_main_button = NodePath("CanvasLayer/OptionsMenuScreen/VBoxContainer/OptionsReturnToMain")
+main_menu_screen = NodePath("CanvasLayer/MainMenuScreen")
+credits_menu_screen = NodePath("CanvasLayer/CreditsMenuScreen")
+options_menu_screen = NodePath("CanvasLayer/OptionsMenuScreen")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.905882, 0.839216, 1)
+
+[node name="MainMenuScreen" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 71.0
+offset_top = 14.0
+offset_right = 71.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MainMenuScreen"]
+layout_mode = 2
+offset_left = -71.0
+offset_top = -14.0
+offset_right = 569.0
+offset_bottom = 346.0
+size_flags_vertical = 4
+texture = ExtResource("2_u184e")
+
+[node name="StartButton" type="Button" parent="CanvasLayer/MainMenuScreen"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+anchor_left = -0.0703125
+anchor_top = 0.389111
+anchor_right = -0.0703125
+anchor_bottom = 0.389111
+offset_top = -0.0800018
+offset_right = 150.0
+offset_bottom = 175.92
+theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_omy8q")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_i5wg5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3c04x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_joh67")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3c04x")
+text = "Start
+Game "
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenuScreen"]
+layout_mode = 2
+offset_left = 320.0
+offset_top = 360.0
+offset_right = 320.0
+offset_bottom = 360.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Options" type="Button" parent="CanvasLayer/MainMenuScreen"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+anchor_left = 0.24375
+anchor_top = 0.711111
+anchor_right = 0.24375
+anchor_bottom = 0.711111
+offset_right = 150.0
+offset_bottom = 60.0
+theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_omy8q")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_i5wg5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3c04x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_joh67")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3c04x")
+text = " Options "
+metadata/_edit_use_anchors_ = true
+
+[node name="Credits" type="Button" parent="CanvasLayer/MainMenuScreen"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+anchor_left = 0.550125
+anchor_top = 0.711111
+anchor_right = 0.550125
+anchor_bottom = 0.711111
+offset_left = -0.0800171
+offset_top = -3.05176e-05
+offset_right = 149.92
+offset_bottom = 60.0
+theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 0
+theme_override_fonts/font = ExtResource("2_omy8q")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_i5wg5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3c04x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_joh67")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3c04x")
+text = " Credits "
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MainMenuScreen"]
+layout_mode = 0
+offset_left = -71.0
+offset_top = -14.0
+offset_right = 569.0
+offset_bottom = 346.0
+mouse_filter = 2
+texture = ExtResource("4_6mijq")
+
+[node name="CreditsMenuScreen" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CreditsMenuScreen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="CanvasLayer/CreditsMenuScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("2_omy8q")
+theme_override_font_sizes/font_size = 18
+text = "A game by Rob, Natalie and Alex
+
+Fonts by Daniel Linssen @managore
+
+Cursors made by Megabyte Games"
+horizontal_alignment = 1
+
+[node name="CreditsReturnToMain" type="Button" parent="CanvasLayer/CreditsMenuScreen/VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_omy8q")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_i5wg5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3c04x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_joh67")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3c04x")
+text = "Return to Main Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionsMenuScreen" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsMenuScreen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_i5wg5")
+theme_override_font_sizes/font_size = 32
+text = "Master Volume"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w2r0d")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = -2
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("4_3c04x")
+theme_override_icons/grabber_highlight = ExtResource("4_3c04x")
+theme_override_icons/grabber_disabled = ExtResource("4_3c04x")
+theme_override_icons/tick = ExtResource("4_3c04x")
+theme_override_styles/slider = SubResource("StyleBoxFlat_u184e")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_6mijq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_i5wg5")
+min_value = -40.0
+max_value = 0.0
+step = 0.1
+
+[node name="OptionsReturnToMain" type="Button" parent="CanvasLayer/OptionsMenuScreen/VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_omy8q")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_i5wg5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3c04x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_joh67")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3c04x")
+text = "Return to Main Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="Cursor" parent="CanvasLayer" instance=ExtResource("1_mu8pm")]
+
+[connection signal="mouse_entered" from="CanvasLayer/MainMenuScreen/StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/MainMenuScreen/StartButton" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/MainMenuScreen/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/MainMenuScreen/Options" to="." method="_on_options_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/MainMenuScreen/Options" to="." method="_on_options_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/MainMenuScreen/Options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/MainMenuScreen/Credits" to="." method="_on_credits_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/MainMenuScreen/Credits" to="." method="_on_credits_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/MainMenuScreen/Credits" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/CreditsMenuScreen/VBoxContainer/CreditsReturnToMain" to="." method="_on_credits_return_to_main_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CreditsMenuScreen/VBoxContainer/CreditsReturnToMain" to="." method="_on_credits_return_to_main_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/CreditsMenuScreen/VBoxContainer/CreditsReturnToMain" to="." method="_on_credits_return_to_main_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/OptionsMenuScreen/VBoxContainer/OptionsReturnToMain" to="." method="_on_options_return_to_main_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/OptionsMenuScreen/VBoxContainer/OptionsReturnToMain" to="." method="_on_options_return_to_main_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/OptionsMenuScreen/VBoxContainer/OptionsReturnToMain" to="." method="_on_options_return_to_main_pressed"]

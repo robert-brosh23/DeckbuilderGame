@@ -3,8 +3,29 @@ extends Node2D
 
 @export var regular : Sprite2D
 @export var pointer : Sprite2D
+@export var message_label : MessageLabel
+
+var message_queue : Array[String]
+var is_processing := false
 
 var hovering_nodes : Array[Node] = []
+
+
+func play_message(message: String):
+	message_queue.append(message)
+	if not is_processing:
+		_process_queue()
+
+func _process_queue() -> void:
+	is_processing = true
+	while message_queue.size() > 0:
+		var msg = message_queue.pop_front()
+		var message_label = MessageLabel.create_message_label()
+		add_child(message_label)
+		message_label.play_message_animation(msg)
+		await get_tree().create_timer(1.0).timeout
+	is_processing = false
+
 
 func _ready():
 	pointer.visible = false
@@ -20,7 +41,7 @@ func _process(delta: float) -> void:
 		_stop_use_pointer()
 	else:
 		_use_pointer()
-	
+
 func _add_hovering_node(node: Node):
 	hovering_nodes.append(node)
 	

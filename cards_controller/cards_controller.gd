@@ -7,6 +7,9 @@ var promise_queue: PromiseQueue = PromiseQueue.new()
 var main_ui: MainUi
 var hours_tracker: HoursTracker
 
+var sound_discard_card := preload("res://audio/sfx/place_card.wav")
+var sound_draw_card := preload("res://audio/sfx/draw_card.wav")
+
 func ready() -> void:
 	deck = get_tree().get_first_node_in_group("deck")
 	discard_pile = get_tree().get_first_node_in_group("discard_pile")
@@ -51,6 +54,7 @@ func enqueue_draw_card_from_deck() -> void:
 	promise_queue.enqueue_delay(.2)
 	
 func draw_card_from_deck() -> void:
+	AudioPlayer.play_sound(sound_draw_card)
 	var card = await deck.draw_card()
 	if card == null:
 		return
@@ -66,6 +70,7 @@ func enqueue_discard_card_from_deck() -> void:
 	promise_queue.enqueue_delay(.2)
 	
 func _discard_card_from_deck() -> void:
+	AudioPlayer.play_sound(sound_draw_card)
 	var card = await deck.draw_card()
 	if card == null:
 		print("no card in deck")
@@ -109,6 +114,7 @@ func enqueue_discard_card_from_hand(card: Card) -> void:
 	promise_queue.enqueue_delay(.2)
 
 func _discard_card_from_hand(card: Card) -> void:
+	AudioPlayer.play_sound(sound_discard_card, AudioPlayer.Bus.SFX)
 	card.state = Card.states.NOT_IN_HAND
 	hand.remove_card_from_hand(card)
 	discard_pile.add_card(card)
@@ -132,6 +138,7 @@ func enqueue_discard_all_cards_from_hand() -> Signal:
 func _discard_all_cards_from_hand() -> void:
 	while !CardsCollection.cards_in_hand.is_empty():
 		var card = hand.remove_card_from_hand(CardsCollection.cards_in_hand.front())
+		AudioPlayer.play_sound(sound_discard_card)
 		card.state = Card.states.NOT_IN_HAND
 		discard_pile.add_card(card)
 		await get_tree().create_timer(0.2).timeout

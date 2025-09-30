@@ -23,7 +23,7 @@ var active := false
 var main_ui : MainUi
 var progress_tracker : ProgressTracker
 var hand: Hand
-
+var cursor: Cursor
 
 static func create_project(template: ProjectResource) -> Project:
 	var instance: Project = preload("res://projects/project.tscn").instantiate()
@@ -73,6 +73,9 @@ func _project_completed():
 	_toggle_fill_bar_border_right(true)
 	
 	GameManager.score += target_progress
+	if GameManager.check_win():
+		return
+	
 	print("project ", template.displayName, " completed.")
 	# animation_player.play("destroy_project")
 	active = false
@@ -121,6 +124,7 @@ func add_step_and_progress() -> void:
 	step_container.add_child(text_rect)
 	
 	steps += 1
+	cursor.play_message(str(steps) + "steps...")
 	progress(steps)
 	
 func _clear_steps() -> void:
@@ -133,6 +137,7 @@ func _ready() -> void:
 	main_ui = get_tree().get_first_node_in_group("main_ui")
 	progress_tracker = get_tree().get_first_node_in_group("progress_tracker")
 	hand = get_tree().get_first_node_in_group("hand")
+	cursor = get_tree().get_first_node_in_group("cursor")
 
 func _on_targetable_indicator_mouse_entered() -> void:
 	if targetable || hand.dragged_card != null:
