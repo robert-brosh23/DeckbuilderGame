@@ -8,5 +8,5 @@ script = ExtResource("1_w6jrj")
 resolve_name = "Early Bird"
 effect = 2
 texture_png = ExtResource("2_hd0xs")
-tooltip = "Start each day with an extra hour"
+tooltip = "Start each day with 2 extra hours."
 metadata/_custom_type_script = "uid://c8eqsslkb6yo1"

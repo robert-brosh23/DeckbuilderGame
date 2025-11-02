@@ -160,6 +160,7 @@ big_arrow = NodePath("Arrows")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="Arrows" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_top = 6.70958
 offset_right = 40.0

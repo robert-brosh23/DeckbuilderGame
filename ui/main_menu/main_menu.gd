@@ -43,7 +43,8 @@ func _reset_sliders():
 	_on_sfx_volume_slider_value_changed(sfx_volume_slider.value)
 	
 func _on_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://ui/tutorial_scene/tutorial_scene.tscn")
+	#get_tree().change_scene_to_file("res://main.tscn")
 	
 func _on_credits_pressed() -> void:
 	main_menu_screen.visible = false
@@ -105,16 +106,13 @@ func _on_master_volume_slider_value_changed(value: float) -> void:
 	if value < -39.9:
 		value = -500
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
-	AudioPlayer.play_sound(sound_discard_card)
 	
 func _on_music_volume_slider_value_changed(value: float) -> void:
 	if value < -39.9:
 		value = -500
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), value)
-	AudioPlayer.play_sound(sound_discard_card)
 
 func _on_sfx_volume_slider_value_changed(value: float) -> void:
 	if value < -39.9:
 		value = -500
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sfx"), value)
-	AudioPlayer.play_sound(sound_discard_card)

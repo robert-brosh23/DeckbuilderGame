@@ -333,11 +333,13 @@ func _execute_community_support():
 	SignalBus.start_card_played.connect(_trigger_community_support, CONNECT_ONE_SHOT)
 	
 	SignalBus.new_day_started.connect(
-		func(): 
+		func(day: int): 
+			for connection in SignalBus.start_card_played.get_connections():
+				print(connection)
 			if SignalBus.start_card_played.is_connected(_trigger_community_support):
 				SignalBus.start_card_played.disconnect(_trigger_community_support)
-			, CONNECT_ONE_SHOT
-	)
+		
+	, CONNECT_ONE_SHOT)
 	
 func _trigger_community_support(card: Card, target: Project):
 	if card.card_data.card_effect == CardData.CARD_EFFECT.COMMUNITY_SUPPORT:

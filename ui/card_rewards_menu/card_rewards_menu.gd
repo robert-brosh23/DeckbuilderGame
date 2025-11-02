@@ -126,7 +126,7 @@ func preview_cards(data: ProjectResource):
 			
 	var picks : Array[int] = []
 	for i in range (0, NUM_CARD_CHOICES):
-		var pick : int
+		var pick : int = randi() % pool.size()
 		while picks.has(pick):
 			pick = randi() % pool.size()
 		picks.append(pick)
@@ -140,13 +140,14 @@ func preview_cards(data: ProjectResource):
 func card_picked(card: Card):
 	visible = false
 	if card != null:
-		await CardsController._create_card(card.card_data, card.global_position)
-		await CardsController._shuffle_deck()
+		CardsController._create_card(card.card_data, card.global_position)
+		CardsController._shuffle_deck()
 	
 	curr_choices.clear()
 	for child in cards_hbox_container.get_children():
 		child.queue_free()
 		
+	print(queue_selection.size())
 	if !queue_selection.is_empty():
 		preview_rewards(queue_selection.pop_front())
 	else:

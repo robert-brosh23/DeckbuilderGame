@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bichiffgvkfhu"]
+[gd_scene load_steps=11 format=3 uid="uid://bichiffgvkfhu"]
 
 [ext_resource type="Script" uid="uid://u0mnuqqb4b1p" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dd5tbk86qnuwn" path="res://deck/deck.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cprtqlg155quc" path="res://hand/hand.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bwina4q0qfyxh" path="res://ui/main_ui/main_ui.tscn" id="5_7mycd"]
-[ext_resource type="Texture2D" uid="uid://cp1r35m32njre" path="res://sprites/title_screen_frame_layer.png" id="5_efxa6"]
 [ext_resource type="PackedScene" uid="uid://d3pwu8oodhuxs" path="res://passives/manager/resolve_manager.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://deccv2m0rwkro" path="res://ui/hours_tracker/hours_tracker.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://bvnrpwbicsfub" path="res://discard_pile/discard_pile.tscn" id="10_4c57u"]
@@ -27,6 +26,7 @@ script = ExtResource("1_0xm2m")
 deck = NodePath("Deck")
 hand = NodePath("Hand")
 discard_pile = NodePath("DiscardPile")
+debug_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -40,16 +40,6 @@ size_flags_horizontal = 4
 
 [node name="Cursor" parent="CanvasLayer" instance=ExtResource("10_efxa6")]
 position = Vector2(320, 180)
-
-[node name="TextureRect" type="TextureRect" parent="."]
-z_index = -10
-layout_mode = 0
-offset_left = -320.0
-offset_top = -180.0
-offset_right = 320.0
-offset_bottom = 180.0
-mouse_filter = 2
-texture = ExtResource("5_efxa6")
 
 [node name="Background" type="ColorRect" parent="."]
 z_index = -10
@@ -69,6 +59,7 @@ color = Color(1, 0.905882, 0.839216, 1)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
+layout_mode = 0
 offset_left = -263.0
 offset_top = -80.0
 offset_right = -263.0
@@ -76,6 +67,7 @@ offset_bottom = -80.0
 
 [node name="DiscardPile" parent="." instance=ExtResource("10_4c57u")]
 z_index = -7
+layout_mode = 0
 offset_left = -263.0
 offset_top = 83.0
 offset_right = -263.0

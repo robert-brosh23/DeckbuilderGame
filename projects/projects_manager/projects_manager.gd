@@ -35,6 +35,9 @@ var project_scene = preload("res://projects/project.tscn")
 var projects : Array[Project] = []
 var hand: Hand
 
+var projects_finished := 0
+var resolution_projects_finished := 0
+
 var preloader_dict : Dictionary[String, Array] = {
 	"Phase1-Creativity" : phase1_creativity_resources_pool,
 	"Phase1-Logic" : phase1_logic_resources_pool,
@@ -117,9 +120,9 @@ func get_project_resource(grid_index : int) -> ProjectResource:
 	if proj_type == ProjectResource.project_type.OBSTACLE:
 		new_project_resource = phase1_obstacle_preloader.get_resource("obstacle_test1").duplicate()
 		if new_project_resource is ProjectResource:
-			new_project_resource.targetProgress = 10 + (GameManager.day / 5) * 5
+			new_project_resource.targetProgress = 10 + (GameManager.day / 5) * 5 + (resolution_projects_finished * 15)
 	else:
-		var target_hours : int = 4 + (GameManager.day / 5) * 2
+		var target_hours : int = 4 + (GameManager.day / 5) * 2 + projects_finished
 		match proj_type:
 			ProjectResource.project_type.CREATIVITY:
 				if !phase1_creativity_resources_pool.is_empty():
@@ -173,6 +176,10 @@ func _project_finished(project: Project):
 	projects.erase(project)
 	project.queue_free()
 	card_rewards_menu.preview_rewards(data)
+	if project.template.type == ProjectResource.project_type.OBSTACLE:
+		resolution_projects_finished += 1
+	else:
+		projects_finished += 1
 	
 	#await get_tree().create_timer(1.0).timeout
 	var resource = get_project_resource(grid_index)

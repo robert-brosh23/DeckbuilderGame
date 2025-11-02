@@ -8,5 +8,5 @@ script = ExtResource("1_q8i6f")
 resolve_name = "Runner"
 effect = 4
 texture_png = ExtResource("2_y5qet")
-tooltip = "Every 4 creativity cards played, apply a step to targeted project and progress by number of steps."
+tooltip = "Every other creativity card played also applies a step to targeted project and progresses by number of steps."
 metadata/_custom_type_script = "uid://c8eqsslkb6yo1"

@@ -110,10 +110,10 @@ func initialize_deadlines():
 	deadlines.append_array(
 		[
 			Deadline.create_deadline(10,25),
-			Deadline.create_deadline(20,60),
-			Deadline.create_deadline(30,150),
-			Deadline.create_deadline(40,300),
-			Deadline.create_deadline(50,600)
+			Deadline.create_deadline(20,50),
+			Deadline.create_deadline(30,100),
+			Deadline.create_deadline(40,200),
+			Deadline.create_deadline(50,350)
 		]
 	)
 	curr_deadline_index = 0

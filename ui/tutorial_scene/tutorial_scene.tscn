@@ -1,0 +1,1360 @@
+[gd_scene load_steps=39 format=3 uid="uid://bk2jos8bqpmjs"]
+
+[ext_resource type="Script" uid="uid://d1ov8soxfpldq" path="res://ui/tutorial_scene/tutorial_scene.gd" id="1_5r46k"]
+[ext_resource type="PackedScene" uid="uid://bf63g5uh508r6" path="res://ui/cursor/cursor.tscn" id="1_riy0r"]
+[ext_resource type="Texture2D" uid="uid://d38jt2m2wg36" path="res://sprites/big_upwards_arrow.png" id="2_5r46k"]
+[ext_resource type="FontFile" uid="uid://b5jqc46nd8338" path="res://fonts/m6x11.ttf" id="3_osnb3"]
+[ext_resource type="FontFile" uid="uid://cm4gkenj5odhg" path="res://fonts/m5x7.ttf" id="4_hmbvn"]
+[ext_resource type="FontFile" uid="uid://b0rxba54kbo4h" path="res://fonts/m6x11plus.ttf" id="5_4v114"]
+[ext_resource type="StyleBox" uid="uid://dfbpspemk5na" path="res://card/card_data/styles/stylebox/art_stylebox.tres" id="6_i2yj2"]
+[ext_resource type="StyleBox" uid="uid://dimhb80rr3nit" path="res://card/card_data/styles/stylebox/image_frame_art_stylebox.tres" id="7_0eh82"]
+[ext_resource type="Texture2D" uid="uid://v68wqwijcn6b" path="res://sprites/grind_tech.png" id="8_k174a"]
+[ext_resource type="FontFile" uid="uid://c6lfcmqrq1huc" path="res://fonts/m3x6.ttf" id="9_wwq87"]
+[ext_resource type="StyleBox" uid="uid://biuq6ndltblkm" path="res://card/card_data/styles/stylebox/obstacle_stylebox.tres" id="10_y0ioh"]
+[ext_resource type="StyleBox" uid="uid://bqal5am0vi5ms" path="res://card/card_data/styles/stylebox/image_frame_obstacle_stylebox.tres" id="11_u8on5"]
+[ext_resource type="Texture2D" uid="uid://b65u1b5mitb0h" path="res://sprites/anxiety.png" id="12_aidwv"]
+[ext_resource type="StyleBox" uid="uid://kyqdxyo8ov6u" path="res://card/card_data/styles/stylebox/standard_stylebox.tres" id="13_pncjf"]
+[ext_resource type="Texture2D" uid="uid://cirjxauk7pmnd" path="res://sprites/touch_grass.png" id="14_as2vb"]
+[ext_resource type="StyleBox" uid="uid://dlttjxc0aven3" path="res://card/card_data/styles/stylebox/tech_stylebox.tres" id="15_nwvrv"]
+[ext_resource type="StyleBox" uid="uid://dy13lqbst52vn" path="res://card/card_data/styles/stylebox/image_frame_tech_stylebox.tres" id="16_53b46"]
+[ext_resource type="Texture2D" uid="uid://cmg6ud6cy151x" path="res://sprites/brainstorming.png" id="17_215yo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydik4"]
+bg_color = Color(0.203922, 0.67451, 0.729412, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54pos"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugr1l"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vxkv"]
+bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbj76"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtfwg"]
+bg_color = Color(1, 0.654902, 0.647059, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6x76x"]
+bg_color = Color(0.203922, 0.67451, 0.729412, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwwid"]
+bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g24oa"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47kxg"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjp4c"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yh7pj"]
+bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx5kj"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5877"]
+bg_color = Color(0.670588, 0.337255, 0.458824, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omrvb"]
+bg_color = Color(1, 0.905882, 0.839216, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1uw86"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4v114"]
+bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmbvn"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osnb3"]
+bg_color = Color(0.933333, 0.415686, 0.486275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5r46k"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.27451, 0.298039, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[node name="TutorialScene" type="Control" node_paths=PackedStringArray("left_arrow", "left_arrow_button", "right_arrow", "right_arrow_button", "start_button", "pages")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5r46k")
+left_arrow = NodePath("CanvasLayer/LeftArrow")
+left_arrow_button = NodePath("CanvasLayer/LeftArrow/LeftArrowButton")
+right_arrow = NodePath("CanvasLayer/RightArrow")
+right_arrow_button = NodePath("CanvasLayer/RightArrow/RightArrowButton")
+start_button = NodePath("CanvasLayer/StartButton")
+pages = [NodePath("CanvasLayer2/Page 0"), NodePath("CanvasLayer2/Page 1"), NodePath("CanvasLayer2/Page 2"), NodePath("CanvasLayer2/Page 3")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Page 0" type="Control" parent="CanvasLayer2"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2/Page 0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.905882, 0.839216, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 0/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="CanvasLayer2/Page 0/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+theme_override_font_sizes/font_size = 32
+text = "- How to Play -"
+
+[node name="Label2" type="Label" parent="CanvasLayer2/Page 0/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+theme_override_font_sizes/font_size = 32
+text = "Ruby wants to finish enough 
+projects before her personal deadlines."
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer2/Page 0"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 171.0
+offset_right = 306.0
+offset_bottom = 253.0
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Complete projects to score points
+so that the target isn't missed. 
+
+Miss the target and it's Game Over"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer2/Page 0"]
+z_index = 1
+custom_minimum_size = Vector2(120, 33)
+layout_mode = 0
+offset_left = 118.0
+offset_top = 257.0
+offset_right = 280.0
+offset_bottom = 312.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ydik4")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 0/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 0/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleText" type="Label" parent="CanvasLayer2/Page 0/PanelContainer2/MarginContainer/VBoxContainer"]
+z_index = 1
+custom_minimum_size = Vector2(150, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_hmbvn")
+theme_override_font_sizes/font_size = 16
+text = "Complete house chores
+(0/4 done)"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer2/Page 0/PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_54pos")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ugr1l")
+show_percentage = false
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer2/Page 0"]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 165.0
+offset_right = 471.0
+offset_bottom = 285.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0vxkv")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 0/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -2
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = -2
+theme_override_constants/margin_bottom = -2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer2/Page 0/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer2/Page 0/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 0/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2/Page 0/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 0/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer2/Page 0/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_4v114")
+theme_override_font_sizes/font_size = 18
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="TargetLabel" type="Label" parent="CanvasLayer2/Page 0/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_4v114")
+theme_override_font_sizes/font_size = 18
+text = "Target: 50"
+
+[node name="DayLabel" type="Label" parent="CanvasLayer2/Page 0/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_4v114")
+theme_override_font_sizes/font_size = 18
+text = "Day: 1"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer2/Page 0/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 70)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.654902, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("3_osnb3")
+theme_override_styles/background = SubResource("StyleBoxFlat_rbj76")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dtfwg")
+step = 1.0
+value = 1.0
+rounded = true
+fill_mode = 3
+show_percentage = false
+
+[node name="DeadlineLabel" type="RichTextLabel" parent="CanvasLayer2/Page 0/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("5_4v114")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = " Deadline: Day 10 "
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Page 1" type="Control" parent="CanvasLayer2"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2/Page 1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.905882, 0.839216, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 1/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label2" type="Label" parent="CanvasLayer2/Page 1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+theme_override_font_sizes/font_size = 32
+text = "Ruby only has so many
+ hours in a day to do things"
+horizontal_alignment = 1
+
+[node name="HoursUI" type="PanelContainer" parent="CanvasLayer2/Page 1"]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 122.0
+offset_right = 496.0
+offset_bottom = 180.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6x76x")
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer2/Page 1/HoursUI"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 1/HoursUI/MarginContainer3"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HoursLabel" type="Label" parent="CanvasLayer2/Page 1/HoursUI/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_4v114")
+theme_override_font_sizes/font_size = 18
+text = "Hours: 8"
+horizontal_alignment = 1
+
+[node name="End Day Button" type="Button" parent="CanvasLayer2/Page 1/HoursUI/MarginContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_4v114")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_kwwid")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g24oa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kwwid")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_47kxg")
+text = "End Day"
+
+[node name="GrindCard" type="Panel" parent="CanvasLayer2/Page 1"]
+custom_minimum_size = Vector2(88, 128)
+layout_mode = 0
+offset_left = 406.0
+offset_top = 195.0
+offset_right = 494.0
+offset_bottom = 323.0
+pivot_offset = Vector2(44, 64)
+theme_override_styles/panel = ExtResource("6_i2yj2")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 1/GrindCard"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 86.0
+offset_bottom = 126.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 1/GrindCard/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2/Page 1/GrindCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CostPanelMarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 1/GrindCard/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = -11
+theme_override_constants/margin_bottom = 1
+
+[node name="CostPanel" type="Panel" parent="CanvasLayer2/Page 1/GrindCard/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer"]
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_rjp4c")
+
+[node name="CostLabel" type="Label" parent="CanvasLayer2/Page 1/GrindCard/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer/CostPanel"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -6.5
+offset_right = 2.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("4_hmbvn")
+theme_override_font_sizes/font_size = 16
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer2/Page 1/GrindCard/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("4_hmbvn")
+theme_override_font_sizes/font_size = 16
+text = "Grind"
+horizontal_alignment = 1
+
+[node name="SpacerContainer" type="MarginContainer" parent="CanvasLayer2/Page 1/GrindCard/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -10
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 1
+
+[node name="Panel" type="ColorRect" parent="CanvasLayer2/Page 1/GrindCard/MarginContainer/VBoxContainer/HBoxContainer/SpacerContainer"]
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer2/Page 1/GrindCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("7_0eh82")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2/Page 1/GrindCard/MarginContainer/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(1, 46)
+layout_mode = 2
+texture = ExtResource("8_k174a")
+
+[node name="DescriptionLabel" type="Label" parent="CanvasLayer2/Page 1/GrindCard/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_constants/line_spacing = -2
+theme_override_fonts/font = ExtResource("9_wwq87")
+theme_override_font_sizes/font_size = 16
+text = "Apply 2 progress to a project"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer2/Page 1"]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 154.0
+offset_right = 369.0
+offset_bottom = 338.0
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Ruby has 8 hours to do things,
+then she must \"End Day\".
+
+
+
+Each card you play costs a certain
+number of hours, as shown in the
+top left of the card."
+horizontal_alignment = 1
+
+[node name="RightArrow" type="TextureRect" parent="CanvasLayer2/Page 1"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 402.0
+offset_top = 16.0
+offset_right = 421.0
+offset_bottom = 79.0
+grow_vertical = 2
+rotation = 1.5708
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("2_5r46k")
+expand_mode = 1
+
+[node name="Page 2" type="Control" parent="CanvasLayer2"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2/Page 2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.905882, 0.839216, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label2" type="Label" parent="CanvasLayer2/Page 2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+theme_override_font_sizes/font_size = 32
+text = "Ruby has to take care of her
+mental health or things will
+get difficult."
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer2/Page 2"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 139.0
+offset_right = 366.0
+offset_bottom = 323.0
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Stress maintains from day to day.
+
+At the end of each day, 
+the \"Next Obstacle\" bar 
+moves forward depending 
+on how much stress Ruby has.
+
+When the bar reaches the end,
+an obstacle card will be added to
+the deck."
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer2/Page 2"]
+layout_mode = 0
+offset_left = 386.0
+offset_top = 119.0
+offset_right = 499.0
+offset_bottom = 207.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yh7pj")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 2/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="StressLabel" type="RichTextLabel" parent="CanvasLayer2/Page 2/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("5_4v114")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Stress: 3"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="AccumulationLabel" type="RichTextLabel" parent="CanvasLayer2/Page 2/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("5_4v114")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Next Obstacle:"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="StressAccumulationBar" type="ProgressBar" parent="CanvasLayer2/Page 2/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 14)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_gx5kj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e5877")
+max_value = 20.0
+value = 10.0
+show_percentage = false
+
+[node name="StressAccumulationLabel" type="Label" parent="CanvasLayer2/Page 2/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "5/10"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="CanvasLayer2/Page 2"]
+custom_minimum_size = Vector2(88, 128)
+layout_mode = 0
+offset_left = 399.0
+offset_top = 214.0
+offset_right = 487.0
+offset_bottom = 342.0
+pivot_offset = Vector2(44, 64)
+theme_override_styles/panel = ExtResource("10_y0ioh")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 2/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 86.0
+offset_bottom = 126.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 2/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2/Page 2/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CostPanelMarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 2/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = -11
+theme_override_constants/margin_bottom = 1
+
+[node name="CostPanel" type="Panel" parent="CanvasLayer2/Page 2/Panel/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer"]
+visible = false
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_omrvb")
+
+[node name="CostLabel" type="Label" parent="CanvasLayer2/Page 2/Panel/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer/CostPanel"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -6.5
+offset_right = 2.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("4_hmbvn")
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer2/Page 2/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_fonts/font = ExtResource("4_hmbvn")
+theme_override_font_sizes/font_size = 16
+text = "Anxiety"
+horizontal_alignment = 1
+
+[node name="SpacerContainer" type="MarginContainer" parent="CanvasLayer2/Page 2/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -10
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 1
+
+[node name="Panel" type="ColorRect" parent="CanvasLayer2/Page 2/Panel/MarginContainer/VBoxContainer/HBoxContainer/SpacerContainer"]
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer2/Page 2/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("11_u8on5")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2/Page 2/Panel/MarginContainer/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(1, 46)
+layout_mode = 2
+texture = ExtResource("12_aidwv")
+
+[node name="DescriptionLabel" type="Label" parent="CanvasLayer2/Page 2/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_constants/line_spacing = -2
+theme_override_fonts/font = ExtResource("9_wwq87")
+theme_override_font_sizes/font_size = 16
+text = "On draw: increase stress by 1."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Page 3" type="Control" parent="CanvasLayer2"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2/Page 3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.905882, 0.839216, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label2" type="Label" parent="CanvasLayer2/Page 3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+theme_override_font_sizes/font_size = 32
+text = "Ruby learns and grows from
+her experiences"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 3"]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 85.0
+offset_right = 368.0
+offset_bottom = 337.0
+theme_override_constants/separation = 17
+
+[node name="Label" type="Label" parent="CanvasLayer2/Page 3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Completing a project also grants
+a reward depending on the type
+of project."
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="CanvasLayer2/Page 3/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.878431, 0.494118, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Creativity: Inspiring Actions"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer2/Page 3/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Finish projects faster"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer2/Page 3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="CanvasLayer2/Page 3/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.203922, 0.67451, 0.729412, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Logic: Strategic Thinking"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer2/Page 3/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Manipulate the deck"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer2/Page 3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="CanvasLayer2/Page 3/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Wisdom: Mindful Healing"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer2/Page 3/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Cleanse negative cards and heal stress"
+horizontal_alignment = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer2/Page 3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="CanvasLayer2/Page 3/VBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_colors/font_outline_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Resolve: Persevering Determination"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer2/Page 3/VBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.415686, 0.486275, 1)
+theme_override_fonts/font = ExtResource("3_osnb3")
+text = "Gain permanent resolutions"
+horizontal_alignment = 1
+
+[node name="TouchGrassCard" type="Panel" parent="CanvasLayer2/Page 3"]
+custom_minimum_size = Vector2(88, 128)
+layout_mode = 0
+offset_left = 423.0
+offset_top = 227.0
+offset_right = 511.0
+offset_bottom = 355.0
+pivot_offset = Vector2(44, 64)
+theme_override_styles/panel = ExtResource("13_pncjf")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 3/TouchGrassCard"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 86.0
+offset_bottom = 126.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 3/TouchGrassCard/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2/Page 3/TouchGrassCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CostPanelMarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 3/TouchGrassCard/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = -11
+theme_override_constants/margin_bottom = 1
+
+[node name="CostPanel" type="Panel" parent="CanvasLayer2/Page 3/TouchGrassCard/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer"]
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_rjp4c")
+
+[node name="CostLabel" type="Label" parent="CanvasLayer2/Page 3/TouchGrassCard/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer/CostPanel"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -6.5
+offset_right = 2.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("4_hmbvn")
+theme_override_font_sizes/font_size = 16
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer2/Page 3/TouchGrassCard/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("4_hmbvn")
+theme_override_font_sizes/font_size = 16
+text = "  Touch Grass"
+horizontal_alignment = 1
+
+[node name="SpacerContainer" type="MarginContainer" parent="CanvasLayer2/Page 3/TouchGrassCard/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -10
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = -10
+theme_override_constants/margin_bottom = 1
+
+[node name="Panel" type="ColorRect" parent="CanvasLayer2/Page 3/TouchGrassCard/MarginContainer/VBoxContainer/HBoxContainer/SpacerContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer2/Page 3/TouchGrassCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("7_0eh82")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2/Page 3/TouchGrassCard/MarginContainer/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(1, 46)
+layout_mode = 2
+texture = ExtResource("14_as2vb")
+
+[node name="DescriptionLabel" type="Label" parent="CanvasLayer2/Page 3/TouchGrassCard/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_constants/line_spacing = -2
+theme_override_fonts/font = ExtResource("9_wwq87")
+theme_override_font_sizes/font_size = 16
+text = "Lower stress by 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="BrainstormCard" type="Panel" parent="CanvasLayer2/Page 3"]
+custom_minimum_size = Vector2(88, 128)
+layout_mode = 0
+offset_left = 373.0
+offset_top = 93.0
+offset_right = 461.0
+offset_bottom = 221.0
+pivot_offset = Vector2(44, 64)
+theme_override_styles/panel = ExtResource("15_nwvrv")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 3/BrainstormCard"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 86.0
+offset_bottom = 126.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Page 3/BrainstormCard/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2/Page 3/BrainstormCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CostPanelMarginContainer" type="MarginContainer" parent="CanvasLayer2/Page 3/BrainstormCard/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = -11
+theme_override_constants/margin_bottom = 1
+
+[node name="CostPanel" type="Panel" parent="CanvasLayer2/Page 3/BrainstormCard/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer"]
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_rjp4c")
+
+[node name="CostLabel" type="Label" parent="CanvasLayer2/Page 3/BrainstormCard/MarginContainer/VBoxContainer/HBoxContainer/CostPanelMarginContainer/CostPanel"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -6.5
+offset_right = 2.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.670588, 0.337255, 0.458824, 1)
+theme_override_fonts/font = ExtResource("4_hmbvn")
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer2/Page 3/BrainstormCard/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_fonts/font = ExtResource("4_hmbvn")
+theme_override_font_sizes/font_size = 16
+text = " Brainstorm"
+horizontal_alignment = 1
+
+[node name="SpacerContainer" type="MarginContainer" parent="CanvasLayer2/Page 3/BrainstormCard/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -10
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 1
+
+[node name="Panel" type="ColorRect" parent="CanvasLayer2/Page 3/BrainstormCard/MarginContainer/VBoxContainer/HBoxContainer/SpacerContainer"]
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer2/Page 3/BrainstormCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("16_53b46")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2/Page 3/BrainstormCard/MarginContainer/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(1, 46)
+layout_mode = 2
+texture = ExtResource("17_215yo")
+
+[node name="DescriptionLabel" type="Label" parent="CanvasLayer2/Page 3/BrainstormCard/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_constants/line_spacing = -2
+theme_override_fonts/font = ExtResource("9_wwq87")
+theme_override_font_sizes/font_size = 16
+text = "Draw 3 cards"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Cursor" parent="CanvasLayer" instance=ExtResource("1_riy0r")]
+
+[node name="LeftArrow" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = 35.0
+offset_right = 74.0
+offset_bottom = 137.0
+grow_vertical = 2
+rotation = -1.5708
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("2_5r46k")
+stretch_mode = 2
+
+[node name="LeftArrowButton" type="Button" parent="CanvasLayer/LeftArrow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1uw86")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1uw86")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1uw86")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1uw86")
+
+[node name="RightArrow" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 624.0
+offset_top = -23.0
+offset_right = 682.0
+offset_bottom = 79.0
+grow_vertical = 2
+rotation = 1.5708
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("2_5r46k")
+stretch_mode = 2
+
+[node name="RightArrowButton" type="Button" parent="CanvasLayer/RightArrow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1uw86")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1uw86")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1uw86")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1uw86")
+
+[node name="StartButton" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(100, 30)
+offset_left = 522.0
+offset_top = 171.0
+offset_right = 622.0
+offset_bottom = 201.0
+theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.27451, 0.298039, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_osnb3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4v114")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hmbvn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_osnb3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_5r46k")
+text = "Start"
+
+[connection signal="pressed" from="CanvasLayer/LeftArrow/LeftArrowButton" to="." method="_on_left_arrow_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/RightArrow/RightArrowButton" to="." method="_on_right_arrow_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/StartButton" to="." method="_on_start_button_pressed"]

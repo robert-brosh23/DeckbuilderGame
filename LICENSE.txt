@@ -1,0 +1,19 @@
+Copyright © 2025 Robert Brosh. All rights reserved.
+
+This software, including all code, assets, artwork, music, and other content (collectively, “the Software”), is the exclusive property of Robert Brosh.
+
+You are granted permission to install and use the Software for personal entertainment purposes only.
+
+You may not:
+
+Copy, distribute, or make the Software available to others.
+
+Modify, decompile, reverse engineer, or create derivative works based on the Software.
+
+Use any part of the Software’s assets, code, or data in other projects.
+
+The Software is provided “AS IS,” without warranty of any kind. Robert Brosh is not liable for any damages arising from use or inability to use the Software.
+
+All rights not expressly granted are reserved.
+
+Governing Law: This agreement shall be governed by and construed under the laws of the United States of America.

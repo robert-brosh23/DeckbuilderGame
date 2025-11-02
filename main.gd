@@ -49,16 +49,19 @@ func debug_add_hours() -> void:
 	GameManager.hours += 8
 	
 func debug_increase_stress() -> void:
-	GameManager.stress += 1
+	#GameManager.stress += 1
+	$ProjectsManager.projects[0].progress(10)
 	
 func debug_next_day() -> void:
-	GameManager.score += 100
+	#GameManager.score += 100
+	$ProjectsManager.projects[1].progress(10)
 	
 func debug_select_cards() -> void:
-	CardsController.enqueue_select_cards(4)
+	#CardsController.enqueue_select_cards(4)
+	$ProjectsManager.projects[2].progress(10)
 	
 func debug_apply_progress() -> void:
-	$ProjectsManager.projects[0].progress(1)
+	$ProjectsManager.projects[3].progress(10)
 	
 func debug_add_new_card() -> void:
 	$CanvasLayer/CardRewardsMenu.preview_rewards(preload("res://projects/project_data/projects/phase1/obstacle/obstacle_test1.tres"))

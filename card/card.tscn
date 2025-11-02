@@ -12,13 +12,8 @@
 [sub_resource type="Resource" id="Resource_7dy67"]
 script = ExtResource("3_ags6k")
 card_name = "Meditation"
-card_cost = 0
 card_png = ExtResource("2_1n6wr")
 card_description = "Shuffle your discard pile into your deck and draw 1 card."
-card_type = 0
-card_effect = 0
-title_font = 1
-desc_line_spacing = -2
 card_title_offset = 8
 metadata/_custom_type_script = "uid://bevi4n8n1jvud"
 
@@ -159,7 +154,7 @@ pivot_offset = Vector2(44, 64)
 theme_override_styles/panel = ExtResource("3_6xkbt")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 86.0

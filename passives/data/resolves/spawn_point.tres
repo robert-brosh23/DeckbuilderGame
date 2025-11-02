@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("1_3mwbg")
 resolve_name = "Spawn Point"
-effect = 0
 texture_png = ExtResource("2_i33xr")
-tooltip = "At the start of a new day, draw one extra card."
+tooltip = "At the start of a new day, draw two extra cards."
 metadata/_custom_type_script = "uid://c8eqsslkb6yo1"

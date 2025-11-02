@@ -29,14 +29,6 @@
 [ext_resource type="Resource" uid="uid://hbsxvkq72uke" path="res://card/card_data/cards/obstacle/forgot_my_lunch.tres" id="20_xyrri"]
 [ext_resource type="Resource" uid="uid://coh1whm120l72" path="res://card/card_data/cards/wisdom/overcome_adversity.tres" id="24_btv7j"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kutq"]
-bg_color = Color(0.447059, 0.862745, 0.733333, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqkvr"]
 bg_color = Color(0.670588, 0.337255, 0.458824, 1)
 corner_radius_top_left = 4
@@ -46,6 +38,14 @@ corner_radius_bottom_left = 4
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klblc"]
+bg_color = Color(0.447059, 0.862745, 0.733333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kutq"]
 bg_color = Color(0.447059, 0.862745, 0.733333, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -111,16 +111,16 @@ alignment = 1
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
-theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
 theme_override_colors/font_color = Color(1, 0.905882, 0.839216, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.905882, 0.839216, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.905882, 0.839216, 1)
 theme_override_fonts/font = ExtResource("2_3kutq")
 theme_override_font_sizes/font_size = 18
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_3kutq")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kqkvr")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_klblc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kqkvr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_klblc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kqkvr")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_3kutq")
 text = "Skip"
 
 [node name="LogicCardsResourcePreloader" type="ResourcePreloader" parent="."]

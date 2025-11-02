@@ -36,14 +36,15 @@ func _create_spawn_point():
 	SignalBus.new_day_started.connect(
 		func(day: int):
 			CardsController.enqueue_draw_card_from_deck()
-			GameManager.cursor.play_message("+1 Draw (Spawn Point)")
+			CardsController.enqueue_draw_card_from_deck()
+			GameManager.cursor.play_message("+2 Draw (Spawn Point)")
 	)
 	
 func _create_early_bird():
 	SignalBus.new_day_started.connect(
 		func(day: int):
-			GameManager.hours += 1
-			GameManager.cursor.play_message("+1 Hours (Early Bird)")
+			GameManager.hours += 2
+			GameManager.cursor.play_message("+2 Hours (Early Bird)")
 	)
 	
 func _create_discipline():
@@ -75,7 +76,7 @@ func _create_morning_jogger():
 		func(card: Card, project: Project):
 			if card.card_data.card_type == CardData.CARD_TYPE.ART:
 				counter += 1
-				if counter == 4:
+				if counter == 2:
 					if project == null:
 						counter -= 1
 					else:
